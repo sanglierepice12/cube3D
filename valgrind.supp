@@ -1,0 +1,7 @@
+{
+   mlx_leak
+   Memcheck:Leak
+   obj:./minilibx-linux/*.so
+   fun:*mlx_*
+   fun:*free*
+}
