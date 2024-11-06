@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/04 16:15:32 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:14:15 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,11 @@ void clean_up(t_game *game)
         free(game->img);
 }
 
-int init_game(t_game *game)
-{
-    game->player = calloc(1, sizeof(t_player));
-    if (!game->player)
-        return (-1);
 
-    game->player->player_pos_x = 10;
-    game->player->player_pos_y = 5; // provided later by parsing 
-
-    game->map = calloc(1, sizeof(t_map));  
-    if (!game->map)
-        return (-1);
-
-    if (initialize_map(game->map) == -1)
-        return (-1);
-
-    game->mlx_data = calloc(1, sizeof(t_mlx_data));  
-    if (!game->mlx_data)
-        return (-1);
-
-    game->img = calloc(1, sizeof(t_data));
-    if (!game->img)
-        return (-1);
-
-    if (init_env(game->mlx_data, 1920, 1080, "Window") == -1)
-        return (-1);
-
-    if (initialize_graphics(game->mlx_data, game->map, game->img) == -1)
-        return (-1);
-
-    return (0);
-}
 
 int main(void)
 {
-    t_game game;
+    t_game  game;
     if (init_game(&game) == -1)
     {
         clean_up(&game);

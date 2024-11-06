@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/04 16:12:43 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/06 08:42:04 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../minilibx-linux/mlx.h"
 #include "../get_next_line/get_next_line.h"
 
@@ -32,23 +33,35 @@
 #define D_KEY         100
 #define ESC_KEY       65307
 
+/*################### COLORS #######################*/
+
+#define BLUE  0x0000FF
+#define WHITE 0xFFFFFFF
+#define GREEN 0x00FF000
+#define BLACK 0x0000000
 
 /*################ SIZE MACROS #####################*/
 
 #define TILE_SIZE 32
 #define PLAYER_SIZE 16
+#define BORDER_SIZE 0.5
+#define STEP_SIZE 1  // Step size for ray tracing in pixels
+#define ROTATION_SPEED 0.1
+#define FOV_ANGLE (M_PI / 3)
+#define RAY_COUNT 60
+
 
 
 /*################ STRUCTURES #####################*/
 
 
-typedef struct	s_data t_data;
+typedef struct	s_img_data t_img_data;
 typedef struct	s_mlx_data t_mlx_data;
 typedef	struct	s_map t_map;
 typedef struct s_player t_player;
 typedef struct s_game t_game;
 
-struct	s_data
+struct	s_img_data
 {
 	void	*img_ptr;
 	char	*addr;
@@ -74,6 +87,10 @@ struct s_player
 {
 	int	player_pos_x;
 	int	player_pos_y;
+	int	player_px_pos_x;
+	int	player_px_pos_y;
+	double	angle;
+	char *direction;
 };
 
 struct s_game
@@ -81,7 +98,7 @@ struct s_game
     t_mlx_data *mlx_data;
     t_map      *map;
     t_player   *player;
-    t_data     *img;
+    t_img_data     *img;
 };
 
 
@@ -89,7 +106,7 @@ struct s_game
 
 /*=================draw_tools.c===================*/
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 
 /*==================get_map.c=====================*/
 
@@ -104,7 +121,9 @@ int			handle_keypress(int keycode, t_game *game);
 
 int			init_env(t_mlx_data *mlx_data, int width, int height, char *title);
 int			initialize_map(t_map *map);
-int			initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_data *img);
+int			initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *img);
+void		find_play_pos(t_map *map, t_player *player);
+int			init_game(t_game *game);
 
 
 /*==================mini_map.c====================*/
