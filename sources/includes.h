@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/06 08:42:04 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/06 11:39:12 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,18 @@
 #define WHITE 0xFFFFFFF
 #define GREEN 0x00FF000
 #define BLACK 0x0000000
+#define PINK  0X0FFC0CB
+#define RED  0XFF0000
 
 /*################ SIZE MACROS #####################*/
 
 #define TILE_SIZE 32
 #define PLAYER_SIZE 16
 #define BORDER_SIZE 0.5
-#define STEP_SIZE 1  // Step size for ray tracing in pixels
+// #define STEP_SIZE 1
 #define ROTATION_SPEED 0.1
 #define FOV_ANGLE (M_PI / 3)
-#define RAY_COUNT 60
+#define RAY_COUNT 30
 
 
 

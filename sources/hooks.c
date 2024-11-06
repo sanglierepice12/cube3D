@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/06 08:40:29 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:24:58 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void handle_rotation(int keycode, t_player *player)
 {
-    if (keycode == W_KEY)
+    if (keycode == A_KEY)
         player->angle += ROTATION_SPEED;
     else if (keycode == D_KEY)
         player->angle -= ROTATION_SPEED;

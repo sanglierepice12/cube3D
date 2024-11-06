@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/06 09:01:53 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/06 11:39:27 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int draw_tile(t_img_data *img, int start_x, int start_y, int color)
         x = 0;
         while (x < TILE_SIZE)
         {
-            if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE || y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
-                my_mlx_pixel_put(img, start_x + x, start_y + y, BLACK);
-            else 
+            // if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE || y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
+            //     my_mlx_pixel_put(img, start_x + x, start_y + y, BLACK);
+            // else 
                 my_mlx_pixel_put(img, start_x + x, start_y + y, color);
             x++;
         }
@@ -98,18 +98,25 @@ void trace_rays(t_game *game, t_player *player)
     int ray_index;
 
     ray_index = 0;
-    while (ray_index < RAY_COUNT)
+    while (ray_index < RAY_COUNT )
     {
         ray_angle = player->angle - (FOV_ANGLE / 2) + (ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
         ray_x = player->player_px_pos_x;
         ray_y = player->player_px_pos_y;
         while (game->map->map[(int)(ray_y / TILE_SIZE)][(int)(ray_x / TILE_SIZE)] != '1')
         {
-            my_mlx_pixel_put(game->img, (int)ray_x, (int)ray_y, BLACK);
-            ray_x += cos(ray_angle) * STEP_SIZE;
-            ray_y -= sin(ray_angle) * STEP_SIZE;
+            if (ray_index == (RAY_COUNT / 2))
+            {
+                my_mlx_pixel_put(game->img, (int)ray_x, (int)ray_y, GREEN);
+                
+            }
+            else
+                my_mlx_pixel_put(game->img, (int)ray_x, (int)ray_y, PINK);
+            ray_x += cos(ray_angle); // * STEP_SIZE;
+            ray_y -= sin(ray_angle); // * STEP_SIZE;
         }
-       // printf("hit !!! a wall at %f, %f \n", ray_index, ray_x, ray_y);
+        printf("hit !!! a wall at %f, %f \n", ray_x, ray_y);
+        my_mlx_pixel_put(game->img, ray_x, ray_y, RED);
     
         ray_index++;
     }
