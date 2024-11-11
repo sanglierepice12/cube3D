@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 08:39:32 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:27:08 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,68 @@ void fill_tile_with_player(t_img_data *img, int tile_x, int tile_y, int floor_co
 // }
 
 //  multiple  rays to be traced i a ranged of a 60 degres fov
+
+// void render_3d_view(t_game *game, t_player *player)
+// {
+//     double ray_angle;
+//     double ray_x, ray_y;
+//     int ray_index;
+//     double distance_to_wall;
+//     int wall_height;
+//     int wall_start, wall_end;
+    
+//     ray_index = 0;
+//     while (ray_index < RAY_COUNT)
+//     {
+//         ray_angle = player->angle - (FOV_ANGLE / 2) + (ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
+//         ray_x = player->player_px_pos_x;
+//         ray_y = player->player_px_pos_y;
+        
+//         // Cast ray until it hits a wall
+//         while (game->map->map[(int)(ray_y / TILE_SIZE)][(int)(ray_x / TILE_SIZE)] != '1')
+//         {
+//             ray_x += cos(ray_angle);
+//             ray_y -= sin(ray_angle);
+//         }
+        
+//         // Calculate distance to wall
+//         distance_to_wall = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_px_pos_y, 2));
+        
+//         // Project the wall height based on distance
+//         wall_height = (int)(TILE_SIZE * DISTANCE_TO_PROJECTION_PLANE / distance_to_wall);
+        
+//         // Calculate where to start and end the wall slice on screen
+//         wall_start = (SCREEN_HEIGHT / 2) - (wall_height / 2);
+//         wall_end = (SCREEN_HEIGHT / 2) + (wall_height / 2);
+        
+//         // Draw the vertical wall slice on the screen
+//         int y = wall_start;
+//         while (y <= wall_end)
+//         {
+//             my_mlx_pixel_put(game->game_img, ray_index, y, WALL_COLOR);
+//             y++;
+//         }
+
+//         ray_index++;
+//     }
+// }
+
+//double distance_to_projection_plane = SCREEN_WIDTH / (2 * tan(FOV_ANGLE / 2));
+
+
+
 void trace_rays(t_game *game, t_player *player)
 {
     double ray_angle;
     double ray_x;
     double ray_y;
     int ray_index;
+
+    // //TO 3D DRAW
+    // int wall_height;
+    // int wall_start;
+    // int wall_end;
+    // int y;
 
     ray_index = 0;
     while (ray_index < RAY_COUNT )
@@ -115,8 +171,23 @@ void trace_rays(t_game *game, t_player *player)
             ray_x += cos(ray_angle); // * STEP_SIZE;
             ray_y -= sin(ray_angle); // * STEP_SIZE;
         }
-        printf("hit wall at y->[%f, %f]<-x \n", ray_x, ray_y);
-        my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
+        // // TO 3D DRAW
+        // player->distance = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_pos_y, 2));
+        // wall_height = (int)(TILE_SIZE * DISTANCE_TO_PLANE / player->distance);
+        // wall_start = (GAME_HEIGHT / 2) - (wall_height / 2);
+        // wall_end = (GAME_HEIGHT / 2) + (wall_height / 2);
+        
+        // y = wall_start;
+        // while (y < wall_end)
+        // {
+        //     my_mlx_pixel_put(game->game_img, ray_index, y, YELLOW);
+        //     y++;
+        // }
+        
+        
+        //printf("hit wall at y->[%f, %f]<-x \n", ray_x, ray_y);
+        // my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
+        // my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
     
         ray_index++;
     }
@@ -147,9 +218,11 @@ void draw_mini_map(t_game *game)
     trace_rays(game, game->player);
 }
 
-void draw_and_display_map(t_game *game)
+void draw_and_display_map(t_game *game) // and game;
 {
     draw_mini_map(game);
-    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->win_ptr, game->map_img->img_ptr, 0, 0);
-    mlx_hook(game->mlx_data->win_ptr, 2, 1L<<0, handle_keypress, game); 
+    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->map_win_ptr, game->map_img->img_ptr, 0, 0);
+    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
+    mlx_hook(game->mlx_data->map_win_ptr, 2, 1L<<0, handle_keypress, game); 
+    mlx_hook(game->mlx_data->game_win_ptr, 2, 1L<<0, handle_keypress, game); 
 }

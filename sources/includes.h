@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 08:39:32 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:12:56 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@
 #define ROTATION_SPEED 0.1
 #define FOV_ANGLE (M_PI / 3)
 #define RAY_COUNT 30
+#define GAME_WIDTH 1920
+#define GAME_HEIGHT 780
+#define DISTANCE_TO_PLANE (GAME_WIDTH / 2) * tan(FOV_ANGLE / 2)
 
 
 
@@ -76,7 +79,8 @@ struct	s_img_data
 struct	s_mlx_data
 {
 	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*map_win_ptr;
+	void	*game_win_ptr;
 };
 
 struct	s_map
@@ -93,6 +97,7 @@ struct s_player
 	int	player_px_pos_x;
 	int	player_px_pos_y;
 	double	angle;
+	double distance;
 	char *direction;
 };
 
@@ -102,6 +107,7 @@ struct s_game
     t_map      *map;
     t_player   *player;
     t_img_data     *map_img;
+    t_img_data     *game_img;
 };
 
 
@@ -122,9 +128,9 @@ int			handle_keypress(int keycode, t_game *game);
 
 /*=====================init.c=====================*/
 
-int			init_env(t_mlx_data *mlx_data, int width, int height, char *title);
+int			init_env(t_mlx_data *mlx_data, t_map *map);
 int			initialize_map(t_map *map);
-int			initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *img);
+int initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img, t_img_data *game_img);
 void		find_play_pos(t_map *map, t_player *player);
 int			init_game(t_game *game);
 
