@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 09:36:01 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:58:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void handle_rotation(int keycode, t_player *player)
 
 int handle_keypress(int keycode, t_game *game)
 {
-    int new_x = game->player->player_pos_x;
-    int new_y = game->player->player_pos_y;
-
+    int new_x;
+    int new_y;
+    
+    new_x = game->player->player_pos_x;
+    new_y = game->player->player_pos_y;
     if (keycode == ESC_KEY)
     {
         clean_up(game);

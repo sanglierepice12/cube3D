@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 10:27:08 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:01:10 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,6 @@ void trace_rays(t_game *game, t_player *player)
     double ray_y;
     int ray_index;
 
-    // //TO 3D DRAW
-    // int wall_height;
-    // int wall_start;
-    // int wall_end;
-    // int y;
 
     ray_index = 0;
     while (ray_index < RAY_COUNT )
@@ -171,23 +166,10 @@ void trace_rays(t_game *game, t_player *player)
             ray_x += cos(ray_angle); // * STEP_SIZE;
             ray_y -= sin(ray_angle); // * STEP_SIZE;
         }
-        // // TO 3D DRAW
-        // player->distance = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_pos_y, 2));
-        // wall_height = (int)(TILE_SIZE * DISTANCE_TO_PLANE / player->distance);
-        // wall_start = (GAME_HEIGHT / 2) - (wall_height / 2);
-        // wall_end = (GAME_HEIGHT / 2) + (wall_height / 2);
-        
-        // y = wall_start;
-        // while (y < wall_end)
-        // {
-        //     my_mlx_pixel_put(game->game_img, ray_index, y, YELLOW);
-        //     y++;
-        // }
-        
-        
-        //printf("hit wall at y->[%f, %f]<-x \n", ray_x, ray_y);
-        // my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
-        // my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
+        printf("hit wall at y->[%f, %f]<-x \n", ray_x, ray_y);
+        //--> record distance to wall : 
+        my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
+        my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
     
         ray_index++;
     }
