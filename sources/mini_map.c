@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 11:01:10 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:19:56 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,24 +107,19 @@ void fill_tile_with_player(t_img_data *img, int tile_x, int tile_y, int floor_co
 //         ray_x = player->player_px_pos_x;
 //         ray_y = player->player_px_pos_y;
         
-//         // Cast ray until it hits a wall
 //         while (game->map->map[(int)(ray_y / TILE_SIZE)][(int)(ray_x / TILE_SIZE)] != '1')
 //         {
 //             ray_x += cos(ray_angle);
 //             ray_y -= sin(ray_angle);
 //         }
         
-//         // Calculate distance to wall
 //         distance_to_wall = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_px_pos_y, 2));
         
-//         // Project the wall height based on distance
 //         wall_height = (int)(TILE_SIZE * DISTANCE_TO_PROJECTION_PLANE / distance_to_wall);
         
-//         // Calculate where to start and end the wall slice on screen
 //         wall_start = (SCREEN_HEIGHT / 2) - (wall_height / 2);
 //         wall_end = (SCREEN_HEIGHT / 2) + (wall_height / 2);
         
-//         // Draw the vertical wall slice on the screen
 //         int y = wall_start;
 //         while (y <= wall_end)
 //         {
