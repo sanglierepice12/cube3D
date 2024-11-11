@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 11:42:03 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:55:12 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,14 +162,17 @@ void trace_rays(t_game *game, t_player *player)
             ray_y -= sin(ray_angle); // * STEP_SIZE;
         }
         long distance_to_wall = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_px_pos_y, 2));        //--> record distance to wall : 
-        printf("ray nb[%d] hit wall at x->[%f, %f]<-y \n", ray_index, ray_x, ray_y);
-        printf("play is %ld distant to wall\n", distance_to_wall);
+        //printf("ray nb[%d] hit wall at x->[%f, %f]<-y \n", ray_index, ray_x, ray_y);
+        printf("ray nb[%d is %ld distant to wall\n", ray_index, distance_to_wall);
         my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
         my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
     
         ray_index++;
     }
 }
+
+// in fact,heere  i can have distance to wall for each ray, but i need the player distance to wall to 
+// (maybe only center ray will be enought first), THEN capture the rays lengths at positon, and draw from here, based on Window_width
 
 void draw_mini_map(t_game *game)
 {
