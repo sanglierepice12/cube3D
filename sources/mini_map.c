@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/06 11:39:27 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 08:39:32 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,16 @@ void trace_rays(t_game *game, t_player *player)
         {
             if (ray_index == (RAY_COUNT / 2))
             {
-                my_mlx_pixel_put(game->img, (int)ray_x, (int)ray_y, GREEN);
+                my_mlx_pixel_put(game->map_img, (int)ray_x, (int)ray_y, GREEN);
                 
             }
             else
-                my_mlx_pixel_put(game->img, (int)ray_x, (int)ray_y, PINK);
+                my_mlx_pixel_put(game->map_img, (int)ray_x, (int)ray_y, PINK);
             ray_x += cos(ray_angle); // * STEP_SIZE;
             ray_y -= sin(ray_angle); // * STEP_SIZE;
         }
-        printf("hit !!! a wall at %f, %f \n", ray_x, ray_y);
-        my_mlx_pixel_put(game->img, ray_x, ray_y, RED);
+        printf("hit wall at y->[%f, %f]<-x \n", ray_x, ray_y);
+        my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
     
         ray_index++;
     }
@@ -134,22 +134,22 @@ void draw_mini_map(t_game *game)
         while (game->map->map[y][x])
 		{
             if (game->map->map[y][x] == '1')
-                draw_tile(game->img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
+                draw_tile(game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
 			if (game->map->map[y][x] == '0'|| game->map->map[y][x] == 'N' )
-                draw_tile(game->img, x * TILE_SIZE, y * TILE_SIZE, WHITE);
+                draw_tile(game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
             //--> center of playr check :
-            my_mlx_pixel_put(game->img, game->player->player_px_pos_x, game->player->player_px_pos_y, BLACK);
+            my_mlx_pixel_put(game->map_img, game->player->player_px_pos_x, game->player->player_px_pos_y, BLACK);
             x++;
         }
         y++;
     }
-    fill_tile_with_player(game->img, game->player->player_pos_x, game->player->player_pos_y, WHITE, GREEN);
+    fill_tile_with_player(game->map_img, game->player->player_pos_x, game->player->player_pos_y, BLACK, GREEN);
     trace_rays(game, game->player);
 }
 
 void draw_and_display_map(t_game *game)
 {
     draw_mini_map(game);
-    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->win_ptr, game->img->img_ptr, 0, 0);
+    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->win_ptr, game->map_img->img_ptr, 0, 0);
     mlx_hook(game->mlx_data->win_ptr, 2, 1L<<0, handle_keypress, game); 
 }

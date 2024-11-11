@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/06 08:22:52 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 08:44:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,14 @@ int init_game(t_game *game)
     if (!game->mlx_data)
         return (-1);
 
-    game->img = calloc(1, sizeof(t_img_data));
-    if (!game->img)
+    game->map_img = calloc(1, sizeof(t_img_data));
+    if (!game->map_img)
         return (-1);
 
-    if (init_env(game->mlx_data, 1920, 1080, "Window") == -1)
+    if (init_env(game->mlx_data, (game->map->map_length * TILE_SIZE) - TILE_SIZE, game->map->map_height * TILE_SIZE, "MiniMap") == -1)
         return (-1);
 
-    if (initialize_graphics(game->mlx_data, game->map, game->img) == -1)
+    if (initialize_graphics(game->mlx_data, game->map, game->map_img) == -1)
         return (-1);
 
     return (0);

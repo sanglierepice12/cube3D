@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/06 11:39:12 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 08:39:32 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@
 #define BLACK 0x0000000
 #define PINK  0X0FFC0CB
 #define RED  0XFF0000
+#define YELLOW  0xFFFF00
 
 /*################ SIZE MACROS #####################*/
 
-#define TILE_SIZE 32
+#define TILE_SIZE 64
 #define PLAYER_SIZE 16
 #define BORDER_SIZE 0.5
 // #define STEP_SIZE 1
@@ -100,7 +101,7 @@ struct s_game
     t_mlx_data *mlx_data;
     t_map      *map;
     t_player   *player;
-    t_img_data     *img;
+    t_img_data     *map_img;
 };
 
 
