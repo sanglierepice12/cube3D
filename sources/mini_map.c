@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 11:19:56 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:42:03 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,9 @@ void trace_rays(t_game *game, t_player *player)
             ray_x += cos(ray_angle); // * STEP_SIZE;
             ray_y -= sin(ray_angle); // * STEP_SIZE;
         }
-        printf("hit wall at y->[%f, %f]<-x \n", ray_x, ray_y);
-        //--> record distance to wall : 
+        long distance_to_wall = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_px_pos_y, 2));        //--> record distance to wall : 
+        printf("ray nb[%d] hit wall at x->[%f, %f]<-y \n", ray_index, ray_x, ray_y);
+        printf("play is %ld distant to wall\n", distance_to_wall);
         my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
         my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
     
