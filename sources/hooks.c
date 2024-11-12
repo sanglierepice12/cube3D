@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
+#include "../include/cub3D.h"
 
 void handle_rotation(int keycode, t_player *player)
 {

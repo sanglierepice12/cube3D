@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_tools.c                                       :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/05 09:11:26 by jedusser         ###   ########.fr       */
+/*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
+/*   Updated: 2024/11/12 11:29:05 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#ifndef CUBE3D_H
+# define CUBE3D_H
 
-void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
-{
-	char	*dst;
+/*################ INCLUDES #####################*/
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
+# include "../minilibx-linux/mlx.h"
+# include "headers/get_next_line_h/get_next_line.h"
+# include "headers/cub3d_structs.h"    // Inclusion de cub3d_structs.h pour les structures
+# include "headers/cub3d_define.h"
+# include "headers/cub3d_functions.h"
+
+# endif

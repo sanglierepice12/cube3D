@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
+#include "../include/cub3D.h"
 
 void clean_up(t_game *game)
 {
@@ -23,7 +23,7 @@ void clean_up(t_game *game)
     {
         mlx_destroy_image(game->mlx_data->mlx_ptr, game->map_img->img_ptr);
         mlx_destroy_image(game->mlx_data->mlx_ptr, game->game_img->img_ptr);
-        
+
     }
     if (game->mlx_data)
     {
@@ -40,7 +40,6 @@ void clean_up(t_game *game)
 
     }
 }
-
 
 
 int main(void)

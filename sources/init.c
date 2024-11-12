@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
+#include "../include/cub3D.h"
+
 
 int init_env(t_mlx_data *mlx_data, t_map *map)
 {

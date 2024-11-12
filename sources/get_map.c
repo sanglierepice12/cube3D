@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "includes.h"
+#include "../include/cub3D.h"
 
 void free_tab(char **tab)
 {

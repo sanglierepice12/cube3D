@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
+#include "../include/cub3D.h"
 
 
 void draw_player(t_img_data *img, int start_x, int start_y, int color)
