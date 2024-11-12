@@ -10,7 +10,7 @@ NC = \033[0m
 # Compiler and Flags
 CC = cc
 CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=leak -fsanitize=address -Iinclude
-LDFLAGS = -lm
+LDFLAGS = -lmlx -lXext -lX11 -lm
 
 # Executable
 NAME = cub3d
