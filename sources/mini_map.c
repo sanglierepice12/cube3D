@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 11:20:03 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:24:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,6 @@ int get_pixel_color(void *img, int x, int y)
     return (color);
 }
 
-// void render_3d_view(t_game *game, t_player *player)
-// {
-    
-// }
 
 void trace_rays(t_game *game, t_player *player)
 {
@@ -104,7 +100,7 @@ void trace_rays(t_game *game, t_player *player)
     int y;
     
     ray_index = 0;
-    while (ray_index < RAY_COUNT)
+    while (ray_index <  RAY_COUNT)
     {
         ray_angle = player->angle - (FOV_ANGLE / 2) + (ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
         ray_x = player->player_px_pos_x;
@@ -136,8 +132,8 @@ void trace_rays(t_game *game, t_player *player)
             y++;
         }
         printf("ray nb[%d is %ld distant to wall\n", ray_index, distance_to_wall);
-        my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
-        my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
+        //my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
+       // my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
         ray_index++;
     }
 }
