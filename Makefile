@@ -10,19 +10,27 @@ NC = \033[0m
 # Compiler and Flags
 CC = cc
 CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=leak -fsanitize=address -Iinclude
+LDFLAGS = -lm
 
 # Executable
 NAME = cub3d
 
 # Directories
-SRC_DIR = ./sources
+SRC_DIR = ./src
 OBJ_DIR = ./obj
 DEP_DIR = ./dep
 
 # Source Files
-SRC = main.c get_map.c draw_tools.c hooks.c init.c mini_map.c
+SRC =	main.c								\
+		get_map.c							\
+		draw_tools.c						\
+		hooks.c								\
+		init.c								\
+		mini_map.c							\
+		get_next_line/get_next_line.c		\
+		get_next_line/get_next_line_utils.c
 
-GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+#GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 # Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
@@ -30,15 +38,17 @@ MINILIBX_DIR = minilibx-linux
 MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm
 
 # Object and Dependency Files
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(GNL_SRC)
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-DEPS = $(addprefix $(DEP_DIR)/, $(SRCS:.c=.d))
+#SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(GNL_SRC)
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+DEPS = $(addprefix $(DEP_DIR)/, $(SRC:.c=.d))
 
 # ===================== #
 #       COMMANDS        #
 # ===================== #
 
-# Default target
+# Target
+.SILENT: all clean fclean re
+
 all: $(MINILIBX_DIR) $(NAME)
 	@echo "$(GREEN)Compilation of $(NAME) completed successfully!$(NC)"
 
@@ -52,16 +62,19 @@ $(MINILIBX_DIR):
 	fi
 	@$(MAKE) -C $(MINILIBX_DIR)
 
+-include $(DEPS)
+
 # Compile the executable
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking $(NAME)$(NC)"
-	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS)
 
 # Compile each .c file to .o and generate .d files
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(@D) $(DEP_DIR)
-	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
-	@mv $(OBJ_DIR)/$*.d $(DEP_DIR)/$*.d  # Déplace le .d généré dans le dossier DEP_DIR
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
+	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+	@mkdir -p $(OBJ_DIR)/get_next_line $(DEP_DIR)/get_next_line
+	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
+	@echo "$(GREEN)Compilation of $< completed!$(NC)"
 
 # Clean object and dependency files
 clean:
@@ -76,8 +89,5 @@ fclean: clean
 
 # Rebuild
 re: fclean all
-
-# Include the dependency files
--include $(DEPS)
 
 .PHONY: all clean fclean re $(MINILIBX_DIR)
