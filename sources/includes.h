@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 12:03:12 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:21:55 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@
 #define TILE_SIZE 64
 #define PLAYER_SIZE 16
 #define BORDER_SIZE 0.5
-// #define STEP_SIZE 1
+//#define STEP_SIZE 10
 #define ROTATION_SPEED 0.1
 #define FOV_ANGLE (M_PI / 3)
-#define RAY_COUNT 24
+#define RAY_COUNT GAME_WIDTH
 #define GAME_WIDTH 1920
 #define GAME_HEIGHT 780
 #define DISTANCE_TO_PLANE ((GAME_WIDTH * 0.5) / tan(FOV_ANGLE * 0.5))
+//#define DISTANCE_TO_PLANE GAME_WIDTH / (2 * tan(FOV_ANGLE / 2))
 
 
 
