@@ -6,14 +6,14 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/04 16:01:55 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/05 09:11:26 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
 {
 	char	*dst;
 
