@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 11:46:11 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:25:49 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ int init_game(t_game *game)
     if (initialize_map(game->map) == -1)
         return (-1);
     
-    // game->player = calloc(1, sizeof(t_player));
-    // if (!game->player)
-    //     return (-1); --> see for dynamic allocation after;
+    game->player = calloc(1, sizeof(t_player));
+    if (!game->player)
+        return (-1); 
 
     find_play_pos(game->map, game->player);
 

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 12:24:54 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:40:57 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,23 @@ int get_pixel_color(void *img, int x, int y)
 }
 
 
+void clear_image(t_img_data *img)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while (y < GAME_HEIGHT)
+    {
+        x = 0;
+        while ( x < GAME_WIDTH )
+        {
+            my_mlx_pixel_put(img, x, y, BLACK);  // Background color
+            x++;
+        }
+        y++;
+    }
+}
 void trace_rays(t_game *game, t_player *player)
 {
     double  ray_angle;
@@ -100,7 +117,8 @@ void trace_rays(t_game *game, t_player *player)
     int y;
     
     ray_index = 0;
-    while (ray_index <  RAY_COUNT)
+    clear_image(game->game_img);
+    while (ray_index <  RAY_COUNT )
     {
         ray_angle = player->angle - (FOV_ANGLE / 2) + (ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
         ray_x = player->player_px_pos_x;
@@ -166,6 +184,8 @@ void draw_mini_map(t_game *game)
     fill_tile_with_player(game->map_img, game->player->player_pos_x, game->player->player_pos_y, BLACK, GREEN);
     trace_rays(game, game->player);
 }
+
+// Call clear_image(game->game_img); at the beginning of draw_and_display_map.
 
 void draw_and_display_map(t_game *game) // and game;
 {
