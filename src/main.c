@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
+#include "../include/cub3D.h"
+
 
 void clean_up(t_game *game)
 {

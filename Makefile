@@ -1,56 +1,96 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/30 12:35:35 by jedusser          #+#    #+#              #
-#    Updated: 2024/11/11 08:07:29 by jedusser         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ===================== #
+#       VARIABLES       #
+# ===================== #
 
-NAME = cub3d
-SRC = sources/main.c sources/get_map.c sources/draw_tools.c sources/hooks.c sources/init.c sources/mini_map.c
-GNL_SRC = get_next_line/get_next_line_utils.c get_next_line/get_next_line.c
+# Colors
+GREEN = \033[0;32m
+RED = \033[0;31m
+NC = \033[0m
 
-OBJ_DIR = obj/
-OBJ = $(SRC:%.c=$(OBJ_DIR)%.o) $(GNL_SRC:%.c=%.o) 
-
+# Compiler and Flags
 CC = cc
-CFLAGS = -Wextra -Wall -Werror -Ilibft -Iminilibx-linux -g3
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude #-fsanitize=leak -fsanitize=address
+LDFLAGS = -lm
 
+# Executable
+NAME = cub3d
+
+# Directories
+SRC_DIR = ./src
+OBJ_DIR = ./obj
+DEP_DIR = ./dep
+
+# Source Files
+SRC =	main.c										\
+		parsing/get_map.c							\
+		exec/draw_tools.c							\
+		exec/hook_event/hooks.c						\
+		exec/init.c									\
+		exec/mini_map.c								\
+		parsing/get_next_line/get_next_line.c		\
+		parsing/get_next_line/get_next_line_utils.c
+
+#GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+
+# Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
 MINILIBX_DIR = minilibx-linux
-MINILIBX_TAR = minilibx-linux.tgz
+MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx -lXext -lX11
 
-all: $(MINILIBX_DIR) libft $(NAME)
+# Object and Dependency Files
+#SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(GNL_SRC)
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+DEPS = $(addprefix $(DEP_DIR)/, $(SRC:.c=.d))
 
+# ===================== #
+#       COMMANDS        #
+# ===================== #
+
+# Target
+.SILENT: all clean fclean re
+
+all: $(MINILIBX_DIR) $(NAME)
+	@echo "$(GREEN)Compilation of $(NAME) completed successfully!$(NC)"
+
+# MiniLibX - download and compile if needed
 $(MINILIBX_DIR):
 	@if [ ! -d "$(MINILIBX_DIR)" ]; then \
-		echo "Downloading MiniLibX..."; \
-		curl -o $(MINILIBX_TAR) $(MINILIBX_URL); \
-		tar -xzf $(MINILIBX_TAR); \
-		rm -f $(MINILIBX_TAR); \
+		echo "$(GREEN)Downloading MiniLibX...$(NC)"; \
+		curl -o minilibx-linux.tgz $(MINILIBX_URL); \
+		tar -xzf minilibx-linux.tgz; \
+		rm -f minilibx-linux.tgz; \
 	fi
-	make -C $(MINILIBX_DIR)
+	@$(MAKE) -C $(MINILIBX_DIR)
 
-$(NAME): $(OBJ)
-	@echo "Building $(NAME)"
-	$(CC) $(OBJ)  -L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -o $(NAME)
+-include $(DEPS)
 
-$(OBJ_DIR)%.o: %.c
-	@echo "Compiling $< to $@"
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+# Compile the executable
+$(NAME): $(OBJS)
+	@echo "$(GREEN)Linking $(NAME)$(NC)"
+	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS)
 
+# Compile each .c file to .o and generate .d files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
+	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
+	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
+	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
+	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
+	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
+	@echo "$(GREEN)Compilation of $< completed!$(NC)"
+
+# Clean object and dependency files
 clean:
-	rm -rf $(OBJ) $(OBJ_DIR)
-	make clean -C $(MINILIBX_DIR)
+	@rm -rf $(OBJ_DIR) $(DEP_DIR)
+	@$(MAKE) clean -C $(MINILIBX_DIR)
+	@echo "$(RED)Cleanup completed!$(NC)"
 
+# Full clean including executable
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(RED)Executable deleted!$(NC)"
 
+# Rebuild
 re: fclean all
 
-.PHONY: all clean fclean re $(MINILIBX_DIR) libft
+.PHONY: all clean fclean re $(MINILIBX_DIR)
