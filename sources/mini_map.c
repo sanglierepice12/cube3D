@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 18:40:57 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:41:14 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int draw_tile(t_img_data *img, int start_x, int start_y, int color)
         x = 0;
         while (x < TILE_SIZE)
         {
-            // if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE || y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
-            //     my_mlx_pixel_put(img, start_x + x, start_y + y, BLACK);
-            // else 
+            if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE || y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
+                my_mlx_pixel_put(img, start_x + x, start_y + y, BLACK);
+            else 
                 my_mlx_pixel_put(img, start_x + x, start_y + y, color);
             x++;
         }
@@ -71,20 +71,20 @@ void fill_tile_with_player(t_img_data *img, int tile_x, int tile_y, int floor_co
     draw_player(img, player_start_x, player_start_y, player_color);
 }
 
-int get_pixel_color(void *img, int x, int y)
-{
-    char    *data;
-    int     bpp;
-    int     size_line;
-    int     endian;
-    int     color;
+// int get_pixel_color(void *img, int x, int y)
+// {
+//     char    *data;
+//     int     bpp;
+//     int     size_line;
+//     int     endian;
+//     int     color;
 
-    data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
+//     data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
     
-    color = *(int *)(data + (y * size_line + x * (bpp / 8)));
+//     color = *(int *)(data + (y * size_line + x * (bpp / 8)));
 
-    return (color);
-}
+//     return (color);
+// }
 
 
 void clear_image(t_img_data *img)
@@ -104,61 +104,49 @@ void clear_image(t_img_data *img)
         y++;
     }
 }
-void trace_rays(t_game *game, t_player *player)
+
+void draw_3d_ray(t_game *game, t_player *player, t_raycaster *raycaster, t_proj *projection)
 {
-    double  ray_angle;
-    double  ray_x;
-    double ray_y;
-    int ray_index;
-    long distance_to_wall;
-    int wall_height;
-    int wall_start;
-    int wall_end;
+  
     int y;
     
-    ray_index = 0;
-    clear_image(game->game_img);
-    while (ray_index <  RAY_COUNT )
+    
+    projection->distance_to_wall = sqrt(pow(raycaster->ray_x - player->player_px_pos_x, 2) + pow(raycaster->ray_y - player->player_px_pos_y, 2));     //--> record distance to wall : 
+    projection->wall_height = (int)(TILE_SIZE * DISTANCE_TO_PLANE / projection->distance_to_wall);
+    projection->wall_start = (GAME_HEIGHT / 2) - (projection->wall_height / 2);
+    projection->wall_end = (GAME_HEIGHT / 2) + (projection->wall_height / 2);
+    y = projection->wall_start;
+    
+    while (y <= projection->wall_end)
     {
-        ray_angle = player->angle - (FOV_ANGLE / 2) + (ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
-        ray_x = player->player_px_pos_x;
-        ray_y = player->player_px_pos_y;
-        while (game->map->map[(int)(ray_y / TILE_SIZE)][(int)(ray_x / TILE_SIZE)] != '1')
-        {
-            // printf("distance to wall 1 = %ld\n", distance_to_wall);
-            if (ray_index == (RAY_COUNT / 2))
-            {
-                my_mlx_pixel_put(game->map_img, (int)ray_x, (int)ray_y, GREEN);
-            }
-            else
-            {
-                my_mlx_pixel_put(game->map_img, (int)ray_x, (int)ray_y, PINK);
-            } 
-            ray_x += cos(ray_angle);// * STEP_SIZE;
-            ray_y -= sin(ray_angle);// * STEP_SIZE;
-        }
-        printf("ray nb[%d] hit wall at x->[%f, %f]<-y \n", ray_index, ray_x, ray_y);
-        distance_to_wall = sqrt(pow(ray_x - player->player_px_pos_x, 2) + pow(ray_y - player->player_px_pos_y, 2));     //--> record distance to wall : 
-        wall_height = (int)(TILE_SIZE * DISTANCE_TO_PLANE / distance_to_wall);
-        wall_start = (GAME_HEIGHT / 2) - (wall_height / 2);
-        wall_end = (GAME_HEIGHT / 2) + (wall_height / 2);
-        y = wall_start;
-        while (y <= wall_end)
-        {
-            if (ray_index >= 0 && ray_index < GAME_WIDTH && y >= 0 && y < GAME_HEIGHT)
-                my_mlx_pixel_put(game->game_img, ray_index, y, YELLOW);
-            y++;
-        }
-        printf("ray nb[%d is %ld distant to wall\n", ray_index, distance_to_wall);
-        //my_mlx_pixel_put(game->map_img, ray_x, ray_y, YELLOW);
-       // my_mlx_pixel_put(game->game_img, ray_x, ray_y, YELLOW);
-        ray_index++;
+        if (raycaster->ray_index >= 0 && raycaster->ray_index < GAME_WIDTH && y >= 0 && y < GAME_HEIGHT)
+            my_mlx_pixel_put(game->game_img, raycaster->ray_index, y, YELLOW);
+        y++;
     }
 }
 
-
-// in fact,heere  i can have distance to wall for each ray, but i need the player distance to wall to 
-// (maybe only center ray will be enought first), THEN capture the rays lengths at positon, and draw from here, based on Window_width
+void ray_caster(t_game *game, t_player *player, t_raycaster *raycaster, t_proj *projection)
+{
+    clear_image(game->game_img);    
+    raycaster->ray_index = 0;
+    while (raycaster->ray_index < RAY_COUNT)
+    {
+        raycaster->ray_angle = player->angle - (FOV_ANGLE / 2) + (raycaster->ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
+        raycaster->ray_x = player->player_px_pos_x;
+        raycaster->ray_y = player->player_px_pos_y;
+        while (game->map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1')
+        {
+            if (raycaster->ray_index == (RAY_COUNT / 2))
+                my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, GREEN);
+            else
+                my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
+            raycaster->ray_x += cos(raycaster->ray_angle);
+            raycaster->ray_y -= sin(raycaster->ray_angle);
+        }
+        draw_3d_ray(game, player, raycaster, projection);
+        raycaster->ray_index++;
+    }
+} // here i draw rays on minimap, and also, render each single ray on the 3d screen;
 
 void draw_mini_map(t_game *game)
 {
@@ -175,19 +163,15 @@ void draw_mini_map(t_game *game)
                 draw_tile(game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
 			if (game->map->map[y][x] == '0'|| game->map->map[y][x] == 'N' )
                 draw_tile(game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
-            //--> center of playr check :
-            my_mlx_pixel_put(game->map_img, game->player->player_px_pos_x, game->player->player_px_pos_y, BLACK);
             x++;
         }
         y++;
     }
+    ray_caster(game, game->player, game->raycaster, game->projection);
     fill_tile_with_player(game->map_img, game->player->player_pos_x, game->player->player_pos_y, BLACK, GREEN);
-    trace_rays(game, game->player);
 }
 
-// Call clear_image(game->game_img); at the beginning of draw_and_display_map.
-
-void draw_and_display_map(t_game *game) // and game;
+void draw_and_display_map(t_game *game) 
 {
     draw_mini_map(game);
     mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->map_win_ptr, game->map_img->img_ptr, 0, 0);

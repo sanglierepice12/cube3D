@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 18:26:36 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:38:34 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ typedef struct	s_mlx_data t_mlx_data;
 typedef	struct	s_map t_map;
 typedef struct s_player t_player;
 typedef struct s_game t_game;
+typedef struct s_raycaster t_raycaster;
+typedef struct s_proj t_proj;
+
 
 struct	s_img_data
 {
@@ -102,13 +105,31 @@ struct s_player
 	char *direction;
 };
 
+struct s_raycaster
+{
+    double ray_angle;
+	double ray_x;
+	double ray_y;
+	int ray_index;
+};
+
+struct s_proj
+{
+	long distance_to_wall;
+    int wall_height;
+    int wall_start;
+    int wall_end;
+};
+
 struct s_game
 {
-    t_mlx_data *mlx_data;
-    t_map      *map;
-    t_player   *player;
-    t_img_data     *map_img;
-    t_img_data     *game_img;
+    t_mlx_data	*mlx_data;
+    t_map		*map;
+    t_player	*player;
+    t_img_data	*map_img;
+    t_img_data	*game_img;
+    t_raycaster	*raycaster;
+	t_proj 	*projection;
 };
 
 
@@ -131,7 +152,7 @@ int			handle_keypress(int keycode, t_game *game);
 
 int			init_env(t_mlx_data *mlx_data, t_map *map);
 int			initialize_map(t_map *map);
-int initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img, t_img_data *game_img);
+int			initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img, t_img_data *game_img);
 void		find_play_pos(t_map *map, t_player *player);
 int			init_game(t_game *game);
 
