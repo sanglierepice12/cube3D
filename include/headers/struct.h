@@ -6,12 +6,12 @@
 /*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/12 16:43:03 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:52:22 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_STRUCTS_H
-# define CUBE3D_STRUCTS_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 /*################ STRUCTURES #####################*/
 
@@ -19,10 +19,11 @@
 typedef struct	s_img_data t_img_data;
 typedef struct	s_mlx_data t_mlx_data;
 typedef	struct	s_map t_map;
-typedef struct s_player t_player;
-typedef struct s_game t_game;
-typedef struct s_raycaster t_raycaster;
-typedef struct s_proj t_proj;
+typedef struct	s_player t_player;
+typedef struct	s_raycaster t_raycaster;
+typedef struct	s_proj t_proj;
+typedef struct	s_game t_game;
+typedef struct	s_env t_env;
 
 struct	s_img_data
 {
@@ -38,13 +39,6 @@ struct	s_mlx_data
     void	*mlx_ptr;
     void	*map_win_ptr;
     void	*game_win_ptr;
-};
-
-struct	s_map
-{
-    char					**map;
-    int					map_height;
-    int					map_length;
 };
 
 struct s_player
@@ -74,16 +68,29 @@ struct s_proj
 	int wall_end;
 };
 
+struct	s_map
+{
+	char					**map;
+	int					map_height;
+	int					map_length;
+};
+
+struct	s_env
+{
+	char			*value;
+	struct s_env	*next;
+	struct s_env	*prev;
+};
 
 struct s_game
 {
-    t_mlx_data *mlx_data;
-    t_map      *map;
-    t_player   *player;
-    t_img_data     *map_img;
+    t_mlx_data		*mlx_data;
+    t_map			*map;
+    t_player		*player;
+    t_img_data		*map_img;
     t_img_data		*game_img;
 	t_raycaster		*raycaster;
-	t_proj 	*projection;
+	t_proj			*projection;
 };
 
 # endif

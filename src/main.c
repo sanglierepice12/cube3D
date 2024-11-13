@@ -44,18 +44,22 @@ void clean_up(t_game *game)
 
 
 
-int main(void)
+int main(int arc, char **argv)
 {
-    t_game  game;
-    if (init_game(&game) == -1)
-    {
-        clean_up(&game);
-        return (1);
-    }
-    draw_and_display_map(&game);
-    mlx_loop(game.mlx_data->mlx_ptr);
-    clean_up(&game);
-    return (0);
+	t_game	game;
+
+	if (arc < 2)
+		return (printf("Please insert a map..."));
+	get_map(game.map, argv[1]);
+	if (init_game(&game) == -1)
+	{
+		clean_up(&game);
+		return (1);
+	}
+	draw_and_display_map(&game);
+	mlx_loop(game.mlx_data->mlx_ptr);
+	clean_up(&game);
+	return (0);
 }
 
 

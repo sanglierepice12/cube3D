@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_DEFINE_H
-# define CUBE3D_DEFINE_H
+#ifndef DEFINE_H
+# define DEFINE_H
 
 /*################ KEY MACROS #####################*/
 

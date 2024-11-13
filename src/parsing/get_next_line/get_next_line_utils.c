@@ -30,19 +30,9 @@ char	*ft_strdup(char *s1)
 	return (dest);
 }
 
-int	ft_strlen(char *s)
+char	*ft_substr(char *s, size_t start, size_t len)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_substr(char *s, int start, int len)
-{
-	int	i;
+	size_t	i;
 	char	*str;
 
 	if (!s)

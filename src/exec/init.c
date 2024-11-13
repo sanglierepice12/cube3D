@@ -79,11 +79,11 @@ int initialize_map(t_map *map)
     if (!map->map)
         return (-1);
 
-    if (fill_tab(map) == -1)
+   /* if (fill_tab(map) == -1)
     {
         free(map->map);
         return (-1);
-    }
+    }*/
     return (0);
 }
 

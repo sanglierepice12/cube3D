@@ -6,14 +6,88 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/04 11:11:58 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:03:35 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../include/cub3D.h"
 
+static void	fill_tap_to_map(t_map *map, int fd)
+{
+	size_t	i;
 
+	i = 0;
+	while (452)
+	{
+		map->map[i++]= get_next_line(fd);
+		if (!map->map[i])
+			break ;
+	}
+}
+
+static int	open_map(char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_exit("Error occurred while opening the document...", 1);
+	return (fd);
+}
+
+static void	check_ext(char *file)
+{
+	size_t	len;
+
+	len = ft_strlen(file);
+	if (len < 4)
+		ft_exit("Error: Wrong extension. [fill]", 1);
+	if (ft_strncmp(file + (len - 4), ".cub", 4))
+		ft_exit("Error: Wrong extension. [fill]", 1);
+}
+
+void	get_map(t_map *map, char *file)
+{
+	int	fd;
+
+	check_ext(file);
+	fd = open_map(file);
+	fill_tap_to_map(map, fd);
+	close(fd);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void free_tab(char **tab)
 {
     int y = 0;
@@ -84,3 +158,4 @@ int fill_tab(t_map *map)
     close(fd);
     return (0);
 }
+*/

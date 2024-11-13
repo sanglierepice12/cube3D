@@ -22,13 +22,19 @@ DEP_DIR = ./dep
 
 # Source Files
 SRC =	main.c										\
-		parsing/get_map.c							\
 		exec/draw_tools.c							\
 		exec/hook_event/hooks.c						\
 		exec/init.c									\
 		exec/mini_map.c								\
+		parsing/get_map.c							\
 		parsing/get_next_line/get_next_line.c		\
-		parsing/get_next_line/get_next_line_utils.c
+		parsing/get_next_line/get_next_line_utils.c	\
+		utils/utils.c								\
+		utils/calloc.c								\
+		utils/compare.c								\
+		utils/linked_list.c							\
+		utils/exit_free/exit.c						\
+		utils/exit_free/free.c						\
 
 #GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
@@ -76,6 +82,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
 	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
+	@mkdir -p $(OBJ_DIR)/utils $(DEP_DIR)/utils
+	@mkdir -p $(OBJ_DIR)/utils/exit_free $(DEP_DIR)/utils/exit_free
 	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
 	@echo "$(GREEN)Compilation of $< completed!$(NC)"
 

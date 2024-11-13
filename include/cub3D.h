@@ -17,11 +17,17 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <math.h>
+# include <stdint.h>
+# include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
 # include "headers/get_next_line_h/get_next_line.h"
-# include "headers/cub3d_structs.h"    // Inclusion de cub3d_structs.h pour les structures
-# include "headers/cub3d_define.h"
-# include "headers/cub3d_functions.h"
+# include "headers/define.h"
+# include "headers/struct.h"
+# include "headers/exec_functions.h"
+# include "headers/parsing_functions.h"
+# include "headers/utils_functions.h"
+
 
 # endif

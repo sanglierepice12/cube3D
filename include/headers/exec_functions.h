@@ -10,19 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_FUNCTIONS_H
-# define CUBE3D_FUNCTIONS_H
+#ifndef FUNCTIONS_H
+# define FUNCTIONS_H
 
 /*################ FUNCTIONS #####################*/
 
 /*=================draw_tools.c===================*/
 
 void		my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
-
-/*==================get_map.c=====================*/
-
-void		free_tab(char **tab);
-int			fill_tab(t_map *map);
 
 /*===================hooks.c======================*/
 
@@ -36,14 +31,12 @@ int			initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 void		find_play_pos(t_map *map, t_player *player);
 int			init_game(t_game *game);
 
-
 /*==================mini_map.c====================*/
 
 void		draw_mini_map(t_game *game);
 void		draw_and_display_map(t_game *game);
 
 /*====================main.c======================*/
-
 void		clean_up(t_game *game);
 
 # endif
