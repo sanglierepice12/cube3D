@@ -6,11 +6,11 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 11:46:11 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:39:34 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 
 int init_env(t_mlx_data *mlx_data, t_map *map)
@@ -52,7 +52,6 @@ void find_play_pos(t_map *map, t_player *player)
                 player->player_pos_y = y;
                 player->player_px_pos_y = (y * TILE_SIZE) + (TILE_SIZE / 2); 
                 // these two lines go together; MPI/2 is angle based on direction N;
-                
                 // player->direction = "N"; 
                 // player->angle = M_PI / 2;
                 // player->direction = "S"; 
@@ -123,10 +122,18 @@ int init_game(t_game *game)
     if (initialize_map(game->map) == -1)
         return (-1);
     
-    // game->player = calloc(1, sizeof(t_player));
-    // if (!game->player)
-    //     return (-1); --> see for dynamic allocation after;
-
+    game->player = calloc(1, sizeof(t_player));
+    if (!game->player)
+        return (-1); 
+        
+    game->raycaster = calloc(1, sizeof(t_raycaster));
+    if (!game->raycaster)
+        return (-1); 
+    
+    game->projection = calloc(1, sizeof(t_proj));
+    if (!game->projection)
+        return (-1); 
+    
     find_play_pos(game->map, game->player);
 
     game->mlx_data = calloc(1, sizeof(t_mlx_data));  

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/cub3D.h"
+# include "../../../include/cub3D.h"
 
 static char	*_fill_line_buffer(int fd, char *left_chars, char *buffer);
 static char	*_set_line(char *line);

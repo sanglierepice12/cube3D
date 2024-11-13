@@ -6,11 +6,12 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/11 09:03:32 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:38:12 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
 
 void clean_up(t_game *game)
 {
@@ -23,7 +24,7 @@ void clean_up(t_game *game)
     {
         mlx_destroy_image(game->mlx_data->mlx_ptr, game->map_img->img_ptr);
         mlx_destroy_image(game->mlx_data->mlx_ptr, game->game_img->img_ptr);
-
+        
     }
     if (game->mlx_data)
     {
@@ -40,6 +41,7 @@ void clean_up(t_game *game)
 
     }
 }
+
 
 
 int main(void)

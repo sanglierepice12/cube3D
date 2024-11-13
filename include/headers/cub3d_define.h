@@ -42,14 +42,15 @@
 # define BORDER_SIZE 0.5
 //#define STEP_SIZE 10
 # define ROTATION_SPEED 0.1
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 # define FOV_ANGLE (M_PI / 3)
-# define RAY_COUNT 320
+# define RAY_COUNT 1920
 # define GAME_WIDTH 1920
 # define GAME_HEIGHT 780
 # define DISTANCE_TO_PLANE ((GAME_WIDTH * 0.5) / tan(FOV_ANGLE * 0.5))
 //#define DISTANCE_TO_PLANE GAME_WIDTH / (2 * tan(FOV_ANGLE / 2))
-#ifndef M_PI
-    #define M_PI 3.14159265358979323846
-#endif
+
 
 #endif

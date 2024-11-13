@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
+
 
 void free_tab(char **tab)
 {
@@ -61,7 +62,7 @@ int fill_tab(t_map *map)
     if (allocate_tab(map) != 0)
         return (-1);
 
-    fd = open("./map.cub", O_RDONLY);
+    fd = open("./map/map.cub", O_RDONLY);
     if (fd == -1)
         return (-1);
 

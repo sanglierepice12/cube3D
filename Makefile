@@ -9,8 +9,8 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=leak -fsanitize=address -Iinclude
-LDFLAGS = -lmlx -lXext -lX11 -lm
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude #-fsanitize=leak -fsanitize=address
+LDFLAGS = -lm
 
 # Executable
 NAME = cub3d
@@ -21,21 +21,21 @@ OBJ_DIR = ./obj
 DEP_DIR = ./dep
 
 # Source Files
-SRC =	main.c								\
-		get_map.c							\
-		draw_tools.c						\
-		hooks.c								\
-		init.c								\
-		mini_map.c							\
-		get_next_line/get_next_line.c		\
-		get_next_line/get_next_line_utils.c
+SRC =	main.c										\
+		parsing/get_map.c							\
+		exec/draw_tools.c							\
+		exec/hook_event/hooks.c						\
+		exec/init.c									\
+		exec/mini_map.c								\
+		parsing/get_next_line/get_next_line.c		\
+		parsing/get_next_line/get_next_line_utils.c
 
 #GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 # Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
 MINILIBX_DIR = minilibx-linux
-MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm
+MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx -lXext -lX11
 
 # Object and Dependency Files
 #SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(GNL_SRC)
@@ -72,7 +72,10 @@ $(NAME): $(OBJS)
 # Compile each .c file to .o and generate .d files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
-	@mkdir -p $(OBJ_DIR)/get_next_line $(DEP_DIR)/get_next_line
+	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
+	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
+	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
+	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
 	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
 	@echo "$(GREEN)Compilation of $< completed!$(NC)"
 

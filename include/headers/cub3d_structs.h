@@ -21,6 +21,8 @@ typedef struct	s_mlx_data t_mlx_data;
 typedef	struct	s_map t_map;
 typedef struct s_player t_player;
 typedef struct s_game t_game;
+typedef struct s_raycaster t_raycaster;
+typedef struct s_proj t_proj;
 
 struct	s_img_data
 {
@@ -56,13 +58,32 @@ struct s_player
     char *direction;
 };
 
+struct s_raycaster
+{
+	double ray_angle;
+	double ray_x;
+	double ray_y;
+	int ray_index;
+};
+
+struct s_proj
+{
+	long distance_to_wall;
+	int wall_height;
+	int wall_start;
+	int wall_end;
+};
+
+
 struct s_game
 {
     t_mlx_data *mlx_data;
     t_map      *map;
     t_player   *player;
     t_img_data     *map_img;
-    t_img_data     *game_img;
+    t_img_data		*game_img;
+	t_raycaster		*raycaster;
+	t_proj 	*projection;
 };
 
 # endif
