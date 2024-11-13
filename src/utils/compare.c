@@ -12,6 +12,27 @@
 
 #include "../../include/cub3D.h"
 
+int	ft_comp_str(const char *src, const char *str)
+{
+	size_t	i;
+
+	if (!str || !src)
+		return (0);
+	if (ft_strlen(src) != ft_strlen(str))
+		return (0);
+	i = 0;
+	while (src[i])
+	{
+		if (src[i] == str[i])
+			i++;
+		else
+			return (0);
+	}
+	if (src[i] || str[i])
+		return (0);
+	return (1);
+}
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

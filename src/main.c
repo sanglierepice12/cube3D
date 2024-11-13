@@ -42,7 +42,17 @@ void clean_up(t_game *game)
     }
 }
 
-
+void	print_lst(t_list **list)
+{
+	t_list	*temp;
+	temp = *list;
+	while (temp->next)
+	{
+		printf("%s", temp->value);
+		temp = temp->next;
+	}
+	printf("%s", temp->value);
+}
 
 int main(int arc, char **argv)
 {
@@ -50,15 +60,17 @@ int main(int arc, char **argv)
 
 	if (arc < 2)
 		return (printf("Please insert a map..."));
-	get_map(game.map, argv[1]);
-	if (init_game(&game) == -1)
+	get_map(&game, argv[1]);
+	print_lst(&game.list);
+	free_list(game.list);
+	/*if (init_game(&game) == -1)
 	{
 		clean_up(&game);
 		return (1);
 	}
 	draw_and_display_map(&game);
 	mlx_loop(game.mlx_data->mlx_ptr);
-	clean_up(&game);
+	clean_up(&game);*/
 	return (0);
 }
 

@@ -12,6 +12,20 @@
 
 #include "../../../include/cub3D.h"
 
+void	free_list(t_list *list)
+{
+	t_list	*tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		if (tmp->value)
+			free(tmp->value);
+		free(tmp);
+	}
+}
+
 void free_tab(char **tab)
 {
 	int y = 0;

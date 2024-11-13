@@ -23,7 +23,7 @@ typedef struct	s_player t_player;
 typedef struct	s_raycaster t_raycaster;
 typedef struct	s_proj t_proj;
 typedef struct	s_game t_game;
-typedef struct	s_env t_env;
+typedef struct	s_list t_list;
 
 struct	s_img_data
 {
@@ -75,20 +75,21 @@ struct	s_map
 	int					map_length;
 };
 
-struct	s_env
+struct	s_list
 {
 	char			*value;
-	struct s_env	*next;
-	struct s_env	*prev;
+	struct s_list	*next;
+	struct s_list	*prev;
 };
 
 struct s_game
 {
-    t_mlx_data		*mlx_data;
-    t_map			*map;
-    t_player		*player;
-    t_img_data		*map_img;
-    t_img_data		*game_img;
+	t_map			*map;
+	t_list			*list;
+	t_mlx_data		*mlx_data;
+	t_player		*player;
+	t_img_data		*map_img;
+	t_img_data		*game_img;
 	t_raycaster		*raycaster;
 	t_proj			*projection;
 };

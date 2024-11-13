@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_functions.h                                :+:      :+:    :+:   */
+/*   check_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsuter <gsuter@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 12:57:20 by gsuter            #+#    #+#             */
-/*   Updated: 2024/11/13 12:57:20 by gsuter           ###   ########.fr       */
+/*   Created: 2024/11/13 15:36:49 by gsuter            #+#    #+#             */
+/*   Updated: 2024/11/13 15:36:49 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_FUNCTIONS_H
-# define PARSING_FUNCTIONS_H
+#include "../../../include/cub3D.h"
 
-void	get_map(t_game *game, char *file);
-void	check_line(char *temp);
-
-#endif
+void	check_line(char *temp)
+{
+	(void)temp;
+}

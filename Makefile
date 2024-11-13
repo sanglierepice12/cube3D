@@ -26,7 +26,8 @@ SRC =	main.c										\
 		exec/hook_event/hooks.c						\
 		exec/init.c									\
 		exec/mini_map.c								\
-		parsing/get_map.c							\
+		parsing/init_the_map/get_map.c				\
+		parsing/init_the_map/check_parse.c			\
 		parsing/get_next_line/get_next_line.c		\
 		parsing/get_next_line/get_next_line_utils.c	\
 		utils/utils.c								\
@@ -78,8 +79,9 @@ $(NAME): $(OBJS)
 # Compile each .c file to .o and generate .d files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
-	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
 	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
+	@mkdir -p $(OBJ_DIR)/parsing/init_the_map $(DEP_DIR)/parsing/init_the_map
+	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
 	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
 	@mkdir -p $(OBJ_DIR)/utils $(DEP_DIR)/utils

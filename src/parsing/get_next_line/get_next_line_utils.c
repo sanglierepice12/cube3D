@@ -56,10 +56,10 @@ char	*ft_substr(char *s, size_t start, size_t len)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 	char	*str;
-	int	length;
+	int		length;
 
 	length = ft_strlen(s1);
 	if (s1 == NULL || s2 == NULL)

@@ -32,9 +32,9 @@ char	*ft_dup(const char *s)
 	return (new);
 }
 
-t_env	*ft_lst_last(t_env *lst)
+t_list	*ft_lst_last(t_list *lst)
 {
-	t_env	*temp;
+	t_list	*temp;
 
 	if (!lst)
 		return (0);
@@ -44,15 +44,15 @@ t_env	*ft_lst_last(t_env *lst)
 	return (temp);
 }
 
-void	ft_lst_add_front(t_env **lst, t_env *new)
+void	ft_lst_add_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
 	*lst = new;
 }
 
-void	ft_lst_add_back(t_env **head, t_env *new)
+void	ft_lst_add_back(t_list **head, t_list *new)
 {
-	t_env	*last;
+	t_list	*last;
 
 	if (*head)
 	{
@@ -64,11 +64,11 @@ void	ft_lst_add_back(t_env **head, t_env *new)
 		*head = new;
 }
 
-t_env	*ft_new_node(char *value)
+t_list	*ft_new_node(char *value)
 {
-	t_env	*env;
+	t_list	*env;
 
-	env = ft_cal_loc(1, sizeof(t_env));
+	env = ft_cal_loc(1, sizeof(t_list));
 	if (!env)
 		return (NULL);
 	if (value)
