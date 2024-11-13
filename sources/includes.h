@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 09:38:34 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:07:01 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ struct s_player
 	int	player_pos_y;
 	int	player_px_pos_x;
 	int	player_px_pos_y;
+	char *direction;
 	double	angle;
 	double distance;
-	char *direction;
 };
 
 struct s_raycaster
