@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 09:38:12 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:20:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,24 @@ void clean_up(t_game *game)
         mlx_destroy_image(game->mlx_data->mlx_ptr, game->game_img->img_ptr);
         
     }
-    if (game->mlx_data)
-    {
-        mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->map_win_ptr);
-        mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr);
-        free(game->mlx_data);
-    }
     if (game->player)
         free(game->player);
+    if (game->raycaster)
+        free(game->raycaster);
+    if (game->projection)
+        free(game->projection);
     if (game->map_img)
     {
         free(game->map_img);
         free(game->game_img);
-
+    }
+    if (game->mlx_data)
+    {
+        mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->map_win_ptr);
+        mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr);
+        mlx_destroy_display(game->mlx_data->mlx_ptr);
+        free(game->mlx_data->mlx_ptr);
+        free(game->mlx_data);
     }
 }
 

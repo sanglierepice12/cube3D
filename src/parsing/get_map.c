@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/04 11:11:58 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:03:39 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int fill_tab(t_map *map)
         free(line);
         line = get_next_line(fd);
     }
-    print_tab(map->map);
+   // print_tab(map->map);
     close(fd);
     return (0);
 }
