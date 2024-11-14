@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 12:05:39 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/14 08:52:02 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void draw_player(t_img_data *img, int start_x, int start_y, int color)
 {
     int x;
     int y;
+    i
 
     y = 0;
     while (y < PLAYER_SIZE)
