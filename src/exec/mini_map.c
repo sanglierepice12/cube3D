@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/14 13:18:18 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:18:06 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void fill_tile_with_player(t_img_data *img, int tile_x, int tile_y, int floor_co
 void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
 {
     raycaster->ray_index = 0;
-    while (raycaster->ray_index < RAY_COUNT)
+    while (raycaster->ray_index < GAME_WIDTH)
     {
-        raycaster->ray_angle = player->angle - (FOV_ANGLE * 0.5) + (raycaster->ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
+        raycaster->ray_angle = player->angle - (FOV_ANGLE * 0.5) + (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
         raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_y = player->player_px_pos_y;
         while (game->map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1')
         {
-            if (raycaster->ray_index == (RAY_COUNT * 0.5))
+            if (raycaster->ray_index == (GAME_WIDTH * 0.5))
                 my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, GREEN);
             else
                 my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);

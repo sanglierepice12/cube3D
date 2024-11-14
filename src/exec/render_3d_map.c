@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:39:11 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/14 13:58:57 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:18:38 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster, t_pro
 {
     clear_image(game->game_img);   
     raycaster->ray_index = 0;
-    while (raycaster->ray_index < RAY_COUNT)
+    while (raycaster->ray_index < GAME_WIDTH)
     {
-        raycaster->ray_angle = player->angle - (FOV_ANGLE / 2) + (raycaster->ray_index * (FOV_ANGLE / (RAY_COUNT - 1)));
+        raycaster->ray_angle = player->angle - (FOV_ANGLE / 2) + (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
         raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_y = player->player_px_pos_y;
         while (game->map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1')
