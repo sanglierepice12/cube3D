@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   cub3d_define.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:05 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/17 11:02:12 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,27 @@
 # define PINK  0X0FFC0CB
 # define RED  0XFF0000
 # define YELLOW  0xFFFF00
+# define LIGHT_BLUE 0xADD8E6
 
 /*################ SIZE MACROS #####################*/
 
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define PLAYER_SIZE 16
 # define BORDER_SIZE 0.5
-//#define STEP_SIZE 10
 # define ROTATION_SPEED 0.1
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+# define M_PI 3.14159265358979323846
 # define FOV_ANGLE (M_PI / 3)
 # define RAY_COUNT 1920
 # define GAME_WIDTH 1920
 # define GAME_HEIGHT 780
-# define DISTANCE_TO_PLANE ((GAME_WIDTH * 0.5) / tan(FOV_ANGLE * 0.5))
-//#define DISTANCE_TO_PLANE GAME_WIDTH / (2 * tan(FOV_ANGLE / 2))
 
+/*#################### CALCULATION MACROS ######################*/
+
+# define DISTANCE_TO_PLANE ((GAME_WIDTH * 0.5) / tan(FOV_ANGLE * 0.5))
+# define SCREEN_CENTER_X     (GAME_WIDTH / 2)
+# define SCREEN_CENTER_Y     (GAME_HEIGHT / 2)
+# define FOV_HALF            (FOV_ANGLE * 0.5)
+# define RAY_ANGLE_DELTA     (FOV_ANGLE / (GAME_WIDTH - 1))
+# define DISTANCE(x1, y1, x2, y2) sqrt(pow((x2) - (x1), 2) + pow((y2) - (y1), 2))
 
 #endif

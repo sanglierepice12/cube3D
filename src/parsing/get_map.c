@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/14 13:03:39 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/17 11:15:18 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int allocate_tab(t_map *map)
     int y = 0;
     while (y < map->map_height)
 	{
-        map->map[y] = calloc(map->map_length + 1, sizeof(char));
+        map->map[y] = ft_calloc(map->map_length + 1, sizeof(char));
         if (!map->map[y])
             return (free_tab(map->map), -1);
         y++;

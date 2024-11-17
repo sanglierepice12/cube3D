@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/14 14:18:06 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/17 10:58:56 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ void all_draws(t_game *game)
 void draw_and_display_map(t_game *game) 
 {
     all_draws(game);
-    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->map_win_ptr, game->map_img->img_ptr, 0, 0);
+    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
     mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
-    mlx_hook(game->mlx_data->map_win_ptr, 2, 1L<<0, handle_keypress, game); 
+   // mlx_hook(game->mlx_data->map_win_ptr, 2, 1L<<0, handle_keypress, game); 
     mlx_hook(game->mlx_data->game_win_ptr, 2, 1L<<0, handle_keypress, game); 
 }

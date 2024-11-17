@@ -27,7 +27,8 @@ SRC =	main.c										\
 		exec/hook_event/hooks.c						\
 		exec/init.c									\
 		exec/mini_map.c								\
-		exec/render_3d_map.c								\
+		exec/exec_utils.c							\
+		exec/render_3d_map.c						\
 		parsing/get_next_line/get_next_line.c		\
 		parsing/get_next_line/get_next_line_utils.c
 
