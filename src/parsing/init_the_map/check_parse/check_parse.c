@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../../../include/cub3D.h"
 
-int	parse_whitespace(char *line)
+int	parse_ws(char *line)
 {
-	ssize_t	i;
+	int	i;
 
 	i = -1;
 	while (++i, line[i])
@@ -28,26 +28,21 @@ int	parse_whitespace(char *line)
 
 static bool	is_valid_char(char	*temp)
 {
-	int		i;
-
-	i = parse_whitespace(temp);
-	if ((temp + i)[0] == 'N' && (temp + i)[1] == 'O')
+	printf("%c", temp[0]);
+	if (temp[0] == 'N' && temp[1] == 'O' && check_texture(temp + parse_ws(temp + 2) + 2))
 		return (true);
-	if ((temp + i)[0] == 'S' && (temp + i)[1] == 'O')
+	if (temp[0] == 'S' && temp[1] == 'O' && check_texture(temp + parse_ws(temp + 2) + 2))
 		return (true);
-	if ((temp + i)[0] == 'W' && (temp + i)[1] == 'E')
+	if (temp[0] == 'W' && temp[1] == 'E' && check_texture(temp + parse_ws(temp + 2) + 2))
 		return (true);
-	if ((temp + i)[0] == 'E' && (temp + i)[1] == 'A')
+	if (temp[0] == 'E' && temp[1] == 'A' && check_texture(temp + parse_ws(temp + 2) + 2))
 		return (true);
-	if ((temp + i)[0] == 'F')
+	if (temp[0] == 'F' && check_rgb(temp + parse_ws(temp + 1) + 1))
 		return (true);
-		/*return (check_rgb());*/
-	if ((temp + i)[0] == 'C')
+	if (temp[0] == 'C' && check_rgb(temp + parse_ws(temp + 1) + 1))
 		return (true);
-		/*return (check_rgb());*/
-	if ((temp + i)[0] == '1')
+	if (temp[0] == '1')
 		return (true);
-		/*return (check_rgb());*/
 	return (false);
 }
 
@@ -65,9 +60,9 @@ bool	is_line_full_spaces(char *line)
 	return (true);
 }
 
-bool	is_line_ok(char *temp)
+bool	is_line_ok(char *line)
 {
-	if (!is_valid_char(temp))
+	if (!is_valid_char(line))
 		return (false);
 	return (true);
 }

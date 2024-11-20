@@ -23,12 +23,15 @@ static void	first_line(const int fd, char *line, t_list **list)
 			break ;
 		free(line);
 	}
+	line = rm_bs_wp(line);
+	if (!line)
+		exit_prog("Error malloc", 1);
 	if (!is_line_ok(line))
 	{
 		free(line);
 		exit_prog("Something wrong in the file ...", 1);
 	}
-	*list = ft_new_node(line + parse_whitespace(line));
+	*list = ft_new_node(line + parse_ws(line));
 	free(line);
 	line = NULL;
 }
@@ -49,13 +52,16 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 			free(line);
 			continue ;
 		}
+		line = rm_bs_wp(line);
+		if (!line)
+			exit_prog("Error malloc", 1);
 		if (!is_line_ok(line))
 		{
 			free(line);
 			printf("Something wrong in the file ...");
 			exit_parse(game);
 		}
-		ft_lst_add_back(list, ft_new_node(line + parse_whitespace(line)));
+		ft_lst_add_back(list, ft_new_node(line + parse_ws(line)));
 		free(line);
 	}
 }

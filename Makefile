@@ -21,23 +21,24 @@ OBJ_DIR = ./obj
 DEP_DIR = ./dep
 
 # Source Files
-SRC =	main.c										\
-		exec/draw_tools.c							\
-		exec/hook_event/hooks.c						\
-		exec/init.c									\
-		exec/mini_map.c								\
-		parsing/init_the_map/get_map.c				\
-		parsing/init_the_map/check_parse.c			\
-		parsing/get_next_line/get_next_line.c		\
-		parsing/get_next_line/get_next_line_utils.c	\
-		utils/utils.c								\
-		utils/calloc.c								\
-		utils/compare.c								\
-		utils/linked_list.c							\
-		utils/exit_free/exit.c						\
-		utils/exit_free/free.c						\
-
-#GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRC =	main.c													\
+		exec/draw_tools.c										\
+		exec/hook_event/hooks.c									\
+		exec/init.c												\
+		exec/mini_map.c											\
+		parsing/init_the_map/get_map.c							\
+		parsing/init_the_map/check_parse/check_parse.c			\
+		parsing/init_the_map/check_parse/check_textures.c		\
+		parsing/get_next_line/get_next_line.c					\
+		parsing/get_next_line/get_next_line_utils.c				\
+		utils/utils.c											\
+		utils/calloc.c											\
+		utils/compare.c											\
+		utils/linked_list.c										\
+		utils/split.c											\
+		utils/atoi.c											\
+		utils/exit_free/exit.c									\
+		utils/exit_free/free.c									\
 
 # Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
@@ -81,6 +82,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
 	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map $(DEP_DIR)/parsing/init_the_map
+	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/check_parse $(DEP_DIR)/parsing/init_the_map/check_parse
 	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
 	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event

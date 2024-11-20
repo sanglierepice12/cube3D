@@ -14,8 +14,12 @@
 # define PARSING_FUNCTIONS_H
 
 void	get_map(t_game *game, char *file);
-bool	is_line_full_spaces(void);
-bool	is_line_ok(char *temp);
-int		parse_whitespace(char *line);
+bool	is_line_full_spaces(char *line);
+bool	is_line_ok(char *line);
+int		parse_ws(char *line);
+
+/*******CHECK_TEXTURES******/
+bool	check_texture(char	*line);
+bool	check_rgb(char *line);
 
 #endif

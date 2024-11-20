@@ -22,6 +22,9 @@ char		*ft_dup(const char *s);
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s);
 char		*ft_strjoin(const char *s1, const char *s2);
+char		*rm_bs_wp(char *str);
+char		**ft_split(char const *s, char c);
+int			ft_atoi(const char *nptr);
 
 /*==================linked_list=====================*/
 t_list		*ft_lst_last(t_list *lst);

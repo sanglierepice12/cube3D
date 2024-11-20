@@ -48,7 +48,7 @@ void	print_lst(t_list **list)
 	temp = *list;
 	while (temp->next)
 	{
-		printf("%s", temp->value);
+		printf("%s\n", temp->value);
 		temp = temp->next;
 	}
 	printf("%s", temp->value);
@@ -63,6 +63,7 @@ int main(int arc, char **argv)
 	get_map(&game, argv[1]);
 	print_lst(&game.list);
 	free_list(game.list);
+	printf("\nend\n");
 	/*if (init_game(&game) == -1)
 	{
 		clean_up(&game);
