@@ -19,7 +19,7 @@ char	*ft_dup(const char *s)
 
 	if (!s)
 		return (NULL);
-	new = ft_cal_loc(sizeof(char), ft_strlen(s) + 1);
+	new = ft_calloc(sizeof(char), ft_strlen(s) + 1);
 	if (!new)
 		return (NULL);
 	i = 0;
@@ -68,7 +68,7 @@ t_list	*ft_new_node(char *value)
 {
 	t_list	*env;
 
-	env = ft_cal_loc(1, sizeof(t_list));
+	env = ft_calloc(1, sizeof(t_list));
 	if (!env)
 		return (NULL);
 	if (value)

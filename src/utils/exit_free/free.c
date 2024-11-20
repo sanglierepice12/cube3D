@@ -12,6 +12,25 @@
 
 #include "../../../include/cub3D.h"
 
+void	free_tab(char **tab)
+{
+	int	y;
+
+	y = 0;
+	while (tab[y])
+	{
+		free(tab[y]);
+		y++;
+	}
+	free(tab);
+}
+
+void	free_s_map(t_map *map)
+{
+	if (map->map)
+		free_tab(map->map);
+}
+
 void	free_list(t_list *list)
 {
 	t_list	*tmp;
@@ -24,15 +43,4 @@ void	free_list(t_list *list)
 			free(tmp->value);
 		free(tmp);
 	}
-}
-
-void free_tab(char **tab)
-{
-	int y = 0;
-	while (tab[y])
-	{
-		free(tab[y]);
-		y++;
-	}
-	free(tab);
 }

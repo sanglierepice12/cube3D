@@ -70,6 +70,7 @@ struct s_proj
 
 struct	s_map
 {
+	int						init;
 	char					**map;
 	int					map_height;
 	int					map_length;

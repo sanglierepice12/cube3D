@@ -3,109 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gostr <gostr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 09:33:45 by jedusser          #+#    #+#             */
-/*   Updated: 2024/01/15 10:14:25 by jedusser         ###   ########.fr       */
+/*   Created: 2024/01/18 08:37:39 by gsuter            #+#    #+#             */
+/*   Updated: 2024/04/09 11:40:40 by gostr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
 
-static char	*_fill_line_buffer(int fd, char *left_chars, char *buffer);
-static char	*_set_line(char *line);
-static char	*ft_strchr(char *s, int c);
+void	ft_bz(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != 0)
+	{
+		str[i] = 0;
+		i++;
+	}
+}
+
+void	ft_clean_buf(char *buf)
+{
+	ssize_t	i;
+	ssize_t	j;
+
+	i = 0;
+	while (buf[i] != '\n' && buf[i])
+		i++;
+	if (buf[i] == '\n')
+		i++;
+	j = 0;
+	while (buf[i + j])
+	{
+		buf[j] = buf[i + j];
+		j++;
+	}
+	buf[j] = '\0';
+}
 
 char	*get_next_line(int fd)
 {
-	static char	*left_chars;
+	static char	buf[BUFFER_SIZE + 1];
+	ssize_t		bytes_readed;
 	char		*line;
-	char		*buffer;
 
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		free(left_chars);
-		free(buffer);
-		left_chars = NULL;
-		buffer = NULL;
-		return (NULL);
-	}
-	if (!buffer)
-		return (NULL);
-	line = _fill_line_buffer(fd, left_chars, buffer);
-	free(buffer);
+	bytes_readed = 1;
+	if (read(fd, buf, 0) < 0 || fd < 0)
+		return (ft_bz(buf), NULL);
+	line = ft_strdup(buf);
 	if (!line)
-		return (NULL);
-	left_chars = _set_line(line);
-	return (line);
-}
-
-static char	*_set_line(char *line_buffer)
-{
-	ssize_t	i;
-	char	*left_chars;
-
-	i = 0;
-	while (line_buffer[i] != '\n' && line_buffer[i] != '\0')
-		i++;
-	if (line_buffer[i] == '\0' || line_buffer[1] == '\0')
-		return (NULL);
-	left_chars = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
-	if (!left_chars || *left_chars == '\0')
+		return (free(line), NULL);
+	while (!ft_end(line) && bytes_readed)
 	{
-		free(left_chars);
-		left_chars = NULL;
-	}
-	line_buffer[i + 1] = '\0';
-	return (left_chars);
-}
-
-static char	*_fill_line_buffer(int fd, char *line_buffer, char *buffer)
-{
-	ssize_t	rd;
-	char	*tmp;
-
-	rd = 1;
-	while (rd > 0)
-	{
-		rd = read(fd, buffer, BUFFER_SIZE);
-		if (rd == -1)
-		{
-			free(line_buffer);
+		bytes_readed = read(fd, buf, BUFFER_SIZE);
+		if (bytes_readed < 0)
+			return (ft_bz(buf), free(line), NULL);
+		buf[bytes_readed] = '\0';
+		line = ft_strjoin(line, buf);
+		if (!line)
 			return (NULL);
-		}
-		if (rd == 0)
-			break ;
-		buffer[rd] = '\0';
-		if (!line_buffer)
-			line_buffer = ft_strdup("");
-		tmp = line_buffer;
-		line_buffer = ft_strjoin(tmp, buffer);
-		free(tmp);
-		if (ft_strchr(buffer, '\n'))
-			break ;
 	}
-	return (line_buffer);
-}
-
-static char	*ft_strchr(char *string, int searchedChar)
-{
-	int		i;
-	int		str_len;
-	char	needle;
-
-	needle = searchedChar;
-	str_len = ft_strlen(string);
-	i = 0;
-	while (i <= str_len)
-	{
-		if (string[i] == needle)
-			return ((char *)&string[i]);
-		if (needle == '\0')
-			return ((char *)&string[str_len]);
-		else
-			i++;
-	}
-	return (NULL);
+	ft_clean_buf(buf);
+	if (line[0] == 0)
+		return (free(line), NULL);
+	return (line);
 }

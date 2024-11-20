@@ -12,8 +12,15 @@
 
 #include "../../../include/cub3D.h"
 
-void	ft_exit(char *msg, int code)
+void	exit_prog(char *msg, int code)
 {
 	printf("%s", msg);
 	exit(code);
+}
+
+void	exit_parse(t_game *game)
+{
+	free_list(game->list);
+	printf("parsing has exited with security");
+	exit(1);
 }

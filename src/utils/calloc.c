@@ -24,7 +24,7 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_cal_loc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 

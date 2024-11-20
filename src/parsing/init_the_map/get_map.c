@@ -12,17 +12,28 @@
 
 #include "../../../include/cub3D.h"
 
-static void	first_line(int fd, char *line, t_list **list)
+static void	first_line(const int fd, char *line, t_list **list)
 {
-	line = get_next_line(fd);
-	if (!line)
-		ft_exit("Nothing in the file ...", 1);
-	check_line(line);
-	*list = ft_new_node(line);
+	while (777)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			exit_prog("Nothing in the file ...", 1);
+		if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line))
+			break ;
+		free(line);
+	}
+	if (!is_line_ok(line))
+	{
+		free(line);
+		exit_prog("Something wrong in the file ...", 1);
+	}
+	*list = ft_new_node(line + parse_whitespace(line));
 	free(line);
+	line = NULL;
 }
 
-static void	fill_tap_to_map(t_list **list, int fd)
+static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 {
 	char	*line;
 
@@ -33,13 +44,18 @@ static void	fill_tap_to_map(t_list **list, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		check_line(line);
-		if (ft_comp_str(line, "\n"))
+		if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
 		{
 			free(line);
-			continue;
+			continue ;
 		}
-		ft_lst_add_back(list, ft_new_node(line));
+		if (!is_line_ok(line))
+		{
+			free(line);
+			printf("Something wrong in the file ...");
+			exit_parse(game);
+		}
+		ft_lst_add_back(list, ft_new_node(line + parse_whitespace(line)));
 		free(line);
 	}
 }
@@ -50,7 +66,7 @@ static int	open_map(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_exit("Error occurred while opening the document...", 1);
+		exit_prog("Error occurred while opening the document...", 1);
 	return (fd);
 }
 
@@ -60,9 +76,9 @@ static void	check_ext(char *file)
 
 	len = ft_strlen(file);
 	if (len < 4)
-		ft_exit("Error: Wrong extension. [fill]", 1);
+		exit_prog("Error: Wrong extension.", 1);
 	if (ft_strncmp(file + (len - 4), ".cub", 4))
-		ft_exit("Error: Wrong extension. [fill]", 1);
+		exit_prog("Error: Wrong extension, it's not a .cub.", 1);
 }
 
 void	get_map(t_game *game, char *file)
@@ -71,6 +87,6 @@ void	get_map(t_game *game, char *file)
 
 	check_ext(file);
 	fd = open_map(file);
-	fill_tap_to_map(&game->list, fd);
+	fill_tap_to_map(game, &game->list, fd);
 	close(fd);
 }

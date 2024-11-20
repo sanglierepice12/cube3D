@@ -24,8 +24,7 @@
 # include <string.h>
 
 char	*get_next_line(int fd);
-char	*ft_strdup(char *s);
+int		ft_end(char *buf);
 char	*ft_substr(char *s, size_t start, size_t len);
-char	*ft_strjoin(char *s1, char *s2);
 
 #endif
