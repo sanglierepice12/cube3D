@@ -42,8 +42,8 @@
 # define BORDER_SIZE 0.5
 //#define STEP_SIZE 10
 # define ROTATION_SPEED 0.1
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
+# ifndef M_PI
+# define M_PI 3.14159265358979323846
 #endif
 # define FOV_ANGLE (M_PI / 3)
 # define RAY_COUNT 1920

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef UTILS_FUNCTIONS_H
-#define UTILS_FUNCTIONS_H
+# define UTILS_FUNCTIONS_H
 
 /*==================utils=====================*/
 int			ft_strncmp(const char *s1, const char *s2, size_t n);

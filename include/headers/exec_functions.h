@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTIONS_H
-# define FUNCTIONS_H
+#ifndef EXEC_FUNCTIONS_H
+# define EXEC_FUNCTIONS_H
 
 /*################ FUNCTIONS #####################*/
 
@@ -39,4 +39,4 @@ void		draw_and_display_map(t_game *game);
 /*====================main.c======================*/
 void		clean_up(t_game *game);
 
-# endif
+#endif

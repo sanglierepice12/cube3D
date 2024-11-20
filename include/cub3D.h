@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 /*################ INCLUDES #####################*/
 
@@ -29,5 +29,4 @@
 # include "headers/parsing_functions.h"
 # include "headers/utils_functions.h"
 
-
-# endif
+#endif
