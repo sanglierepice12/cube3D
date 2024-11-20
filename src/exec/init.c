@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/17 11:15:18 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:34:57 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ void	find_play_pos(t_map *map, t_player *player)
 			if (map->map[y][x] == 'N')
 			{
 				player->player_pos_x = x;
-				player->player_px_pos_x = (x * TILE_SIZE) + (TILE_SIZE / 2);
+				player->player_px_pos_x = (x * TILE_SIZE) + (TILE_SIZE * 0.5);
 				player->player_pos_y = y;
-				player->player_px_pos_y = (y * TILE_SIZE) + (TILE_SIZE / 2);
+				player->player_px_pos_y = (y * TILE_SIZE) + (TILE_SIZE * 0.5);
 				// these two lines go together; MPI/2 is angle based on direction N;
 				// player->direction = "N";
-				// player->angle = M_PI / 2;
+				// player->angle = (3 * M_PI) * 0.5;
 				// player->direction = "S";
-				// player->angle = M_PI * 2;
-				// player->direction = "W";
 				// player->angle = M_PI / 2;
+				// player->direction = "W";
+				// player->angle = M_PI;
 				player->direction = "E";
-				player->angle = M_PI * 2;
+				player->angle = 0;
 				break ;
 			}
 			x++;

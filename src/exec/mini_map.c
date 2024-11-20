@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/17 10:58:56 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:18:26 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
     raycaster->ray_index = 0;
     while (raycaster->ray_index < GAME_WIDTH)
     {
-        raycaster->ray_angle = player->angle - (FOV_ANGLE * 0.5) + (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
+        raycaster->ray_angle = player->angle + (FOV_ANGLE * 2) - (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
+        // printf("player angle : %f\n", raycaster->ray_angle);
         raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_y = player->player_px_pos_y;
         while (game->map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1')
@@ -84,8 +85,8 @@ void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
                 my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, GREEN);
             else
                 my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
-            raycaster->ray_x += cos(raycaster->ray_angle);
-            raycaster->ray_y -= sin(raycaster->ray_angle);
+            raycaster->ray_x += sin(raycaster->ray_angle) ;
+            raycaster->ray_y -= cos(raycaster->ray_angle) ;
         }
         raycaster->ray_index++;
     }
