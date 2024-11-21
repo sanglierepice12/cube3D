@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/20 12:22:46 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:16:25 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define PLAYER_SIZE 16
 # define BORDER_SIZE 0.5
 # define ROTATION_SPEED 0.1
+# define MOVE_SPEED 20
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE (M_PI / 3)
 # define RAY_COUNT 1920

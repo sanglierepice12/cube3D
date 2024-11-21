@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/12 16:43:03 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:44:12 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ struct	s_map
 
 struct s_player
 {
-    int	player_pos_x;
-    int	player_pos_y;
-    int	player_px_pos_x;
-    int	player_px_pos_y;
+    int     player_pos_x;
+    int     player_pos_y;
+    float	player_px_pos_x;
+    float	player_px_pos_y;
     double	angle;
     double distance;
     char *direction;
