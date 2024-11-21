@@ -57,7 +57,9 @@ void	print_lst(t_list **list)
 int main(int arc, char **argv)
 {
 	t_game	game;
+	t_map	map;
 
+	game.map = &map;
 	if (arc < 2)
 		return (printf("Please insert a map..."));
 	get_map(&game, argv[1]);

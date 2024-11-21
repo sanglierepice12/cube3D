@@ -68,9 +68,10 @@ struct s_proj
 	int wall_end;
 };
 
+/*####PARSE####*/
 struct	s_map
 {
-	int						init;
+	int						count;
 	char					**map;
 	int					map_height;
 	int					map_length;
@@ -82,6 +83,11 @@ struct	s_list
 	struct s_list	*next;
 	struct s_list	*prev;
 };
+
+typedef struct s_counter
+{
+	int		value;
+}	t_counter;
 
 struct s_game
 {

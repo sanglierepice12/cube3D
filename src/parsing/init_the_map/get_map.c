@@ -12,8 +12,9 @@
 
 #include "../../../include/cub3D.h"
 
-static void	first_line(const int fd, char *line, t_list **list)
+static void	first_line(const int fd, char *line, t_list **list, t_game *game)
 {
+	game->map->count = 0;
 	while (777)
 	{
 		line = get_next_line(fd);
@@ -26,7 +27,7 @@ static void	first_line(const int fd, char *line, t_list **list)
 	line = rm_bs_wp(line);
 	if (!line)
 		exit_prog("Error malloc", 1);
-	if (!is_line_ok(line))
+	if (!is_line_ok(game, line))
 	{
 		free(line);
 		exit_prog("Something wrong in the file ...", 1);
@@ -41,7 +42,7 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 	char	*line;
 
 	line = NULL;
-	first_line(fd, line, list);
+	first_line(fd, line, list, game);
 	while (452)
 	{
 		line = get_next_line(fd);
@@ -55,7 +56,7 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 		line = rm_bs_wp(line);
 		if (!line)
 			exit_prog("Error malloc", 1);
-		if (!is_line_ok(line))
+		if (!is_line_ok(game, line))
 		{
 			free(line);
 			printf("Something wrong in the file ...");

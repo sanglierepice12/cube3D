@@ -26,24 +26,26 @@ int	parse_ws(char *line)
 	return (i);
 }
 
-static bool	is_valid_char(char	*temp)
+static bool	is_valid_char(t_map *map, char	*temp)
 {
 	size_t	i;
+	size_t	y;
 
 	i = parse_ws(temp);
-	if (temp[i] == 'S' && temp[i + 1] == 'O' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
-		return (true);
-	if (temp[i] == 'W' && temp[i + 1] == 'E' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
-		return (true);
-	if (temp[i] == 'N' && temp[i + 1] == 'O' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
-		return (true);
-	if (temp[i] == 'E' && temp[i + 1] == 'A' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
-		return (true);
+	y = i + parse_ws(temp + i + 2) + 2;
+	if (temp[i] == 'S' && temp[i + 1] == 'O' && check_texture(temp + y))
+		return (map->count++, true);
+	if (temp[i] == 'W' && temp[i + 1] == 'E' && check_texture(temp + y))
+		return (map->count++, true);
+	if (temp[i] == 'N' && temp[i + 1] == 'O' && check_texture(temp + y))
+		return (map->count++, true);
+	if (temp[i] == 'E' && temp[i + 1] == 'A' && check_texture(temp + y))
+		return (map->count++, true);
 	if (temp[i] == 'F' && check_rgb(temp + parse_ws(temp + 1) + 1))
-		return (true);
+		return (map->count++, true);
 	if (temp[i] == 'C' && check_rgb(temp + parse_ws(temp + 1) + 1))
-		return (true);
-	if (temp[i] == '1')
+		return (map->count++, true);
+	if (temp[i] == '1' && map->count == 6)
 		return (true);
 	printf("Line is invalid: '%s'\n", temp);
 	return (false);
@@ -63,9 +65,9 @@ bool	is_line_full_spaces(char *line)
 	return (true);
 }
 
-bool	is_line_ok(char *line)
+bool	is_line_ok(t_game *game, char *line)
 {
-	if (!is_valid_char(line))
+	if (!is_valid_char(game->map, line))
 		return (false);
 	return (true);
 }

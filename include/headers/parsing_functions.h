@@ -15,7 +15,7 @@
 
 void	get_map(t_game *game, char *file);
 bool	is_line_full_spaces(char *line);
-bool	is_line_ok(char *line);
+bool	is_line_ok(t_game *game, char *line);
 int		parse_ws(char *line);
 
 /*******CHECK_TEXTURES******/
