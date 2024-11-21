@@ -25,6 +25,18 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+void	free_texture(t_texture *texture)
+{
+	if (texture->ea)
+		free(texture->ea);
+	if (texture->no)
+		free(texture->no);
+	if (texture->so)
+		free(texture->so);
+	if (texture->we)
+		free(texture->we);
+}
+
 void	free_s_map(t_map *map)
 {
 	if (map->map)

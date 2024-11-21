@@ -44,15 +44,18 @@ void clean_up(t_game *game)
 
 int main(int arc, char **argv)
 {
-	t_game	game;
-	t_map	map;
+	t_game		game;
+	t_map		map;
+	t_texture	texture;
 
 	game.map = &map;
+	map.texture = &texture;
 	if (arc < 2)
 		return (printf("Please insert a map..."));
 	get_map(&game, argv[1]);
-	/*print_lst(&game.list);
-	free_list(game.list);*/
+	printf("$%s$\n", texture.no);
+	free_s_map(game.map);
+	free_texture(&texture);
 	printf("\nend\n");
 	/*if (init_game(&game) == -1)
 	{

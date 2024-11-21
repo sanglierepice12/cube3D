@@ -20,7 +20,7 @@ static void	first_line(const int fd, char *line, t_list **list, t_game *game)
 		line = get_next_line(fd);
 		if (!line)
 			exit_prog("Nothing in the file ...", 1);
-		if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line))
+		if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line) || !fill_in_list(line))
 			break ;
 		free(line);
 	}
@@ -58,7 +58,8 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 			exit_prog("Error malloc", 1);
 		if (!is_line_ok(game->map, line))
 			exit_parse(game);
-		ft_lst_add_back(list, ft_new_node(line));
+		if (fill_in_list(line))
+			ft_lst_add_back(list, ft_new_node(line));
 		free(line);
 	}
 }

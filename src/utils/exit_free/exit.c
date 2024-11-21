@@ -21,6 +21,8 @@ void	exit_prog(char *msg, int code)
 void	exit_parse(t_game *game)
 {
 	free_list(game->list);
+	if (game->map->texture)
+		free_texture(game->map->texture);
 	printf("parsing has exited with security");
 	exit(1);
 }

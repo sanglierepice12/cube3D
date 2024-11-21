@@ -76,7 +76,6 @@ $(MINILIBX_DIR):
 # Compile the executable
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking $(NAME)$(NC)"
-	@echo "Objects: $(OBJS)"
 	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS)
 
 # Compile each .c file to .o and generate .d files

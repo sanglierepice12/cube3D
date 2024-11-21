@@ -5,10 +5,10 @@
 
 
 
-EA ./texture/texture4
+NO                  ./texture/texture3
                 SO   ./texture/texture1
     WE ./texture/texture2
-NO                  ./texture/texture3
+EA ./texture/texture4
 
 
 C 225,30,0

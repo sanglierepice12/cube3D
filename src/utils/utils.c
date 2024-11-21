@@ -12,6 +12,20 @@
 
 #include "../../include/cub3D.h"
 
+int	parse_ws(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (++i, line[i])
+	{
+		if (line[i] == 32 || (line[i] >= '\t' && line[i] <= '\r'))
+			continue ;
+		break ;
+	}
+	return (i);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	int	i;

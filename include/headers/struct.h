@@ -16,14 +16,16 @@
 /*################ STRUCTURES #####################*/
 
 
-typedef struct	s_img_data t_img_data;
-typedef struct	s_mlx_data t_mlx_data;
-typedef	struct	s_map t_map;
-typedef struct	s_player t_player;
-typedef struct	s_raycaster t_raycaster;
-typedef struct	s_proj t_proj;
-typedef struct	s_game t_game;
-typedef struct	s_list t_list;
+typedef struct	s_img_data		t_img_data;
+typedef struct	s_mlx_data		t_mlx_data;
+typedef	struct	s_map			t_map;
+typedef struct	s_player		t_player;
+typedef struct	s_raycaster		t_raycaster;
+typedef struct	s_proj			t_proj;
+typedef struct	s_game			t_game;
+typedef struct	s_list			t_list;
+typedef struct	s_texture		t_texture;
+typedef struct	s_rgb			t_rgb;
 
 struct	s_img_data
 {
@@ -71,10 +73,28 @@ struct s_proj
 /*####PARSE####*/
 struct	s_map
 {
-	int						count;
-	char					**map;
+	int					count;
+	char				**map;
 	int					map_height;
 	int					map_length;
+	t_texture			*texture;
+	t_rgb				*ceiling;
+	t_rgb				*floor;
+};
+
+struct	s_texture
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+};
+
+struct	s_rgb
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 };
 
 struct	s_list
@@ -95,5 +115,13 @@ struct s_game
 	t_raycaster		*raycaster;
 	t_proj			*projection;
 };
+
+typedef enum s_txt
+{
+	NO,
+	SO,
+	WE,
+	EA
+}	e_txt;
 
 # endif

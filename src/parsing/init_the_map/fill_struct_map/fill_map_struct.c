@@ -12,7 +12,7 @@
 
 #include "../../../../include/cub3D.h"
 
-static void	print_lst(t_list **list)
+/*static void	print_lst(t_list **list)
 {
 	t_list	*temp;
 	temp = *list;
@@ -22,7 +22,7 @@ static void	print_lst(t_list **list)
 		temp = temp->next;
 	}
 	printf("%s", temp->value);
-}
+}*/
 
 char	**heap_map(size_t len)
 {
@@ -45,13 +45,19 @@ void	fill_file(t_map *map, t_list **list)
 	i = 0;
 	while (temp)
 	{
-		map->map[i] = ft_dup(temp->value);
+		map->map[i++] = ft_dup(temp->value);
 		temp = temp->next;
+	}
+	i = 0;
+	while (map->map[i])
+	{
+		printf("%s\n", map->map[i++]);
 	}
 }
 
 void	fill_list_to_map(t_game *game)
 {
+	printf("%s\n", game->map->texture->no);
 	fill_file(game->map, &game->list);
 //	print_lst(&game->list);
 	//fill_file(game->map, &game->list);
