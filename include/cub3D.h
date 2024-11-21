@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/17 11:13:06 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:12:27 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stddef.h>
+# include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
 # include "headers/get_next_line_h/get_next_line.h"
 # include "headers/cub3d_structs.h"    // Inclusion de cub3d_structs.h pour les structures

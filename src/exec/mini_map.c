@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/21 13:08:03 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:55:36 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,23 @@ void all_draws(t_game *game)
     render_3d_map(game, game->player, game->raycaster, game->projection);
 }
 
-void draw_and_display_map(t_game *game) 
+int draw_and_display_map(t_game *game) 
 {
-    all_draws(game);
-    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
-    mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
-   // mlx_hook(game->mlx_data->map_win_ptr, 2, 1L<<0, handle_keypress, game); 
-    mlx_hook(game->mlx_data->game_win_ptr, 2, 1L<<0, handle_keypress, game); 
+    static int i;
+
+    if (!i)
+    {
+        all_draws(game);
+        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
+        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
+        i = 1;  
+    }
+    if (game->player->move_down || game->player->move_up || game->player->move_left || game->player->move_right || game->player->rotate_left || game->player->rotate_right)
+    {
+        handle_keypress(game);
+        all_draws(game);
+        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
+        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
+    }
+    return (0);
 }

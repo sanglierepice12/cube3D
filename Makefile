@@ -9,7 +9,7 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude #-fsanitize=leak -fsanitize=address
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude  #-fsanitize=leak -fsanitize=address
 LDFLAGS = -lm
 
 # Executable
@@ -23,8 +23,9 @@ DEP_DIR = ./dep
 # Source Files
 SRC =	main.c										\
 		parsing/get_map.c							\
-		exec/draw_tools.c							\
+		exec/draw_utils.c							\
 		exec/hook_event/hooks.c						\
+		exec/hook_event/hooks_managment.c			\
 		exec/init.c									\
 		exec/mini_map.c								\
 		exec/exec_utils.c							\
@@ -69,7 +70,7 @@ $(MINILIBX_DIR):
 # Compile the executable
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking $(NAME)$(NC)"
-	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS) -Iminilibx-linux
 
 # Compile each .c file to .o and generate .d files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
@@ -78,7 +79,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
 	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
-	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
+	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@ -Iminilibx-linux
 	@echo "$(GREEN)Compilation of $< completed!$(NC)"
 
 # Clean object and dependency files

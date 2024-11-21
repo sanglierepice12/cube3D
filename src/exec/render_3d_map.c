@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:39:11 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/21 13:18:31 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:36:07 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	draw_3d_column(t_game *game)
 		}
 	}
 }
-void	ray_caster(t_game *game, t_player *player, t_raycaster *raycaster,
+void	ray_caster(t_player *player, t_raycaster *raycaster,
 		t_proj *projection)
 {
 	float	step_x; 
@@ -57,8 +57,8 @@ void	ray_caster(t_game *game, t_player *player, t_raycaster *raycaster,
 	step_y = -sin(raycaster->ray_angle);
 	raycaster->ray_x += step_x;
 	raycaster->ray_y += step_y;
-	draw_3d_column(game);
 }
+
 int check_bounds(t_map *map, t_raycaster *raycaster)
 {
 	return (map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1');
@@ -84,7 +84,8 @@ void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 			raycaster->ray_x += ray_cos; //horizontal
 			raycaster->ray_y += ray_sin; //vertical
 		}
-		ray_caster(game, player, raycaster, projection);
+		ray_caster(player, raycaster, projection);
+		draw_3d_column(game);
 		raycaster->ray_index++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/21 13:23:05 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:52:41 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		fill_tab(t_map *map);
 
 /*===================hooks.c======================*/
 
-int		handle_keypress(int keycode, t_game *game);
 
 /*=====================init.c=====================*/
 
@@ -38,11 +37,11 @@ void	find_play_pos(t_map *map, t_player *player);
 int		init_game(t_game *game);
 
 /*==================mini_map.c====================*/
-void	ray_caster(t_game *game, t_player *player, t_raycaster *raycaster,
-			t_proj *projection);
+void	ray_caster(t_player *player, t_raycaster *raycaster,
+		t_proj *projection);
 void	all_draws(t_game *game);
 void	draw_mini_map(t_game *game);
-void	draw_and_display_map(t_game *game);
+int	    draw_and_display_map(t_game *game);
 void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 			t_proj *projection);
 
@@ -53,5 +52,8 @@ void	clean_up(t_game *game);
 void	*ft_calloc(size_t nbdelement, size_t tailleelement);
 void	*ft_memset(void *pointer, int value, size_t count);
 int		check_bounds(t_map *map, t_raycaster *raycaster);
+void    hook_management(t_game *game);
+int     handle_keypress(t_game *game);
+
 
 #endif
