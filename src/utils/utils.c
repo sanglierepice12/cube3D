@@ -55,34 +55,23 @@ char	*rm_bs_wp(char *str)
 	free(str);
 	return (dest);
 }
-/*
-char *rm_bs_wp(char *str)
-{
-	char	*dest;
-	size_t	i;
-	size_t	len;
 
-	len = 0;
-	while (str[len] && str[len] != '\n')
-		len++;
-	if (str[len] == '\n')
-		len++;
-	dest = ft_calloc(len + 1, sizeof(char));
-	if (!dest)
-		exit_prog("Error: Calloc rm_bs and wp [gnl]", 1);
+char	*ft_dup(const char *s)
+{
+	size_t	i;
+	char	*new;
+
+	if (!s)
+		return (NULL);
+	new = ft_calloc(sizeof(char), ft_strlen(s) + 1);
+	if (!new)
+		return (NULL);
 	i = 0;
-	while (i < len && str[i] != '\n')
+	while (s[i])
 	{
-		dest[i] = str[i];
+		new[i] = s[i];
 		i++;
 	}
-	i = len - 1;
-	while (is_ws(dest[i]))
-	{
-		dest[i] = '\0';
-		i--;
-	}
-	free(str);
-	return (dest);
+	new[i] = '\0';
+	return (new);
 }
-*/

@@ -12,7 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-
 static int	ft_checker(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)

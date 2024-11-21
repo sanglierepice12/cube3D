@@ -84,11 +84,6 @@ struct	s_list
 	struct s_list	*prev;
 };
 
-typedef struct s_counter
-{
-	int		value;
-}	t_counter;
-
 struct s_game
 {
 	t_map			*map;

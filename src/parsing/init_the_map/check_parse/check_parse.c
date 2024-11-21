@@ -26,7 +26,21 @@ int	parse_ws(char *line)
 	return (i);
 }
 
-static bool	is_valid_char(t_map *map, char	*temp)
+bool	is_line_full_spaces(char *line)
+{
+	ssize_t	i;
+
+	i = -1;
+	while (i++, line[i])
+	{
+		if (line[i] == 32 || (line[i] > 8 && line[i] < 14))
+			continue ;
+		return (false);
+	}
+	return (true);
+}
+
+bool	is_line_ok(t_map *map, char	*temp)
 {
 	size_t	i;
 	size_t	y;
@@ -48,26 +62,7 @@ static bool	is_valid_char(t_map *map, char	*temp)
 	if (temp[i] == '1' && map->count == 6)
 		return (true);
 	printf("Line is invalid: '%s'\n", temp);
+	free(temp);
+	printf("Something wrong in the file ...");
 	return (false);
-}
-
-bool	is_line_full_spaces(char *line)
-{
-	ssize_t	i;
-
-	i = -1;
-	while (i++, line[i])
-	{
-		if (line[i] == 32 || (line[i] > 8 && line[i] < 14))
-			continue ;
-		return (false);
-	}
-	return (true);
-}
-
-bool	is_line_ok(t_game *game, char *line)
-{
-	if (!is_valid_char(game->map, line))
-		return (false);
-	return (true);
 }

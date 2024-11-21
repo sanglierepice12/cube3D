@@ -29,6 +29,7 @@ SRC =	main.c													\
 		parsing/init_the_map/get_map.c							\
 		parsing/init_the_map/check_parse/check_parse.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
+		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
 		utils/utils.c											\
@@ -75,6 +76,7 @@ $(MINILIBX_DIR):
 # Compile the executable
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking $(NAME)$(NC)"
+	@echo "Objects: $(OBJS)"
 	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS)
 
 # Compile each .c file to .o and generate .d files
@@ -83,6 +85,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map $(DEP_DIR)/parsing/init_the_map
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/check_parse $(DEP_DIR)/parsing/init_the_map/check_parse
+	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/fill_struct_map $(DEP_DIR)/parsing/init_the_map/fill_struct_map
 	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
 	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event

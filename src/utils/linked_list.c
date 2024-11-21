@@ -12,24 +12,19 @@
 
 #include "../../include/cub3D.h"
 
-char	*ft_dup(const char *s)
+size_t	get_list_len(t_list *list)
 {
-	size_t	i;
-	char	*new;
+	t_list	*tmp;
+	size_t	len;
 
-	if (!s)
-		return (NULL);
-	new = ft_calloc(sizeof(char), ft_strlen(s) + 1);
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	tmp = list;
+	len = 0;
+	while (tmp)
 	{
-		new[i] = s[i];
-		i++;
+		len++;
+		tmp = tmp->next;
 	}
-	new[i] = '\0';
-	return (new);
+	return (len);
 }
 
 t_list	*ft_lst_last(t_list *lst)

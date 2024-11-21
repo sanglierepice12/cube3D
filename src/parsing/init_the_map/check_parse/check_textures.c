@@ -37,7 +37,7 @@ static bool	parse_comma(char *line)
 
 	i = -1;
 	count = 0;
-	while(++i, line[i])
+	while (++i, line[i])
 	{
 		if (line[i] == ',')
 			count++;
@@ -65,7 +65,9 @@ bool	check_texture(char	*line)
 {
 	int	fd;
 
-	fd = open(line, O_RDONLY); //tester avec line = NULL;
+	if (!line)
+		return (false);
+	fd = open(line, O_RDONLY);
 	if (fd == -1)
 	{
 		printf("no textures...\n");

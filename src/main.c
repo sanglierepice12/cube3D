@@ -42,18 +42,6 @@ void clean_up(t_game *game)
     }
 }
 
-void	print_lst(t_list **list)
-{
-	t_list	*temp;
-	temp = *list;
-	while (temp->next)
-	{
-		printf("%s$\n", temp->value);
-		temp = temp->next;
-	}
-	printf("%s", temp->value);
-}
-
 int main(int arc, char **argv)
 {
 	t_game	game;
@@ -63,8 +51,8 @@ int main(int arc, char **argv)
 	if (arc < 2)
 		return (printf("Please insert a map..."));
 	get_map(&game, argv[1]);
-	print_lst(&game.list);
-	free_list(game.list);
+	/*print_lst(&game.list);
+	free_list(game.list);*/
 	printf("\nend\n");
 	/*if (init_game(&game) == -1)
 	{

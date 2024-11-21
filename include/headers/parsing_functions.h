@@ -15,11 +15,15 @@
 
 void	get_map(t_game *game, char *file);
 bool	is_line_full_spaces(char *line);
-bool	is_line_ok(t_game *game, char *line);
+bool	is_line_ok(t_map *map, char *line);
 int		parse_ws(char *line);
 
 /*******CHECK_TEXTURES******/
 bool	check_texture(char	*line);
 bool	check_rgb(char *line);
+
+/*******CHECK_MAP******/
+void	fill_list_to_map(t_game *game);
+
 
 #endif

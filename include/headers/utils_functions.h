@@ -32,6 +32,7 @@ void		ft_lst_add_front(t_list **lst, t_list *new);
 void		ft_lst_add_back(t_list **head, t_list *new);
 t_list		*ft_new_node(char *value);
 void		free_list(t_list *list);
+size_t		get_list_len(t_list *list);
 
 /*==================exit & free=====================*/
 void		free_list(t_list *list);
