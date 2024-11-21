@@ -19,7 +19,7 @@ int	parse_ws(char *line)
 	i = -1;
 	while (++i, line[i])
 	{
-		if (line[i] == 32 || (line[i] > 8 && line[i] < 14))
+		if (line[i] == 32 || (line[i] >= '\t' && line[i] <= '\r'))
 			continue ;
 		break ;
 	}
@@ -28,21 +28,24 @@ int	parse_ws(char *line)
 
 static bool	is_valid_char(char	*temp)
 {
-	printf("%c", temp[0]);
-	if (temp[0] == 'N' && temp[1] == 'O' && check_texture(temp + parse_ws(temp + 2) + 2))
+	size_t	i;
+
+	i = parse_ws(temp);
+	if (temp[i] == 'S' && temp[i + 1] == 'O' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
 		return (true);
-	if (temp[0] == 'S' && temp[1] == 'O' && check_texture(temp + parse_ws(temp + 2) + 2))
+	if (temp[i] == 'W' && temp[i + 1] == 'E' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
 		return (true);
-	if (temp[0] == 'W' && temp[1] == 'E' && check_texture(temp + parse_ws(temp + 2) + 2))
+	if (temp[i] == 'N' && temp[i + 1] == 'O' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
 		return (true);
-	if (temp[0] == 'E' && temp[1] == 'A' && check_texture(temp + parse_ws(temp + 2) + 2))
+	if (temp[i] == 'E' && temp[i + 1] == 'A' && check_texture(temp + i + parse_ws(temp + i + 2) +2))
 		return (true);
-	if (temp[0] == 'F' && check_rgb(temp + parse_ws(temp + 1) + 1))
+	if (temp[i] == 'F' && check_rgb(temp + parse_ws(temp + 1) + 1))
 		return (true);
-	if (temp[0] == 'C' && check_rgb(temp + parse_ws(temp + 1) + 1))
+	if (temp[i] == 'C' && check_rgb(temp + parse_ws(temp + 1) + 1))
 		return (true);
-	if (temp[0] == '1')
+	if (temp[i] == '1')
 		return (true);
+	printf("Line is invalid: '%s'\n", temp);
 	return (false);
 }
 

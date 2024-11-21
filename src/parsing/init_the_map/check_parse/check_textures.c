@@ -26,6 +26,7 @@ bool	rgb_is_good(char *line)
 		if (ft_atoi(temp[i]) > 255 || ft_atoi(temp[i]) < 0)
 			return (false);
 	}
+	free_tab(temp);
 	return (true);
 }
 
@@ -55,8 +56,8 @@ bool	check_rgb(char *line)
 		return (false);
 	if (ft_strlen(line + i) > 11)
 		return (false);
-	/*if (!rgb_is_good(line + i))
-		return (false);*/
+	if (!rgb_is_good(line + i))
+		return (false);
 	return (true);
 }
 
@@ -64,7 +65,7 @@ bool	check_texture(char	*line)
 {
 	int	fd;
 
-	fd = open(line + parse_ws(line), O_RDONLY);
+	fd = open(line, O_RDONLY); //tester avec line = NULL;
 	if (fd == -1)
 	{
 		printf("no textures...\n");

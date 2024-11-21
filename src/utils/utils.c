@@ -24,11 +24,38 @@ size_t	ft_strlen(const char *s)
 
 bool	is_ws(char c)
 {
-	if (c == 32 || (c > 8 && c < 14))
+	if (c == 32 || (c >= '\t' && c <= '\r'))
 		return (true);
 	return (false);
 }
 
+char	*rm_bs_wp(char *str)
+{
+	char	*dest;
+	ssize_t	i;
+	ssize_t	y;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+	{
+		while (str[i] && is_ws(str[i]))
+			i--;
+	}
+	dest = ft_calloc(sizeof(char), i + 2);
+	if (!dest)
+		return (free(str), NULL);
+	y = -1;
+	while (y++, y != i + 1)
+		dest[y] = str[y];
+	dest[y] = '\0';
+	free(str);
+	return (dest);
+}
+/*
 char *rm_bs_wp(char *str)
 {
 	char	*dest;
@@ -58,3 +85,4 @@ char *rm_bs_wp(char *str)
 	free(str);
 	return (dest);
 }
+*/

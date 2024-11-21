@@ -5,13 +5,13 @@
 
 
 
-SO                  ./texture/texture1
-WE ./texture/texture2
-                         NO                 ./texture/texture3
 EA ./texture/texture4
+                SO   ./texture/texture1
+    WE ./texture/texture2
+NO                  ./texture/texture3
 
-F         020,100,000
-C 225,30,0
+C 225,30,255
+F 020,100,000
 
 1111111111111111111111111
 10000000000110000000000001

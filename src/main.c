@@ -48,7 +48,7 @@ void	print_lst(t_list **list)
 	temp = *list;
 	while (temp->next)
 	{
-		printf("%s\n", temp->value);
+		printf("%s$\n", temp->value);
 		temp = temp->next;
 	}
 	printf("%s", temp->value);

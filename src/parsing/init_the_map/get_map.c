@@ -61,6 +61,7 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 			printf("Something wrong in the file ...");
 			exit_parse(game);
 		}
+		(void)game;
 		ft_lst_add_back(list, ft_new_node(line + parse_ws(line)));
 		free(line);
 	}
