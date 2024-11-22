@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/21 15:12:17 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 07:37:51 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ struct s_game
     t_img_data		*game_img;
 	t_raycaster		*raycaster;
 	t_proj 	*projection;
+    bool    end;
 };
 
 # endif

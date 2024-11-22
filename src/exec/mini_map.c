@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/21 15:55:36 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 07:28:57 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,11 @@ int draw_and_display_map(t_game *game)
         mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
         i = 1;  
     }
-    if (game->player->move_down || game->player->move_up || game->player->move_left || game->player->move_right || game->player->rotate_left || game->player->rotate_right)
+    if (game->end || game->player->move_down || game->player->move_up || game->player->move_left || game->player->move_right || game->player->rotate_left || game->player->rotate_right)
     {
         handle_keypress(game);
+        if (game->end)
+            return (0);
         all_draws(game);
         mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
         mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);

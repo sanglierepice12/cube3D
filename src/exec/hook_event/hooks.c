@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/21 16:03:25 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 07:33:17 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,23 @@ void	handle_move(t_game *game)
 	
 }
 
-int	handle_keypress(t_game *game)
+int handle_keypress(t_game *game)
 {
-	// if (keycode == ESC_KEY) // Exit the game
-	// {
-	// 	clean_up(game);
-	// 	exit(0);
-	// }
-	if (game->player->rotate_left || game->player->rotate_right)
-		handle_rotation(game->player);
-		
-	else if (game->player->move_down || game->player->move_up)
-		handle_move(game);
-		
-	if (game->player->move_left || game->player->move_right)
-		handle_move(game);
-		
-	// draw_and_display_map(game);
-	// mlx_put_image_to_window(game->mlx_data->mlx_ptr,
-	// 		game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
-	return (0);
+    if (game->end) 
+    {
+		printf("Exiting game...\n");
+		mlx_loop_end(game->mlx_data->mlx_ptr);
+		return (0);
+        //mlx_loop_end(game->mlx_data->mlx_ptr);
+    }
+
+    if (game->player->rotate_left || game->player->rotate_right)
+        handle_rotation(game->player);
+
+    if (game->player->move_down || game->player->move_up || 
+        game->player->move_left || game->player->move_right)
+        handle_move(game);
+
+
+    return (0);
 }

@@ -6,46 +6,53 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/21 15:41:13 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 07:37:46 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 
-void clean_up(t_game *game)
+int clean_up(t_game *game)
 {
     if (game->map)
     {
         free_tab(game->map->map);
         free(game->map);
+        game->map = NULL;
     }
     if (game->map_img && game->mlx_data)
     {
-        mlx_destroy_image(game->mlx_data->mlx_ptr, game->map_img->img_ptr);
         mlx_destroy_image(game->mlx_data->mlx_ptr, game->game_img->img_ptr);
-        
+        game->game_img = NULL;
     }
     if (game->player)
-        free(game->player);
-    if (game->raycaster)
-        free(game->raycaster);
-    if (game->projection)
-        free(game->projection);
-    if (game->map_img)
     {
-        free(game->map_img);
-        free(game->game_img);
+        free(game->player);
+        game->player = NULL;
+    }
+    if (game->raycaster)
+    {
+        free(game->raycaster);
+        game->raycaster = NULL;
+    }
+    if (game->projection)
+    {
+        free(game->projection);
+        game->projection = NULL;
     }
     if (game->mlx_data)
     {
-        //mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->map_win_ptr);
         mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr);
         mlx_destroy_display(game->mlx_data->mlx_ptr);
         free(game->mlx_data->mlx_ptr);
         free(game->mlx_data);
+        game->mlx_data = NULL;
     }
+    printf("Clean-up completed.\n");
+    return (0);
 }
+
 
 /*
     * initialisation de la structure
@@ -71,7 +78,7 @@ int main(void)
 {
     t_game  game;
 
-    // ft_memset(&game, 0, sizeof(t_game));
+    ft_memset(&game, 0, sizeof(t_game));
     if (init_game(&game) == -1)
     {
         clean_up(&game);

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/21 15:52:41 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 07:38:11 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 
 /*====================main.c======================*/
 
-void	clean_up(t_game *game);
+int	clean_up(t_game *game);
 
 void	*ft_calloc(size_t nbdelement, size_t tailleelement);
 void	*ft_memset(void *pointer, int value, size_t count);
