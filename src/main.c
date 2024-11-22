@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 09:06:40 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:08:32 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,11 @@
 int clean_up(t_game *game)
 {
     if (&game->map)
-    {
         free_tab(game->map.map);
-        //free(game->map);
-        // game->map = NULL;
-    }
     if (&game->map_img && &game->mlx_data)
-    {
         mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
-    }
     if (&game->game_img && &game->mlx_data)
-    {
         mlx_destroy_image(game->mlx_data.mlx_ptr, game->game_img.img_ptr);
-    }
     if (&game->mlx_data)
     {
         mlx_destroy_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr);
@@ -63,7 +55,6 @@ int main(void)
         return (1);
     }
     hook_management(&game);
-    // mlx_key_hook(game.mlx_data->game_win_ptr, handle_keypress, &game);
     mlx_loop_hook(game.mlx_data.mlx_ptr, &draw_and_display_map, &game);
     draw_and_display_map(&game);
     mlx_loop(game.mlx_data.mlx_ptr);

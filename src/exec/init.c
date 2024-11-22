@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 09:05:00 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:27:48 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 	mlx_data->mlx_ptr = mlx_init();
 	if (!mlx_data->mlx_ptr)
 		return (-1);
-	// mlx_data->map_win_ptr = mlx_new_window(mlx_data->mlx_ptr, (map->map_length * TILE_SIZE) - TILE_SIZE, map->map_height * TILE_SIZE, "Minimap");
-	// if (!mlx_data->map_win_ptr)
-	// {
-	// 	free(mlx_data->mlx_ptr);
-	// 	return (-1);
-	// }
 	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH,
 			GAME_HEIGHT + map->map_height * TILE_SIZE, "Cub3d");
 	if (!mlx_data->game_win_ptr)
@@ -70,7 +64,7 @@ void	find_play_pos(t_map *map, t_player *player)
 
 int	initialize_map(t_map *map)
 {
-	map->map_height = 8;
+	map->map_height = 15;
 	map->map_length = 20;
 	map->map = ft_calloc(map->map_height + 1, sizeof(char *));
 	if (!map->map)

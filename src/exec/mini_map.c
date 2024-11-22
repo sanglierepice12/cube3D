@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 09:03:52 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:26:26 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
     raycaster->ray_index = 0;
     while (raycaster->ray_index < GAME_WIDTH)
     {
-        raycaster->ray_angle = player->angle + (FOV_ANGLE * 2) - (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
-        raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_y = player->player_px_pos_y;
+        raycaster->ray_x = player->player_px_pos_x;
+        raycaster->ray_angle = player->angle + (FOV_ANGLE * 2) - (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
         while (check_bounds(&game->map, raycaster))
         {
             if (raycaster->ray_index == (GAME_WIDTH * 0.5))
@@ -118,6 +118,13 @@ void all_draws(t_game *game)
     render_3d_map(game, &game->player, &game->raycaster, &game->projection);
 }
 
+int key_active(t_game *game)
+{
+    return (game->end || game->player.move_down || game->player.move_up || 
+    game->player.move_left || game->player.move_right || 
+    game->player.rotate_left || game->player.rotate_right);
+}
+
 int draw_and_display_map(t_game *game) 
 {
     static int i;
@@ -129,7 +136,7 @@ int draw_and_display_map(t_game *game)
         mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
         i = 1;  
     }
-    if (game->end || game->player.move_down || game->player.move_up || game->player.move_left || game->player.move_right || game->player.rotate_left || game->player.rotate_right)
+    if (key_active(game))
     {
         handle_keypress(game);
         if (game->end)

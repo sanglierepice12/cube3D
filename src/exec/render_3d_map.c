@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:39:11 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 09:04:09 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:42:41 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ray_caster(t_player *player, t_raycaster *raycaster,
 	float	step_x; 
 	float	step_y;
 
-	projection->distance_to_wall = DISTANCE(raycaster->ray_x, raycaster->ray_y, player->player_px_pos_x, player->player_px_pos_y);
+	projection->distance_to_wall = DISTANCE(raycaster->ray_x  , raycaster->ray_y  , player->player_px_pos_x, player->player_px_pos_y );
 	projection->wall_height = (int)(TILE_SIZE * DISTANCE_TO_PLANE / projection->distance_to_wall);
 	projection->wall_start = SCREEN_CENTER_Y - (projection->wall_height * 0.5);
 	projection->wall_end = SCREEN_CENTER_Y + (projection->wall_height * 0.5);
@@ -61,7 +61,7 @@ void	ray_caster(t_player *player, t_raycaster *raycaster,
 
 int check_bounds(t_map *map, t_raycaster *raycaster)
 {
-	return (map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1');
+	return (map->map[(int)(raycaster->ray_y  / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1');
 }
 
 void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
@@ -76,7 +76,7 @@ void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 	{
 		raycaster->ray_angle = player->angle - FOV_HALF + (raycaster->ray_index * RAY_ANGLE_DELTA);
 		ray_cos = cos(raycaster->ray_angle);
-		ray_sin = sin(raycaster->ray_angle);
+		ray_sin = sin(raycaster->ray_angle) ;
 		raycaster->ray_x = player->player_px_pos_x;
 		raycaster->ray_y = player->player_px_pos_y;
 		while (check_bounds(&game->map, raycaster))
