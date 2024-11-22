@@ -26,6 +26,7 @@ SRC =	main.c													\
 		exec/hook_event/hooks.c									\
 		exec/init.c												\
 		exec/mini_map.c											\
+		parsing/init_struct.c									\
 		parsing/init_the_map/get_map.c							\
 		parsing/init_the_map/check_parse/check_parse.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
@@ -40,6 +41,7 @@ SRC =	main.c													\
 		utils/atoi.c											\
 		utils/exit_free/exit.c									\
 		utils/exit_free/free.c									\
+		utils/exit_free/free2.c									\
 
 # Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz

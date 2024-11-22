@@ -36,10 +36,13 @@ size_t		get_list_len(t_list *list);
 
 /*==================exit & free=====================*/
 void		free_list(t_list *list);
+void		free_rgb(t_rgb *rgb);
 void		free_tab(char **tab);
 void		free_s_map(t_map *map);
 void		free_texture(t_texture *texture);
 void		exit_parse(t_game *game);
-void		exit_prog(char *msg, int code);
+void		simple_exit(char *msg, int code);
+void		free_parse(t_game *game);
+void		exit_prog(t_game *game);
 
 #endif

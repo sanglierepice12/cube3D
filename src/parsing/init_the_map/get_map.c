@@ -14,23 +14,25 @@
 
 static void	first_line(const int fd, char *line, t_list **list, t_game *game)
 {
-	game->map->count = 0;
 	while (777)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			exit_prog("Nothing in the file ...", 1);
-		if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line) || !fill_in_list(line))
+			simple_exit("Nothing in the file ...", 1);
+		if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line) /*|| fill_in_list(line, game->map->texture)*/)
 			break ;
 		free(line);
 	}
 	line = rm_bs_wp(line);
 	if (!line)
-		exit_prog("Error malloc", 1);
+	{
+		printf("Error malloc\n");
+		exit_prog(game);
+	}
 	if (!is_line_ok(game->map, line))
 	{
 		free(line);
-		exit_prog("Something wrong in the file ...", 1);
+		simple_exit("Something wrong in the file ...", 1);
 	}
 	*list = ft_new_node(line);
 	free(line);
@@ -55,10 +57,10 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 		}
 		line = rm_bs_wp(line);
 		if (!line)
-			exit_prog("Error malloc", 1);
+			simple_exit("Error malloc", 1);
 		if (!is_line_ok(game->map, line))
 			exit_parse(game);
-		if (fill_in_list(line))
+		if (fill_in_list(line, game->map->texture))
 			ft_lst_add_back(list, ft_new_node(line));
 		free(line);
 	}
@@ -70,7 +72,7 @@ static int	open_map(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit_prog("Error occurred while opening the document...", 1);
+		simple_exit("Error occurred while opening the document...", 1);
 	return (fd);
 }
 
@@ -80,9 +82,9 @@ static void	check_ext(char *file)
 
 	len = ft_strlen(file);
 	if (len < 4)
-		exit_prog("Error: Wrong extension.", 1);
+		simple_exit("Error: Wrong extension.", 1);
 	if (ft_strncmp(file + (len - 4), ".cub", 4))
-		exit_prog("Error: Wrong extension, it's not a .cub.", 1);
+		simple_exit("Error: Wrong extension, it's not a .cub.", 1);
 }
 
 void	get_map(t_game *game, char *file)

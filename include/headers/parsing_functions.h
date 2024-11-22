@@ -13,11 +13,12 @@
 #ifndef PARSING_FUNCTIONS_H
 # define PARSING_FUNCTIONS_H
 
+void	init_struct(t_game **game);
 void	get_map(t_game *game, char *file);
 bool	is_line_full_spaces(char *line);
 bool	is_line_ok(t_map *map, char *line);
 int		parse_ws(char *line);
-bool	fill_in_list(char *temp);
+bool	fill_in_list(char *temp, t_texture *texture);
 
 /*******CHECK_TEXTURES******/
 bool	check_texture(char	*line);

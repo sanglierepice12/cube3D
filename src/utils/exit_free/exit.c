@@ -12,7 +12,7 @@
 
 #include "../../../include/cub3D.h"
 
-void	exit_prog(char *msg, int code)
+void	simple_exit(char *msg, int code)
 {
 	printf("%s", msg);
 	exit(code);
@@ -25,4 +25,11 @@ void	exit_parse(t_game *game)
 		free_texture(game->map->texture);
 	printf("parsing has exited with security");
 	exit(1);
+}
+
+void	exit_prog(t_game *game)
+{
+	free_parse(game);
+	free(game);
+	exit(0);
 }

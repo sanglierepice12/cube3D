@@ -71,6 +71,7 @@ struct s_proj
 };
 
 /*####PARSE####*/
+
 struct	s_map
 {
 	int					count;

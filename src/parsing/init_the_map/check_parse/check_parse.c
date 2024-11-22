@@ -28,7 +28,7 @@ bool	is_line_full_spaces(char *line)
 
 static void	fill_tex(char *line, t_texture *texture, e_txt type)
 {
-	printf("$%s$\n", line);
+	//printf("$%s$\n", line);
 	if (type == NO)
 	{
 		texture->no = ft_dup(line);
@@ -50,24 +50,26 @@ static void	fill_tex(char *line, t_texture *texture, e_txt type)
 	if (type == EA)
 	{
 		texture->ea = ft_dup(line);
-		if (texture->no == NULL)
+		if (texture->ea == NULL)
 			printf("texture no is null\n");
 	}
 }
 
-bool	fill_in_list(char *temp)
+bool	fill_in_list(char *temp, t_texture *texture)
 {
 	size_t	i;
+	size_t	y;
 
 	i = parse_ws(temp);
+	y = i + parse_ws(temp + i + 2) + 2;
 	if (temp[i] == 'N' && temp[i + 1] == 'O')
-		return (false);
+		return (fill_tex(temp + y, texture, NO), false);
 	if (temp[i] == 'S' && temp[i + 1] == 'O')
-		return (false);
+		return (fill_tex(temp + y, texture, SO), false);
 	if (temp[i] == 'W' && temp[i + 1] == 'E')
-		return (false);
+		return (fill_tex(temp + y, texture, WE), false);
 	if (temp[i] == 'E' && temp[i + 1] == 'A')
-		return (false);
+		return (fill_tex(temp + y, texture, EA), false);
 	return (true);
 }
 
@@ -79,13 +81,13 @@ bool	is_line_ok(t_map *map, char	*temp)
 	i = parse_ws(temp);
 	y = i + parse_ws(temp + i + 2) + 2;
 	if (temp[i] == 'N' && temp[i + 1] == 'O' && check_texture(temp + y))
-		return (fill_tex(temp + y, map->texture, NO), map->count++, true);
+		return (map->count++, true);
 	if (temp[i] == 'S' && temp[i + 1] == 'O' && check_texture(temp + y))
-		return (fill_tex(temp + y, map->texture, SO), map->count++, true);
+		return (map->count++, true);
 	if (temp[i] == 'W' && temp[i + 1] == 'E' && check_texture(temp + y))
-		return (fill_tex(temp + y, map->texture, WE), map->count++, true);
+		return (map->count++, true);
 	if (temp[i] == 'E' && temp[i + 1] == 'A' && check_texture(temp + y))
-		return (fill_tex(temp + y, map->texture, EA), map->count++, true);
+		return (map->count++, true);
 	if (temp[i] == 'F' && check_rgb(temp + parse_ws(temp + 1) + 1))
 		return (map->count++, true);
 	if (temp[i] == 'C' && check_rgb(temp + parse_ws(temp + 1) + 1))

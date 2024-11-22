@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 09:38:12 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:44:35 by sanglier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,14 @@ void clean_up(t_game *game)
 
 int main(int arc, char **argv)
 {
-	t_game		game;
-	t_map		map;
-	t_texture	texture;
+	t_game		*game;
 
-	game.map = &map;
-	map.texture = &texture;
-	if (arc < 2)
-		return (printf("Please insert a map..."));
-	get_map(&game, argv[1]);
-	printf("$%s$\n", texture.no);
-	free_s_map(game.map);
-	free_texture(&texture);
+    if (arc < 2)
+        return (printf("Please insert a map..."));
+    init_struct(&game);
+	get_map(game, argv[1]);
+	exit_prog(game);
 	printf("\nend\n");
-	/*if (init_game(&game) == -1)
-	{
-		clean_up(&game);
-		return (1);
-	}
-	draw_and_display_map(&game);
-	mlx_loop(game.mlx_data->mlx_ptr);
-	clean_up(&game);*/
 	return (0);
 }
 

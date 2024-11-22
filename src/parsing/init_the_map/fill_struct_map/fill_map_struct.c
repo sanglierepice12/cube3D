@@ -51,13 +51,13 @@ void	fill_file(t_map *map, t_list **list)
 	i = 0;
 	while (map->map[i])
 	{
-		printf("%s\n", map->map[i++]);
+		printf("%s$\n", map->map[i++]);
 	}
 }
 
 void	fill_list_to_map(t_game *game)
 {
-	printf("%s\n", game->map->texture->no);
+	//printf("%s\n", game->map->texture->no);
 	fill_file(game->map, &game->list);
 //	print_lst(&game->list);
 	//fill_file(game->map, &game->list);
