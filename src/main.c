@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 07:37:46 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:06:40 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,25 @@
 
 int clean_up(t_game *game)
 {
-    if (game->map)
+    if (&game->map)
     {
-        free_tab(game->map->map);
-        free(game->map);
-        game->map = NULL;
+        free_tab(game->map.map);
+        //free(game->map);
+        // game->map = NULL;
     }
-    if (game->map_img && game->mlx_data)
+    if (&game->map_img && &game->mlx_data)
     {
-        mlx_destroy_image(game->mlx_data->mlx_ptr, game->game_img->img_ptr);
-        game->game_img = NULL;
+        mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
     }
-    if (game->player)
+    if (&game->game_img && &game->mlx_data)
     {
-        free(game->player);
-        game->player = NULL;
+        mlx_destroy_image(game->mlx_data.mlx_ptr, game->game_img.img_ptr);
     }
-    if (game->raycaster)
+    if (&game->mlx_data)
     {
-        free(game->raycaster);
-        game->raycaster = NULL;
-    }
-    if (game->projection)
-    {
-        free(game->projection);
-        game->projection = NULL;
-    }
-    if (game->mlx_data)
-    {
-        mlx_destroy_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr);
-        mlx_destroy_display(game->mlx_data->mlx_ptr);
-        free(game->mlx_data->mlx_ptr);
-        free(game->mlx_data);
-        game->mlx_data = NULL;
+        mlx_destroy_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr);
+        mlx_destroy_display(game->mlx_data.mlx_ptr);
+        free(game->mlx_data.mlx_ptr);
     }
     printf("Clean-up completed.\n");
     return (0);
@@ -64,15 +50,7 @@ int clean_up(t_game *game)
     * initialiser la boucle du jeu
 */
 
-void print_struct(t_game *game)
-{
-    printf("UP %d\n", game->player->move_up);
-    printf("DOWN %d\n", game->player->move_down);
-    printf("LEFT %d\n", game->player->move_left);
-    printf("RIGHT %d\n", game->player->move_right);
-    printf("ROT LEFT %d\n", game->player->rotate_left);
-    printf("ROT RIGHT %d\n", game->player->rotate_right);
-}
+
 
 int main(void)
 {
@@ -86,9 +64,9 @@ int main(void)
     }
     hook_management(&game);
     // mlx_key_hook(game.mlx_data->game_win_ptr, handle_keypress, &game);
-    mlx_loop_hook(game.mlx_data->mlx_ptr, &draw_and_display_map, &game);
+    mlx_loop_hook(game.mlx_data.mlx_ptr, &draw_and_display_map, &game);
     draw_and_display_map(&game);
-    mlx_loop(game.mlx_data->mlx_ptr);
+    mlx_loop(game.mlx_data.mlx_ptr);
     clean_up(&game);
     return (0);
 }

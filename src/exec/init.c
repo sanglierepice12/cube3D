@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 07:38:01 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:05:00 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,45 +114,14 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 
 int	init_game(t_game *game)
 {
-	game->map = ft_calloc(1, sizeof(t_map));
-	if (!game->map)
+	
+
+	if (initialize_map(&game->map) == -1)
 		return (-1);
-
-	if (initialize_map(game->map) == -1)
+	find_play_pos(&game->map, &game->player);
+	if (init_env(&game->mlx_data, &game->map) == -1)
 		return (-1);
-
-	game->player = ft_calloc(1, sizeof(t_player));
-	if (!game->player)
+	if (initialize_graphics(&game->mlx_data, &game->map, &game->map_img, &game->game_img) == -1)
 		return (-1);
-
-	game->raycaster = ft_calloc(1, sizeof(t_raycaster));
-	if (!game->raycaster)
-		return (-1);
-
-	game->projection = ft_calloc(1, sizeof(t_proj));
-	if (!game->projection)
-		return (-1);
-
-	find_play_pos(game->map, game->player);
-
-	game->mlx_data = ft_calloc(1, sizeof(t_mlx_data));
-	if (!game->mlx_data)
-		return (-1);
-
-	game->map_img = ft_calloc(1, sizeof(t_img_data));
-	if (!game->map_img)
-		return (-1);
-
-	game->game_img = ft_calloc(1, sizeof(t_img_data));
-	if (!game->game_img)
-		return (-1);
-
-	if (init_env(game->mlx_data, game->map) == -1)
-		return (-1);
-
-	if (initialize_graphics(game->mlx_data, game->map, game->map_img,
-			game->game_img) == -1)
-		return (-1);
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:39:11 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 07:07:04 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:04:09 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	draw_3d_column(t_game *game)
 	int	y_end;
 	int	y;
 
-	y_start = game->projection->wall_start;
-	y_end = game->projection->wall_end;
-	if (game->raycaster->ray_index >= 0
-		&& game->raycaster->ray_index < GAME_WIDTH)
+	y_start = game->projection.wall_start;
+	y_end = game->projection.wall_end;
+	if (game->raycaster.ray_index >= 0
+		&& game->raycaster.ray_index < GAME_WIDTH)
 	{
 		y = y_start;
 		while (y <= y_end)
 		{
 			if (y >= 0 && y < GAME_HEIGHT)
-				my_mlx_pixel_put(game->game_img, game->raycaster->ray_index, y, BLUE);
+				my_mlx_pixel_put(&game->game_img, game->raycaster.ray_index, y, BLUE);
 			y++;
 		}
 	}
@@ -71,7 +71,7 @@ void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 	float	ray_sin;
 
 	raycaster->ray_index = 0;
-	clear_image(game->game_img, BLACK, LIGHT_BLUE);
+	clear_image(&game->game_img, BLACK, LIGHT_BLUE);
 	while (raycaster->ray_index < GAME_WIDTH)
 	{
 		raycaster->ray_angle = player->angle - FOV_HALF + (raycaster->ray_index * RAY_ANGLE_DELTA);
@@ -79,7 +79,7 @@ void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 		ray_sin = sin(raycaster->ray_angle);
 		raycaster->ray_x = player->player_px_pos_x;
 		raycaster->ray_y = player->player_px_pos_y;
-		while (check_bounds(game->map, raycaster))
+		while (check_bounds(&game->map, raycaster))
 		{
 			raycaster->ray_x += ray_cos; //horizontal
 			raycaster->ray_y += ray_sin; //vertical

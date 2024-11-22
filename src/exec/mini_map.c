@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 07:28:57 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:03:52 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
         raycaster->ray_angle = player->angle + (FOV_ANGLE * 2) - (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
         raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_y = player->player_px_pos_y;
-        while (check_bounds(game->map, raycaster))
+        while (check_bounds(&game->map, raycaster))
         {
             if (raycaster->ray_index == (GAME_WIDTH * 0.5))
-                my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, GREEN);
+                my_mlx_pixel_put(&game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, GREEN);
             else
-                my_mlx_pixel_put(game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
+                my_mlx_pixel_put(&game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
             raycaster->ray_x += sin(raycaster->ray_angle) ;
             raycaster->ray_y -= cos(raycaster->ray_angle) ;
         }
@@ -95,15 +95,15 @@ void draw_mini_map(t_game *game)
     int y;
 
     y = 0;
-    while (game->map->map[y])
+    while (game->map.map[y])
 	{
 		x = 0; 
-        while (game->map->map[y][x])
+        while (game->map.map[y][x])
 		{
-            if (game->map->map[y][x] == '1')
-                draw_tile(game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
-			if (game->map->map[y][x] == '0')
-                draw_tile(game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
+            if (game->map.map[y][x] == '1')
+                draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
+			if (game->map.map[y][x] == '0')
+                draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
             x++;
         }
         y++;
@@ -113,9 +113,9 @@ void draw_mini_map(t_game *game)
 void all_draws(t_game *game)
 {
     draw_mini_map(game);
-    fill_tile_with_player(game->player, game->map_img, game->player->player_pos_x, game->player->player_pos_y, BLACK, GREEN);
-    draw_map_rays(game, game->player, game->raycaster);
-    render_3d_map(game, game->player, game->raycaster, game->projection);
+    fill_tile_with_player(&game->player, &game->map_img, game->player.player_pos_x, game->player.player_pos_y, BLACK, GREEN);
+    draw_map_rays(game, &game->player, &game->raycaster);
+    render_3d_map(game, &game->player, &game->raycaster, &game->projection);
 }
 
 int draw_and_display_map(t_game *game) 
@@ -125,18 +125,18 @@ int draw_and_display_map(t_game *game)
     if (!i)
     {
         all_draws(game);
-        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
-        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
+        mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
+        mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
         i = 1;  
     }
-    if (game->end || game->player->move_down || game->player->move_up || game->player->move_left || game->player->move_right || game->player->rotate_left || game->player->rotate_right)
+    if (game->end || game->player.move_down || game->player.move_up || game->player.move_left || game->player.move_right || game->player.rotate_left || game->player.rotate_right)
     {
         handle_keypress(game);
         if (game->end)
             return (0);
         all_draws(game);
-        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->map_img->img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
-        mlx_put_image_to_window(game->mlx_data->mlx_ptr, game->mlx_data->game_win_ptr, game->game_img->img_ptr, 0, 0);
+        mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
+        mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
     }
     return (0);
 }
