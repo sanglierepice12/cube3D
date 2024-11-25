@@ -116,25 +116,29 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 	}
 }
 
-static int	open_map(char *file)
+static int	open_map(char *file, t_game *game)
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		simple_exit("Error occurred while opening the document...", 1);
+	{
+		printf("Error occurred while opening the document...");
+		exit_prog(game);
+	}
 	return (fd);
 }
 
-static void	check_ext(char *file)
+static bool	check_ext(char *file)
 {
 	size_t	len;
 
 	len = ft_strlen(file);
 	if (len < 4)
-		simple_exit("Error: Wrong extension.", 1);
+		return (printf ("Error: Wrong extension."), false);
 	if (ft_strncmp(file + (len - 4), ".cub", 4))
-		simple_exit("Error: Wrong extension, it's not a .cub.", 1);
+		return (printf ("Error: Wrong extension, it's not a .cub."), false);
+	return (true);
 }
 
 
@@ -142,8 +146,9 @@ void	get_map(t_game *game, char *file)
 {
 	int	fd;
 
-	check_ext(file);
-	fd = open_map(file);
+	if (!check_ext(file))
+		exit_prog(game);
+	fd = open_map(file, game);
 	fill_tap_to_map(game, &game->list, fd);
 	close(fd);
 	fill_list_to_map(game, &game->list);
