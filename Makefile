@@ -13,7 +13,7 @@ CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude #-fsanitize=leak -fsanitiz
 LDFLAGS = -lm
 
 # Executable
-NAME = cub3d
+NAME = cub3D
 
 # Directories
 SRC_DIR = ./src

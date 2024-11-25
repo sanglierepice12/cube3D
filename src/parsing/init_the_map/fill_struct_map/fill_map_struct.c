@@ -24,6 +24,7 @@ char	**heap_map(size_t len)
 void	fill_list_to_map(t_game *game, t_list **list)
 {
 	t_list	*temp;
+	char	*dest;
 	size_t	i;
 
 	game->map->map = heap_map(get_list_len(*list));
@@ -33,7 +34,9 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	i = 0;
 	while (temp)
 	{
-		game->map->map[i++] = ft_dup(temp->value);
+		dest = rm_bs_wp(temp->value);
+		game->map->map[i++] = ft_dup(dest);
 		temp = temp->next;
+		free(dest);
 	}
 }
