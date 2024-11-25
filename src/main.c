@@ -50,6 +50,20 @@ int main(int arc, char **argv)
         return (printf("Please insert a map..."));
     init_struct(&game);
 	get_map(game, argv[1]);
+    /*int i = 0;
+    while (game->map->map[i])
+        printf("%s$", game->map->map[i++]);*/
+    printf("%s\n", game->map->texture->no);
+    printf("%s\n", game->map->texture->so);
+    printf("%s\n", game->map->texture->ea);
+    printf("%s\n", game->map->texture->we);
+    /*printf("floor r = %d \n", game->map->floor->r);
+    printf("floor g = %d \n", game->map->floor->g);
+    printf("floor b = %d \n", game->map->floor->b);
+    printf("ceiling r = %d \n", game->map->ceiling->r);
+    printf("ceiling g = %d \n", game->map->ceiling->g);
+    printf("ceiling b = %d \n", game->map->ceiling->b);*/
+
 	exit_prog(game);
 	printf("\nend\n");
 	return (0);

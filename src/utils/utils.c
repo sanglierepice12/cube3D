@@ -16,6 +16,8 @@ int	parse_ws(char *line)
 {
 	int	i;
 
+	if (!line)
+		return (0);
 	i = -1;
 	while (++i, line[i])
 	{
@@ -61,12 +63,11 @@ char	*rm_bs_wp(char *str)
 	}
 	dest = ft_calloc(sizeof(char), i + 2);
 	if (!dest)
-		return (free(str), NULL);
+		return (NULL);
 	y = -1;
 	while (y++, y != i + 1)
 		dest[y] = str[y];
 	dest[y] = '\0';
-	free(str);
 	return (dest);
 }
 

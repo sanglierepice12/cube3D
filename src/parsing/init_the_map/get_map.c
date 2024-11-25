@@ -12,27 +12,88 @@
 
 #include "../../../include/cub3D.h"
 
-static void	first_line(const int fd, char *line, t_list **list, t_game *game)
+/*static void	print_lst(t_list **list)
 {
+	t_list	*temp;
+	temp = *list;
+	while (temp->next)
+	{
+		printf("[%s]", temp->value);
+		temp = temp->next;
+	}
+	printf("[%s]", temp->value);
+}*/
+
+/*static void	get_rgb(char *line, t_game *game)
+{
+	size_t	i;
+	size_t	y;
+	char	*temp;
+
+	if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
+		return ;
+	if (game->map->count > 6)
+	{
+		printf("Error too much information\n");
+		exit_prog(game);
+	}
+	i = parse_ws(line);
+	y = i + parse_ws(line + i + 1) + 1;
+	temp = rm_bs_wp(line + y);
+	//printf("%s\n", temp);
+	if (line[i] == 'F' && check_rgb(temp))
+		return (fill_rgb(temp, game->map, FLO), game->map->count++, (void)0);
+	if (line[i] == 'C' && check_rgb(line + parse_ws(temp)))
+		return (fill_rgb(temp, game->map, CEI), game->map->count++, (void)0);
+	free(temp);
+	if (!is_line_ok(line, game->map))
+		return(printf("Error, line is invalid : %s\n", line), exit_prog(game));
+}*/
+
+static void	get_textures(char *line, t_texture *texture, t_game *game)
+{
+	size_t	i;
+	size_t	y;
+	char	*temp;
+
+	if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
+		return ;
+	if (game->map->count > 6)
+	{
+		printf("Error too much information\n");
+		exit_prog(game);
+	}
+	i = parse_ws(line);
+	y = i + parse_ws(line + i + 2) + 2;
+	temp = rm_bs_wp(line + y);
+	if (!temp)
+		return (free(line),	exit_prog(game));
+	if (line[i] == 'N' && line[i + 1] == 'O' && check_texture(temp))
+		return (fill_tex(temp, texture, NO), game->map->count++, (void)0);
+	if (line[i] == 'S' && line[i + 1] == 'O' && check_texture(temp))
+		return (fill_tex(temp, texture, SO), game->map->count++, (void)0);
+	if (line[i] == 'W' && line[i + 1] == 'E' && check_texture(temp))
+		return (fill_tex(temp, texture, WE), game->map->count++, (void)0);
+	if (line[i] == 'E' && line[i + 1] == 'A' && check_texture(temp))
+		return (fill_tex(temp, texture, EA), game->map->count++, (void)0);
+	free(temp);
+}
+
+static void	first_line(const int fd, t_list **list, t_game *game)
+{
+	char	*line;
+
+	line = NULL;
 	while (777)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			simple_exit("Nothing in the file ...", 1);
-		if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line) /*|| fill_in_list(line, game->map->texture)*/)
+		get_textures(line, game->map->texture, game);
+		//get_rgb(line, game);
+		if ((line + parse_ws(line))[0] == '1')
 			break ;
 		free(line);
-	}
-	line = rm_bs_wp(line);
-	if (!line)
-	{
-		printf("Error malloc\n");
-		exit_prog(game);
-	}
-	if (!is_line_ok(game->map, line))
-	{
-		free(line);
-		simple_exit("Something wrong in the file ...", 1);
 	}
 	*list = ft_new_node(line);
 	free(line);
@@ -43,25 +104,14 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 {
 	char	*line;
 
+	first_line(fd, list, game);
 	line = NULL;
-	first_line(fd, line, list, game);
-	while (452)
+	while (777)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
-		{
-			free(line);
-			continue ;
-		}
-		line = rm_bs_wp(line);
-		if (!line)
-			simple_exit("Error malloc", 1);
-		if (!is_line_ok(game->map, line))
-			exit_parse(game);
-		if (fill_in_list(line, game->map->texture))
-			ft_lst_add_back(list, ft_new_node(line));
+		ft_lst_add_back(list, ft_new_node(line));
 		free(line);
 	}
 }
@@ -87,6 +137,7 @@ static void	check_ext(char *file)
 		simple_exit("Error: Wrong extension, it's not a .cub.", 1);
 }
 
+
 void	get_map(t_game *game, char *file)
 {
 	int	fd;
@@ -95,6 +146,6 @@ void	get_map(t_game *game, char *file)
 	fd = open_map(file);
 	fill_tap_to_map(game, &game->list, fd);
 	close(fd);
-	fill_list_to_map(game);
+	fill_list_to_map(game, &game->list);
 	free_list(game->list);
 }

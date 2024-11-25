@@ -16,16 +16,18 @@
 void	init_struct(t_game **game);
 void	get_map(t_game *game, char *file);
 bool	is_line_full_spaces(char *line);
-bool	is_line_ok(t_map *map, char *line);
 int		parse_ws(char *line);
-bool	fill_in_list(char *temp, t_texture *texture);
+void	fill_tex(char *line, t_texture *texture, e_txt type);
+void	fill_rgb(char *line, t_map *map, e_rgb type);
+void	fill_list_to_map(t_game *game, t_list **list);
+bool	is_line_ok(char	*temp, t_map *map);
 
 /*******CHECK_TEXTURES******/
 bool	check_texture(char	*line);
 bool	check_rgb(char *line);
 
 /*******CHECK_MAP******/
-void	fill_list_to_map(t_game *game);
+void	fill_list_to_map(t_game *game, t_list **list);
 
 
 #endif

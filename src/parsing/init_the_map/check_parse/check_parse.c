@@ -26,36 +26,60 @@ bool	is_line_full_spaces(char *line)
 	return (true);
 }
 
-static void	fill_tex(char *line, t_texture *texture, e_txt type)
+void	fill_rgb(char *line, t_map *map, e_rgb type)
 {
-	//printf("$%s$\n", line);
+	char	**temp;
+
+	temp = ft_split(line, ',');
+	if (!temp)
+		return ;
+	printf("%s", temp[0]);
+	if (type == CEI)
+	{
+		map->ceiling->r = ft_atoi(temp[0]);
+		map->ceiling->g = ft_atoi(temp[1]);
+		map->ceiling->b = ft_atoi(temp[2]);
+	}
+	if (type == FLO)
+	{
+		map->floor->r = ft_atoi(temp[0]);
+		map->floor->g = ft_atoi(temp[1]);
+		map->floor->b = ft_atoi(temp[2]);
+	}
+	free(line);
+	free_tab(temp);
+}
+
+void	fill_tex(char *line, t_texture *texture, e_txt type)
+{
 	if (type == NO)
 	{
 		texture->no = ft_dup(line);
 		if (texture->no == NULL)
-			printf("texture no is null\n");
+			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
 		texture->so = ft_dup(line);
 		if (texture->so == NULL)
-			printf("texture no is null\n");
+			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == WE)
 	{
 		texture->we = ft_dup(line);
 		if (texture->we == NULL)
-			printf("texture no is null\n");
+			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == EA)
 	{
 		texture->ea = ft_dup(line);
 		if (texture->ea == NULL)
-			printf("texture no is null\n");
+			return (printf("texture no is null\n"), free(line));
 	}
+	free(line);
 }
 
-bool	fill_in_list(char *temp, t_texture *texture)
+/*bool	fill_in_list(char *temp, t_texture *texture)
 {
 	size_t	i;
 	size_t	y;
@@ -71,9 +95,9 @@ bool	fill_in_list(char *temp, t_texture *texture)
 	if (temp[i] == 'E' && temp[i + 1] == 'A')
 		return (fill_tex(temp + y, texture, EA), false);
 	return (true);
-}
+}*/
 
-bool	is_line_ok(t_map *map, char	*temp)
+bool	is_line_ok(char	*temp, t_map *map)
 {
 	size_t	i;
 	size_t	y;
@@ -96,6 +120,5 @@ bool	is_line_ok(t_map *map, char	*temp)
 		return (true);
 	printf("Line is invalid: '%s'\n", temp);
 	free(temp);
-	printf("Something wrong in the file ...");
 	return (false);
 }

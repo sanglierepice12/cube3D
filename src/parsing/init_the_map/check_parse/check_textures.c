@@ -65,6 +65,7 @@ bool	check_texture(char	*line)
 {
 	int	fd;
 
+	//printf("$%s$\n", line);
 	if (!line)
 		return (false);
 	fd = open(line, O_RDONLY);

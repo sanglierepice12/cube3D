@@ -12,18 +12,6 @@
 
 #include "../../../../include/cub3D.h"
 
-/*static void	print_lst(t_list **list)
-{
-	t_list	*temp;
-	temp = *list;
-	while (temp->next)
-	{
-		printf("%s$\n", temp->value);
-		temp = temp->next;
-	}
-	printf("%s", temp->value);
-}*/
-
 char	**heap_map(size_t len)
 {
 	char	**map;
@@ -33,32 +21,19 @@ char	**heap_map(size_t len)
 	return (map);
 }
 
-void	fill_file(t_map *map, t_list **list)
+void	fill_list_to_map(t_game *game, t_list **list)
 {
 	t_list	*temp;
 	size_t	i;
 
-	map->map = heap_map(get_list_len(*list));
+	game->map->map = heap_map(get_list_len(*list));
 	temp = *list;
 	if (!temp)
-		return ;
+		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
 	while (temp)
 	{
-		map->map[i++] = ft_dup(temp->value);
+		game->map->map[i++] = ft_dup(temp->value);
 		temp = temp->next;
 	}
-	i = 0;
-	while (map->map[i])
-	{
-		printf("%s$\n", map->map[i++]);
-	}
-}
-
-void	fill_list_to_map(t_game *game)
-{
-	//printf("%s\n", game->map->texture->no);
-	fill_file(game->map, &game->list);
-//	print_lst(&game->list);
-	//fill_file(game->map, &game->list);
 }

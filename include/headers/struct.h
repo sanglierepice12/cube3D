@@ -93,9 +93,9 @@ struct	s_texture
 
 struct	s_rgb
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
+	int	r;
+	int	g;
+	int	b;
 };
 
 struct	s_list
@@ -124,5 +124,11 @@ typedef enum s_txt
 	WE,
 	EA
 }	e_txt;
+
+typedef enum s_rgbs
+{
+	CEI,
+	FLO
+} e_rgb;
 
 # endif
