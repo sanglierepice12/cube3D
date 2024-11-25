@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/22 09:03:07 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:01:27 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,21 @@ struct s_player
 
 struct s_raycaster
 {
-	double ray_angle;
-	double ray_x;
-	double ray_y;
+	float ray_angle;
+	float ray_x;
+	float ray_y;
 	int ray_index;
+    int wall_face;
 };
 
 struct s_proj
 {
-	long distance_to_wall;
-	int wall_height;
-	int wall_start;
-	int wall_end;
+	float distance_to_wall;
+	float last_distance_to_wall;
+	int   wall_height;
+	float wall_start;
+	float wall_end;
+    float corrected_distance;
 };
 
 

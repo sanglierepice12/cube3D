@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 17:26:26 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:30:23 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,12 @@ void draw_mini_map(t_game *game)
 		x = 0; 
         while (game->map.map[y][x])
 		{
+            
+            // if (game->map.map[y][x] == '#')
+            //     draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, PINK);
             if (game->map.map[y][x] == '1')
                 draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
-			if (game->map.map[y][x] == '0')
+			if (game->map.map[y][x] == '0' || game->map.map[y][x] == ' ')
                 draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
             x++;
         }

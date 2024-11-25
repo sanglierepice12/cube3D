@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 17:27:48 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:27:47 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int	init_game(t_game *game)
 
 	if (initialize_map(&game->map) == -1)
 		return (-1);
+	
 	find_play_pos(&game->map, &game->player);
 	if (init_env(&game->mlx_data, &game->map) == -1)
 		return (-1);

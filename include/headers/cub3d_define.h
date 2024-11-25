@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 07:02:42 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:57:10 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # define RED  0XFF0000
 # define YELLOW  0xFFFF00
 # define LIGHT_BLUE 0xADD8E6
+
+# define COLOR_UP    0x0000FF    // Blue for up-facing walls
+# define COLOR_DOWN  0x00FF00    // Green for down-facing walls
+# define COLOR_LEFT  0xFF0000    // Red for left-facing walls
+# define COLOR_RIGHT 0xFFFF00    // Yellow for right-facing walls
 
 /*################ SIZE MACROS #####################*/
 
