@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   get_map_gonz.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 13:03:35 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/11/26 11:10:19 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	get_textures(char *line, t_texture *texture, t_game *game)
 
 	if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
 		return ;
-	if (game->map->count > 6)
+	if (game->map.count > 6)
 	{
 		printf("Error too much information\n");
 		exit_prog(game);
@@ -69,13 +69,13 @@ static void	get_textures(char *line, t_texture *texture, t_game *game)
 	if (!temp)
 		return (free(line),	exit_prog(game));
 	if (line[i] == 'N' && line[i + 1] == 'O' && check_texture(temp))
-		return (fill_tex(temp, texture, NO), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, NO), game->map.count++, (void)0);
 	if (line[i] == 'S' && line[i + 1] == 'O' && check_texture(temp))
-		return (fill_tex(temp, texture, SO), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, SO), game->map.count++, (void)0);
 	if (line[i] == 'W' && line[i + 1] == 'E' && check_texture(temp))
-		return (fill_tex(temp, texture, WE), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, WE), game->map.count++, (void)0);
 	if (line[i] == 'E' && line[i + 1] == 'A' && check_texture(temp))
-		return (fill_tex(temp, texture, EA), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, EA), game->map.count++, (void)0);
 	free(temp);
 }
 
@@ -89,7 +89,7 @@ static void	first_line(const int fd, t_list **list, t_game *game)
 		line = get_next_line(fd);
 		if (!line)
 			simple_exit("Nothing in the file ...", 1);
-		get_textures(line, game->map->texture, game);
+		get_textures(line, game->map.texture, game);
 		//get_rgb(line, game);
 		if ((line + parse_ws(line))[0] == '1')
 			break ;
@@ -152,5 +152,5 @@ void	get_map(t_game *game, char *file)
 	fill_tap_to_map(game, &game->list, fd);
 	close(fd);
 	fill_list_to_map(game, &game->list);
-	free_list(game->list);
+	free_list(&game->list);
 }

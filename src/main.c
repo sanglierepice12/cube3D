@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/26 10:43:57 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:08:03 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,25 @@ int clean_up(t_game *game)
 
 
 
-int main(void)
+int main(int argc, char **argv)
 {
     t_game  game;
 
+    if (argc < 2)
+        return (printf("Please insert a map..."));
     ft_memset(&game, 0, sizeof(t_game));
+        
     if (init_game(&game) == -1)
     {
         clean_up(&game);
         return (1);
     }
+    get_map(&game, argv[1]);
+    
+    int i  = 0;
+    while (game.map.map[i])
+        printf("%s", game.map.map[i++]);
+    
     hook_management(&game);
     mlx_loop_hook(game.mlx_data.mlx_ptr, &draw_and_display_map, &game);
     draw_and_display_map(&game);

@@ -31,7 +31,7 @@ SRC =	main.c													\
 		exec/exec_utils.c							\
 		exec/render_3d_map.c						\
 		parsing/init_struct.c									\
-		parsing/init_the_map/get_map.c							\
+		parsing/get_map.c							\
 		parsing/init_the_map/get_map_gonz.c							\
 		parsing/init_the_map/check_parse/check_parse.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
