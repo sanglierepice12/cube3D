@@ -9,8 +9,8 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude #-fsanitize=leak -fsanitize=address
-LDFLAGS = -lm
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude $(shell pkg-config --cflags Xext) #-fsanitize=leak -fsanitize=address
+LDFLAGS = $(shell pkg-config --libs Xext) -lm #-lm Xext
 
 # Executable
 NAME = cub3D

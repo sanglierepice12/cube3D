@@ -16,6 +16,5 @@ void	free_parse(t_game *game)
 {
 	if (!game)
 		return ;
-	//free_list(game->list);
 	free_s_map(game->map);
 }

@@ -90,9 +90,11 @@ static void	first_line(const int fd, t_list **list, t_game *game)
 		if (!line)
 			simple_exit("Nothing in the file ...", 1);
 		get_textures(line, game->map->texture, game);
-		//get_rgb(line, game);
-		if ((line + parse_ws(line))[0] == '1')
+		if ((line + parse_ws(line))[0] == '1' && game->map->count == 4)
 			break ;
+		if (!is_line_ok(line))
+			exit_prog(game);
+	//get_rgb(line, game);
 		free(line);
 	}
 	*list = ft_new_node(line);
@@ -111,6 +113,16 @@ static void	fill_tap_to_map(t_game *game, t_list **list, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
+		{
+			free(line);
+			continue ;
+		}
+		if (!is_line_m_ok(line))
+		{
+			free_list(game->list);
+			exit_prog(game);
+		}
 		ft_lst_add_back(list, ft_new_node(line));
 		free(line);
 	}

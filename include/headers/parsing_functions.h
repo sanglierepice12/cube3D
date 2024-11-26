@@ -20,7 +20,8 @@ int		parse_ws(char *line);
 void	fill_tex(char *line, t_texture *texture, e_txt type);
 void	fill_rgb(char *line, t_map *map, e_rgb type);
 void	fill_list_to_map(t_game *game, t_list **list);
-bool	is_line_ok(char	*temp, t_map *map);
+bool	is_line_ok(char	*temp);
+bool	is_line_m_ok(char *line);
 
 /*******CHECK_TEXTURES******/
 bool	check_texture(char	*line);
