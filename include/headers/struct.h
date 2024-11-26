@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs.h                                    :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/25 13:01:27 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:45:55 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_STRUCTS_H
-# define CUBE3D_STRUCTS_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
 /*################ STRUCTURES #####################*/
 
 
-typedef struct	s_img_data t_img_data;
-typedef struct	s_mlx_data t_mlx_data;
-typedef	struct	s_map t_map;
-typedef struct s_player t_player;
-typedef struct s_game t_game;
-typedef struct s_raycaster t_raycaster;
-typedef struct s_proj t_proj;
+typedef struct	s_img_data		t_img_data;
+typedef struct	s_mlx_data		t_mlx_data;
+typedef	struct	s_map			t_map;
+typedef struct	s_player		t_player;
+typedef struct	s_raycaster		t_raycaster;
+typedef struct	s_proj			t_proj;
+typedef struct	s_game			t_game;
+typedef struct	s_list			t_list;
+typedef struct	s_texture		t_texture;
+typedef struct	s_rgb			t_rgb;
 
 struct	s_img_data
 {
@@ -38,13 +41,6 @@ struct	s_mlx_data
     void	*mlx_ptr;
     void	*map_win_ptr;
     void	*game_win_ptr;
-};
-
-struct	s_map
-{
-    char					**map;
-    int					map_height;
-    int					map_length;
 };
 
 struct s_player
@@ -83,17 +79,66 @@ struct s_proj
     float corrected_distance;
 };
 
+/*####PARSE####*/
+
+struct	s_map
+{
+	int					count;
+	char				**map;
+	int					map_height;
+	int					map_length;
+	t_texture			*texture;
+	t_rgb				*ceiling;
+	t_rgb				*floor;
+};
+
+struct	s_texture
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+};
+
+struct	s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+};
+
+struct	s_list
+{
+	char			*value;
+	struct s_list	*next;
+	struct s_list	*prev;
+};
 
 struct s_game
 {
-    t_mlx_data mlx_data;
-    t_map      map;
-    t_player   player;
-    t_img_data     map_img;
-    t_img_data		game_img;
+	t_map			map;
+	t_list			list;
+	t_mlx_data		mlx_data;
+	t_player		player;
+	t_img_data		map_img;
+	t_img_data		game_img;
 	t_raycaster		raycaster;
-	t_proj 	projection;
-    bool    end;
+	t_proj			projection;
+	bool			end;
 };
+
+typedef enum s_txt
+{
+	NO,
+	SO,
+	WE,
+	EA
+}	e_txt;
+
+typedef enum s_rgbs
+{
+	CEI,
+	FLO
+} e_rgb;
 
 # endif

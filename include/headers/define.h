@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_define.h                                     :+:      :+:    :+:   */
+/*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/25 10:57:10 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:35:20 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_DEFINE_H
-# define CUBE3D_DEFINE_H
+#ifndef DEFINE_H
+# define DEFINE_H
 
 /*################ KEY MACROS #####################*/
 
@@ -62,5 +62,6 @@
 # define FOV_HALF            (FOV_ANGLE * 0.5)
 # define RAY_ANGLE_DELTA     (FOV_ANGLE / (GAME_WIDTH - 1))
 # define DISTANCE(x1, y1, x2, y2) sqrt(pow((x2) - (x1), 2) + pow((y2) - (y1), 2))
+
 
 #endif

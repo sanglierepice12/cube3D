@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_functions.h                                  :+:      :+:    :+:   */
+/*   exec_functions.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/22 07:38:11 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:35:50 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_FUNCTIONS_H
-# define CUBE3D_FUNCTIONS_H
+#ifndef EXEC_FUNCTIONS_H
+# define EXEC_FUNCTIONS_H
 
 /*################ FUNCTIONS #####################*/
 
@@ -54,6 +54,5 @@ void	*ft_memset(void *pointer, int value, size_t count);
 int		check_bounds(t_map *map, t_raycaster *raycaster);
 void    hook_management(t_game *game);
 int     handle_keypress(t_game *game);
-
 
 #endif
