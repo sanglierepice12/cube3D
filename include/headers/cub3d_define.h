@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/25 10:57:10 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/27 09:07:30 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@
 # define YELLOW  0xFFFF00
 # define LIGHT_BLUE 0xADD8E6
 
-# define COLOR_UP    0x0000FF    // Blue for up-facing walls
-# define COLOR_DOWN  0x00FF00    // Green for down-facing walls
-# define COLOR_LEFT  0xFF0000    // Red for left-facing walls
-# define COLOR_RIGHT 0xFFFF00    // Yellow for right-facing walls
+# define COLOR_UP    0x0000FF
+# define COLOR_DOWN  0x00FF00
+# define COLOR_LEFT  0xFF0000
+# define COLOR_RIGHT 0xFFFF00
 
 /*################ SIZE MACROS #####################*/
 
-# define TILE_SIZE 32
+# define TILE_SIZE 16
 # define PLAYER_SIZE 16
 # define BORDER_SIZE 0.5
 # define ROTATION_SPEED 0.1
 # define MOVE_SPEED 5
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE (M_PI / 3)
-# define RAY_COUNT 1920
-# define GAME_WIDTH 1920
-# define GAME_HEIGHT 780
+# define GAME_WIDTH 960
+# define RAY_COUNT GAME_WIDTH
+# define GAME_HEIGHT 390
 
 /*#################### CALCULATION MACROS ######################*/
 
