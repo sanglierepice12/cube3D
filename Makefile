@@ -24,8 +24,8 @@ DEP_DIR = ./dep
 SRC =	main.c													\
 		parsing/init_struct.c									\
 		parsing/init_the_map/get_map.c							\
-		parsing/init_the_map/check_parse/check_parse.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
+		parsing/init_the_map/check_parse/is_lineok.c			\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\

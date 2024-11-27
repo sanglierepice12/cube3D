@@ -45,8 +45,8 @@ struct	s_mlx_data
 
 struct s_player
 {
-	int     player_pos_x;
-	int     player_pos_y;
+	int		player_pos_x;
+	int		player_pos_y;
 	float	player_px_pos_x;
 	float	player_px_pos_y;
 	bool    move_up;

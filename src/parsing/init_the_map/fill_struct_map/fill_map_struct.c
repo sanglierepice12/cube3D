@@ -12,6 +12,59 @@
 
 #include "../../../../include/cub3D.h"
 
+void	fill_tex(char *line, t_texture *texture, e_txt type)
+{
+	if (type == NO)
+	{
+		texture->no = ft_dup(line);
+		if (texture->no == NULL)
+			return (printf("texture no is null\n"), free(line));
+	}
+	if (type == SO)
+	{
+		texture->so = ft_dup(line);
+		if (texture->so == NULL)
+			return (printf("texture no is null\n"), free(line));
+	}
+	if (type == WE)
+	{
+		texture->we = ft_dup(line);
+		if (texture->we == NULL)
+			return (printf("texture no is null\n"), free(line));
+	}
+	if (type == EA)
+	{
+		texture->ea = ft_dup(line);
+		if (texture->ea == NULL)
+			return (printf("texture no is null\n"), free(line));
+	}
+	free(line);
+}
+
+void	fill_rgb(char *line, t_map *map, e_rgb type)
+{
+	char	**temp;
+
+	temp = ft_split(line, ',');
+	if (!temp)
+		return ;
+	printf("%s", temp[0]);
+	if (type == CEI)
+	{
+		map->ceiling->r = ft_atoi(temp[0]);
+		map->ceiling->g = ft_atoi(temp[1]);
+		map->ceiling->b = ft_atoi(temp[2]);
+	}
+	if (type == FLO)
+	{
+		map->floor->r = ft_atoi(temp[0]);
+		map->floor->g = ft_atoi(temp[1]);
+		map->floor->b = ft_atoi(temp[2]);
+	}
+	free(line);
+	free_tab(temp);
+}
+
 char	**heap_map(size_t len)
 {
 	char	**map;
