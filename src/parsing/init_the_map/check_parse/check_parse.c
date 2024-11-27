@@ -97,28 +97,47 @@ void	fill_tex(char *line, t_texture *texture, e_txt type)
 	return (true);
 }*/
 
-bool	is_line_ok(char	*temp, t_map *map)
+bool	is_line_m_ok(char *line)
 {
 	size_t	i;
-	size_t	y;
 
-	i = parse_ws(temp);
-	y = i + parse_ws(temp + i + 2) + 2;
-	if (temp[i] == 'N' && temp[i + 1] == 'O' && check_texture(temp + y))
-		return (map->count++, true);
-	if (temp[i] == 'S' && temp[i + 1] == 'O' && check_texture(temp + y))
-		return (map->count++, true);
-	if (temp[i] == 'W' && temp[i + 1] == 'E' && check_texture(temp + y))
-		return (map->count++, true);
-	if (temp[i] == 'E' && temp[i + 1] == 'A' && check_texture(temp + y))
-		return (map->count++, true);
-	if (temp[i] == 'F' && check_rgb(temp + parse_ws(temp + 1) + 1))
-		return (map->count++, true);
-	if (temp[i] == 'C' && check_rgb(temp + parse_ws(temp + 1) + 1))
-		return (map->count++, true);
-	if (temp[i] == '1' && map->count == 6)
+	i = parse_ws(line);
+	while (line[i])
+	{
+		if (line[i] == 32 || (line[i] > 8 && line[i] < 14))
+			line[i] = '0';
+		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'\
+			&& line[i] != 'W' && line[i] != 'E')
+		{
+			printf("Line is invalid: '%s'\n", line);
+			free(line);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	is_line_ok(char	*line)
+{
+	size_t	i;
+
+	if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
 		return (true);
-	printf("Line is invalid: '%s'\n", temp);
-	free(temp);
+	i = parse_ws(line);
+	if (line[i] == 'N' && line[i + 1] == 'O')
+		return (true);
+	if (line[i] == 'S' && line[i + 1] == 'O')
+		return (true);
+	if (line[i] == 'W' && line[i + 1] == 'E')
+		return (true);
+	if (line[i] == 'E' && line[i + 1] == 'A')
+		return (true);
+	if (line[i] == 'F')
+		return (true);
+	if (line[i] == 'C')
+		return (true);
+	printf("Line is invalid: '%s'\n", line);
+	free(line);
 	return (false);
 }

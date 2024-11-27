@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/26 11:41:40 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:27:47 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ int	initialize_map(t_map *map)
 {
 	map->map_height = 15;
 	map->map_length = 20;
-	map->map = ft_calloc(map->map_height + 1, sizeof(char *));
+	/*map->map = ft_calloc(map->map_height + 1, sizeof(char *));
 	if (!map->map)
 		return (-1);
 	if (fill_tab(map) == -1)
 	{
 		free(map->map);
 		return (-1);
-	}
+	}*/
 	return (0);
 }
 
@@ -108,12 +108,15 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 
 int	init_game(t_game *game)
 {
-	if (initialize_map(&game->map) == -1)
+	
+
+	if (initialize_map(game->map) == -1)
 		return (-1);
-	find_play_pos(&game->map, &game->player);
-	if (init_env(&game->mlx_data, &game->map) == -1)
+	
+	find_play_pos(game->map, &game->player);
+	if (init_env(&game->mlx_data, game->map) == -1)
 		return (-1);
-	if (initialize_graphics(&game->mlx_data, &game->map, &game->map_img, &game->game_img) == -1)
+	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img, &game->game_img) == -1)
 		return (-1);
 	return (0);
 }

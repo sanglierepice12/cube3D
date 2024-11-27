@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/26 10:48:04 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:30:23 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
         raycaster->ray_y = player->player_px_pos_y;
         raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_angle = player->angle + (FOV_ANGLE * 2) - (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
-        while (check_bounds(&game->map, raycaster))
+        while (check_bounds(game->map, raycaster))
         {
             if (raycaster->ray_index == (GAME_WIDTH * 0.5))
                 my_mlx_pixel_put(&game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, GREEN);
@@ -95,17 +95,17 @@ void draw_mini_map(t_game *game)
     int y;
 
     y = 0;
-    while (game->map.map[y])
+    while (game->map->map[y])
 	{
 		x = 0; 
-        while (game->map.map[y][x])
+        while (game->map->map[y][x])
 		{
             
             // if (game->map.map[y][x] == '#')
             //     draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, PINK);
-            if (game->map.map[y][x] == '1')
+            if (game->map->map[y][x] == '1')
                 draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
-			if (game->map.map[y][x] == '0' || game->map.map[y][x] == ' ')
+			if (game->map->map[y][x] == '0' || game->map->map[y][x] == ' ')
                 draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
             x++;
         }

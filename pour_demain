@@ -1,3 +1,0 @@
-le probleme vient de la maniere dont je traite temp dans is_validÂ_char
-j'ai testÃ© d'enlever !is_line_ok et Ãil affiche la bonne map, donc pas forcement de relation avec rm_bs_wp
-j'ai changÃ© les temp[0] avant c'Ã©tait une addition des (temp + i)[1] == 'O'

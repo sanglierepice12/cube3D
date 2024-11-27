@@ -12,6 +12,20 @@
 
 #include "../../include/cub3D.h"
 
+void	*ft_memset(void *pointer, int value, size_t count)
+{
+	unsigned char	*ptr;
+
+	ptr = pointer;
+	while (count)
+	{
+		*ptr = (unsigned char) value;
+		ptr++;
+		count--;
+	}
+	return (pointer);
+}
+
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;

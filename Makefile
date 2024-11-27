@@ -9,8 +9,8 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude #-fsanitize=leak -fsanitize=address
-LDFLAGS = -lm
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude $(shell pkg-config --cflags Xext) #-fsanitize=leak -fsanitize=address
+LDFLAGS = $(shell pkg-config --libs Xext) -lm #-lm Xext
 
 # Executable
 NAME = cub3D
@@ -22,22 +22,27 @@ DEP_DIR = ./dep
 
 # Source Files
 SRC =	main.c													\
-		exec/init.c												\
-		exec/mini_map.c											\
-		exec/draw_utils.c							\
-		exec/hook_event/hooks.c						\
-		exec/hook_event/hooks_managment.c			\
-		exec/exec_utils.c							\
-		exec/render_3d_map.c						\
-		parsing/get_map.c							\
+		parsing/init_struct.c									\
+		parsing/init_the_map/get_map.c							\
+		parsing/init_the_map/check_parse/check_parse.c			\
+		parsing/init_the_map/check_parse/check_textures.c		\
+		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
+		exec/draw_utils.c										\
+		exec/hook_event/hooks.c									\
+		exec/hook_event/hooks_managment.c						\
+		exec/mini_map.c											\
+		exec/init.c												\
 		utils/utils.c											\
 		utils/calloc.c											\
 		utils/compare.c											\
 		utils/linked_list.c										\
 		utils/split.c											\
 		utils/atoi.c											\
+		utils/exit_free/exit.c									\
+		utils/exit_free/free.c									\
+		utils/exit_free/free2.c									\
 
 # Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
@@ -74,7 +79,7 @@ $(MINILIBX_DIR):
 # Compile the executable
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking $(NAME)$(NC)"
-	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS) -Iminilibx-linux
+	@$(CC) $(CFLAGS) $(OBJS) $(MINILIBX_LIB) -o $(NAME) $(LDFLAGS)
 
 # Compile each .c file to .o and generate .d files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
@@ -85,7 +90,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/fill_struct_map $(DEP_DIR)/parsing/init_the_map/fill_struct_map
 	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
-	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
+	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec/hook_event
 	@mkdir -p $(OBJ_DIR)/utils $(DEP_DIR)/utils
 	@mkdir -p $(OBJ_DIR)/utils/exit_free $(DEP_DIR)/utils/exit_free
 	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
