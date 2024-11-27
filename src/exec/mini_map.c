@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/25 16:30:23 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:35:31 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int draw_and_display_map(t_game *game)
 			mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
 		i = 1;
     }
-    /*if (key_active(game))
+    if (key_active(game))
     {
         handle_keypress(game);
         if (game->end)
@@ -153,6 +153,6 @@ int draw_and_display_map(t_game *game)
         all_draws(game);
         mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
         mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
-    }*/
+    }
     return (0);
 }
