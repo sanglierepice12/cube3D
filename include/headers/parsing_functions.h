@@ -35,6 +35,9 @@ void	get_textures(char *line, t_texture *texture, t_game *game);
 void	fill_tex(char *line, t_texture *texture, e_txt type);
 void	fill_rgb(char *line, t_game *game, e_rgb type);
 void	fill_list_to_map(t_game *game, t_list **list);
+void	fill_playerpos(char *line, t_game *game);
 
+/****MAP_VALIDITY****/
+void	eye_tomap(char **map, t_game *game);
 
 #endif

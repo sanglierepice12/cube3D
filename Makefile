@@ -30,6 +30,7 @@ SRC =	main.c													\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
+		parsing/check_map_validity/eyes_to_map.c				\
 		exec/draw_utils.c										\
 		exec/hook_event/hooks.c									\
 		exec/hook_event/hooks_managment.c						\
@@ -92,6 +93,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/check_parse $(DEP_DIR)/parsing/init_the_map/check_parse
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/fill_struct_map $(DEP_DIR)/parsing/init_the_map/fill_struct_map
 	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
+	@mkdir -p $(OBJ_DIR)/parsing/check_map_validity $(DEP_DIR)/parsing/check_map_validity
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
 	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec/hook_event
 	@mkdir -p $(OBJ_DIR)/utils $(DEP_DIR)/utils

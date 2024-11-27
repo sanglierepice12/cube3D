@@ -12,18 +12,6 @@
 
 #include "../../../include/cub3D.h"
 
-/*static void	print_lst(t_list **list)
-{
-	t_list	*temp;
-	temp = *list;
-	while (temp->next)
-	{
-		printf("[%s]", temp->value);
-		temp = temp->next;
-	}
-	printf("[%s]", temp->value);
-}*/
-
 void	first_line(int fd, t_list **list, t_game *game)
 {
 	char	*line;
@@ -84,4 +72,5 @@ void	init_parse(t_game *game, char *file)
 	close(fd);
 	fill_list_to_map(game, &game->list);
 	free_list(game->list);
+	eye_tomap(game->map->map, game);
 }
