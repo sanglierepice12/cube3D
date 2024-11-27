@@ -154,7 +154,7 @@ static bool	check_ext(char *file)
 }
 
 
-void	get_map(t_game *game, char *file)
+void	init_parse(t_game *game, char *file)
 {
 	int	fd;
 

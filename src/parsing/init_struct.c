@@ -36,5 +36,5 @@ void	init_struct(t_game **game)
 		simple_exit("Error init game\n", 1);
 	(*game)->list = NULL;
 	if (!init_map(&(*game)->map))
-		exit_parse(*game);
+		exit_prog(*game);
 }

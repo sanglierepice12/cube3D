@@ -32,7 +32,7 @@ int			initialize_map(t_map *map);
 int			initialize_graphics(t_mlx_data *mlx_data, t_map *map,
 							   t_img_data *map_img, t_img_data *game_img);
 void		find_play_pos(t_map *map, t_player *player);
-int			init_game(t_game *game);
+void		init_game(t_game *game);
 
 /*==================mini_map.c====================*/
 void		ray_caster(t_player *player, t_raycaster *raycaster,\

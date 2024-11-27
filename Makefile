@@ -42,7 +42,8 @@ SRC =	main.c													\
 		utils/split.c											\
 		utils/atoi.c											\
 		utils/exit_free/exit.c									\
-		utils/exit_free/free.c									\
+		utils/exit_free/free_parse.c							\
+		utils/exit_free/free_exec.c								\
 		utils/exit_free/free2.c									\
 
 # Path to MiniLibX

@@ -123,7 +123,7 @@ void all_draws(t_game *game)
 
 int key_active(t_game *game)
 {
-    return (game->end || game->player.move_down || game->player.move_up || 
+    return (game->end || game->player.move_down || game->player.move_up ||
     game->player.move_left || game->player.move_right || 
     game->player.rotate_left || game->player.rotate_right);
 }
@@ -135,11 +135,11 @@ int draw_and_display_map(t_game *game)
     if (!i)
     {
         all_draws(game);
-        mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
-        mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
+        mlx_put_image_to_window(&game->mlx_data.mlx_ptr, &game->mlx_data.game_win_ptr, &game->map_img.img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
+        mlx_put_image_to_window(&game->mlx_data.mlx_ptr, &game->mlx_data.game_win_ptr, &game->game_img.img_ptr, 0, 0);
         i = 1;  
     }
-    if (key_active(game))
+    /*if (key_active(game))
     {
         handle_keypress(game);
         if (game->end)
@@ -147,6 +147,6 @@ int draw_and_display_map(t_game *game)
         all_draws(game);
         mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH / 4, GAME_HEIGHT);
         mlx_put_image_to_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
-    }
+    }*/
     return (0);
 }

@@ -25,6 +25,11 @@
 # define D_KEY         100
 # define ESC_KEY       65307
 
+/*################### DEBUG COLORS #######################*/
+# define WRESET   "\033[0m"
+# define WRED     "\033[31m"      /* Red */
+# define WGREEN   "\033[32m"      /* Green */
+
 /*################### COLORS #######################*/
 
 # define BLUE  0x0000FF

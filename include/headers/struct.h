@@ -86,7 +86,7 @@ struct	s_map
 	int					count;
 	char				**map;
 	int					map_height;
-	int					map_length;
+	int					map_width;
 	t_texture			*texture;
 	t_rgb				*ceiling;
 	t_rgb				*floor;

@@ -23,26 +23,6 @@
     * initialiser la boucle du jeu
 */
 
-
-
-int	clean_up(t_game *game)
-{
-	/*if (&(game->map))
-		free_tab(game->map.map);*/
-	if (&(game->map_img) && &(game->mlx_data))
-		mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
-	if (&(game->game_img) && &(game->mlx_data))
-		mlx_destroy_image(game->mlx_data.mlx_ptr, game->game_img.img_ptr);
-	if (&(game->mlx_data))
-	{
-		mlx_destroy_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr);
-		mlx_destroy_display(game->mlx_data.mlx_ptr);
-		free(game->mlx_data.mlx_ptr);
-	}
-	printf("Clean-up completed.\n");
-	return (0);
-}
-
 int main(int arc, char **argv)
 {
 	t_game		*game;
@@ -50,17 +30,12 @@ int main(int arc, char **argv)
 	if (arc < 2)
 		return (printf("Please insert a map..."));
 	init_struct(&game);
-	get_map(game, argv[1]);
-	if (init_game(game) == -1)
-	{
-		clean_up(game);
-		return (1);
-	}
+	init_parse(game, argv[1]);
+	init_game(game);
 	hook_management(game);
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, &game);
 	draw_and_display_map(game);
 	mlx_loop(game->mlx_data.mlx_ptr);
-	clean_up(game);
 	exit_prog(game);
 	printf("\nend\n");
 	return (0);

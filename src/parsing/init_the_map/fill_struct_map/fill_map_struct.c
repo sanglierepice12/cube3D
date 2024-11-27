@@ -28,14 +28,18 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	size_t	i;
 
 	game->map->map = heap_map(get_list_len(*list));
+	game->map->map_height = (int)get_list_len(*list);
 	temp = *list;
 	if (!temp)
 		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
+	game->map->map_width = 0;
 	while (temp)
 	{
 		dest = rm_bs_wp(temp->value);
 		game->map->map[i++] = ft_dup(dest);
+		if (game->map->map_width < (int) ft_strlen(dest))
+			game->map->map_width = (int)ft_strlen(dest);
 		temp = temp->next;
 		free(dest);
 	}
