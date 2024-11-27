@@ -29,11 +29,11 @@ typedef struct	s_rgb			t_rgb;
 
 struct	s_img_data
 {
-    void	*img_ptr;
-    char	*addr;
-    int		bits_per_pixel;
-    int		line_length;
-    int		endian;
+	void	*img_ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 };
 
 struct	s_mlx_data
@@ -45,29 +45,38 @@ struct	s_mlx_data
 
 struct s_player
 {
-    int	player_pos_x;
-    int	player_pos_y;
-    int	player_px_pos_x;
-    int	player_px_pos_y;
-    double	angle;
-    double distance;
-    char *direction;
+	int     player_pos_x;
+	int     player_pos_y;
+	float	player_px_pos_x;
+	float	player_px_pos_y;
+	bool    move_up;
+	bool    move_down;
+	bool    move_left;
+	bool    move_right;
+	bool    rotate_left;
+	bool    rotate_right;
+	double	angle;
+	double	distance;
+	char	*direction;
 };
 
 struct s_raycaster
 {
-	double ray_angle;
-	double ray_x;
-	double ray_y;
-	int ray_index;
+	float	ray_angle;
+	float	ray_x;
+	float	ray_y;
+	int		ray_index;
+	int		wall_face;
 };
 
 struct s_proj
 {
-	long distance_to_wall;
-	int wall_height;
-	int wall_start;
-	int wall_end;
+	float	distance_to_wall;
+	float	last_distance_to_wall;
+	int		wall_height;
+	float	wall_start;
+	float	wall_end;
+	float	corrected_distance;
 };
 
 /*####PARSE####*/
@@ -77,7 +86,7 @@ struct	s_map
 	int					count;
 	char				**map;
 	int					map_height;
-	int					map_length;
+	int					map_width;
 	t_texture			*texture;
 	t_rgb				*ceiling;
 	t_rgb				*floor;
@@ -109,12 +118,13 @@ struct s_game
 {
 	t_map			*map;
 	t_list			*list;
-	t_mlx_data		*mlx_data;
-	t_player		*player;
-	t_img_data		*map_img;
-	t_img_data		*game_img;
-	t_raycaster		*raycaster;
-	t_proj			*projection;
+	t_mlx_data		mlx_data;
+	t_player		player;
+	t_img_data		map_img;
+	t_img_data		game_img;
+	t_raycaster		raycaster;
+	t_proj			projection;
+	bool			end;
 };
 
 typedef enum s_txt

@@ -18,6 +18,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_comp_str(const char *src, const char *str); //return 1 if equal
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
+void		*ft_memset(void *pointer, int value, size_t count);
 char		*ft_dup(const char *s);
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s);
@@ -35,7 +36,6 @@ void		free_list(t_list *list);
 size_t		get_list_len(t_list *list);
 
 /*==================exit & free=====================*/
-void		free_list(t_list *list);
 void		free_rgb(t_rgb *rgb);
 void		free_tab(char **tab);
 void		free_s_map(t_map *map);

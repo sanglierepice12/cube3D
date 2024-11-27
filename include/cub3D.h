@@ -17,11 +17,13 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <math.h>
+# include <stddef.h>
+# include <fcntl.h>
 # include <stdint.h>
 # include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include "headers/get_next_line_h/get_next_line.h"
 # include "headers/define.h"
 # include "headers/struct.h"

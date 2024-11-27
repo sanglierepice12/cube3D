@@ -22,10 +22,6 @@ DEP_DIR = ./dep
 
 # Source Files
 SRC =	main.c													\
-		exec/draw_tools.c										\
-		exec/hook_event/hooks.c									\
-		exec/init.c												\
-		exec/mini_map.c											\
 		parsing/init_struct.c									\
 		parsing/init_the_map/get_map.c							\
 		parsing/init_the_map/check_parse/check_parse.c			\
@@ -33,6 +29,12 @@ SRC =	main.c													\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
+		exec/draw_utils.c										\
+		exec/hook_event/hooks.c									\
+		exec/hook_event/hooks_managment.c						\
+		exec/mini_map.c											\
+		exec/render_3d_map.c									\
+		exec/init.c												\
 		utils/utils.c											\
 		utils/calloc.c											\
 		utils/compare.c											\
@@ -40,7 +42,8 @@ SRC =	main.c													\
 		utils/split.c											\
 		utils/atoi.c											\
 		utils/exit_free/exit.c									\
-		utils/exit_free/free.c									\
+		utils/exit_free/free_parse.c							\
+		utils/exit_free/free_exec.c								\
 		utils/exit_free/free2.c									\
 
 # Path to MiniLibX
@@ -89,7 +92,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/fill_struct_map $(DEP_DIR)/parsing/init_the_map/fill_struct_map
 	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line
 	@mkdir -p $(OBJ_DIR)/exec $(DEP_DIR)/exec
-	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec//hook_event
+	@mkdir -p $(OBJ_DIR)/exec/hook_event $(DEP_DIR)/exec/hook_event
 	@mkdir -p $(OBJ_DIR)/utils $(DEP_DIR)/utils
 	@mkdir -p $(OBJ_DIR)/utils/exit_free $(DEP_DIR)/utils/exit_free
 	@$(CC) $(CFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@

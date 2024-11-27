@@ -14,7 +14,7 @@
 # define PARSING_FUNCTIONS_H
 
 void	init_struct(t_game **game);
-void	get_map(t_game *game, char *file);
+void	init_parse(t_game *game, char *file);
 bool	is_line_full_spaces(char *line);
 int		parse_ws(char *line);
 void	fill_tex(char *line, t_texture *texture, e_txt type);

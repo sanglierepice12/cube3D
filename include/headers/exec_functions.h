@@ -19,24 +19,32 @@
 
 void		my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 
-/*===================hooks.c======================*/
 
-int			handle_keypress(int keycode, t_game *game);
+/*===================hooks.c======================*/
+void		hook_management(t_game *game);
+int			handle_keypress(t_game *game);
+
 
 /*=====================init.c=====================*/
 
 int			init_env(t_mlx_data *mlx_data, t_map *map);
 int			initialize_map(t_map *map);
-int			initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img, t_img_data *game_img);
+int			initialize_graphics(t_mlx_data *mlx_data, t_map *map,
+							   t_img_data *map_img, t_img_data *game_img);
 void		find_play_pos(t_map *map, t_player *player);
-int			init_game(t_game *game);
+void		init_game(t_game *game);
 
 /*==================mini_map.c====================*/
-
+void		ray_caster(t_player *player, t_raycaster *raycaster,\
+				t_proj *projection);
+void		all_draws(t_game *game);
 void		draw_mini_map(t_game *game);
-void		draw_and_display_map(t_game *game);
-
+int			draw_and_display_map(t_game *game);
+void		render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
+					  t_proj *projection);
+int			check_bounds(t_map *map, t_raycaster *raycaster);
 /*====================main.c======================*/
-void		clean_up(t_game *game);
+int			clean_up(t_game *game);
+
 
 #endif
