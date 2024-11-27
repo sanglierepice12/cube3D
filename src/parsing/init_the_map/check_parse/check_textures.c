@@ -24,7 +24,7 @@ bool	rgb_is_good(char *line)
 	while (++i, temp[i])
 	{
 		if (ft_atoi(temp[i]) > 255 || ft_atoi(temp[i]) < 0)
-			return (false);
+			return (free_tab(temp), printf("Error rgb\n"), false);
 	}
 	free_tab(temp);
 	return (true);
@@ -65,7 +65,6 @@ bool	check_texture(char	*line)
 {
 	int	fd;
 
-	//printf("$%s$\n", line);
 	if (!line)
 		return (false);
 	fd = open(line, O_RDONLY);

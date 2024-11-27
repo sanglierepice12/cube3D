@@ -66,7 +66,7 @@ bool	is_line_ok(char	*line)
 		return (true);
 	if (line[i] == 'C')
 		return (true);
-	printf("Line is invalid: '%s'\n", line);
+	printf("Line is invalid\n");
 	free(line);
 	return (false);
 }

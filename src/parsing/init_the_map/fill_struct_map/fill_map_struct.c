@@ -12,25 +12,27 @@
 
 #include "../../../../include/cub3D.h"
 
-void	fill_rgb(char *line, t_map *map, e_rgb type)
+void	fill_rgb(char *line, t_game *game, e_rgb type)
 {
 	char	**temp;
+/*	size_t	o;*/
 
 	temp = ft_split(line, ',');
 	if (!temp)
-		return ;
-	printf("%s", temp[0]);
+		return (printf("Error malloc\n"), free(line), exit_prog(game));
+	if (!temp[2])
+		return (printf("Error nothing in rgb\n"), free(line), exit_prog(game));
 	if (type == CEI)
 	{
-		map->ceiling->r = ft_atoi(temp[0]);
-		map->ceiling->g = ft_atoi(temp[1]);
-		map->ceiling->b = ft_atoi(temp[2]);
+		game->map->ceiling->r = ft_atoi(temp[0]);
+		game->map->ceiling->g = ft_atoi(temp[1]);
+		game->map->ceiling->b = ft_atoi(temp[2]);
 	}
 	if (type == FLO)
 	{
-		map->floor->r = ft_atoi(temp[0]);
-		map->floor->g = ft_atoi(temp[1]);
-		map->floor->b = ft_atoi(temp[2]);
+		game->map->floor->r = ft_atoi(temp[0]);
+		game->map->floor->g = ft_atoi(temp[1]);
+		game->map->floor->b = ft_atoi(temp[2]);
 	}
 	free(line);
 	free_tab(temp);
@@ -95,5 +97,31 @@ void	fill_list_to_map(t_game *game, t_list **list)
 			game->map->map_width = (int)ft_strlen(dest);
 		temp = temp->next;
 		free(dest);
+	}
+}
+
+void	fill_map_to_list(t_game *game, t_list **list, int fd)
+{
+	char	*line;
+
+	first_line(fd, list, game);
+	line = NULL;
+	while (777)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
+		{
+			free(line);
+			continue ;
+		}
+		if (!is_line_m_ok(line))
+		{
+			free_list(game->list);
+			exit_prog(game);
+		}
+		ft_lst_add_back(list, ft_new_node(line));
+		free(line);
 	}
 }
