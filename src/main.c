@@ -35,7 +35,7 @@ int main(int arc, char **argv)
 	
 	int i = 0;
 	while (game->map->map[i])
-		printf("%s", game->map->map[i++]);
+		printf("%s\n", game->map->map[i++]);
 	printf("%s\n", game->map->texture->no);
 	printf("%s\n", game->map->texture->so);
 	printf("%s\n", game->map->texture->ea);
@@ -48,11 +48,11 @@ int main(int arc, char **argv)
 	printf("ceiling b = %d \n", game->map->ceiling->b);
 
 
-	init_game(game);
+	/*init_game(game);
 	hook_management(game);
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, game);
 	draw_and_display_map(game);
-	mlx_loop(game->mlx_data.mlx_ptr);
+	mlx_loop(game->mlx_data.mlx_ptr);*/
 	exit_prog(game);
 	printf("\nend\n");
 	return (0);
