@@ -1,3 +1,10 @@
+NO ./texture/texture1
+SO ./texture/texture2
+WE ./texture/texture3
+EA ./texture/texture4
+F 220,100,0
+C 225,30,0
+
 1111111111111111111
 1000000000000000001
 1000000000000000001
