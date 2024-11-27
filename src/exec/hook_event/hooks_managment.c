@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+/*#include "../include/cub3D.h"
 #include "../minilibx-linux/mlx.h"
-#include "../minilibx-linux/mlx_int.h"
+#include "../minilibx-linux/mlx_int.h"*/
+#include "../../../include/cub3D.h"
 
 int close_win(int keycode, t_game *game)
 {

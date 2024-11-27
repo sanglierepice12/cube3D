@@ -36,8 +36,11 @@ void	find_play_pos(t_map *map, t_player *player)
 	while (y < map->map_height)
 	{
 		x = 0;
-		while (x < map->map_length)
+		//printf("%s\n", map->map[y]);
+		while (x < (int)ft_strlen(map->map[y]))
 		{
+			//printf("%s%c%s\n", WGREEN, map->map[y][x], WRESET);
+
 			if (map->map[y][x] == 'N')
 			{
 				player->player_pos_x = x;
@@ -62,25 +65,10 @@ void	find_play_pos(t_map *map, t_player *player)
 	// print no player found ?? this wil be done by parsing ?
 }
 
-int	initialize_map(t_map *map)
-{
-	map->map_height = 15;
-	map->map_length = 20;
-	map->map = ft_calloc(map->map_height + 1, sizeof(char *));
-	if (!map->map)
-		return (-1);
-	if (fill_tab(map) == -1)
-	{
-		free(map->map);
-		return (-1);
-	}
-	return (0);
-}
-
 int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 		t_img_data *game_img)
 {
-	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->map_length
+	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->map_width
 			* TILE_SIZE, map->map_height * TILE_SIZE);
 	if (!map_img->img_ptr)
 		return (-1);
@@ -106,17 +94,11 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 	return (0);
 }
 
-int	init_game(t_game *game)
+void	init_game(t_game *game)
 {
-	
-
-	if (initialize_map(&game->map) == -1)
-		return (-1);
-	
-	find_play_pos(&game->map, &game->player);
-	if (init_env(&game->mlx_data, &game->map) == -1)
-		return (-1);
-	if (initialize_graphics(&game->mlx_data, &game->map, &game->map_img, &game->game_img) == -1)
-		return (-1);
-	return (0);
+	find_play_pos(game->map, &game->player);
+	if (init_env(&game->mlx_data, game->map) == -1)
+		exit_prog(game);
+	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img, &game->game_img) == -1)
+		exit_prog(game);
 }

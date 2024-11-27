@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/22 09:00:28 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:36:42 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	handle_move(t_game *game)
 	
 	update_position(game, &new_x, &new_y);
 	
-	if (game->map.map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] != '1')
+	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] != '1')
 	{
 		game->player.player_px_pos_x = new_x;
 		game->player.player_px_pos_y = new_y;

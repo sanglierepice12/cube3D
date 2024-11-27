@@ -55,7 +55,7 @@ void cast_ray(t_game *game,  t_raycaster *raycaster, t_player *player, t_proj *p
 	ray_sin = sin(raycaster->ray_angle);
     raycaster->ray_x = player->player_px_pos_x;
     raycaster->ray_y = player->player_px_pos_y;
-    while (check_bounds(&game->map, raycaster))
+    while (check_bounds(game->map, raycaster))
     {
         raycaster->ray_x += ray_cos; 
         raycaster->ray_y += ray_sin;

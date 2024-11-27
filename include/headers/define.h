@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_define.h                                     :+:      :+:    :+:   */
+/*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/27 09:07:30 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:42:36 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_DEFINE_H
-# define CUBE3D_DEFINE_H
+#ifndef DEFINE_H
+# define DEFINE_H
 
 /*################ KEY MACROS #####################*/
 
@@ -24,6 +24,11 @@
 # define S_KEY         115
 # define D_KEY         100
 # define ESC_KEY       65307
+
+/*################### DEBUG COLORS #######################*/
+# define WRESET   "\033[0m"
+# define WRED     "\033[31m"      /* Red */
+# define WGREEN   "\033[32m"      /* Green */
 
 /*################### COLORS #######################*/
 

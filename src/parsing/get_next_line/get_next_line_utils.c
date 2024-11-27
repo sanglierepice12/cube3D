@@ -12,83 +12,71 @@
 
 #include "../../../include/cub3D.h"
 
-char	*ft_strdup(char *s1)
+int	ft_end(char *buf)
 {
-	char			*dest;
-	unsigned int	i;
+	size_t	i;
 
-	dest = (char *) malloc(ft_strlen(s1) + 1);
+	i = 0;
+	if (ft_strlen(buf + i) == 0)
+		return (0);
+	while (buf[i])
+	{
+		if (buf[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*dest;
+	size_t	i;
+	size_t	len;
+
+	len = 0;
+	while (s1[len] && s1[len] != '\n')
+		len++;
+	if (s1[len] == '\n')
+		len++;
+	dest = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
+	while (i < len)
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[len] = '\0';
+	return (dest);
+}
+
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	size_t			i;
+	size_t			j;
+	unsigned int	len;
+	char			*dest;
+
+	len = 0;
+	while (s2[len] && s2[len] != '\n')
+		len++;
+	if (s2[len] == '\n')
+		len++;
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + len + 1));
+	if (!dest)
+		return (free((char *)s1), NULL);
+	i = 0;
+	j = 0;
 	while (s1[i])
 	{
 		dest[i] = s1[i];
 		i++;
 	}
-	dest[i] = 0;
+	while (s2[j] && (!j || s2[j - 1] != '\n'))
+		dest[i++] = s2[j++];
+	dest[i] = '\0';
+	free((char *)s1);
 	return (dest);
-}
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_substr(char *s, int start, int len)
-{
-	int	i;
-	char	*str;
-
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (malloc(1));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	str = malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = s[start + i];
-		i++;
-	}
-	str[i] = 0;
-	return (str);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int	len;
-	int	i;
-	char	*str;
-	int	length;
-
-	length = ft_strlen(s1);
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	i = 0;
-	len = length + ft_strlen(s2);
-	str = malloc((len + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	while (i < length)
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (i < len)
-	{
-		str[i] = s2[i - length];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
 }
