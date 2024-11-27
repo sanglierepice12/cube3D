@@ -6,13 +6,10 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:14:18 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/25 11:17:06 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:54:27 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#include "../include/cub3D.h"
-#include "../minilibx-linux/mlx.h"
-#include "../minilibx-linux/mlx_int.h"*/
 #include "../../../include/cub3D.h"
 
 int close_win(int keycode, t_game *game)
