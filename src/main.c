@@ -47,9 +47,9 @@ int main(int arc, char **argv)
 {
 	t_game		*game;
 
-    if (arc < 2)
-        return (printf("Please insert a map..."));
-    init_struct(&game);
+	if (arc < 2)
+		return (printf("Please insert a map..."));
+	init_struct(&game);
 	get_map(game, argv[1]);
 	if (init_game(game) == -1)
 	{

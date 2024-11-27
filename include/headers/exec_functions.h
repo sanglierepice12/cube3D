@@ -42,10 +42,9 @@ void		draw_mini_map(t_game *game);
 int			draw_and_display_map(t_game *game);
 void		render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 					  t_proj *projection);
-
+int			check_bounds(t_map *map, t_raycaster *raycaster);
 /*====================main.c======================*/
 int			clean_up(t_game *game);
-int			check_bounds(t_map *map, t_raycaster *raycaster);
 
 
 #endif

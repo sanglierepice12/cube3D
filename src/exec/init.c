@@ -108,11 +108,8 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 
 int	init_game(t_game *game)
 {
-	
-
 	if (initialize_map(game->map) == -1)
 		return (-1);
-	
 	find_play_pos(game->map, &game->player);
 	if (init_env(&game->mlx_data, game->map) == -1)
 		return (-1);
