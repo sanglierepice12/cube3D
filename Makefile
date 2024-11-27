@@ -22,7 +22,6 @@ DEP_DIR = ./dep
 
 # Source Files
 SRC =	main.c													\
-		exec/hook_event/hooks.c									\
 		exec/init.c												\
 		exec/mini_map.c											\
 		exec/draw_utils.c							\
@@ -30,12 +29,7 @@ SRC =	main.c													\
 		exec/hook_event/hooks_managment.c			\
 		exec/exec_utils.c							\
 		exec/render_3d_map.c						\
-		parsing/init_struct.c									\
 		parsing/get_map.c							\
-		parsing/init_the_map/get_map_gonz.c							\
-		parsing/init_the_map/check_parse/check_parse.c			\
-		parsing/init_the_map/check_parse/check_textures.c		\
-		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
 		utils/utils.c											\
@@ -44,9 +38,6 @@ SRC =	main.c													\
 		utils/linked_list.c										\
 		utils/split.c											\
 		utils/atoi.c											\
-		utils/exit_free/exit.c									\
-		utils/exit_free/free.c									\
-		utils/exit_free/free2.c									\
 
 # Path to MiniLibX
 MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
