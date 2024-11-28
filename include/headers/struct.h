@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs.h                                    :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/13 13:52:22 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/11/28 13:17:46 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ struct	s_mlx_data
 
 struct s_player
 {
-	int     player_pos_x;
-	int     player_pos_y;
+	float     player_pos_x;
+	float    player_pos_y;
 	float	player_px_pos_x;
 	float	player_px_pos_y;
 	bool    move_up;
@@ -55,8 +55,8 @@ struct s_player
 	bool    move_right;
 	bool    rotate_left;
 	bool    rotate_right;
-	double	angle;
-	double	distance;
+	float	angle;
+	float	distance;
 	char	*direction;
 };
 
@@ -65,18 +65,18 @@ struct s_raycaster
 	float	ray_angle;
 	float	ray_x;
 	float	ray_y;
-	int		ray_index;
-	int		wall_face;
+	float		ray_index;
+	float		wall_face;
 };
 
 struct s_proj
 {
 	float	distance_to_wall;
 	float	last_distance_to_wall;
-	int		wall_height;
+	float	wall_height;
 	float	wall_start;
 	float	wall_end;
-	float	corrected_distance;
+	float	correct_distance;
 };
 
 /*####PARSE####*/

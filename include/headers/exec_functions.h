@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_functions.h                                  :+:      :+:    :+:   */
+/*   exec_functions.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/12 16:44:41 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:53:08 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		draw_mini_map(t_game *game);
 int			draw_and_display_map(t_game *game);
 void		render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 					  t_proj *projection);
-int			check_bounds(t_map *map, t_raycaster *raycaster);
+bool			wall_hit(t_map *map, t_raycaster *raycaster);
 /*====================main.c======================*/
 int			clean_up(t_game *game);
 

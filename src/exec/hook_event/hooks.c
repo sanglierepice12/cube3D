@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/27 15:36:42 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:20:50 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	handle_rotation(t_player *player)
 		player->angle -= ROTATION_SPEED;
 	else if (player->rotate_right)
 		player->angle += ROTATION_SPEED;
-	player->angle = fmod(player->angle, 2 * M_PI);
-	if (player->angle < 0)
-		player->angle += 2 * M_PI;
+	// player->angle = fmod(player->angle, 2 * M_PI);
+	// if (player->angle < 0)
+	// 	player->angle += 2 * M_PI;
 	// if (player->angle > 2 * M_PI)
 	// 	player->angle = 0;
 }

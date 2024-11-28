@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/27 15:59:47 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:11:16 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void fill_tile_with_player(t_player *player,  t_img_data *img, int tile_x, int t
 }
 
 
+
 void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
 {
     raycaster->ray_index = 0;
@@ -76,7 +77,7 @@ void draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
         raycaster->ray_y = player->player_px_pos_y;
         raycaster->ray_x = player->player_px_pos_x;
         raycaster->ray_angle = player->angle + (FOV_ANGLE * 2) - (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
-        while (check_bounds(game->map, raycaster))
+        while (!wall_hit(game->map, raycaster))
         {
 			if ((int)raycaster->ray_x >= 0 && (int)raycaster->ray_x < GAME_WIDTH &&
 				(int)raycaster->ray_y >= 0 && (int)raycaster->ray_y < GAME_HEIGHT)

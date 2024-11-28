@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/27 17:08:12 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:59:56 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define MOVE_SPEED 5
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE (M_PI / 3)
+# define GAME_WIDTH 960
 # define RAY_COUNT GAME_WIDTH 
 # define GAME_HEIGHT 390
 
