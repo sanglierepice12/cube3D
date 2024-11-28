@@ -45,12 +45,6 @@ void draw_3d_column(t_game *game)
     }
 }
 
-bool wall_hit(t_map *map, t_raycaster *raycaster)
-{
-    return (map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] == '1' ||
-	map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] == ' ' );
-	// raycaster->ray_y / TILE_SIZE transfrom logic for cartesian
-}
 
 void cast_ray(t_game *game, t_raycaster *raycaster, t_player *player, t_proj *projection)
 {
@@ -58,17 +52,14 @@ void cast_ray(t_game *game, t_raycaster *raycaster, t_player *player, t_proj *pr
     float ray_dir_y;
     float angle_diff;
 
-    float x;
-
-    x = 0.5;
     ray_dir_x = cos(raycaster->ray_angle);
     ray_dir_y = sin(raycaster->ray_angle);
     raycaster->ray_x = player->player_px_pos_x;
     raycaster->ray_y = player->player_px_pos_y;
     while (!wall_hit(game->map, raycaster))
     {
-            raycaster->ray_x += ray_dir_x * x;
-            raycaster->ray_y += ray_dir_y * x;
+            raycaster->ray_x += ray_dir_x * 0.08;
+            raycaster->ray_y += ray_dir_y * 0.08;
     }
     projection->distance_to_wall = DISTANCE(raycaster->ray_x, raycaster->ray_y, player->player_px_pos_x, player->player_px_pos_y);
     angle_diff = (raycaster->ray_angle) - (player->angle);
@@ -77,6 +68,18 @@ void cast_ray(t_game *game, t_raycaster *raycaster, t_player *player, t_proj *pr
     projection->wall_start = SCREEN_CENTER_Y - (projection->wall_height * 0.5);
     projection->wall_end = SCREEN_CENTER_Y + (projection->wall_height * 0.5);
 }
+
+
+
+bool wall_hit(t_map *map, t_raycaster *raycaster)
+{
+       return (map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] == '1' ||
+	map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] == ' ' );
+	// raycaster->ray_y / TILE_SIZE transfrom logic for cartesian
+
+}
+
+
 
 void render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster, t_proj *projection)
 {
