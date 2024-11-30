@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michismuch <michismuch@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/28 14:59:56 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/30 07:35:53 by michismuch       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@
 # define COLOR_LEFT  0xFF0000
 # define COLOR_RIGHT 0xFFFF00
 
+
+#define NORTH 0
+#define SOUTH 1
+#define EAST  2
+#define WEST  3
+
 /*################ SIZE MACROS #####################*/
 
 # define TILE_SIZE 16
@@ -55,13 +61,14 @@
 # define MOVE_SPEED 5
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE (M_PI / 3)
-# define GAME_WIDTH 960
+# define GAME_WIDTH 2500
 # define RAY_COUNT GAME_WIDTH 
-# define GAME_HEIGHT 390
+# define GAME_HEIGHT 801
 
 /*#################### CALCULATION MACROS ######################*/
 
-# define DISTANCE_TO_PLANE ((GAME_WIDTH * 0.5) / tan(FOV_ANGLE * 0.5))
+#define DISTANCE_TO_PLANE (GAME_WIDTH / (2 * tan(FOV_ANGLE / 2)))
+
 # define SCREEN_CENTER_X     (GAME_WIDTH / 2)
 # define SCREEN_CENTER_Y     (GAME_HEIGHT / 2)
 # define FOV_HALF            (FOV_ANGLE * 0.5)
