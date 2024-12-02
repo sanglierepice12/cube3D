@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/28 14:20:50 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:12:14 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	handle_rotation(t_player *player)
 	// 	player->angle = 0;
 }
 
-void update_position(t_game *game, float *new_x, float *new_y)
+void	update_position(t_game *game, float *new_x, float *new_y)
 {
 	if (game->player.move_up)
 	{
@@ -56,34 +56,27 @@ void	handle_move(t_game *game)
 
 	new_x = game->player.player_px_pos_x;
 	new_y = game->player.player_px_pos_y;
-	
 	update_position(game, &new_x, &new_y);
-	
-	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] != '1')
+	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(new_x
+			/ TILE_SIZE)] != '1')
 	{
 		game->player.player_px_pos_x = new_x;
 		game->player.player_px_pos_y = new_y;
 	}
-	
 }
 
-int handle_keypress(t_game *game)
+int	handle_keypress(t_game *game)
 {
-    if (game->end) 
-    {
+	if (game->end)
+	{
 		printf("Exiting game...\n");
 		mlx_loop_end(game->mlx_data.mlx_ptr);
 		return (0);
-        //mlx_loop_end(game->mlx_data->mlx_ptr);
-    }
-
-    if (game->player.rotate_left || game->player.rotate_right)
-        handle_rotation(&game->player);
-
-    if (game->player.move_down || game->player.move_up || 
-        game->player.move_left || game->player.move_right)
-        handle_move(game);
-
-
-    return (0);
+		//mlx_loop_end(game->mlx_data->mlx_ptr);
+	}
+	if (game->player.rotate_left || game->player.rotate_right)
+		handle_rotation(&game->player);
+	if (game->player.move_down || game->player.move_up || game->player.move_left || game->player.move_right)
+		handle_move(game);
+	return (0);
 }

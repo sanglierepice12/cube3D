@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/27 15:42:29 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:08:59 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,47 @@
     * initialiser les hooks (tel touche fait tel chose)
     * initialiser la boucle du jeu
 */
+
+
+int	draw_and_display_map(t_game *game)
+{
+	static int	i;
+
+	if (!i)
+	{
+		all_draws(game);
+		if (game->map_img.img_ptr)
+			mlx_put_image_to_window(game->mlx_data.mlx_ptr,
+					game->mlx_data.game_win_ptr, game->map_img.img_ptr,
+					GAME_WIDTH / 4, GAME_HEIGHT);
+		if (game->game_img.img_ptr)
+			mlx_put_image_to_window(game->mlx_data.mlx_ptr,
+					game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
+		i = 1;
+	}
+	if (key_active(game))
+	{
+		handle_keypress(game);
+		if (game->end)
+			return (0);
+		all_draws(game);
+		mlx_put_image_to_window(game->mlx_data.mlx_ptr,
+				game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH
+				/ 4, GAME_HEIGHT);
+		mlx_put_image_to_window(game->mlx_data.mlx_ptr,
+				game->mlx_data.game_win_ptr, game->game_img.img_ptr, 0, 0);
+	}
+	return (0);
+}
+
+void	all_draws(t_game *game)
+{
+	draw_mini_map(game);
+	fill_tile_with_player(&game->player, &game->map_img,
+			game->player.player_pos_x, game->player.player_pos_y, BLACK, GREEN);
+	draw_map_rays(game, &game->player, &game->raycaster);
+	render_3d_map(game, &game->player, &game->raycaster, &game->projection);
+}
 
 int main(int arc, char **argv)
 {

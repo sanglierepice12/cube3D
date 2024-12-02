@@ -30,6 +30,7 @@ SRC =	main.c													\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
 		exec/draw_utils.c										\
+		exec/exec_utils.c										\
 		exec/hook_event/hooks.c									\
 		exec/hook_event/hooks_managment.c						\
 		exec/mini_map.c											\
