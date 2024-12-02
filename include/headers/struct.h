@@ -38,26 +38,26 @@ struct	s_img_data
 
 struct	s_mlx_data
 {
-    void	*mlx_ptr;
-    void	*map_win_ptr;
-    void	*game_win_ptr;
+	void	*mlx_ptr;
+	void	*map_win_ptr;
+	void	*game_win_ptr;
 };
 
 struct s_player
 {
-	int     player_pos_x;
-	int     player_pos_y;
+	int		player_pos_x;
+	int		player_pos_y;
 	float	player_px_pos_x;
 	float	player_px_pos_y;
-	bool    move_up;
-	bool    move_down;
-	bool    move_left;
-	bool    move_right;
-	bool    rotate_left;
-	bool    rotate_right;
+	bool	move_up;
+	bool	move_down;
+	bool	move_left;
+	bool	move_right;
+	bool	rotate_left;
+	bool	rotate_right;
 	double	angle;
 	double	distance;
-	char	*direction;
+	char	direction;
 };
 
 struct s_raycaster

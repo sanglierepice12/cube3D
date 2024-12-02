@@ -12,23 +12,25 @@
 
 #include "../../../include/cub3D.h"
 
-void	fill_playerpos(char *line, t_game *game)
+void	fill_playerpos(char *line, t_game *game, size_t len)
 {
-	(void)line;
-	(void)game;
-/*	size_t	i;
+	size_t	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == 'N')
-			game->player.player_pos_x =
-	}*/
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		{
+			game->player.player_pos_x = (int)i;
+			game->player.player_pos_y = (int)len;
+			game->player.direction = line[i];
+		}
+		i++;
+	}
 }
 
 void	eye_tomap(char **map, t_game *game)
 {
-	printf("printf : %s", map[0]);
-	exit_prog(game);
-	fill_playerpos(map[0], game);
+	(void)game;
+	(void)map;
 }
