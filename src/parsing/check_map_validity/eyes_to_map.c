@@ -24,6 +24,14 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 			game->player.player_pos_x = (int)i;
 			game->player.player_pos_y = (int)len;
 			game->player.direction = line[i];
+			game->map->count++;
+			if (game->map->count > 7)
+			{
+				printf("Error, double player position\n");
+				free(line);
+				free_list(game->list);
+				exit_prog(game);
+			}
 		}
 		i++;
 	}

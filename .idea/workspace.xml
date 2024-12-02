@@ -20,14 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/headers/parsing_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/parsing_functions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/headers/struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/struct.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/init.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map_official.cub" beforeDir="false" afterPath="$PROJECT_DIR$/map/map_official.cub" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732724468126</updated>
       <workItem from="1732724469320" duration="3353000" />
-      <workItem from="1733160042199" duration="1781000" />
+      <workItem from="1733160042199" duration="2189000" />
     </task>
     <servers />
   </component>

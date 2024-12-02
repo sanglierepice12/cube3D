@@ -72,5 +72,10 @@ void	init_parse(t_game *game, char *file)
 	close(fd);
 	fill_list_to_map(game, &game->list);
 	free_list(game->list);
+	if (game->map->count != 7)
+	{
+		printf("Error, no player position\n");
+		exit_prog(game);
+	}
 	eye_tomap(game->map->map, game);
 }
