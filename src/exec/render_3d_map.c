@@ -24,20 +24,6 @@ unsigned int    get_pixel_color(t_img_data *texture, int x, int y)
     return (color);
 }
 
-void	def_wall_texture(t_raycaster *raycaster, t_proj *projection, t_map *map)
-{
-	if (raycaster->wall_orientation == NORTH)
-		projection->texture = map->texture->texture1;
-	else if (raycaster->wall_orientation == SOUTH)
-		projection->texture = map->texture->texture2;
-	else if (raycaster->wall_orientation == EAST)
-		projection->texture = map->texture->texture3;
-	else if (raycaster->wall_orientation == WEST)
-		projection->texture = map->texture->texture4;
-	// else
-	// 	projection->texture = WHITE;
-}
-
 void draw_3d_column(t_game *game, t_proj *projection)
 {
     int y;

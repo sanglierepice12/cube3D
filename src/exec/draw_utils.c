@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/05 14:20:48 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:31:10 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ void	def_wall_color(t_raycaster *raycaster, t_proj *projection)
 		projection->wall_color = GREEN;
 	else
 		projection->wall_color = WHITE;
+}
+
+void	def_wall_texture(t_raycaster *raycaster, t_proj *projection, t_map *map)
+{
+	if (raycaster->wall_orientation == NORTH)
+		projection->texture = map->texture->texture1;
+	else if (raycaster->wall_orientation == SOUTH)
+		projection->texture = map->texture->texture2;
+	else if (raycaster->wall_orientation == EAST)
+		projection->texture = map->texture->texture3;
+	else if (raycaster->wall_orientation == WEST)
+		projection->texture = map->texture->texture4;
+	// else
+	// 	projection->texture = WHITE;
 }
 
 void	clear_screen(t_img_data *img, int ceiling_color, int floor_color)

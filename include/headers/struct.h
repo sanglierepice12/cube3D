@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/05 14:45:06 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:31:53 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ struct						s_game
 	t_mlx_data				mlx_data;
 	t_player				player;
 	t_img_data				map_img;
-	t_img_data				texture_one_img;
 	t_img_data				game_img;
 	t_raycaster				raycaster;
 	t_proj					projection;

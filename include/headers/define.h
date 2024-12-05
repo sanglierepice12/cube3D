@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/05 10:12:32 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:33:22 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@
 # define BORDER_SIZE    0.5f
 # define ROTATION_SPEED 0.1f
 # define MOVE_SPEED     5.0f
-# define GAME_WIDTH     1920.0f
-# define GAME_HEIGHT    780.0f
+# define GAME_WIDTH     520.0f
+# define GAME_HEIGHT    380.0f
 # define RAY_COUNT      ((int)GAME_WIDTH) // Integer count of rays
 
 /*#################### ANGLES ######################*/

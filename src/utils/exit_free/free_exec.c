@@ -6,16 +6,23 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:20:49 by gsuter            #+#    #+#             */
-/*   Updated: 2024/11/27 15:24:40 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:28:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
 
-
+void clean_textures(t_mlx_data *mlx_data, t_texture *textures)
+{
+		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture1.img_ptr);
+		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture2.img_ptr);
+		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture3.img_ptr);
+		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture4.img_ptr);
+}
 
 int	clean_up(t_game *game)
 {
+	//clean_textures(&game->mlx_data, game->map->texture);
 	if (game->map_img.img_ptr)
 	{
 		mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
