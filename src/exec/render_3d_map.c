@@ -26,39 +26,41 @@ unsigned int    get_pixel_color(t_img_data *texture, int x, int y)
 
 void draw_3d_column(t_game *game, t_proj *projection)
 {
-    int y;
-    int texture_x;
-    int texture_y;
-    float texture_y_pos;
-    float step;
-    unsigned int color;
+    int current_y;
+    int texture_x, texture_y;
+    float texture_y_position;
+    float step_size;
+    unsigned int pixel_color;
 
-	def_wall_texture(&game->raycaster, projection, game->map);
-	if (game->raycaster.hit_side == 0)
-		texture_x = (int)game->raycaster.ray_x % (int)TILE_SIZE;
-	else
-		texture_x = (int)game->raycaster.ray_y % (int)TILE_SIZE;
-    
+    def_wall_texture(&game->raycaster, projection, game->map);
+    if (game->raycaster.hit_side == 0)
+        texture_x = (int)game->raycaster.ray_x % (int)TILE_SIZE;
+    else
+        texture_x = (int)game->raycaster.ray_y % (int)TILE_SIZE;
+
     texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
-    step = (float)projection->texture.height / game->projection.wall_height;
-    texture_y_pos = 0.0f;
+
+    step_size = (float)projection->texture.height / game->projection.wall_height;
+    texture_y_position = 0.0f;
 
     if (game->projection.wall_start < 0)
     {
-        texture_y_pos = -game->projection.wall_start * step;
+        texture_y_position = -game->projection.wall_start * step_size;
         game->projection.wall_start = 0;
     }
 
-    y = game->projection.wall_start;
-    while (y <= game->projection.wall_end && y < GAME_HEIGHT)
+    current_y = game->projection.wall_start;
+    while (current_y <= game->projection.wall_end && current_y < GAME_HEIGHT)
     {
-        texture_y = (int)texture_y_pos & (projection->texture.height - 1);
-        texture_y_pos += step;
-        color = get_pixel_color(&projection->texture, texture_x, texture_y);
-        my_mlx_pixel_put(&game->game_img, game->raycaster.ray_index, y, color);
-        y++;
+        texture_y = (int)texture_y_position % projection->texture.height;
+        texture_y_position += step_size;
+        pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
+        my_mlx_pixel_put(&game->game_img, game->raycaster.ray_index, current_y, pixel_color);
+
+        current_y++;
     }
 }
+
 // void	draw_3d_column(t_game *game)
 // {
 // 	float	y_start;
