@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/05 15:31:53 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:49:57 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ struct						s_img_data
 {
 	void					*img_ptr;
 	char					*addr;
-	int width;
-	int height;
+	int						width;
+	int						height;
 	int						bits_per_pixel;
 	int						line_length;
 	int						endian;

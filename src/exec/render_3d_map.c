@@ -26,38 +26,44 @@ unsigned int    get_pixel_color(t_img_data *texture, int x, int y)
 
 void draw_3d_column(t_game *game, t_proj *projection)
 {
-    int current_y;
+    int y;
     int texture_x, texture_y;
-    float texture_y_position;
+    float texture_y_pos;
     float step_size;
     unsigned int pixel_color;
 
     def_wall_texture(&game->raycaster, projection, game->map);
-    if (game->raycaster.hit_side == 0)
+    if (game->raycaster.hit_side == 0)// horizontal
+	{
         texture_x = (int)game->raycaster.ray_x % (int)TILE_SIZE;
-    else
+
+	}
+    else // vertical
+	{
         texture_x = (int)game->raycaster.ray_y % (int)TILE_SIZE;
+	}
 
     texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
 
     step_size = (float)projection->texture.height / game->projection.wall_height;
-    texture_y_position = 0.0f;
+    texture_y_pos = 0.0f;
 
     if (game->projection.wall_start < 0)
     {
-        texture_y_position = -game->projection.wall_start * step_size;
+        texture_y_pos = -game->projection.wall_start * step_size;
         game->projection.wall_start = 0;
     }
 
-    current_y = game->projection.wall_start;
-    while (current_y <= game->projection.wall_end && current_y < GAME_HEIGHT)
+    y = game->projection.wall_start;
+    while (y <= game->projection.wall_end && y < GAME_HEIGHT)
     {
-        texture_y = (int)texture_y_position % projection->texture.height;
-        texture_y_position += step_size;
-        pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
-        my_mlx_pixel_put(&game->game_img, game->raycaster.ray_index, current_y, pixel_color);
+        texture_y = (int)texture_y_pos % projection->texture.height;
 
-        current_y++;
+        texture_y_pos += step_size;
+        pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
+        my_mlx_pixel_put(&game->game_img, game->raycaster.ray_index, y, pixel_color);
+
+        y++;
     }
 }
 
@@ -135,8 +141,7 @@ void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 	clear_screen(&game->game_img, BLACK, LIGHT_BLUE);
 	while (raycaster->ray_index < GAME_WIDTH)
 	{
-		raycaster->ray_angle = (player->angle - FOV_HALF) + (raycaster->ray_index
-				* RAY_ANGLE_DELTA);
+		raycaster->ray_angle = (player->angle - FOV_HALF) + (raycaster->ray_index * RAY_ANGLE_DELTA);
 		cast_ray(game, raycaster, player, projection);
 		draw_3d_column(game, projection);
 		raycaster->ray_index++;

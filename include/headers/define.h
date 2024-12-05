@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/05 15:33:22 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:51:03 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define WGREEN   "\033[32m"     // Debug Green
 
 /*################### COLORS #######################*/
+
 // Standard colors
 # define BLUE        0x0000FF
 # define WHITE       0xFFFFFFF
@@ -52,12 +53,14 @@
 # define COLOR_RIGHT 0xFFFF00
 
 /*#################### DIRECTIONS ######################*/
+
 # define NORTH 0
 # define SOUTH 1
 # define EAST  2
 # define WEST  3
 
 /*#################### DIMENSIONS ######################*/
+
 # define TILE_SIZE      16.0f
 # define PLAYER_SIZE    16.0f
 # define BORDER_SIZE    0.5f
