@@ -70,6 +70,7 @@ void	fill_tex(char *line, t_texture *texture, e_txt type)
 char	**heap_map(size_t len)
 {
 	char	**map;
+
 	map = ft_calloc(sizeof(char *), len + 1);
 	if (!map)
 		return (NULL);
@@ -83,19 +84,26 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	size_t	i;
 
 	game->map->map = heap_map(get_list_len(*list));
-	game->map->map_height = (int)get_list_len(*list);
+	game->map->height = (int)get_list_len(*list);
 	temp = *list;
 	if (!temp)
 		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
-	game->map->map_width = 0;
+	game->map->width = 0;
 	while (temp)
 	{
 		line = rm_bs_wp(temp->value);
+		if (line[parse_ws(line)] != '1' || line[ft_strlen(line) - 1] != '1')
+		{
+			printf("Error, map invalid\n");
+			free_list(*list);
+			free(line);
+			exit_prog(game);
+		}
 		game->map->map[i++] = ft_dup(line);
 		fill_playerpos(line, game, i);
-		if (game->map->map_width < (int) ft_strlen(line))
-			game->map->map_width = (int)ft_strlen(line);
+		if (game->map->width < (int) ft_strlen(line))
+			game->map->width = (int)ft_strlen(line);
 		temp = temp->next;
 		free(line);
 	}

@@ -35,10 +35,10 @@ int main(int arc, char **argv)
 	printf("pos x = %d\n", game->player.player_pos_x);
 	printf("pos y = %d\n", game->player.player_pos_y);
 	printf("direction = %c\n", game->player.direction);
-/*	int i = 0;
+	int i = 0;
 	while (game->map->map[i])
 		printf("%s\n", game->map->map[i++]);
-	printf("%s\n", game->map->texture->no);
+	/*printf("%s\n", game->map->texture->no);
 	printf("%s\n", game->map->texture->so);
 	printf("%s\n", game->map->texture->ea);
 	printf("%s\n", game->map->texture->we);*/

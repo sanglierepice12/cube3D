@@ -85,8 +85,8 @@ struct	s_map
 {
 	int					count;
 	char				**map;
-	int					map_height;
-	int					map_width;
+	int					height;
+	int					width;
 	t_player			*player;
 	t_texture			*texture;
 	t_rgb				*ceiling;
