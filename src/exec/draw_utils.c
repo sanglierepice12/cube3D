@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/02 10:13:03 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:20:48 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	clear_screen(t_img_data *img, int ceiling_color, int floor_color)
 	pixel_data = (int *)img->addr;
 	half_height = SCREEN_CENTER_Y;
 	ft_memset(pixel_data, ceiling_color, half_height * GAME_WIDTH * sizeof(int));
-	ft_memset(&pixel_data[half_height * GAME_WIDTH], floor_color, half_height * GAME_WIDTH * sizeof(int));
+	ft_memset(&pixel_data[half_height * (int)GAME_WIDTH], floor_color, half_height * GAME_WIDTH * sizeof(int));
 }

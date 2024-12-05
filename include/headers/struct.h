@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/02 09:27:43 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:45:06 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ struct						s_img_data
 {
 	void					*img_ptr;
 	char					*addr;
+	int width;
+	int height;
 	int						bits_per_pixel;
 	int						line_length;
 	int						endian;
@@ -38,16 +40,15 @@ struct						s_img_data
 struct						s_mlx_data
 {
 	void					*mlx_ptr;
-	void					*map_win_ptr;
 	void					*game_win_ptr;
 };
 
 struct						s_player
 {
-	float					player_pos_x;
-	float					player_pos_y;
-	float					player_px_pos_x;
-	float					player_px_pos_y;
+	double					player_pos_x;
+	double					player_pos_y;
+	double					player_px_pos_x;
+	double					player_px_pos_y;
 	bool					move_up;
 	bool					move_down;
 	bool					move_left;
@@ -62,8 +63,8 @@ struct						s_player
 struct						s_raycaster
 {
 	float					ray_angle;
-	float					ray_x;
-	float					ray_y;
+	double					ray_x;
+	double					ray_y;
 	float					ray_index;
 	float					wall_orientation;
 	int						hit_side;
@@ -78,6 +79,7 @@ struct						s_proj
 	float					wall_end;
 	int						wall_color;
 	float					correct_distance;
+	t_img_data				texture;
 };
 
 /*####PARSE####*/
@@ -99,6 +101,10 @@ struct						s_texture
 	char					*so;
 	char					*we;
 	char					*ea;
+	t_img_data				texture1;
+	t_img_data				texture2;
+	t_img_data				texture3;
+	t_img_data				texture4;
 };
 
 struct						s_rgb
@@ -122,6 +128,7 @@ struct						s_game
 	t_mlx_data				mlx_data;
 	t_player				player;
 	t_img_data				map_img;
+	t_img_data				texture_one_img;
 	t_img_data				game_img;
 	t_raycaster				raycaster;
 	t_proj					projection;

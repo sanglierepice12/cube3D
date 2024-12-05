@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/02 10:16:27 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:55:23 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster)
 				else
 					my_mlx_pixel_put(&game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
 			}
-			raycaster->ray_x += sin(raycaster->ray_angle);
-			raycaster->ray_y -= cos(raycaster->ray_angle);
+			raycaster->ray_x += sinf(raycaster->ray_angle);
+			raycaster->ray_y -= cosf(raycaster->ray_angle);
 		}
 		raycaster->ray_index++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/02 10:12:14 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:10:52 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,34 @@ void	handle_rotation(t_player *player)
 		player->angle -= ROTATION_SPEED;
 	else if (player->rotate_right)
 		player->angle += ROTATION_SPEED;
-	// player->angle = fmod(player->angle, 2 * M_PI);
-	// if (player->angle < 0)
-	// 	player->angle += 2 * M_PI;
-	// if (player->angle > 2 * M_PI)
-	// 	player->angle = 0;
+	player->angle = fmod(player->angle, 2 * M_PI);
+	if (player->angle < 0)
+		player->angle += 2 * M_PI;
+	if (player->angle > 2 * M_PI)
+		player->angle = 0;
 }
 
 void	update_position(t_game *game, float *new_x, float *new_y)
 {
 	if (game->player.move_up)
 	{
-		*new_x += MOVE_SPEED * cos(game->player.angle);
-		*new_y += MOVE_SPEED * sin(game->player.angle);
+		*new_x += MOVE_SPEED * cosf(game->player.angle);
+		*new_y += MOVE_SPEED * sinf(game->player.angle);
 	}
 	else if (game->player.move_down)
 	{
-		*new_x -= MOVE_SPEED * cos(game->player.angle);
-		*new_y -= MOVE_SPEED * sin(game->player.angle);
+		*new_x -= MOVE_SPEED * cosf(game->player.angle);
+		*new_y -= MOVE_SPEED * sinf(game->player.angle);
 	}
 	else if (game->player.move_left)
 	{
-		*new_x -= MOVE_SPEED * cos(game->player.angle + M_PI * 0.5);
-		*new_y -= MOVE_SPEED * sin(game->player.angle + M_PI * 0.5);
+		*new_x -= MOVE_SPEED * cosf(game->player.angle + M_PI * 0.5);
+		*new_y -= MOVE_SPEED * sinf(game->player.angle + M_PI * 0.5);
 	}
 	else if (game->player.move_right)
 	{
-		*new_x += MOVE_SPEED * cos(game->player.angle + M_PI * 0.5);
-		*new_y += MOVE_SPEED * sin(game->player.angle + M_PI * 0.5);
+		*new_x += MOVE_SPEED * cosf(game->player.angle + M_PI * 0.5);
+		*new_y += MOVE_SPEED * sinf(game->player.angle + M_PI * 0.5);
 	}
 }
 

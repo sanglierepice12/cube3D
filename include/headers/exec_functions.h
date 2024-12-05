@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/02 10:08:36 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:48:46 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	clear_screen(t_img_data *img, int ceiling_color, int floor_color);
 void	def_wall_color(t_raycaster *raycaster, t_proj *projection);
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 
+
+void	def_wall_texture(t_raycaster *raycaster, t_proj *projection, t_map *map);
+
 /*==================exec_utils.c====================*/
 
 bool	key_active(t_game *game);
@@ -62,7 +65,7 @@ void	draw_mini_map(t_game *game);
 
 void	cast_ray(t_game *game, t_raycaster *raycaster, t_player *player,
 			t_proj *projection);
-void	draw_3d_column(t_game *game);
+void draw_3d_column(t_game *game, t_proj *projection);
 void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
 			t_proj *projection);
 
