@@ -69,12 +69,6 @@ all: $(MINILIBX_DIR) $(NAME)
 
 # MiniLibX - download and compile if needed
 $(MINILIBX_DIR):
-	@if [ ! -d "$(MINILIBX_DIR)" ]; then \
-		echo "$(GREEN)Downloading MiniLibX...$(NC)"; \
-		curl -o minilibx-linux.tgz $(MINILIBX_URL); \
-		tar -xzf minilibx-linux.tgz; \
-		rm -f minilibx-linux.tgz; \
-	fi
 	@$(MAKE) -C $(MINILIBX_DIR)
 
 -include $(DEPS)

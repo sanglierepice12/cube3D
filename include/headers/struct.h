@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/05 15:49:57 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 11:07:37 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_img_data	t_img_data;
 typedef struct s_mlx_data	t_mlx_data;
 typedef struct s_map		t_map;
 typedef struct s_player		t_player;
-typedef struct s_raycaster	t_raycaster;
+typedef struct s_ray		t_ray;
 typedef struct s_proj		t_proj;
 typedef struct s_game		t_game;
 typedef struct s_list		t_list;
@@ -49,24 +49,25 @@ struct						s_player
 	double					player_pos_y;
 	double					player_px_pos_x;
 	double					player_px_pos_y;
+	char					*direction;
+	
 	bool					move_up;
 	bool					move_down;
 	bool					move_left;
 	bool					move_right;
 	bool					rotate_left;
 	bool					rotate_right;
+	
 	float					angle;
 	float					distance;
-	char					*direction;
 };
 
-struct						s_raycaster
+struct						s_ray
 {
 	float					ray_angle;
 	double					ray_x;
 	double					ray_y;
 	float					ray_index;
-	float					wall_orientation;
 	int						hit_side;
 };
 
@@ -77,6 +78,7 @@ struct						s_proj
 	float					wall_height;
 	float					wall_start;
 	float					wall_end;
+	float					wall_orientation;
 	int						wall_color;
 	float					correct_distance;
 	t_img_data				texture;
@@ -90,9 +92,9 @@ struct						s_map
 	char					**map;
 	int						map_height;
 	int						map_width;
-	t_texture				*texture;
 	t_rgb					*ceiling;
 	t_rgb					*floor;
+	t_texture				*texture;
 };
 
 struct						s_texture
@@ -129,8 +131,8 @@ struct						s_game
 	t_player				player;
 	t_img_data				map_img;
 	t_img_data				game_img;
-	t_raycaster				raycaster;
-	t_proj					projection;
+	t_ray					ray;
+	t_proj					proj;
 	bool					end;
 };
 

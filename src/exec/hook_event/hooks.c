@@ -6,11 +6,14 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/02 15:10:52 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 10:29:51 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
+
+
+
 
 void	handle_rotation(t_player *player)
 {

@@ -6,18 +6,11 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:14:18 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/02 10:12:49 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 10:30:15 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
-
-int	close_win(int keycode, t_game *game)
-{
-	(void)keycode;
-	mlx_loop_end(game->mlx_data.mlx_ptr);
-	return (0);
-}
 
 int	key_up(int keycode, t_game *game)
 {

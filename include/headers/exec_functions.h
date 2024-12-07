@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/05 15:30:50 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 10:58:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@ int		key_down(int keycode, t_game *game);
 
 /*==================draws_utils.c====================*/
 
-void	clear_screen(t_img_data *img, int ceiling_color, int floor_color);
-void	def_wall_color(t_raycaster *raycaster, t_proj *projection);
+unsigned int    get_pixel_color(t_img_data *texture, int x, int y);
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
-void	def_wall_texture(t_raycaster *raycaster, t_proj *projection, t_map *map);
-
-
+void	clear_screen(t_img_data *img, int ceiling_color, int floor_color);
+void	def_wall_color(t_proj *projection);
+void	def_wall_texture(t_proj *projection, t_map *map);
+void	def_wall_orientation(t_proj *projection, t_ray *ray, float ray_dir_x, float ray_dir_y);
 
 /*==================exec_utils.c====================*/
 
 bool	key_active(t_game *game);
-void	def_hit_side(t_raycaster *raycaster, float ray_dir_x, float ray_dir_y);
-bool	wall_hit(t_map *map, t_raycaster *raycaster);
+bool	wall_hit(t_map *map, t_ray *ray);
 
 /*=====================init.c=====================*/
 
@@ -58,15 +57,15 @@ void	draw_player(t_img_data *img, int start_x, int start_y, int color);
 int		draw_tile(t_img_data *img, int start_x, int start_y, int color);
 void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x,
 			int tile_y, int floor_color, int player_color);
-void	draw_map_rays(t_game *game, t_player *player, t_raycaster *raycaster);
+void	draw_map_rays(t_game *game, t_player *player, t_ray *ray);
 void	draw_mini_map(t_game *game);
 
 /*==================render_3d_map.c====================*/
 
-void	cast_ray(t_game *game, t_raycaster *raycaster, t_player *player,
+void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 			t_proj *projection);
-void draw_3d_column(t_game *game, t_proj *projection);
-void	render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster,
+void	render_3d_column(t_game *game, t_proj *projection);
+void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 			t_proj *projection);
 
 /*====================main.c======================*/

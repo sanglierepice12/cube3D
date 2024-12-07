@@ -6,17 +6,17 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:10:56 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/05 10:14:16 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 10:56:59 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-bool	wall_hit(t_map *map, t_raycaster *raycaster)
+bool	wall_hit(t_map *map, t_ray *ray)
 {
-	return (map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x
+	return (map->map[(int)(ray->ray_y / TILE_SIZE)][(int)(ray->ray_x
 			/ TILE_SIZE)] == '1' ||
-			map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x
+			map->map[(int)(ray->ray_y / TILE_SIZE)][(int)(ray->ray_x
 					/ TILE_SIZE)] == ' ');
 	// raycaster->ray_y / TILE_SIZE transfrom logic for cartesian
 }
@@ -28,20 +28,3 @@ bool	key_active(t_game *game)
 	game->player.rotate_left || game->player.rotate_right);
 }
 
-void	def_hit_side(t_raycaster *raycaster, float ray_dir_x, float ray_dir_y)
-{
-	if (raycaster->hit_side == 1)
-	{
-		if (ray_dir_x >= 0)
-			raycaster->wall_orientation = EAST;
-		else
-			raycaster->wall_orientation = WEST;
-	}
-	else
-	{
-		if (ray_dir_y >= 0)
-			raycaster->wall_orientation = SOUTH;
-		else
-			raycaster->wall_orientation = NORTH;
-	}
-}
