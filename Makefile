@@ -24,7 +24,8 @@ DEP_DIR = ./dep
 SRC =	main.c													\
 		parsing/init_struct.c									\
 		parsing/init_the_map/get_map.c							\
-		parsing/init_the_map/check_parse/check_parse.c			\
+		parsing/init_the_map/get_text_rgb.c						\
+		parsing/init_the_map/check_parse/is_lineok.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
@@ -42,6 +43,7 @@ SRC =	main.c													\
 		utils/linked_list.c										\
 		utils/split.c											\
 		utils/atoi.c											\
+		parsing/check_map_validity/eyes_to_map.c				\
 		utils/exit_free/exit.c									\
 		utils/exit_free/free_parse.c							\
 		utils/exit_free/free_exec.c								\
@@ -83,6 +85,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
 	@mkdir -p $(OBJ_DIR)/parsing $(DEP_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map $(DEP_DIR)/parsing/init_the_map
+	@mkdir -p $(OBJ_DIR)/parsing/check_map_validity $(DEP_DIR)/parsing/check_map_validity
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/check_parse $(DEP_DIR)/parsing/init_the_map/check_parse
 	@mkdir -p $(OBJ_DIR)/parsing/init_the_map/fill_struct_map $(DEP_DIR)/parsing/init_the_map/fill_struct_map
 	@mkdir -p $(OBJ_DIR)/parsing/get_next_line $(DEP_DIR)/parsing/get_next_line

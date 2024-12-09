@@ -87,12 +87,10 @@ void def_hit_side(t_ray *ray, int grid_x, int grid_y)
 			if ((int)(ray->ray_x / TILE_SIZE) != grid_x	)
 			{
 				ray->hit_side = 1; //vertical	
-				printf("hit side = %d\n", ray->hit_side);
 			}
 			else if ((int)(ray->ray_y / TILE_SIZE) != grid_y)
 			{
 				ray->hit_side = 0; // horizontal
-				printf("hit side = %d\n", ray->hit_side);
 			}
 
 		}
@@ -123,7 +121,7 @@ void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 		t_proj *proj)
 {
 	ray->ray_index = 0;
-	clear_screen(&game->game_img, BLACK, LIGHT_BLUE);
+	clear_screen(&game->game_img, GREEN, LIGHT_BLUE);
 	while (ray->ray_index < GAME_WIDTH)
 	{
 		ray->ray_x = player->player_px_pos_x;

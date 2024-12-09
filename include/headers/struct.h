@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/07 12:04:02 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:48:17 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct						s_player
 	double					player_px_pos_x;
 	double					player_px_pos_y;
 	
-	char					*direction;
+	char					direction;
 	
 	bool					move_up;
 	bool					move_down;
@@ -91,8 +91,8 @@ struct						s_map
 {
 	int						count;
 	char					**map;
-	int						map_height;
-	int						map_width;
+	int						height;
+	int						width;
 	t_rgb					*ceiling;
 	t_rgb					*floor;
 	t_texture				*texture;
