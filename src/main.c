@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 22:17:21 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:29:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	all_draws(t_game *game)
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }
 
-int rgb_to_hex(int r, int g, int b) {
+int rgb_to_hex(int r, int g, int b)
+{
     return (r << 16) | (g << 8) | b;
 }
 int main(int arc, char **argv)
