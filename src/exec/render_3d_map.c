@@ -11,82 +11,126 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-#define DARK_GREEN 0x006400
-#define DARK_RED 0x8B0000
-#define DARK_BLUE 0x00008B
-#define DARK_YELLOW 0xFFD700
+#include <math.h>
 
-void clear_screen(t_img_data *img, int ceiling_color, int floor_color)
+void render_3d_column(t_game *game, t_proj *projection)
 {
-    int *pixel_data = (int *)img->addr;
-    int half_height = SCREEN_CENTER_Y;
-
-    ft_memset(pixel_data, ceiling_color, half_height * GAME_WIDTH * sizeof(int));
-    ft_memset(&pixel_data[half_height * GAME_WIDTH], floor_color, half_height * GAME_WIDTH * sizeof(int));
-}
-
-void draw_3d_column(t_game *game)
-{
-    int y_start = game->projection.wall_start;
-    int y_end = game->projection.wall_end;
     int y;
+    int texture_x;
+	int texture_y;
+    float texture_y_pos;
+    float step_size;
+    unsigned int pixel_color;
 
-    if (game->raycaster.ray_index >= 0 && game->raycaster.ray_index < GAME_WIDTH)
+    def_wall_texture(projection, game->map);
+    if (game->ray.hit_side == 0)// horizontal
+        texture_x = (int)game->ray.ray_x % (int)TILE_SIZE;
+    else // vertical
+        texture_x = (int)game->ray.ray_y % (int)TILE_SIZE;
+    texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
+    step_size = (float)projection->texture.height / game->proj.wall_height;
+    texture_y_pos = 0.0f;
+    if (game->proj.wall_start < 0)
     {
-        y = y_start;
-        while (y <= y_end)
-        {
-            if (y >= 0 && y < GAME_HEIGHT)
-            {
-                my_mlx_pixel_put(&game->game_img, game->raycaster.ray_index, y, LIGHT_BLUE);
-            }
-            y++;
-        }
+        texture_y_pos = -game->proj.wall_start * step_size;
+        game->proj.wall_start = 0;
+    }
+    y = game->proj.wall_start;
+    while (y <= game->proj.wall_end && y < GAME_HEIGHT)
+    {
+        texture_y = (int)texture_y_pos % projection->texture.height;
+        texture_y_pos += step_size;
+        pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
+        my_mlx_pixel_put(&game->game_img, game->ray.ray_index, y, pixel_color);
+        y++;
     }
 }
-//to design directional wall : use var to say if it's horizontal or vertical line of the minimap that is encoutnered.
 
-void cast_ray(t_game *game,  t_raycaster *raycaster, t_player *player, t_proj *projection)
+// void	draw_3d_column(t_game *game)
+// {
+// 	float	y_start;
+// 	float	y_end;
+// 	int		y;
+
+// 	y_start = game->projection.wall_start;
+// 	y_end = game->projection.wall_end;
+// 	def_wall_color(&game->ray, &game->projection);
+// 	if (game->ray.ray_index >= 0
+// 		&& game->ray.ray_index < GAME_WIDTH)
+// 	{
+// 		y = y_start;
+// 		while (y <= y_end)
+// 		{
+// 			if (y >= 0 && y < GAME_HEIGHT)
+// 			y++;
+// 		}
+// 	}
+// }
+void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 {
-    float ray_cos;
-    float ray_sin;
-	
-	ray_cos = cos(raycaster->ray_angle);
-	ray_sin = sin(raycaster->ray_angle);
-    raycaster->ray_x = player->player_px_pos_x;
-    raycaster->ray_y = player->player_px_pos_y;
-    while (check_bounds(game->map, raycaster))
-    {
-        raycaster->ray_x += ray_cos; 
-        raycaster->ray_y += ray_sin;
-			
-    }
-    projection->distance_to_wall = DISTANCE(raycaster->ray_x, raycaster->ray_y, player->player_px_pos_x, player->player_px_pos_y) ;//* cos(projection->last_distance_to_wall);
-	//printf("ray : %d\n is : %f distant to wall", raycaster->ray_index, projection->distance_to_wall);
-	// store the last ray distace to wall
-	// if ray_anfle = 90 degrees
-    // projection->last_distance_to_wall = projection->last_distance_to_wall;
-    projection->wall_height = (int)(TILE_SIZE * DISTANCE_TO_PLANE / projection->distance_to_wall);
-    projection->wall_start = SCREEN_CENTER_Y - (projection->wall_height * 0.5);
-    projection->wall_end = SCREEN_CENTER_Y + (projection->wall_height * 0.5);
+	float	angle_diff;
+
+	proj->distance_to_wall = DISTANCE(ray->ray_x, ray->ray_y,
+			player->player_px_pos_x, player->player_px_pos_y);
+	angle_diff = ray->ray_angle - player->angle;
+	proj->correct_distance = proj->distance_to_wall * cosf(angle_diff);
+	proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
+	proj->wall_start = SCREEN_CENTER_Y - (proj->wall_height * 0.5);
+	proj->wall_end = SCREEN_CENTER_Y + (proj->wall_height * 0.5);
+} 
+
+void def_hit_side(t_ray *ray, int grid_x, int grid_y)
+{
+
+		if ((int)(ray->ray_x / TILE_SIZE) != grid_x || (int)(ray->ray_y / TILE_SIZE) != grid_y)
+		{
+			if ((int)(ray->ray_x / TILE_SIZE) != grid_x	)
+			{
+				ray->hit_side = 1; //vertical	
+				printf("hit side = %d\n", ray->hit_side);
+			}
+			else if ((int)(ray->ray_y / TILE_SIZE) != grid_y)
+			{
+				ray->hit_side = 0; // horizontal
+				printf("hit side = %d\n", ray->hit_side);
+			}
+
+		}
 }
 
-int check_bounds(t_map *map, t_raycaster *raycaster)
+void	cast_ray(t_game *game, t_ray *ray, t_player *player,
+		t_proj *proj)
 {
-    return (map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != '1' &&
-	map->map[(int)(raycaster->ray_y / TILE_SIZE)][(int)(raycaster->ray_x / TILE_SIZE)] != ' ' );
-	// raycaster->ray_y / TILE_SIZE transfrom logic for cartesian
-}
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float		grid_x;
+	float		grid_y;
 
-void render_3d_map(t_game *game, t_player *player, t_raycaster *raycaster, t_proj *projection)
+	ray_dir_x = cos(ray->ray_angle);
+	ray_dir_y = sin(ray->ray_angle);
+	while (!wall_hit(game->map, ray))
+	{
+		grid_x = ray->ray_x / TILE_SIZE; //hit side at the end
+		grid_y = ray->ray_y / TILE_SIZE; //hit side at the end
+		ray->ray_x += ray_dir_x * 0.08;
+		ray->ray_y += ray_dir_y * 0.08;
+	}
+	def_hit_side(ray, grid_x, grid_y);
+	update_proj_data(proj, player, ray);
+	def_wall_orientation(proj, ray, ray_dir_x, ray_dir_y);
+}
+void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
+		t_proj *proj)
 {
-    raycaster->ray_index = 0;
-    clear_screen(&game->game_img, BLACK, LIGHT_BLUE);
-    while (raycaster->ray_index < GAME_WIDTH)
-    {
-        raycaster->ray_angle = player->angle - FOV_HALF + (raycaster->ray_index * RAY_ANGLE_DELTA);
-        cast_ray(game, raycaster, player, projection);
-        draw_3d_column(game);
-        raycaster->ray_index++;
-    }
+	ray->ray_index = 0;
+	clear_screen(&game->game_img, BLACK, LIGHT_BLUE);
+	while (ray->ray_index < GAME_WIDTH)
+	{
+		ray->ray_x = player->player_px_pos_x;
+		ray->ray_y = player->player_px_pos_y;
+		ray->ray_angle = (player->angle - FOV_HALF) + (ray->ray_index * RAY_ANGLE_DELTA);
+		cast_ray(game, ray, player, proj);
+		render_3d_column(game, proj);
+		ray->ray_index++;
+	}
 }

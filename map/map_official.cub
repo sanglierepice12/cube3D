@@ -1,13 +1,13 @@
-NO                  ./texture/texture1
-SO ./texture/texture3
-WE ./texture/texture2
+NO                  ./textures/brick.xpm
+SO ./textures/knight.xpm
+WE ./textures/SKY1.xpm
 F                               220,100,0
 
 
 
 
 C 225,30,0
-EA ./texture/texture4
+EA ./textures/banner.xpm
 
 
 

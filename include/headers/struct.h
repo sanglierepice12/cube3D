@@ -15,12 +15,11 @@
 
 /*################ STRUCTURES #####################*/
 
-
 typedef struct	s_img_data		t_img_data;
 typedef struct	s_mlx_data		t_mlx_data;
 typedef	struct	s_map			t_map;
 typedef struct	s_player		t_player;
-typedef struct	s_raycaster		t_raycaster;
+typedef struct	s_ray			t_ray;
 typedef struct	s_proj			t_proj;
 typedef struct	s_game			t_game;
 typedef struct	s_list			t_list;
@@ -31,6 +30,8 @@ struct	s_img_data
 {
 	void	*img_ptr;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -39,44 +40,46 @@ struct	s_img_data
 struct	s_mlx_data
 {
 	void	*mlx_ptr;
-	void	*map_win_ptr;
 	void	*game_win_ptr;
 };
 
 struct s_player
 {
-	int		player_pos_x;
-	int		player_pos_y;
-	float	player_px_pos_x;
-	float	player_px_pos_y;
-	bool	move_up;
-	bool	move_down;
-	bool	move_left;
-	bool	move_right;
-	bool	rotate_left;
-	bool	rotate_right;
-	double	angle;
-	double	distance;
-	char	direction;
+	double					player_pos_x;
+	double					player_pos_y;
+	double					player_px_pos_x;
+	double					player_px_pos_y;
+	char					direction;
+	bool					move_up;
+	bool					move_down;
+	bool					move_left;
+	bool					move_right;
+	bool					rotate_left;
+	bool					rotate_right;
+	double					angle;
+	double					distance;
 };
 
-struct s_raycaster
+struct s_ray
 {
-	float	ray_angle;
-	float	ray_x;
-	float	ray_y;
-	int		ray_index;
-	int		wall_face;
+	float					ray_angle;
+	float					ray_x;
+	float					ray_y;
+	int						ray_index;
+	int						hit_side;
 };
 
 struct s_proj
 {
-	float	distance_to_wall;
-	float	last_distance_to_wall;
-	int		wall_height;
-	float	wall_start;
-	float	wall_end;
-	float	corrected_distance;
+	double					distance_to_wall;
+	double					last_distance_to_wall;
+	double					wall_height;
+	double					wall_start;
+	double					wall_end;
+	double					wall_orientation;
+	int						wall_color;
+	double					correct_distance;
+	t_img_data				texture;
 };
 
 /*####PARSE####*/
@@ -101,6 +104,10 @@ struct	s_texture
 	char	*so;
 	char	*we;
 	char	*ea;
+	t_img_data				texture1;
+	t_img_data				texture2;
+	t_img_data				texture3;
+	t_img_data				texture4;
 };
 
 struct	s_rgb
@@ -125,8 +132,8 @@ struct s_game
 	t_player		player;
 	t_img_data		map_img;
 	t_img_data		game_img;
-	t_raycaster		raycaster;
-	t_proj			projection;
+	t_ray			ray;
+	t_proj			proj;
 	bool			end;
 };
 

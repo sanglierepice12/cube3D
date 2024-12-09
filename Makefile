@@ -30,19 +30,20 @@ SRC =	main.c													\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
+		parsing/check_map_validity/eyes_to_map.c				\
 		exec/draw_utils.c										\
-		exec/hook_event/hooks.c									\
-		exec/hook_event/hooks_managment.c						\
+		exec/exec_utils.c										\
+		exec/init.c												\
 		exec/mini_map.c											\
 		exec/render_3d_map.c									\
-		exec/init.c												\
+		exec/hook_event/hooks.c									\
+		exec/hook_event/hooks_managment.c						\
 		utils/utils.c											\
 		utils/calloc.c											\
 		utils/compare.c											\
 		utils/linked_list.c										\
 		utils/split.c											\
 		utils/atoi.c											\
-		parsing/check_map_validity/eyes_to_map.c				\
 		utils/exit_free/exit.c									\
 		utils/exit_free/free_parse.c							\
 		utils/exit_free/free_exec.c								\
