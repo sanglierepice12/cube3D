@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/07 10:55:35 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 12:02:18 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	def_wall_orientation(t_proj *proj, t_ray *raycaster, float ray_dir_x, float
 {
 	if (raycaster->hit_side == 1)
 	{
-		if (ray_dir_x >= 0)
+		if (ray_dir_x > 0)
 			proj->wall_orientation = EAST;
 		else
 			proj->wall_orientation = WEST;
 	}
 	else
 	{
-		if (ray_dir_y >= 0)
+		if (ray_dir_y > 0)
 			proj->wall_orientation = SOUTH;
 		else
 			proj->wall_orientation = NORTH;

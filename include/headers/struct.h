@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/07 11:07:37 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 12:04:02 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct						s_player
 	double					player_pos_y;
 	double					player_px_pos_x;
 	double					player_px_pos_y;
+	
 	char					*direction;
 	
 	bool					move_up;
@@ -58,29 +59,29 @@ struct						s_player
 	bool					rotate_left;
 	bool					rotate_right;
 	
-	float					angle;
-	float					distance;
+	double					angle;
+	double					distance;
 };
 
 struct						s_ray
 {
-	float					ray_angle;
+	double					ray_angle;
 	double					ray_x;
 	double					ray_y;
-	float					ray_index;
+	double					ray_index;
 	int						hit_side;
 };
 
 struct						s_proj
 {
-	float					distance_to_wall;
-	float					last_distance_to_wall;
-	float					wall_height;
-	float					wall_start;
-	float					wall_end;
-	float					wall_orientation;
+	double					distance_to_wall;
+	double					last_distance_to_wall;
+	double					wall_height;
+	double					wall_start;
+	double					wall_end;
+	double					wall_orientation;
 	int						wall_color;
-	float					correct_distance;
+	double					correct_distance;
 	t_img_data				texture;
 };
 

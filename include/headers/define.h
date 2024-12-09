@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/07 11:04:55 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/07 11:24:10 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@
 
 // FULL GAME
 
-# define GAME_WIDTH     520.0f
-# define GAME_HEIGHT    380.0f
+# define GAME_WIDTH     1024.0f
+# define GAME_HEIGHT    720.0f
 
 // MAP ITEMS
 

@@ -1,0 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/07 11:19:30 by jedusser          #+#    #+#              #
+#    Updated: 2024/12/07 11:42:20 by jedusser         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+
+To include in parsing : find player pos;
+
+Store textures in an array; sera utile pour free aussi
+
+Refacto render_3d_cols
+
+Find Color stripe problem;
+

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+#include <math.h>
 
 void render_3d_column(t_game *game, t_proj *projection)
 {
@@ -61,7 +62,6 @@ void render_3d_column(t_game *game, t_proj *projection)
 // 		while (y <= y_end)
 // 		{
 // 			if (y >= 0 && y < GAME_HEIGHT)
-// 				my_mlx_pixel_put(&game->game_img, game->ray.ray_index, y, game->projection.wall_color);
 // 			y++;
 // 		}
 // 	}
@@ -82,15 +82,19 @@ void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 void def_hit_side(t_ray *ray, int grid_x, int grid_y)
 {
 
-		if ((int)(ray->ray_x / TILE_SIZE) != grid_x)
+		if ((int)(ray->ray_x / TILE_SIZE) != grid_x || (int)(ray->ray_y / TILE_SIZE) != grid_y)
 		{
-			ray->hit_side = 1; //vertical
-			printf("hit side = %d\n", ray->hit_side);
-		}
-		if ((int)(ray->ray_y / TILE_SIZE) != grid_y)
-		{
-			ray->hit_side = 0; // horizontal
-			printf("hit side = %d\n", ray->hit_side);
+			if ((int)(ray->ray_x / TILE_SIZE) != grid_x	)
+			{
+				ray->hit_side = 1; //vertical	
+				printf("hit side = %d\n", ray->hit_side);
+			}
+			else if ((int)(ray->ray_y / TILE_SIZE) != grid_y)
+			{
+				ray->hit_side = 0; // horizontal
+				printf("hit side = %d\n", ray->hit_side);
+			}
+
 		}
 }
 
@@ -99,20 +103,20 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 {
 	float	ray_dir_x;
 	float	ray_dir_y;
-	int		grid_x;
-	int		grid_y;
+	float		grid_x;
+	float		grid_y;
 
 	ray_dir_x = cos(ray->ray_angle);
 	ray_dir_y = sin(ray->ray_angle);
 	while (!wall_hit(game->map, ray))
 	{
-		grid_x = (int)(ray->ray_x / TILE_SIZE); //hit side at the end
-		grid_y = (int)(ray->ray_y / TILE_SIZE); //hit side at the end
+		grid_x = ray->ray_x / TILE_SIZE; //hit side at the end
+		grid_y = ray->ray_y / TILE_SIZE; //hit side at the end
 		ray->ray_x += ray_dir_x * 0.08;
 		ray->ray_y += ray_dir_y * 0.08;
 	}
-	update_proj_data(proj, player, ray);
 	def_hit_side(ray, grid_x, grid_y);
+	update_proj_data(proj, player, ray);
 	def_wall_orientation(proj, ray, ray_dir_x, ray_dir_y);
 }
 void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
