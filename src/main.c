@@ -32,12 +32,12 @@ int main(int arc, char **argv)
 	init_struct(&game);
 	init_parse(game, argv[1]);
 
-	printf("pos x = %d\n", game->player.player_pos_x);
+	/*printf("pos x = %d\n", game->player.player_pos_x);
 	printf("pos y = %d\n", game->player.player_pos_y);
 	printf("direction = %c\n", game->player.direction);
 	int i = 0;
 	while (game->map->map[i])
-		printf("%s\n", game->map->map[i++]);
+		printf("%s\n", game->map->map[i++]);*/
 	/*printf("%s\n", game->map->texture->no);
 	printf("%s\n", game->map->texture->so);
 	printf("%s\n", game->map->texture->ea);
@@ -56,6 +56,5 @@ int main(int arc, char **argv)
 	draw_and_display_map(game);
 	mlx_loop(game->mlx_data.mlx_ptr);*/
 	exit_prog(game);
-	printf("\nend\n");
 	return (0);
 }

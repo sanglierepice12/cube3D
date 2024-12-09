@@ -37,7 +37,10 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 	}
 }
 
-void	eye_tomap(char **map, t_game *game)
+void	eye_tomap(char **map, size_t x, size_t y, t_game *game)
 {
-
+	(void)map;
+	(void)x;
+	(void)y;
+	(void)game;
 }

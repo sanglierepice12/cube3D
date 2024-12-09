@@ -26,6 +26,7 @@ bool	check_rgb(char *line);
 bool	is_line_full_spaces(char *line);
 bool	is_line_ok(char	*temp);
 bool	is_line_m_ok(char *line);
+void	wall_is_good(t_game *game, char *line, bool flag);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);
@@ -38,6 +39,6 @@ void	fill_list_to_map(t_game *game, t_list **list);
 void	fill_playerpos(char *line, t_game *game, size_t len);
 
 /****MAP_VALIDITY****/
-void	eye_tomap(char **map, t_game *game);
+void	eye_tomap(char **map, size_t x, size_t y, t_game *game);
 
 #endif

@@ -34,7 +34,7 @@ bool	is_line_m_ok(char *line)
 	while (line[i])
 	{
 		if (line[i + 1] && (line[i] == 32 || (line[i] > 8 && line[i] < 14)))
-			line[i] = '0';
+			line[i] = '1';
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'\
 			&& line[i] != 'W' && line[i] != 'E' && line[i] != '\n')
 		{

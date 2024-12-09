@@ -77,5 +77,5 @@ void	init_parse(t_game *game, char *file)
 		printf("Error, no player position\n");
 		exit_prog(game);
 	}
-	//eye_tomap(game->map->map, game);
+	eye_tomap(game->map->map, game->player.player_pos_x, game->player.player_pos_y, game);
 }

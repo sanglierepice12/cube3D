@@ -12,6 +12,29 @@
 
 #include "../../../../include/cub3D.h"
 
+void	wall_is_good(t_game *game, char *line, bool flag)
+{
+	size_t	i;
+
+	i = parse_ws(line);
+	if (flag & (line[i] == '1' || line[ft_strlen(line) - 1] == '1'))
+		return ;
+	if (!flag)
+	{
+		while (line[i])
+		{
+			if (!line[i + 1])
+				return ;
+			if (line[i++] != '1')
+				break ;
+		}
+	}
+	printf("Error, map invalid, line : \"%s\"\n", line);
+	free_list(game->list);
+	free(line);
+	exit_prog(game);
+}
+
 bool	rgb_is_good(char *line)
 {
 	char	**temp;

@@ -15,7 +15,6 @@
 void	fill_rgb(char *line, t_game *game, e_rgb type)
 {
 	char	**temp;
-/*	size_t	o;*/
 
 	temp = ft_split(line, ',');
 	if (!temp)
@@ -93,13 +92,10 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	while (temp)
 	{
 		line = rm_bs_wp(temp->value);
-		if (line[parse_ws(line)] != '1' || line[ft_strlen(line) - 1] != '1')
-		{
-			printf("Error, map invalid\n");
-			free_list(*list);
-			free(line);
-			exit_prog(game);
-		}
+		if (!temp->next || i == 0)
+			wall_is_good(game, line, 0);
+		else
+			wall_is_good(game, line, 1);
 		game->map->map[i++] = ft_dup(line);
 		fill_playerpos(line, game, i);
 		if (game->map->width < (int) ft_strlen(line))
