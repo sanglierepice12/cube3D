@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 21:45:32 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:08:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void clear_screen(t_img_data *img, int ceiling_color, int floor_color)
     i = 0;
     while (i < total_pixels)
     {
-        if (i < GAME_WIDTH * SCREEN_CENTER_Y) // Ceiling
+        if (i < GAME_WIDTH * SCREEN_CENTER_Y)
             pixel_data[i] = ceiling_color;
-        else // Floor
+        else
             pixel_data[i] = floor_color;
         i++;
     }

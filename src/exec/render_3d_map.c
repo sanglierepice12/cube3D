@@ -121,7 +121,7 @@ void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 		t_proj *proj)
 {
 	ray->ray_index = 0;
-	clear_screen(&game->game_img, GREEN, LIGHT_BLUE);
+	clear_screen(&game->game_img, game->map->ceiling_color, game->map->floor_color);
 	while (ray->ray_index < GAME_WIDTH)
 	{
 		ray->ray_x = player->player_px_pos_x;

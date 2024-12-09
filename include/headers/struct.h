@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/09 21:48:17 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:16:41 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ struct						s_map
 	char					**map;
 	int						height;
 	int						width;
+	int						ceiling_color;
+	int						floor_color;
 	t_rgb					*ceiling;
 	t_rgb					*floor;
 	t_texture				*texture;

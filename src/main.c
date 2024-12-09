@@ -6,11 +6,12 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 21:50:28 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:17:21 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include <stdio.h>
 
 
 /*
@@ -56,7 +57,6 @@ int	draw_and_display_map(t_game *game)
 	}
 	return (0);
 }
-
 void	all_draws(t_game *game)
 {
 	draw_mini_map(game);
@@ -66,6 +66,9 @@ void	all_draws(t_game *game)
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }
 
+int rgb_to_hex(int r, int g, int b) {
+    return (r << 16) | (g << 8) | b;
+}
 int main(int arc, char **argv)
 {
 	t_game		*game;
@@ -89,7 +92,10 @@ int main(int arc, char **argv)
 	printf("floor b = %d \n", game->map->floor->b);
 	printf("ceiling r = %d \n", game->map->ceiling->r);
 	// printf("ceiling b = %d \n", game->map->ceiling->b);*/
-
+	game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, game->map->ceiling->g, game->map->ceiling->b);
+	printf("%d\n", game->map->ceiling_color);
+	game->map->floor_color = rgb_to_hex(game->map->floor->r, game->map->floor->g, game->map->floor->b);
+	printf("%d\n", game->map->floor_color);
 	printf("ceiling g = %d \n", game->map->ceiling->g);
 	init_game(game);
 	hook_management(game);
