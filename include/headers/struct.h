@@ -87,6 +87,8 @@ struct	s_map
 	char				**map;
 	int					height;
 	int					width;
+	int					ceil;
+	int					flo;
 	t_player			*player;
 	t_texture			*texture;
 	t_rgb				*ceiling;

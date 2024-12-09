@@ -32,24 +32,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_24_5_17_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_24_5_17_PM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_24_5_17_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/c_cpp_properties.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/headers/parsing_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/parsing_functions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map/map_official.cub" beforeDir="false" afterPath="$PROJECT_DIR$/map/map_official.cub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/headers/struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/struct.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/get_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/get_map.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +57,7 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/include/headers/struct.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/include/headers/struct.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" root0="FORCE_HIGHLIGHTING" />
@@ -145,7 +133,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "settings.sync",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -249,7 +239,7 @@
       <workItem from="1733740603050" duration="348000" />
       <workItem from="1733741009409" duration="335000" />
       <workItem from="1733741354559" duration="73000" />
-      <workItem from="1733741431052" duration="6508000" />
+      <workItem from="1733741431052" duration="9968000" />
     </task>
     <servers />
   </component>

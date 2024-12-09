@@ -97,8 +97,10 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 void	init_game(t_game *game)
 {
 	find_play_pos(game->map, &game->player);
-	if (init_env(&game->mlx_data, game->map) == -1)
+	if (init_env(&game->mlx_data, game->map) == -1) {
+		printf("coucou");
 		exit_prog(game);
+	}
 	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img, &game->game_img) == -1)
-		exit_prog(game);
+		printf("hello"), exit_prog(game);
 }

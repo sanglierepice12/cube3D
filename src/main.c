@@ -31,24 +31,22 @@ int main(int arc, char **argv)
 		return (printf("Please insert a map..."));
 	init_struct(&game);
 	init_parse(game, argv[1]);
-
 	/*printf("pos x = %d\n", game->player.player_pos_x);
 	printf("pos y = %d\n", game->player.player_pos_y);
 	printf("direction = %c\n", game->player.direction);
 	int i = 0;
 	while (game->map->map[i])
-		printf("%s\n", game->map->map[i++]);*/
-	/*printf("%s\n", game->map->texture->no);
+		printf("%s\n", game->map->map[i++]);
+	printf("%s\n", game->map->texture->no);
 	printf("%s\n", game->map->texture->so);
 	printf("%s\n", game->map->texture->ea);
-	printf("%s\n", game->map->texture->we);*/
-	/*printf("floor r = %d \n", game->map->floor->r);
+	printf("%s\n", game->map->texture->we);
+	printf("floor r = %d \n", game->map->floor->r);
 	printf("floor g = %d \n", game->map->floor->g);
 	printf("floor b = %d \n", game->map->floor->b);
 	printf("ceiling r = %d \n", game->map->ceiling->r);
 	printf("ceiling g = %d \n", game->map->ceiling->g);
 	printf("ceiling b = %d \n", game->map->ceiling->b);*/
-
 
 	/*init_game(game);
 	hook_management(game);
