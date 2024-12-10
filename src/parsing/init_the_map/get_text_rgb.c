@@ -36,7 +36,7 @@ void	get_rgb(char *line, t_game *game)
 	y = i + parse_ws(line + i + 1) + 1;
 	temp = rm_bs_wp(line + y);
 	if (!temp)
-		return (free(line),	exit_prog(game));
+		return (free(line), exit_prog(game));
 	if (line[i] == 'F' && check_rgb(temp))
 		return (fill_rgb(temp, game, FLO), game->map->count++, (void)0);
 	if (line[i] == 'C' && check_rgb(temp))
@@ -56,7 +56,7 @@ void	get_textures(char *line, t_texture *texture, t_game *game)
 	y = i + parse_ws(line + i + 2) + 2;
 	temp = rm_bs_wp(line + y);
 	if (!temp)
-		return (free(line),	exit_prog(game));
+		return (free(line), exit_prog(game));
 	if (line[i] == 'N' && line[i + 1] == 'O' && check_texture(temp))
 		return (fill_tex(temp, texture, NO), game->map->count++, (void)0);
 	if (line[i] == 'S' && line[i + 1] == 'O' && check_texture(temp))

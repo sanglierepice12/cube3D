@@ -27,6 +27,7 @@ char		*rm_bs_wp(char *str);
 char		**ft_split(char const *s, char c);
 int			ft_atoi(const char *nptr);
 int			parse_ws(char *line);
+bool		ft_strchr(const char *s, const char c);
 
 /*==================linked_list=====================*/
 t_list		*ft_lst_last(t_list *lst);

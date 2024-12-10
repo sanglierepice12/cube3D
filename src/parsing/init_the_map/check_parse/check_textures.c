@@ -17,7 +17,7 @@ void	wall_is_good(t_game *game, char *line, bool flag)
 	size_t	i;
 
 	i = parse_ws(line);
-	if (flag & (line[i] == '1' || line[ft_strlen(line) - 1] == '1'))
+	if (flag & (line[i] == '1' && line[ft_strlen(line) - 1] == '1'))
 		return ;
 	if (!flag)
 	{
@@ -93,7 +93,14 @@ bool	check_texture(char	*line)
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("no textures...\n");
+		printf("Error, no textures...\n");
+		close(fd);
+		return (false);
+	}
+	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
+	{
+		printf("Error, it's texture is not an xpm...\n");
+		close(fd);
 		return (false);
 	}
 	close(fd);

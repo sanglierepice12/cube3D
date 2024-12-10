@@ -12,16 +12,7 @@
 
 #include "../../../../include/cub3D.h"
 
-/*int main() {
-	int r = 220, g = 12, b = 145;
-	int color = rgb_to_hex(r, g, b);
-
-	printf("Color in hex: %#08x\n", color); // Imprime la couleur en hexadécimal
-	return 0;
-}*/
-
-
-void	fill_rgb(char *line, t_game *game, e_rgb type)
+void	fill_rgb(char *line, t_game *game, t_ergb type)
 {
 	char	**temp;
 
@@ -41,14 +32,12 @@ void	fill_rgb(char *line, t_game *game, e_rgb type)
 		game->map->floor->r = ft_atoi(temp[0]);
 		game->map->floor->g = ft_atoi(temp[1]);
 		game->map->floor->b = ft_atoi(temp[2]);
-		/*int color = rgb_to_hex(ft_atoi(temp[0]), ft_atoi(temp[1]), ft_atoi(temp[2]));
-		game->map->ceil = mlx_get_color_value(game->mlx_data.mlx_ptr, color);*/
 	}
 	free(line);
 	free_tab(temp);
 }
 
-void	fill_tex(char *line, t_texture *texture, e_txt type)
+void	fill_tex(char *line, t_texture *texture, t_txt type)
 {
 	if (type == NO)
 	{
@@ -77,13 +66,14 @@ void	fill_tex(char *line, t_texture *texture, e_txt type)
 	free(line);
 }
 
-char	**heap_map(size_t len)
+static char	**heap_map(size_t len, t_game *game)
 {
 	char	**map;
 
 	map = ft_calloc(sizeof(char *), len + 1);
 	if (!map)
 		return (NULL);
+	game->map->height = (int)get_list_len(game->list);
 	return (map);
 }
 
@@ -93,16 +83,16 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	char	*line;
 	size_t	i;
 
-	game->map->map = heap_map(get_list_len(*list));
-	game->map->height = (int)get_list_len(*list);
+	game->map->map = heap_map(get_list_len(*list), game);
 	temp = *list;
 	if (!temp)
 		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
-	game->map->width = 0;
 	while (temp)
 	{
 		line = rm_bs_wp(temp->value);
+		if (!line)
+			return (free_list(*list), exit_prog(game));
 		if (!temp->next || i == 0)
 			wall_is_good(game, line, 0);
 		else

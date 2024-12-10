@@ -12,6 +12,20 @@
 
 #include "../../../include/cub3D.h"
 
+bool	ft_strchr(const char *s, const char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 void	fill_playerpos(char *line, t_game *game, size_t len)
 {
 	size_t	i;
@@ -19,7 +33,7 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		if (ft_strchr("NSEW", line[i]))
 		{
 			game->player.player_pos_x = (int)i;
 			game->player.player_pos_y = (int)len;
@@ -35,12 +49,4 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 		}
 		i++;
 	}
-}
-
-void	eye_tomap(char **map, size_t x, size_t y, t_game *game)
-{
-	(void)map;
-	(void)x;
-	(void)y;
-	(void)game;
 }

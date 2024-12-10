@@ -15,16 +15,16 @@
 
 /*################ STRUCTURES #####################*/
 
-typedef struct	s_img_data		t_img_data;
-typedef struct	s_mlx_data		t_mlx_data;
-typedef	struct	s_map			t_map;
-typedef struct	s_player		t_player;
-typedef struct	s_ray			t_ray;
-typedef struct	s_proj			t_proj;
-typedef struct	s_game			t_game;
-typedef struct	s_list			t_list;
-typedef struct	s_texture		t_texture;
-typedef struct	s_rgb			t_rgb;
+typedef struct s_img_data		t_img_data;
+typedef struct s_mlx_data		t_mlx_data;
+typedef struct s_map			t_map;
+typedef struct s_player			t_player;
+typedef struct s_ray			t_ray;
+typedef struct s_proj			t_proj;
+typedef struct s_game			t_game;
+typedef struct s_list			t_list;
+typedef struct s_texture		t_texture;
+typedef struct s_rgb			t_rgb;
 
 struct	s_img_data
 {
@@ -39,8 +39,8 @@ struct	s_img_data
 
 struct	s_mlx_data
 {
-	void	*mlx_ptr;
-	void	*game_win_ptr;
+	void					*mlx_ptr;
+	void					*game_win_ptr;
 };
 
 struct s_player
@@ -88,10 +88,11 @@ struct	s_map
 {
 	int					count;
 	char				**map;
+	char				**tex;
 	int					height;
 	int					width;
-	int					ceil;
-	int					flo;
+	int					ceiling_color;
+	int					floor_color;
 	t_player			*player;
 	t_texture			*texture;
 	t_rgb				*ceiling;
@@ -100,10 +101,10 @@ struct	s_map
 
 struct	s_texture
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	char					*no;
+	char					*so;
+	char					*we;
+	char					*ea;
 	t_img_data				texture1;
 	t_img_data				texture2;
 	t_img_data				texture3;
@@ -143,12 +144,12 @@ typedef enum s_txt
 	SO,
 	WE,
 	EA
-}	e_txt;
+}	t_txt;
 
 typedef enum s_rgbs
 {
 	CEI,
 	FLO
-} e_rgb;
+}	t_ergb;
 
-# endif
+#endif

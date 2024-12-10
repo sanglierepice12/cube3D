@@ -79,6 +79,8 @@ int main(int arc, char **argv)
 	int i = 0;
 	while (game->map->map[i])
 		printf("%s\n", game->map->map[i++]);
+	printf("height = %d\n", game->map->height);
+	printf("width = %d\n", game->map->width);
 	printf("%s\n", game->map->texture->no);
 	printf("%s\n", game->map->texture->so);
 	printf("%s\n", game->map->texture->ea);
