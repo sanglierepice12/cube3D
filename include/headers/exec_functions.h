@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/07 10:58:54 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:51:56 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	wall_hit(t_map *map, t_ray *ray);
 int		init_env(t_mlx_data *mlx_data, t_map *map);
 int		initialize_graphics(t_mlx_data *mlx_data, t_map *map,
 			t_img_data *map_img, t_img_data *game_img);
-void	find_play_pos(t_map *map, t_player *player);
+void	find_play_pos(t_player *player);
 void	init_game(t_game *game);
 
 /*==================mini_map.c====================*/

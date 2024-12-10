@@ -6,13 +6,19 @@
 #    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/07 11:19:30 by jedusser          #+#    #+#              #
-#    Updated: 2024/12/07 11:42:20 by jedusser         ###   ########.fr        #
+#    Updated: 2024/12/10 12:39:54 by jedusser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 
-To include in parsing : find player pos;
+--> function to mmove in parsing : 
+
+    IN initialize_graphics
+    -def_playr angle
+   IN MAIN:
+    -game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, game->map->ceiling->g, game->map->ceiling->b);
+	-game->map->floor_color = rgb_to_hex(game->map->floor->r, game->map->floor->g, game->map->floor->b);
 
 Store textures in an array; sera utile pour free aussi
 

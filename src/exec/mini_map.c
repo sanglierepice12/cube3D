@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 22:33:56 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:24:55 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int ti
 	int	tile_start_y;
 	int	player_start_x;
 	int	player_start_y;
-
+	
 	tile_start_x = tile_x * TILE_SIZE;
 	tile_start_y = tile_y * TILE_SIZE;
 	player_start_x = player->player_px_pos_x - (PLAYER_SIZE * 0.5);
@@ -100,7 +100,7 @@ void	draw_mini_map(t_game *game)
 		{
 			if (game->map->map[y][x] == '1')
 				draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
-			if (game->map->map[y][x] == '0' || game->map->map[y][x] == ' ')
+			if (game->map->map[y][x] == '0' || game->map->map[y][x] == game->player.direction)
 				draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
 			x++;
 		}

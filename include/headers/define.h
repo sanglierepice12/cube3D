@@ -6,12 +6,17 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 22:14:56 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:29:18 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
+
+
+
+#define VERTICAL true
+#define HORIZONTAL false
 
 /*################ KEY MACROS #####################*/
 
@@ -89,7 +94,6 @@
 # define SCREEN_CENTER_X   (GAME_WIDTH / 2.0f)
 # define SCREEN_CENTER_Y   (GAME_HEIGHT / 2.0f)
 # define RAY_ANGLE_DELTA   (FOV_ANGLE / GAME_WIDTH)
-# define DISTANCE(x1, y1, x2, y2) \
-    sqrt(pow((x2) - (x1), 2) + pow((y2) - (y1), 2))
+# define DISTANCE(x1, y1, x2, y2) (sqrt(((x2) - (x1)) * ((x2) - (x1)) + ((y2) - (y1)) * ((y2) - (y1))))
 
 #endif // DEFINE_H

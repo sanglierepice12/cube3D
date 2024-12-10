@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map_to_struct.c                               :+:      :+:    :+:   */
+/*   fill_map_struct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:52:22 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/21 14:52:22 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:05:30 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	fill_rgb(char *line, t_game *game, e_rgb type)
 		game->map->floor->r = ft_atoi(temp[0]);
 		game->map->floor->g = ft_atoi(temp[1]);
 		game->map->floor->b = ft_atoi(temp[2]);
-		/*int color = rgb_to_hex(ft_atoi(temp[0]), ft_atoi(temp[1]), ft_atoi(temp[2]));
-		game->map->ceil = mlx_get_color_value(game->mlx_data.mlx_ptr, color);*/
 	}
 	free(line);
 	free_tab(temp);

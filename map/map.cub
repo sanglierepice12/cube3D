@@ -1,7 +1,7 @@
-NO ./texture/eagle.xpm
-SO ./texture/greystone.xpm
-WE ./texture/purplestone.xpm
-EA ./texture/red.xpm
+NO ./texture/text_tex.xpm
+SO ./texture/text_tex.xpm
+WE ./texture/text_tex.xpm
+EA ./texture/text_tex.xpm
 F 220,100,0
 C 255,200, 10
 
@@ -14,7 +14,7 @@ C 255,200, 10
 1000000000000000001
 1000011111100000001
 1111110000000000001
+10W0000000000000001
 1000000000000000001
-100000000N000000001
 1000000000000000001
 1111111111111111111

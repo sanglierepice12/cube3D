@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 22:08:54 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:42:50 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ void	def_wall_texture(t_proj *proj, t_map *map)
 
 void	def_wall_orientation(t_proj *proj, t_ray *raycaster, float ray_dir_x, float ray_dir_y)
 {
-	if (raycaster->hit_side == 1)
+	if (raycaster->hit_side == VERTICAL)
 	{
 		if (ray_dir_x > 0)
 			proj->wall_orientation = EAST;
 		else
 			proj->wall_orientation = WEST;
 	}
-	else
+	else if (raycaster->hit_side == HORIZONTAL)
 	{
 		if (ray_dir_y > 0)
 			proj->wall_orientation = SOUTH;

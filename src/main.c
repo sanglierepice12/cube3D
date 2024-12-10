@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 22:29:44 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:30:49 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	draw_and_display_map(t_game *game)
 		if (game->end)
 			return (0);
 		all_draws(game);
-		printf("=========================FRAME========================\n");
 		mlx_put_image_to_window(game->mlx_data.mlx_ptr,
 				game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH
 				/ 4, GAME_HEIGHT);
@@ -94,10 +93,7 @@ int main(int arc, char **argv)
 	printf("ceiling r = %d \n", game->map->ceiling->r);
 	// printf("ceiling b = %d \n", game->map->ceiling->b);*/
 	game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, game->map->ceiling->g, game->map->ceiling->b);
-	printf("%d\n", game->map->ceiling_color);
 	game->map->floor_color = rgb_to_hex(game->map->floor->r, game->map->floor->g, game->map->floor->b);
-	printf("%d\n", game->map->floor_color);
-	printf("ceiling g = %d \n", game->map->ceiling->g);
 	init_game(game);
 	hook_management(game);
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, game);

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/09 22:16:41 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:44:18 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ struct						s_player
 
 struct						s_ray
 {
-	double					ray_angle;
-	double					ray_x;
-	double					ray_y;
-	double					ray_index;
-	int						hit_side;
+	float					ray_angle;
+	float					ray_x;
+	float					ray_y;
+	float					ray_index;
+	bool					hit_side;
 };
 
 struct						s_proj

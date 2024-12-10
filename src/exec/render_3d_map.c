@@ -16,17 +16,21 @@
 void render_3d_column(t_game *game, t_proj *projection)
 {
     int y;
-    int texture_x;
-	int texture_y;
+    float texture_x;
+    float texture_y;
     float texture_y_pos;
     float step_size;
     unsigned int pixel_color;
 
     def_wall_texture(projection, game->map);
-    if (game->ray.hit_side == 0)// horizontal
-        texture_x = (int)game->ray.ray_x % (int)TILE_SIZE;
-    else // vertical
-        texture_x = (int)game->ray.ray_y % (int)TILE_SIZE;
+
+
+// ray x has hit here
+	//same for ray
+    if (game->ray.hit_side == HORIZONTAL)
+        texture_x = fmodf(game->ray.ray_x, TILE_SIZE);
+    else
+        texture_x = fmodf(game->ray.ray_y, TILE_SIZE);
     texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
     step_size = (float)projection->texture.height / game->proj.wall_height;
     texture_y_pos = 0.0f;
@@ -38,63 +42,51 @@ void render_3d_column(t_game *game, t_proj *projection)
     y = game->proj.wall_start;
     while (y <= game->proj.wall_end && y < GAME_HEIGHT)
     {
-        texture_y = (int)texture_y_pos % projection->texture.height;
-        texture_y_pos += step_size;
+		texture_y = (int)texture_y_pos % projection->texture.height;
         pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
         my_mlx_pixel_put(&game->game_img, game->ray.ray_index, y, pixel_color);
+        texture_y_pos += step_size;
         y++;
     }
 }
 
-// void	draw_3d_column(t_game *game)
-// {
-// 	float	y_start;
-// 	float	y_end;
-// 	int		y;
+	void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
+	{
+		float	angle_diff;
 
-// 	y_start = game->projection.wall_start;
-// 	y_end = game->projection.wall_end;
-// 	def_wall_color(&game->ray, &game->projection);
-// 	if (game->ray.ray_index >= 0
-// 		&& game->ray.ray_index < GAME_WIDTH)
-// 	{
-// 		y = y_start;
-// 		while (y <= y_end)
-// 		{
-// 			if (y >= 0 && y < GAME_HEIGHT)
-// 			y++;
-// 		}
-// 	}
-// }
-void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
-{
-	float	angle_diff;
-
-	proj->distance_to_wall = DISTANCE(ray->ray_x, ray->ray_y,
-			player->player_px_pos_x, player->player_px_pos_y);
-	angle_diff = ray->ray_angle - player->angle;
-	proj->correct_distance = proj->distance_to_wall * cosf(angle_diff);
-	proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
-	proj->wall_start = SCREEN_CENTER_Y - (proj->wall_height * 0.5);
-	proj->wall_end = SCREEN_CENTER_Y + (proj->wall_height * 0.5);
-} 
+		proj->distance_to_wall = DISTANCE(ray->ray_x, ray->ray_y,
+				player->player_px_pos_x, player->player_px_pos_y);
+		angle_diff = ray->ray_angle - player->angle;
+		proj->correct_distance = proj->distance_to_wall * cos(angle_diff);
+		proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
+		proj->wall_start = SCREEN_CENTER_Y - (proj->wall_height * 0.5);
+		proj->wall_end = SCREEN_CENTER_Y + (proj->wall_height * 0.5);
+	} 
 
 void def_hit_side(t_ray *ray, int grid_x, int grid_y)
 {
-
-		if ((int)(ray->ray_x / TILE_SIZE) != grid_x || (int)(ray->ray_y / TILE_SIZE) != grid_y)
+    int ray_grid_x;
+    int ray_grid_y;
+	
+	ray_grid_x = (int)(ray->ray_x / TILE_SIZE);
+	ray_grid_y = (int)(ray->ray_y / TILE_SIZE);
+    if (ray_grid_x != grid_x || ray_grid_y != grid_y)
+    {
+		if (ray_grid_x != grid_x)
 		{
-			if ((int)(ray->ray_x / TILE_SIZE) != grid_x	)
-			{
-				ray->hit_side = 1; //vertical	
-			}
-			else if ((int)(ray->ray_y / TILE_SIZE) != grid_y)
-			{
-				ray->hit_side = 0; // horizontal
-			}
+			printf("VERTICAL\n");
+            ray->hit_side = VERTICAL;
+		}
+        if (ray_grid_y != grid_y)
+		{
+            ray->hit_side = HORIZONTAL;
+			printf("HORIZONTAL\n");
 
 		}
+    }
 }
+
+
 
 void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 		t_proj *proj)
@@ -105,12 +97,17 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 	float		grid_y;
 
 	ray_dir_x = cos(ray->ray_angle);
+	printf("raydirx = %f\n", ray_dir_x);
 	ray_dir_y = sin(ray->ray_angle);
+	printf("raydiry = %f\n", ray_dir_y);
+
 	while (!wall_hit(game->map, ray))
 	{
 		grid_x = ray->ray_x / TILE_SIZE; //hit side at the end
 		grid_y = ray->ray_y / TILE_SIZE; //hit side at the end
 		ray->ray_x += ray_dir_x * 0.08;
+		if (wall_hit(game->map, ray))
+			break;
 		ray->ray_y += ray_dir_y * 0.08;
 	}
 	def_hit_side(ray, grid_x, grid_y);

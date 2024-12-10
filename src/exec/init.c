@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/09 21:47:46 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:46:40 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,41 +27,30 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 	return (0);
 }
 
-void	find_play_pos(t_map *map, t_player *player)
-{
-	int	y;
-	int	x;
+#include <math.h>
 
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		//printf("%s\n", map->map[y]);
-		while (x < (int)ft_strlen(map->map[y]))
-		{
-			//printf("%s%c%s\n", WGREEN, map->map[y][x], WRESET);
-			if (map->map[y][x] == 'N')
-			{
-				//player->player_pos_x = x;
-				player->player_px_pos_x = (x * TILE_SIZE) + (TILE_SIZE * 0.5);
-				//player->player_pos_y = y;
-				player->player_px_pos_y = (y * TILE_SIZE) + (TILE_SIZE * 0.5);
-				// these two lines go together; MPI/2 is angle based on direction N;
-				// player->direction = "N";
-				// player->angle = (3 * M_PI) * 0.5;
-				// player->direction = "S";
-				// player->angle = M_PI / 2;
-				// player->direction = "W";
-				// player->angle = M_PI;
-				//player->direction = "E";
-				player->angle = 0;
-				break ;
-			}
-			x++;
-		}
-		y++;
-	}
+void def_playr_angle(t_player *player)
+{
+    player->player_px_pos_x = (player->player_pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
+    player->player_px_pos_y = (player->player_pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
+
+    if (player->direction == 'N')
+        player->angle = (3 * M_PI) * 0.5;
+    else if (player->direction == 'S')
+        player->angle = M_PI / 2;
+    else if (player->direction == 'W')
+        player->angle = M_PI;
+    else if (player->direction == 'E')
+        player->angle = 0;
+
+    // Clamp angle to the range [0, 2 * M_PI)
+    player->angle = fmod(player->angle, 2 * M_PI);
+    if (player->angle < 0)
+        player->angle += 2 * M_PI;  // Ensure the angle is non-negative
 }
+
+
+
 
 int init_textures(t_mlx_data *mlx_data, t_texture *texture)
 {
@@ -126,7 +115,7 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 
 void	init_game(t_game *game)
 {
-	find_play_pos(game->map, &game->player);
+	def_playr_angle(&game->player);
 	if (init_env(&game->mlx_data, game->map) == -1) {
 		printf("coucou");
 		exit_prog(game);

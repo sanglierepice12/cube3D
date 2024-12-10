@@ -6,20 +6,21 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:10:56 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/07 11:54:41 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:02:22 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-bool	wall_hit(t_map *map, t_ray *ray)
+bool wall_hit(t_map *map, t_ray *ray)
 {
-	return (map->map[(int)(ray->ray_y / TILE_SIZE)][(int)(ray->ray_x
-			/ TILE_SIZE)] == '1' ||
-			map->map[(int)(ray->ray_y / TILE_SIZE)][(int)(ray->ray_x
-					/ TILE_SIZE)] == ' ');
-	// raycaster->ray_y / TILE_SIZE transfrom logic for cartesian
+    int grid_x = (int)floor(ray->ray_x / TILE_SIZE);
+    int grid_y = (int)floor(ray->ray_y / TILE_SIZE);
+
+    // Check for wall ('1') or empty space (' ')
+    return (map->map[grid_y][grid_x] == '1' || map->map[grid_y][grid_x] == ' ');
 }
+
 
 bool	key_active(t_game *game)
 {
