@@ -13,7 +13,7 @@
 #include "../../include/cub3D.h"
 #include <math.h>
 
-void render_3d_column(t_game *game, t_proj *projection)
+void render_3d_column(t_game *game,t_proj *projection, t_ray *ray)
 {
     int y;
     float texture_x;
@@ -21,99 +21,112 @@ void render_3d_column(t_game *game, t_proj *projection)
     float texture_y_pos;
     float step_size;
     unsigned int pixel_color;
+    float ray_dir_x;  // Declare ray_dir_x
+    float ray_dir_y;  // Declare ray_dir_y
+
+    // Initialize ray direction based on ray angle
+    ray_dir_x = cos(ray->ray_angle);  // Calculate ray direction in X
+    ray_dir_y = sin(ray->ray_angle);  // Calculate ray direction in Y
 
     def_wall_texture(projection, game->map);
-
-
-// ray x has hit here
-	//same for ray
-    if (game->ray.hit_side == HORIZONTAL)
-        texture_x = fmodf(game->ray.ray_x, TILE_SIZE);
+    printf("raypxx %f\n", ray->px_x);
+    // Calculate the texture X position based on where the ray hit
+    if (ray->hit_side == HORIZONTAL)
+        texture_x = fmodf(ray->px_x, TILE_SIZE);  // Hit on a horizontal wall
     else
-        texture_x = fmodf(game->ray.ray_y, TILE_SIZE);
+        texture_x = fmodf(ray->px_y, TILE_SIZE);  // Hit on a vertical wall
+    // Map the texture X position to the texture width
     texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
+    // Apply the correct distance factor (texture scaling)
     step_size = (float)projection->texture.height / game->proj.wall_height;
     texture_y_pos = 0.0f;
+    // Adjust texture starting position if the wall starts above the screen
     if (game->proj.wall_start < 0)
     {
         texture_y_pos = -game->proj.wall_start * step_size;
         game->proj.wall_start = 0;
     }
+    if (ray->hit_side == VERTICAL && ray_dir_x < 0)
+            texture_x = projection->texture.width - texture_x - 1;  // Flip texture for west-facing walls
+    else if (ray->hit_side == HORIZONTAL && ray_dir_y > 0)
+            texture_x = projection->texture.width - texture_x - 1;  // Flip texture for north-facing walls
     y = game->proj.wall_start;
+
+    // Render the column by mapping the texture vertically
     while (y <= game->proj.wall_end && y < GAME_HEIGHT)
     {
-		texture_y = (int)texture_y_pos % projection->texture.height;
+        texture_y = (int)texture_y_pos % projection->texture.height;  // Wrap the texture vertically
         pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
-        my_mlx_pixel_put(&game->game_img, game->ray.ray_index, y, pixel_color);
-        texture_y_pos += step_size;
+        my_mlx_pixel_put(&game->game_img, ray->ray_index, y, pixel_color);
+
+        texture_y_pos += step_size;  // Move to the next texture row
         y++;
     }
+
+    // Fix for mirrored textures based on ray direction
 }
 
-	void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
-	{
-		float	angle_diff;
 
-		proj->distance_to_wall = DISTANCE(ray->ray_x, ray->ray_y,
-				player->player_px_pos_x, player->player_px_pos_y);
-		angle_diff = ray->ray_angle - player->angle;
-		proj->correct_distance = proj->distance_to_wall * cos(angle_diff);
-		proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
-		proj->wall_start = SCREEN_CENTER_Y - (proj->wall_height * 0.5);
-		proj->wall_end = SCREEN_CENTER_Y + (proj->wall_height * 0.5);
-	} 
 
-void def_hit_side(t_ray *ray, int grid_x, int grid_y)
+void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 {
-    int ray_grid_x;
-    int ray_grid_y;
-	
-	ray_grid_x = (int)(ray->ray_x / TILE_SIZE);
-	ray_grid_y = (int)(ray->ray_y / TILE_SIZE);
-    if (ray_grid_x != grid_x || ray_grid_y != grid_y)
-    {
-		if (ray_grid_x != grid_x)
-		{
-			printf("VERTICAL\n");
-            ray->hit_side = VERTICAL;
-		}
-        if (ray_grid_y != grid_y)
-		{
-            ray->hit_side = HORIZONTAL;
-			printf("HORIZONTAL\n");
+	float	angle_diff;
 
-		}
+	proj->distance_to_wall = DISTANCE_TO_WALL(ray->px_x, ray->px_y,
+			player->player_px_pos_x, player->player_px_pos_y);
+	angle_diff = ray->ray_angle - player->angle;
+	proj->correct_distance = proj->distance_to_wall * cos(angle_diff);
+	proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
+	proj->wall_start = SCREEN_CENTER_Y - (proj->wall_height * 0.5);
+	proj->wall_end = SCREEN_CENTER_Y + (proj->wall_height * 0.5);
+} 
+
+void def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y)
+{
+    int ray_map_x;
+    int ray_map_y;
+    
+    ray_map_x = MAP_COORD_X(ray->px_x);
+    ray_map_y = MAP_COORD_Y(ray->px_y);
+    if (ray_map_x != prev_map_x || ray_map_y != prev_map_y)
+    {
+        if (ray_map_x != prev_map_x)
+        {
+            printf("VERTICAL\n");
+            ray->hit_side = VERTICAL;
+        }
+        if (ray_map_y != prev_map_y)
+        {
+            printf("HORIZONTAL\n");
+            ray->hit_side = HORIZONTAL;
+        }
     }
 }
 
-
-
-void	cast_ray(t_game *game, t_ray *ray, t_player *player,
-		t_proj *proj)
+void cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
 {
-	float	ray_dir_x;
-	float	ray_dir_y;
-	float		grid_x;
-	float		grid_y;
+    float ray_dir_x;
+    float ray_dir_y;
+    int prev_map_x;
+    int prev_map_y;
 
-	ray_dir_x = cos(ray->ray_angle);
-	printf("raydirx = %f\n", ray_dir_x);
-	ray_dir_y = sin(ray->ray_angle);
-	printf("raydiry = %f\n", ray_dir_y);
+    ray_dir_x = cos(ray->ray_angle);
+    ray_dir_y = sin(ray->ray_angle);
 
-	while (!wall_hit(game->map, ray))
-	{
-		grid_x = ray->ray_x / TILE_SIZE; //hit side at the end
-		grid_y = ray->ray_y / TILE_SIZE; //hit side at the end
-		ray->ray_x += ray_dir_x * 0.08;
-		if (wall_hit(game->map, ray))
-			break;
-		ray->ray_y += ray_dir_y * 0.08;
-	}
-	def_hit_side(ray, grid_x, grid_y);
-	update_proj_data(proj, player, ray);
-	def_wall_orientation(proj, ray, ray_dir_x, ray_dir_y);
+    while (!wall_hit(game->map, ray))
+    {
+        prev_map_x = MAP_COORD_X(ray->px_x); // Previous position
+        prev_map_y = MAP_COORD_Y(ray->px_y); // Previous position
+        ray->px_x += ray_dir_x * 0.08;
+        if (wall_hit(game->map, ray))
+            break;
+        ray->px_y += ray_dir_y * 0.08;
+    }
+    def_hit_side(ray, prev_map_x, prev_map_y);
+    update_proj_data(proj, player, ray);
+    def_wall_orientation(proj, ray, ray_dir_x, ray_dir_y);
 }
+
 void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 		t_proj *proj)
 {
@@ -121,11 +134,11 @@ void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 	clear_screen(&game->game_img, game->map->ceiling_color, game->map->floor_color);
 	while (ray->ray_index < GAME_WIDTH)
 	{
-		ray->ray_x = player->player_px_pos_x;
-		ray->ray_y = player->player_px_pos_y;
+		ray->px_x = player->player_px_pos_x;
+		ray->px_y = player->player_px_pos_y;
 		ray->ray_angle = (player->angle - FOV_HALF) + (ray->ray_index * RAY_ANGLE_DELTA);
 		cast_ray(game, ray, player, proj);
-		render_3d_column(game, proj);
+		render_3d_column(game, proj, ray);
 		ray->ray_index++;
 	}
 }

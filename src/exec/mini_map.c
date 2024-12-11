@@ -68,22 +68,22 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int ti
 	draw_player(img, player_start_x, player_start_y, player_color);
 }
 
-void	draw_map_rays(t_game *game, t_player *player, t_ray *raycaster)
+void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)
 {
-	raycaster->ray_index = 0;
-	while (raycaster->ray_index < GAME_WIDTH)
+	ray->ray_index = 0;
+	while (ray->ray_index < GAME_WIDTH)
 	{
-		raycaster->ray_y = player->player_px_pos_y;
-		raycaster->ray_x = player->player_px_pos_x;
-		raycaster->ray_angle = player->angle + (FOV_ANGLE * 2)
-			- (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
-		while (!wall_hit(game->map, raycaster))
+		ray->px_y = player->player_px_pos_y;
+		ray->px_x = player->player_px_pos_x;
+		ray->ray_angle = player->angle + (FOV_ANGLE * 2)
+			- (ray->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
+		while (!wall_hit(game->map, ray))
 		{
-			my_mlx_pixel_put(&game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
-			raycaster->ray_x += sin(raycaster->ray_angle);
-			raycaster->ray_y -= cos(raycaster->ray_angle);
+			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y, PINK);
+			ray->px_x += sin(ray->ray_angle);
+			ray->px_y -= cos(ray->ray_angle);
 		}
-		raycaster->ray_index++;
+		ray->ray_index++;
 	}
 }
 

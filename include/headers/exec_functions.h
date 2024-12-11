@@ -64,7 +64,7 @@ void	draw_mini_map(t_game *game);
 
 void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 			t_proj *projection);
-void	render_3d_column(t_game *game, t_proj *projection);
+void 	render_3d_column(t_game *game,t_proj *projection, t_ray *ray);
 void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 			t_proj *projection);
 

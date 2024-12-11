@@ -22,7 +22,6 @@ void clean_textures(t_mlx_data *mlx_data, t_texture *textures)
 
 int	clean_up(t_game *game)
 {
-	//clean_textures(&game->mlx_data, game->map->texture);
 	if (game->map_img.img_ptr)
 	{
 		mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);

@@ -94,6 +94,12 @@
 # define SCREEN_CENTER_X   (GAME_WIDTH / 2.0f)
 # define SCREEN_CENTER_Y   (GAME_HEIGHT / 2.0f)
 # define RAY_ANGLE_DELTA   (FOV_ANGLE / GAME_WIDTH)
-# define DISTANCE(x1, y1, x2, y2) (sqrt(((x2) - (x1)) * ((x2) - (x1)) + ((y2) - (y1)) * ((y2) - (y1))))
+# define DISTANCE_TO_WALL(x1, y1, x2, y2) (sqrt(((x2) - (x1)) * ((x2) - (x1)) + ((y2) - (y1)) * ((y2) - (y1))))
+# define MAP_COORD_X(x) (x / TILE_SIZE)
+# define MAP_COORD_Y(y) (y / TILE_SIZE)
+
+
+# define RAY_DIR_X(x) cos(x)
+# define RAY_DIR_Y(y) sin(y)
 
 #endif // DEFINE_H

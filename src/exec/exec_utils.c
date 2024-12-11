@@ -14,11 +14,11 @@
 
 bool wall_hit(t_map *map, t_ray *ray)
 {
-    int grid_x = (int)floor(ray->ray_x / TILE_SIZE);
-    int grid_y = (int)floor(ray->ray_y / TILE_SIZE);
+    int map_x = (int)floor(ray->px_x / TILE_SIZE);
+    int map_y = (int)floor(ray->px_y / TILE_SIZE);
 
     // Check for wall ('1') or empty space (' ')
-    return (map->map[grid_y][grid_x] == '1' || map->map[grid_y][grid_x] == ' ');
+    return (map->map[map_y][map_x] == '1' || map->map[map_y][map_x] == ' ');
 }
 
 
