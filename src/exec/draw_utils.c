@@ -39,7 +39,6 @@ void clear_screen(t_img_data *img, int ceiling_color, int floor_color)
     }
 }
 
-
 unsigned int    get_pixel_color(t_img_data *tex, int x, int y)
 {
     int                offset;
@@ -51,6 +50,7 @@ unsigned int    get_pixel_color(t_img_data *tex, int x, int y)
     color = *(unsigned int*)(tex->addr + offset);
     return (color);
 }
+
 void	def_wall_color(t_proj *proj)
 {
 	if (proj->wall_orientation == NORTH)

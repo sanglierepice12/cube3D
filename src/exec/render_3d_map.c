@@ -27,7 +27,6 @@ void render_3d_column(t_game *game,t_proj *projection, t_ray *ray)
     ray_dir_x = cos(ray->ray_angle);  
     ray_dir_y = sin(ray->ray_angle);  
     def_wall_texture(projection, game->map);
-    printf("raypxx %f\n", ray->px_x);
     if (ray->hit_side == HORIZONTAL)
         texture_x = fmodf(ray->px_x, TILE_SIZE);  
     else
@@ -50,7 +49,7 @@ void render_3d_column(t_game *game,t_proj *projection, t_ray *ray)
         texture_y = (int)texture_y_pos % projection->tex.height;
         pixel_color = get_pixel_color(&projection->tex, texture_x, texture_y);
         my_mlx_pixel_put(&game->game_img, ray->ray_index, y, pixel_color);
-        texture_y_pos += step_size; 
+        texture_y_pos += step_size;
         y++;
     }
 }
@@ -64,10 +63,10 @@ void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 	proj->distance_to_wall = DISTANCE_TO_WALL(ray->px_x, ray->px_y,
 			player->player_px_pos_x, player->player_px_pos_y);
 	angle_diff = ray->ray_angle - player->angle;
-	proj->correct_distance = proj->distance_to_wall * cos(angle_diff);
+	proj->correct_distance = proj->distance_to_wall * cosf(angle_diff);
 	proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
-	proj->wall_start = SCREEN_CENTER_Y - (proj->wall_height * 0.5);
-	proj->wall_end = SCREEN_CENTER_Y + (proj->wall_height * 0.5);
+    proj->wall_start = SCREEN_CENTER_Y - proj->wall_height * 0.5;
+    proj->wall_end = SCREEN_CENTER_Y + proj->wall_height * 0.5;
 } 
 
 void def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y)
@@ -77,19 +76,12 @@ void def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y)
     
     ray_map_x = MAP_COORD_X(ray->px_x);
     ray_map_y = MAP_COORD_Y(ray->px_y);
-    if (ray_map_x != prev_map_x || ray_map_y != prev_map_y)
-    {
-        if (ray_map_x != prev_map_x)
-        {
-            printf("VERTICAL\n");
-            ray->hit_side = VERTICAL;
-        }
-        if (ray_map_y != prev_map_y)
-        {
-            printf("HORIZONTAL\n");
-            ray->hit_side = HORIZONTAL;
-        }
-    }
+ 
+    if (ray_map_x != prev_map_x)
+        ray->hit_side = VERTICAL;
+    if (ray_map_y != prev_map_y)
+        ray->hit_side = HORIZONTAL;
+    
 }
 
 void cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
@@ -105,10 +97,13 @@ void cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
     {
         prev_map_x = MAP_COORD_X(ray->px_x); // previous position before hit
         prev_map_y = MAP_COORD_Y(ray->px_y); // previous position before hit
-        ray->px_x += ray_dir_x * 0.08;
+        //genial
+        float step_size = fmaxf(0.01f, proj->distance_to_wall / GAME_WIDTH);  // Ensure the step is at least 0.01
+
+        ray->px_x += ray_dir_x * step_size;
         if (wall_hit(game->map, ray))
             break;
-        ray->px_y += ray_dir_y * 0.08;
+        ray->px_y += ray_dir_y * step_size;
     }
     def_hit_side(ray, prev_map_x, prev_map_y);
     update_proj_data(proj, player, ray);

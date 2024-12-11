@@ -26,3 +26,6 @@ Refacto render_3d_cols
 
 Find Color stripe problem;
 
+move to parsing : defpkayer angle
+
+ceiling and floor rgb to hex operation (with the util function rgb to hex)

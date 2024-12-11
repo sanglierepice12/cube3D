@@ -65,10 +65,10 @@ struct						s_player
 
 struct						s_ray
 {
-	float					ray_angle;
-	float					px_x;
-	float					px_y;
-	float					ray_index;
+	double					ray_angle;
+	double					px_x;
+	double					px_y;
+	double					ray_index;
 	bool					hit_side;
 };
 

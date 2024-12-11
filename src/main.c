@@ -69,6 +69,8 @@ int rgb_to_hex(int r, int g, int b)
 {
     return (r << 16) | (g << 8) | b;
 }
+
+
 int main(int arc, char **argv)
 {
 	t_game		*game;
@@ -94,6 +96,8 @@ int main(int arc, char **argv)
 	// printf("ceiling b = %d \n", game->map->ceiling->b);*/
 	game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, game->map->ceiling->g, game->map->ceiling->b);
 	game->map->floor_color = rgb_to_hex(game->map->floor->r, game->map->floor->g, game->map->floor->b);
+
+
 	init_game(game);
 	hook_management(game);
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, game);
