@@ -98,7 +98,7 @@ void cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
         prev_map_x = MAP_COORD_X(ray->px_x); // previous position before hit
         prev_map_y = MAP_COORD_Y(ray->px_y); // previous position before hit
         //genial
-        float step_size = fmaxf(0.01f, proj->distance_to_wall / GAME_WIDTH);  // Ensure the step is at least 0.01
+        float step_size = fmaxf(0.01f, proj->distance_to_wall / GAME_WIDTH); 
 
         ray->px_x += ray_dir_x * step_size;
         if (wall_hit(game->map, ray))
