@@ -36,25 +36,38 @@ void clean_textures(t_mlx_data *mlx_data, t_tex *tex)
 	}
 }
 
-int	clean_up(t_game *game)
+int clean_up(t_game *game)
 {
-	if (game->map_img.img_ptr)
-	{
-		mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
-		game->map_img.img_ptr = NULL;
-	}
-	if (game->game_img.img_ptr)
-	{
-		mlx_destroy_image(game->mlx_data.mlx_ptr, game->game_img.img_ptr);
-		game->game_img.img_ptr = NULL;
-	}
-	if (game->mlx_data.mlx_ptr)
-	{
-		mlx_destroy_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr);
-		mlx_destroy_display(game->mlx_data.mlx_ptr);
-		free(game->mlx_data.mlx_ptr);
-		game->mlx_data.mlx_ptr = NULL;
-	}
-	printf("Clean-up completed.\n");
-	return (0);
+    // Clean up map image if it's initialized
+    if (game->map_img.img_ptr)
+    {
+        mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
+        game->map_img.img_ptr = NULL;
+    }
+
+    // Clean up game image if it's initialized
+    if (game->game_img.img_ptr)
+    {
+        mlx_destroy_image(game->mlx_data.mlx_ptr, game->game_img.img_ptr);
+        game->game_img.img_ptr = NULL;
+    }
+
+    // If mlx_ptr is initialized, clean up window and display
+    if (game->mlx_data.mlx_ptr)
+    {
+        // Clean up game window if it's initialized
+        if (game->mlx_data.game_win_ptr)
+        {
+            mlx_destroy_window(game->mlx_data.mlx_ptr, game->mlx_data.game_win_ptr);
+            game->mlx_data.game_win_ptr = NULL;
+        }
+
+        // Destroy the display and free mlx_ptr
+        mlx_destroy_display(game->mlx_data.mlx_ptr);
+        free(game->mlx_data.mlx_ptr);
+        game->mlx_data.mlx_ptr = NULL;
+    }
+
+    printf("Clean-up completed.\n");
+    return (0);
 }

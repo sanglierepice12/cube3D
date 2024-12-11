@@ -17,12 +17,10 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 	mlx_data->mlx_ptr = mlx_init();
 	if (!mlx_data->mlx_ptr)
 		return (-1);
-	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH, GAME_HEIGHT + map->height * TILE_SIZE, "Cub3d");
+	(void)map;
+	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH,GAME_HEIGHT + map->height * TILE_SIZE, "Cub3d");
 	if (!mlx_data->game_win_ptr)
-	{
-		free(mlx_data->mlx_ptr);
 		return (-1);
-	}
 	return (0);
 }
 
@@ -81,7 +79,6 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 {
 	if (init_textures(mlx_data, map->tex) == -1)
 		return (-1);
-
 	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->width * TILE_SIZE, map->height * TILE_SIZE);
 	if (!map_img->img_ptr)
 		return (-1);
