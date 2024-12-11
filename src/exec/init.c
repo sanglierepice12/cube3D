@@ -128,7 +128,7 @@ void	init_game(t_game *game)
 {
 	find_play_pos(game->map, &game->player);
 	if (init_env(&game->mlx_data, game->map) == -1) {
-		printf("coucou");
+		printf("Error, mlx cannot be open, if on mac check X11\n");
 		exit_prog(game);
 	}
 	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img, &game->game_img) == -1)
