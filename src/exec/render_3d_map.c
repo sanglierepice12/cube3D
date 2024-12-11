@@ -32,8 +32,8 @@ void render_3d_column(t_game *game,t_proj *projection, t_ray *ray)
         texture_x = fmodf(ray->px_x, TILE_SIZE);  
     else
         texture_x = fmodf(ray->px_y, TILE_SIZE);
-    texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
-    step_size = (float)projection->texture.height / game->proj.wall_height;
+    texture_x = (texture_x * projection->tex.width) / TILE_SIZE;
+    step_size = (float)projection->tex.height / game->proj.wall_height;
     texture_y_pos = 0.0f;
     if (game->proj.wall_start < 0)
     {
@@ -41,14 +41,14 @@ void render_3d_column(t_game *game,t_proj *projection, t_ray *ray)
         game->proj.wall_start = 0;
     }
     if (ray->hit_side == VERTICAL && ray_dir_x < 0)
-            texture_x = projection->texture.width - texture_x - 1;
+            texture_x = projection->tex.width - texture_x - 1;
     else if (ray->hit_side == HORIZONTAL && ray_dir_y > 0)
-            texture_x = projection->texture.width - texture_x - 1;
+            texture_x = projection->tex.width - texture_x - 1;
     y = game->proj.wall_start;
     while (y <= game->proj.wall_end && y < GAME_HEIGHT)
     {
-        texture_y = (int)texture_y_pos % projection->texture.height;
-        pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
+        texture_y = (int)texture_y_pos % projection->tex.height;
+        pixel_color = get_pixel_color(&projection->tex, texture_x, texture_y);
         my_mlx_pixel_put(&game->game_img, ray->ray_index, y, pixel_color);
         texture_y_pos += step_size; 
         y++;

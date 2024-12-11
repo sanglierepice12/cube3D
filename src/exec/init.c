@@ -17,8 +17,7 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 	mlx_data->mlx_ptr = mlx_init();
 	if (!mlx_data->mlx_ptr)
 		return (-1);
-	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH,
-			GAME_HEIGHT + map->height * TILE_SIZE, "Cub3d");
+	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH, GAME_HEIGHT + map->height * TILE_SIZE, "Cub3d");
 	if (!mlx_data->game_win_ptr)
 	{
 		free(mlx_data->mlx_ptr);
@@ -47,43 +46,40 @@ void def_playr_angle(t_player *player)
 
 
 
-int init_textures(t_mlx_data *mlx_data, t_texture *texture)
+int init_textures(t_mlx_data *mlx_data, t_tex *tex)
 {
-	texture->texture1.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, texture->no, &texture->texture1.width, &texture->texture1.height);
-	texture->texture1.addr = mlx_get_data_addr(texture->texture1.img_ptr, &texture->texture1.bits_per_pixel, &texture->texture1.line_length, &texture->texture1.endian);
-	if (!texture->texture1.addr)
-	{
-		mlx_destroy_image(mlx_data->mlx_ptr, texture->texture1.img_ptr);
-		return (-1);
-	}
-	texture->texture2.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, texture->so, &texture->texture2.width, &texture->texture2.height);
-	texture->texture2.addr = mlx_get_data_addr(texture->texture2.img_ptr, &texture->texture2.bits_per_pixel, &texture->texture2.line_length, &texture->texture2.endian);
-	if (!texture->texture2.addr)
-	{
-		mlx_destroy_image(mlx_data->mlx_ptr, texture->texture2.img_ptr);
-		return (-1);
-	}
-	texture->texture3.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, texture->ea, &texture->texture3.width, &texture->texture3.height);
-	texture->texture3.addr = mlx_get_data_addr(texture->texture3.img_ptr, &texture->texture3.bits_per_pixel, &texture->texture3.line_length, &texture->texture3.endian);
-	if (!texture->texture3.addr)
-	{
-		mlx_destroy_image(mlx_data->mlx_ptr, texture->texture3.img_ptr);
-		return (-1);
-	}
-	texture->texture4.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, texture->we, &texture->texture4.width, &texture->texture4.height);
-	texture->texture4.addr = mlx_get_data_addr(texture->texture4.img_ptr, &texture->texture4.bits_per_pixel, &texture->texture4.line_length, &texture->texture4.endian);
-	if (!texture->texture4.addr)
-	{
-		mlx_destroy_image(mlx_data->mlx_ptr, texture->texture4.img_ptr);
-		return (-1);
-	}
-	return (0);
+    tex->tex1.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->no, &tex->tex1.width, &tex->tex1.height);
+    if (!tex->tex1.img_ptr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex1.addr = mlx_get_data_addr(tex->tex1.img_ptr, &tex->tex1.bits_per_pixel, &tex->tex1.line_length, &tex->tex1.endian);
+    if (!tex->tex1.addr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex2.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->so, &tex->tex2.width, &tex->tex2.height);
+    if (!tex->tex2.img_ptr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex2.addr = mlx_get_data_addr(tex->tex2.img_ptr, &tex->tex2.bits_per_pixel, &tex->tex2.line_length, &tex->tex2.endian);
+    if (!tex->tex2.addr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex3.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->ea, &tex->tex3.width, &tex->tex3.height);
+    if (!tex->tex3.img_ptr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex3.addr = mlx_get_data_addr(tex->tex3.img_ptr, &tex->tex3.bits_per_pixel, &tex->tex3.line_length, &tex->tex3.endian);
+    if (!tex->tex3.addr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex4.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->we, &tex->tex4.width, &tex->tex4.height);
+    if (!tex->tex4.img_ptr)
+        return (clean_textures(mlx_data, tex), -1);
+    tex->tex4.addr = mlx_get_data_addr(tex->tex4.img_ptr, &tex->tex4.bits_per_pixel, &tex->tex4.line_length, &tex->tex4.endian);
+    if (!tex->tex4.addr)
+        return (clean_textures(mlx_data, tex), -1);
+    return (0);
 }
+
 
 int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 		t_img_data *game_img)
 {
-	if (init_textures(mlx_data, map->texture) == -1)
+	if (init_textures(mlx_data, map->tex) == -1)
 		return (-1);
 
 	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->width * TILE_SIZE, map->height * TILE_SIZE);
@@ -91,20 +87,13 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 		return (-1);
 	map_img->addr = mlx_get_data_addr(map_img->img_ptr, &map_img->bits_per_pixel, &map_img->line_length, &map_img->endian);
 	if (!map_img->addr)
-	{
-		mlx_destroy_image(mlx_data->mlx_ptr, map_img->img_ptr);
-		return (-1);
-	}
-	
+		return (-1);	
 	game_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, GAME_WIDTH, GAME_HEIGHT);
 	if (!game_img->img_ptr)
 		return (-1);
 	game_img->addr = mlx_get_data_addr(game_img->img_ptr, &game_img->bits_per_pixel, &game_img->line_length, &game_img->endian);
 	if (!game_img->addr)
-	{
-		mlx_destroy_image(mlx_data->mlx_ptr, game_img->img_ptr);
 		return (-1);
-	}
 	return (0);
 }
 

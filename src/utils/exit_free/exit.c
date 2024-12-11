@@ -21,17 +21,17 @@ void	simple_exit(char *msg, int code)
 /*void	exit_parse(t_game *game)
 {
 	free_list(game->list);
-	if (game->map->texture)
-		free_texture(game->map->texture);
+	if (game->map->tex)
+		free_texture(game->map->tex);
 	printf("parsing has exited with security");
 	exit(1);
 }*/
 
 void	exit_prog(t_game *game)
 {
+	clean_textures(&game->mlx_data, game->map->tex);
 	free_parse(game);
 	clean_up(game);
-	clean_textures(&game->mlx_data, game->map->texture);
 	free(game);
 	exit(0);
 }

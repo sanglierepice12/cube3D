@@ -40,7 +40,7 @@ size_t		get_list_len(t_list *list);
 void		free_rgb(t_rgb *rgb);
 void		free_tab(char **tab);
 void		free_s_map(t_map *map);
-void		free_texture(t_texture *texture);
+void		free_texture(t_tex *tex);
 void		exit_parse(t_game *game);
 void		simple_exit(char *msg, int code);
 void		free_parse(t_game *game);

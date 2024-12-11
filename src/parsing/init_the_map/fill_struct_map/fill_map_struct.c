@@ -46,31 +46,31 @@ void	fill_rgb(char *line, t_game *game, e_rgb type)
 	free_tab(temp);
 }
 
-void	fill_tex(char *line, t_texture *texture, e_txt type)
+void	fill_tex(char *line, t_tex *tex, e_txt type)
 {
 	if (type == NO)
 	{
-		texture->no = ft_dup(line);
-		if (texture->no == NULL)
-			return (printf("texture no is null\n"), free(line));
+		tex->no = ft_dup(line);
+		if (tex->no == NULL)
+			return (printf("tex no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
-		texture->so = ft_dup(line);
-		if (texture->so == NULL)
-			return (printf("texture no is null\n"), free(line));
+		tex->so = ft_dup(line);
+		if (tex->so == NULL)
+			return (printf("tex no is null\n"), free(line));
 	}
 	if (type == WE)
 	{
-		texture->we = ft_dup(line);
-		if (texture->we == NULL)
-			return (printf("texture no is null\n"), free(line));
+		tex->we = ft_dup(line);
+		if (tex->we == NULL)
+			return (printf("tex no is null\n"), free(line));
 	}
 	if (type == EA)
 	{
-		texture->ea = ft_dup(line);
-		if (texture->ea == NULL)
-			return (printf("texture no is null\n"), free(line));
+		tex->ea = ft_dup(line);
+		if (tex->ea == NULL)
+			return (printf("tex no is null\n"), free(line));
 	}
 	free(line);
 }

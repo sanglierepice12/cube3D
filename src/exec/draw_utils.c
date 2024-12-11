@@ -40,15 +40,15 @@ void clear_screen(t_img_data *img, int ceiling_color, int floor_color)
 }
 
 
-unsigned int    get_pixel_color(t_img_data *texture, int x, int y)
+unsigned int    get_pixel_color(t_img_data *tex, int x, int y)
 {
     int                offset;
     unsigned int    color;
 
-    if (x < 0  || x >= texture->width|| y < 0 || y >= texture->height)
+    if (x < 0  || x >= tex->width|| y < 0 || y >= tex->height)
         return (0);
-    offset = (y * texture->line_length + x * (texture->bits_per_pixel / 8));
-    color = *(unsigned int*)(texture->addr + offset);
+    offset = (y * tex->line_length + x * (tex->bits_per_pixel / 8));
+    color = *(unsigned int*)(tex->addr + offset);
     return (color);
 }
 void	def_wall_color(t_proj *proj)
@@ -66,13 +66,13 @@ void	def_wall_color(t_proj *proj)
 void	def_wall_texture(t_proj *proj, t_map *map)
 {
 	if (proj->wall_orientation == NORTH)
-		proj->texture = map->texture->texture1;
+		proj->tex = map->tex->tex1;
 	else if (proj->wall_orientation == SOUTH)
-		proj->texture = map->texture->texture2;
+		proj->tex = map->tex->tex2;
 	else if (proj->wall_orientation == EAST)
-		proj->texture = map->texture->texture3;
+		proj->tex = map->tex->tex3;
 	else if (proj->wall_orientation == WEST)
-		proj->texture = map->texture->texture4;
+		proj->tex = map->tex->tex4;
 }
 
 void	def_wall_orientation(t_proj *proj, t_ray *raycaster, float ray_dir_x, float ray_dir_y)

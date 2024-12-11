@@ -31,7 +31,7 @@ int		key_down(int keycode, t_game *game);
 
 /*==================draws_utils.c====================*/
 
-unsigned int    get_pixel_color(t_img_data *texture, int x, int y);
+unsigned int    get_pixel_color(t_img_data *tex, int x, int y);
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 void	clear_screen(t_img_data *img, int ceiling_color, int floor_color);
 void	def_wall_color(t_proj *projection);
@@ -77,7 +77,7 @@ int		clean_up(t_game *game);
 
 
 
-void	clean_textures(t_mlx_data *mlx_data, t_texture *textures);
+void	clean_textures(t_mlx_data *mlx_data, t_tex *textures);
 
 
 #endif

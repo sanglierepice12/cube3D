@@ -23,7 +23,7 @@ typedef struct s_ray		t_ray;
 typedef struct s_proj		t_proj;
 typedef struct s_game		t_game;
 typedef struct s_list		t_list;
-typedef struct s_texture	t_texture;
+typedef struct s_tex		t_tex;
 typedef struct s_rgb		t_rgb;
 
 struct						s_img_data
@@ -82,7 +82,7 @@ struct						s_proj
 	double					wall_orientation;
 	int						wall_color;
 	double					correct_distance;
-	t_img_data				texture;
+	t_img_data				tex;
 };
 
 /*####PARSE####*/
@@ -97,19 +97,20 @@ struct						s_map
 	int						floor_color;
 	t_rgb					*ceiling;
 	t_rgb					*floor;
-	t_texture				*texture;
+	t_tex					*tex
+;
 };
 
-struct						s_texture
+struct						s_tex
 {
 	char					*no;
 	char					*so;
 	char					*we;
 	char					*ea;
-	t_img_data				texture1;
-	t_img_data				texture2;
-	t_img_data				texture3;
-	t_img_data				texture4;
+	t_img_data				tex1;
+	t_img_data				tex2;
+	t_img_data				tex3;
+	t_img_data				tex4;
 };
 
 struct						s_rgb

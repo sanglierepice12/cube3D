@@ -12,16 +12,28 @@
 
 #include "../../../include/cub3D.h"
 
-void clean_textures(t_mlx_data *mlx_data, t_texture *textures)
+void clean_textures(t_mlx_data *mlx_data, t_tex *tex)
 {
-	if (textures->texture1.img_ptr)
-		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture1.img_ptr);
-	if (textures->texture1.img_ptr)
-		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture2.img_ptr);
-	if (textures->texture1.img_ptr)
-		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture3.img_ptr);
-	if (textures->texture1.img_ptr)
-		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture4.img_ptr);
+	if (tex->tex1.img_ptr)
+	{
+		mlx_destroy_image(mlx_data->mlx_ptr, tex->tex1.img_ptr);
+		tex->tex1.img_ptr = NULL;
+	}
+	if (tex->tex2.img_ptr)
+	{
+		mlx_destroy_image(mlx_data->mlx_ptr, tex->tex2.img_ptr);
+		tex->tex2.img_ptr = NULL;
+	}
+	if (tex->tex3.img_ptr)
+	{
+		mlx_destroy_image(mlx_data->mlx_ptr, tex->tex3.img_ptr);
+		tex->tex3.img_ptr = NULL;
+	}
+	if (tex->tex4.img_ptr)
+	{
+		mlx_destroy_image(mlx_data->mlx_ptr, tex->tex4.img_ptr);
+		tex->tex4.img_ptr = NULL;
+	}
 }
 
 int	clean_up(t_game *game)

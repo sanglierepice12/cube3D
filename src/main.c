@@ -83,10 +83,10 @@ int main(int arc, char **argv)
 	int i = 0;
 	while (game->map->map[i])
 		printf("%s\n", game->map->map[i++]);
-	printf("%s\n", game->map->texture->no);
-	printf("%s\n", game->map->texture->so);
-	printf("%s\n", game->map->texture->ea);
-	printf("%s\n", game->map->texture->we);
+	printf("%s\n", game->map->tex->no);
+	printf("%s\n", game->map->tex->so);
+	printf("%s\n", game->map->tex->ea);
+	printf("%s\n", game->map->tex->we);
 	printf("floor r = %d \n", game->map->floor->r);
 	printf("floor g = %d \n", game->map->floor->g);
 	printf("floor b = %d \n", game->map->floor->b);

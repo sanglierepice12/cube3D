@@ -36,15 +36,15 @@ void	free_rgb(t_rgb *rgb)
 	free(rgb);
 }
 
-void	free_texture(t_texture *texture)
+void	free_texture(t_tex *tex)
 {
-	if (!texture)
+	if (!tex)
 		return ;
-	free(texture->ea);
-	free(texture->no);
-	free(texture->so);
-	free(texture->we);
-	free(texture);
+	free(tex->ea);
+	free(tex->no);
+	free(tex->so);
+	free(tex->we);
+	free(tex);
 }
 
 void	free_s_map(t_map *map)
@@ -53,7 +53,7 @@ void	free_s_map(t_map *map)
 		return ;
 	free_tab(map->map);
 	
-	free_texture(map->texture);
+	free_texture(map->tex);
 	free_rgb(map->ceiling);
 	free_rgb(map->floor);
 	free(map);
