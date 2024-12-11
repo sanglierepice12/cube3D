@@ -21,49 +21,38 @@ void render_3d_column(t_game *game,t_proj *projection, t_ray *ray)
     float texture_y_pos;
     float step_size;
     unsigned int pixel_color;
-    float ray_dir_x;  // Declare ray_dir_x
-    float ray_dir_y;  // Declare ray_dir_y
+    float ray_dir_x;
+    float ray_dir_y; 
 
-    // Initialize ray direction based on ray angle
-    ray_dir_x = cos(ray->ray_angle);  // Calculate ray direction in X
-    ray_dir_y = sin(ray->ray_angle);  // Calculate ray direction in Y
-
+    ray_dir_x = cos(ray->ray_angle);  
+    ray_dir_y = sin(ray->ray_angle);  
     def_wall_texture(projection, game->map);
     printf("raypxx %f\n", ray->px_x);
-    // Calculate the texture X position based on where the ray hit
     if (ray->hit_side == HORIZONTAL)
-        texture_x = fmodf(ray->px_x, TILE_SIZE);  // Hit on a horizontal wall
+        texture_x = fmodf(ray->px_x, TILE_SIZE);  
     else
-        texture_x = fmodf(ray->px_y, TILE_SIZE);  // Hit on a vertical wall
-    // Map the texture X position to the texture width
+        texture_x = fmodf(ray->px_y, TILE_SIZE);
     texture_x = (texture_x * projection->texture.width) / TILE_SIZE;
-    // Apply the correct distance factor (texture scaling)
     step_size = (float)projection->texture.height / game->proj.wall_height;
     texture_y_pos = 0.0f;
-    // Adjust texture starting position if the wall starts above the screen
     if (game->proj.wall_start < 0)
     {
         texture_y_pos = -game->proj.wall_start * step_size;
         game->proj.wall_start = 0;
     }
     if (ray->hit_side == VERTICAL && ray_dir_x < 0)
-            texture_x = projection->texture.width - texture_x - 1;  // Flip texture for west-facing walls
+            texture_x = projection->texture.width - texture_x - 1;
     else if (ray->hit_side == HORIZONTAL && ray_dir_y > 0)
-            texture_x = projection->texture.width - texture_x - 1;  // Flip texture for north-facing walls
+            texture_x = projection->texture.width - texture_x - 1;
     y = game->proj.wall_start;
-
-    // Render the column by mapping the texture vertically
     while (y <= game->proj.wall_end && y < GAME_HEIGHT)
     {
-        texture_y = (int)texture_y_pos % projection->texture.height;  // Wrap the texture vertically
+        texture_y = (int)texture_y_pos % projection->texture.height;
         pixel_color = get_pixel_color(&projection->texture, texture_x, texture_y);
         my_mlx_pixel_put(&game->game_img, ray->ray_index, y, pixel_color);
-
-        texture_y_pos += step_size;  // Move to the next texture row
+        texture_y_pos += step_size; 
         y++;
     }
-
-    // Fix for mirrored textures based on ray direction
 }
 
 
@@ -112,11 +101,10 @@ void cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
 
     ray_dir_x = cos(ray->ray_angle);
     ray_dir_y = sin(ray->ray_angle);
-
     while (!wall_hit(game->map, ray))
     {
-        prev_map_x = MAP_COORD_X(ray->px_x); // Previous position
-        prev_map_y = MAP_COORD_Y(ray->px_y); // Previous position
+        prev_map_x = MAP_COORD_X(ray->px_x); // previous position before hit
+        prev_map_y = MAP_COORD_Y(ray->px_y); // previous position before hit
         ray->px_x += ray_dir_x * 0.08;
         if (wall_hit(game->map, ray))
             break;

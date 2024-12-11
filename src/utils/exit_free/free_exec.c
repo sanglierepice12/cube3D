@@ -14,9 +14,13 @@
 
 void clean_textures(t_mlx_data *mlx_data, t_texture *textures)
 {
+	if (textures->texture1.img_ptr)
 		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture1.img_ptr);
+	if (textures->texture1.img_ptr)
 		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture2.img_ptr);
+	if (textures->texture1.img_ptr)
 		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture3.img_ptr);
+	if (textures->texture1.img_ptr)
 		mlx_destroy_image(mlx_data->mlx_ptr, textures->texture4.img_ptr);
 }
 

@@ -1,7 +1,7 @@
-NO ./texture/text_tex.xpm
-SO ./texture/text_tex.xpm
-WE ./texture/text_tex.xpm
-EA ./texture/text_tex.xpm
+NO ./texture/greystone.xpm
+SO ./texture/red.xpm
+WE ./texture/purplestone.xpm
+EA ./texture/eagle.xpm
 F 220,100,0
 C 255,200, 10
 

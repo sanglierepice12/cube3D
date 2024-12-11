@@ -29,9 +29,9 @@ void	simple_exit(char *msg, int code)
 
 void	exit_prog(t_game *game)
 {
-	clean_textures(&game->mlx_data, game->map->texture);
 	free_parse(game);
 	clean_up(game);
+	clean_textures(&game->mlx_data, game->map->texture);
 	free(game);
 	exit(0);
 }

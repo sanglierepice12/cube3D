@@ -42,11 +42,6 @@ void def_playr_angle(t_player *player)
         player->angle = M_PI;
     else if (player->direction == 'E')
         player->angle = 0;
-
-    // Clamp angle to the range [0, 2 * M_PI)
-    player->angle = fmod(player->angle, 2 * M_PI);
-    if (player->angle < 0)
-        player->angle += 2 * M_PI;  // Ensure the angle is non-negative
 }
 
 
