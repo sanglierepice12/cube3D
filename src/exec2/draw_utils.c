@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/07 12:02:18 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:08:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,25 @@ void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	clear_screen(t_img_data *img, int ceiling_color, int floor_color)
+void clear_screen(t_img_data *img, int ceiling_color, int floor_color)
 {
-	int	*pixel_data;
-	int	half_height;
+    int *pixel_data;
+    int total_pixels, i;
 
-	pixel_data = (int *)img->addr;
-	half_height = SCREEN_CENTER_Y;
-	ft_memset(pixel_data, ceiling_color, half_height * GAME_WIDTH * sizeof(int));
-	ft_memset(&pixel_data[half_height * (int)GAME_WIDTH], floor_color, half_height * GAME_WIDTH * sizeof(int));
+    pixel_data = (int *)img->addr;
+    total_pixels = GAME_WIDTH * GAME_HEIGHT;
+
+    i = 0;
+    while (i < total_pixels)
+    {
+        if (i < GAME_WIDTH * SCREEN_CENTER_Y)
+            pixel_data[i] = ceiling_color;
+        else
+            pixel_data[i] = floor_color;
+        i++;
+    }
 }
+
 
 unsigned int    get_pixel_color(t_img_data *texture, int x, int y)
 {
