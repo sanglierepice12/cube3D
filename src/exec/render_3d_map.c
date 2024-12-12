@@ -43,6 +43,7 @@ void	render_3d_column(t_game *game,  t_proj *proj, t_ray *ray)
 		tex_y_pos = -proj->wall_start * step_size;
 		proj->wall_start = 0;
 	}
+	tex_y_pos = 0.0f;
 	y = proj->wall_start;
 	while (y <= proj->wall_end && y < GAME_HEIGHT)
 	{
