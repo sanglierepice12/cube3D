@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/10 12:44:18 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:12:40 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ struct						s_mlx_data
 
 struct						s_player
 {
-	double					player_pos_x;
-	double					player_pos_y;
-	double					player_px_pos_x;
-	double					player_px_pos_y;
+	double					pos_x;
+	double					pos_y;
+	double					px_pos_x;
+	double					px_pos_y;
 	
 	char					direction;
 	
@@ -65,9 +65,11 @@ struct						s_player
 
 struct						s_ray
 {
-	double					ray_angle;
 	double					px_x;
 	double					px_y;
+	double					ray_dir_x;
+	double					ray_dir_y;
+	double					ray_angle;
 	double					ray_index;
 	bool					hit_side;
 };

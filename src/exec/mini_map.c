@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/10 12:24:55 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:51:00 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int ti
 	
 	tile_start_x = tile_x * TILE_SIZE;
 	tile_start_y = tile_y * TILE_SIZE;
-	player_start_x = player->player_px_pos_x - (PLAYER_SIZE * 0.5);
-	player_start_y = player->player_px_pos_y - (PLAYER_SIZE * 0.5);
+	player_start_x = player->px_pos_x - (PLAYER_SIZE * 0.5);
+	player_start_y = player->px_pos_y - (PLAYER_SIZE * 0.5);
 	draw_tile(img, tile_start_x, tile_start_y, floor_color);
 	draw_player(img, player_start_x, player_start_y, player_color);
 }
@@ -73,10 +73,10 @@ void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)
 	ray->ray_index = 0;
 	while (ray->ray_index < GAME_WIDTH)
 	{
-		ray->px_y = player->player_px_pos_y;
-		ray->px_x = player->player_px_pos_x;
-		ray->ray_angle = player->angle + (FOV_ANGLE * 2)
-			- (ray->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
+		ray->px_y = player->px_pos_y;
+		ray->px_x = player->px_pos_x;
+		ray->ray_angle = player->angle + (fov_angle() * 2)
+			- (ray->ray_index * (fov_angle() / (GAME_WIDTH - 1)));
 		while (!wall_hit(game->map, ray))
 		{
 			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y, PINK);

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/10 13:46:40 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:41:21 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 
 void def_playr_angle(t_player *player)
 {
-    player->player_px_pos_x = (player->player_pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
-    player->player_px_pos_y = (player->player_pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
+    player->px_pos_x = (player->pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
+    player->px_pos_y = (player->pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
 
     if (player->direction == 'N')
         player->angle = (3 * M_PI) * 0.5;

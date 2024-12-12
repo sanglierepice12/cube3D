@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 13:03:35 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/12/12 10:57:23 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	init_parse(t_game *game, char *file)
 		printf("Error, no player position\n");
 		exit_prog(game);
 	}
-	eye_tomap(game->map->map, game->player.player_pos_x, game->player.player_pos_y, game);
+	eye_tomap(game->map->map, game->player.pos_x, game->player.pos_y, game);
 }

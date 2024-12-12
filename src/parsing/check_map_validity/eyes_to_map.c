@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eyes_to_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsuter <gsuter@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:05:21 by gsuter            #+#    #+#             */
-/*   Updated: 2024/11/27 18:05:21 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/12/12 10:57:23 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 	{
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 		{
-			game->player.player_pos_x = (int)i;
-			game->player.player_pos_y = (int)len;
+			game->player.pos_x = (int)i;
+			game->player.pos_y = (int)len;
 			game->player.direction = line[i];
 			game->map->count++;
 			if (game->map->count > 7)

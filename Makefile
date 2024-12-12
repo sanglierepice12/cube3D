@@ -36,6 +36,7 @@ SRC =	main.c													\
 		exec/hook_event/hooks_managment.c						\
 		exec/mini_map.c											\
 		exec/render_3d_map.c									\
+		exec/constants.c										\
 		exec/init.c												\
 		utils/utils.c											\
 		utils/calloc.c											\

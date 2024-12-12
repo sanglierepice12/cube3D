@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/10 12:30:49 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:57:23 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	all_draws(t_game *game)
 {
 	draw_mini_map(game);
 	fill_tile_with_player(&game->player, &game->map_img,
-			game->player.player_pos_x, game->player.player_pos_y, BLACK, GREEN);
+			game->player.pos_x, game->player.pos_y, BLACK, GREEN);
 	draw_map_rays(game, &game->player, &game->ray);
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }
@@ -79,8 +79,8 @@ int main(int arc, char **argv)
 		return (printf("Please insert a map..."));
 	init_struct(&game);
 	init_parse(game, argv[1]);
-	/*printf("pos x = %d\n", game->player.player_pos_x);
-	printf("pos y = %d\n", game->player.player_pos_y);
+	/*printf("pos x = %d\n", game->player.pos_x);
+	printf("pos y = %d\n", game->player.pos_y);
 	printf("direction = %c\n", game->player.direction);
 	int i = 0;
 	while (game->map->map[i])

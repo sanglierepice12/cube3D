@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/10 12:51:56 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:12:55 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 void	clear_screen(t_img_data *img, int ceiling_color, int floor_color);
 void	def_wall_color(t_proj *projection);
 void	def_wall_texture(t_proj *projection, t_map *map);
-void	def_wall_orientation(t_proj *projection, t_ray *ray, float ray_dir_x, float ray_dir_y);
+void	def_wall_orientation(t_proj *projection, t_ray *ray);
 
 /*==================exec_utils.c====================*/
 
 bool	key_active(t_game *game);
 bool	wall_hit(t_map *map, t_ray *ray);
+int		get_map_coord(double px_x);
+
 
 /*=====================init.c=====================*/
 
@@ -78,6 +80,18 @@ int		clean_up(t_game *game);
 
 
 void	clean_textures(t_mlx_data *mlx_data, t_tex *textures);
+
+
+
+double dist_to_wall(t_ray *ray, t_player *player);
+double dist_to_plane(void);
+double fov_angle(void);
+double fov_half(void);
+double ray_angle_delta(void);
+int screen_center_x(void);
+int screen_center_y(void);
+
+
 
 
 #endif
