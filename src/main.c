@@ -60,7 +60,7 @@ void	all_draws(t_game *game)
 {
 	draw_mini_map(game);
 	fill_tile_with_player(&game->player, &game->map_img,
-						  game->player.player_pos_x, game->player.player_pos_y, BLACK, GREEN);
+						  game->player.player_pos_x, game->player.player_pos_y, BLACK, YELLOW);
 	draw_map_rays(game, &game->player, &game->ray);
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }
