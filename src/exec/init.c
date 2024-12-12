@@ -42,10 +42,10 @@ void	find_play_pos(t_map *map, t_player *player)
 			//printf("%s%c%s\n", WGREEN, map->map[y][x], WRESET);
 			if (map->map[y][x] == 'N')
 			{
-				player->player_pos_x = x;
-				player->player_px_pos_x = (x * TILE_SIZE) + (TILE_SIZE * 0.5);
-				player->player_pos_y = y;
-				player->player_px_pos_y = (y * TILE_SIZE) + (TILE_SIZE * 0.5);
+				player->pos_x = x;
+				player->px_pos_x = (x * TILE_SIZE) + (TILE_SIZE * 0.5);
+				player->pos_y = y;
+				player->px_pos_y = (y * TILE_SIZE) + (TILE_SIZE * 0.5);
 				// these two lines go together; MPI/2 is angle based on direction N;
 				// player->direction = "N";
 				// player->angle = (3 * M_PI) * 0.5;

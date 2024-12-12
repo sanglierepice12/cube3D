@@ -19,6 +19,7 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
+      <config projectName="cube3D" targetName="Makefile" />
       <config projectName="cube3D" targetName="cub3D" />
       <config projectName="cube3D" targetName="minilibx-linux" />
       <config projectName="cube3D" targetName="fclean" />
@@ -31,6 +32,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/headers/struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/struct.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minilibx-linux" beforeDir="false" afterPath="$PROJECT_DIR$/minilibx-linux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minilibx-linux/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/minilibx-linux/Makefile" beforeDir="false" />
@@ -91,6 +94,13 @@
       <change beforePath="$PROJECT_DIR$/minilibx-linux/test/open24.xpm" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/minilibx-linux/test/open30.xpm" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/minilibx-linux/test/run_tests.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/hook_event/hooks.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/hook_event/hooks.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/mini_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/mini_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/render_3d_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/render_3d_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +206,11 @@
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cube3D" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cube3D" TARGET_NAME="all" CONFIG_NAME="all" version="1">
@@ -336,6 +351,7 @@
       <item itemvalue="Native Application.minilibx-linux" />
       <item itemvalue="Native Application.re" />
       <item itemvalue="Native Application.cub3D" />
+      <item itemvalue="Native Application.Makefile" />
     </list>
     <recent_temporary>
       <list>

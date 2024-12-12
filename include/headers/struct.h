@@ -45,10 +45,10 @@ struct	s_mlx_data
 
 struct s_player
 {
-	double					player_pos_x;
-	double					player_pos_y;
-	double					player_px_pos_x;
-	double					player_px_pos_y;
+	double					pos_x;
+	double					pos_y;
+	double					px_pos_x;
+	double					px_pos_y;
 	char					direction;
 	bool					move_up;
 	bool					move_down;

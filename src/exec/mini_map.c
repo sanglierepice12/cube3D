@@ -62,8 +62,8 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int ti
 
 	tile_start_x = tile_x * TILE_SIZE;
 	tile_start_y = tile_y * TILE_SIZE;
-	player_start_x = player->player_px_pos_x - (PLAYER_SIZE * 0.5);
-	player_start_y = player->player_px_pos_y - (PLAYER_SIZE * 0.5);
+	player_start_x = player->px_pos_x - (PLAYER_SIZE * 0.5);
+	player_start_y = player->px_pos_y - (PLAYER_SIZE * 0.5);
 	draw_tile(img, tile_start_x, tile_start_y, floor_color);
 	draw_player(img, player_start_x, player_start_y, player_color);
 }
@@ -73,8 +73,8 @@ void	draw_map_rays(t_game *game, t_player *player, t_ray *raycaster)
 	raycaster->ray_index = 0;
 	while (raycaster->ray_index < GAME_WIDTH)
 	{
-		raycaster->ray_y = player->player_px_pos_y;
-		raycaster->ray_x = player->player_px_pos_x;
+		raycaster->ray_y = player->px_pos_y;
+		raycaster->ray_x = player->px_pos_x;
 		raycaster->ray_angle = player->angle + (FOV_ANGLE * 2)
 			- (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
 		while (!wall_hit(game->map, raycaster))

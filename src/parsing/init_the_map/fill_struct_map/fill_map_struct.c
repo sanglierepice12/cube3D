@@ -26,12 +26,16 @@ void	fill_rgb(char *line, t_game *game, t_ergb type)
 		game->map->ceiling->r = ft_atoi(temp[0]);
 		game->map->ceiling->g = ft_atoi(temp[1]);
 		game->map->ceiling->b = ft_atoi(temp[2]);
+		game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, \
+								game->map->ceiling->g, game->map->ceiling->b);
 	}
 	if (type == FLO)
 	{
 		game->map->floor->r = ft_atoi(temp[0]);
 		game->map->floor->g = ft_atoi(temp[1]);
 		game->map->floor->b = ft_atoi(temp[2]);
+		game->map->floor_color = rgb_to_hex(game->map->floor->r, \
+								game->map->floor->g, game->map->floor->b);
 	}
 	free(line);
 	free_tab(temp);

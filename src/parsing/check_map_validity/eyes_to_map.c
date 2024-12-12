@@ -12,6 +12,25 @@
 
 #include "../../../include/cub3D.h"
 
+int	rgb_to_hex(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
+
+void	def_playr_angle(t_player *player)
+{
+	player->px_pos_x = (player->pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
+	player->px_pos_y = (player->pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
+	if (player->direction == 'N')
+		player->angle = (3 * M_PI) * 0.5;
+	else if (player->direction == 'S')
+		player->angle = M_PI / 2;
+	else if (player->direction == 'W')
+		player->angle = M_PI;
+	else if (player->direction == 'E')
+		player->angle = 0;
+}
+
 bool	ft_strchr(const char *s, const char c)
 {
 	size_t	i;
@@ -35,8 +54,8 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 	{
 		if (ft_strchr("NSEW", line[i]))
 		{
-			game->player.player_pos_x = (int)i;
-			game->player.player_pos_y = (int)len;
+			game->player.pos_x = (int)i;
+			game->player.pos_y = (int)len;
 			game->player.direction = line[i];
 			game->map->count++;
 			if (game->map->count > 7)
@@ -49,4 +68,5 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 		}
 		i++;
 	}
+	def_playr_angle(&game->player);
 }

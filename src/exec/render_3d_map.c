@@ -71,7 +71,7 @@ void update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 	float	angle_diff;
 
 	proj->distance_to_wall = DISTANCE(ray->ray_x, ray->ray_y,
-			player->player_px_pos_x, player->player_px_pos_y);
+									  player->px_pos_x, player->px_pos_y);
 	angle_diff = ray->ray_angle - player->angle;
 	proj->correct_distance = proj->distance_to_wall * cosf(angle_diff);
 	proj->wall_height = ((TILE_SIZE * DISTANCE_TO_PLANE) / proj->correct_distance);
@@ -126,8 +126,8 @@ void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 	clear_screen(&game->game_img, BLACK, LIGHT_BLUE);
 	while (ray->ray_index < GAME_WIDTH)
 	{
-		ray->ray_x = player->player_px_pos_x;
-		ray->ray_y = player->player_px_pos_y;
+		ray->ray_x = player->px_pos_x;
+		ray->ray_y = player->px_pos_y;
 		ray->ray_angle = (player->angle - FOV_HALF) + (ray->ray_index * RAY_ANGLE_DELTA);
 		cast_ray(game, ray, player, proj);
 		render_3d_column(game, proj);
