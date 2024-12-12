@@ -6,7 +6,7 @@
 #    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/07 11:19:30 by jedusser          #+#    #+#              #
-#    Updated: 2024/12/10 12:39:54 by jedusser         ###   ########.fr        #
+#    Updated: 2024/12/12 14:07:08 by jedusser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,6 @@ Refacto render_3d_cols
 
 Find Color stripe problem;
 
-move to parsing : defpkayer angle
+move to parsing : defpkayer angle, find_play_pos
 
 ceiling and floor rgb to hex operation (with the util function rgb to hex)

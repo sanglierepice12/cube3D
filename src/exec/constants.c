@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:08:54 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 12:42:50 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:01:42 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,8 @@ double	ray_angle_delta(void)
 	return (fov_angle() / GAME_WIDTH);
 }
 
-int	screen_center_x(void)
-{
-	return (GAME_WIDTH * 0.5);
-}
-
 int	screen_center_y(void)
 {
 	return (GAME_HEIGHT * 0.5);
 }
+

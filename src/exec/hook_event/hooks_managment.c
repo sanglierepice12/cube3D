@@ -6,11 +6,18 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:14:18 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/07 10:30:15 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:02:42 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
+
+bool	key_active(t_game *game)
+{
+	return (game->end || game->player.move_down || game->player.move_up \
+					|| game->player.move_left || game->player.move_right \
+					|| game->player.rotate_left || game->player.rotate_right);
+}
 
 int	key_up(int keycode, t_game *game)
 {

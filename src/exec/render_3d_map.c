@@ -12,39 +12,44 @@
 
 #include "../../include/cub3D.h"
 
-void	render_3d_column(t_game *game, t_proj *projection, t_ray *ray)
+
+
+void	render_3d_column(t_game *game,  t_proj *proj, t_ray *ray)
 {
 	int				y;
-	float			texture_x;
-	float			texture_y;
-	float			texture_y_pos;
+	float			tex_x;
+	float			tex_y;
+	float			tex_y_pos;
 	float			step_size;
 	unsigned int	pixel_color;
 
-	def_wall_texture(projection, game->map);
+	def_wall_texture(proj, game->map);
+	step_size = (float)proj->tex.height / proj->wall_height;
+
 	if (ray->hit_side == HORIZONTAL)
-		texture_x = fmodf(ray->px_x, TILE_SIZE);
+		tex_x = fmodf(ray->px_x, TILE_SIZE);
 	else
-		texture_x = fmodf(ray->px_y, TILE_SIZE);
-	texture_x = (texture_x * projection->tex.width) / TILE_SIZE;
-	step_size = (float)projection->tex.height / game->proj.wall_height;
-	texture_y_pos = 0.0f;
-	if (game->proj.wall_start < 0)
-	{
-		texture_y_pos = -game->proj.wall_start * step_size;
-		game->proj.wall_start = 0;
-	}
+		tex_x = fmodf(ray->px_y, TILE_SIZE);
+
+	tex_x = (tex_x * proj->tex.width) / TILE_SIZE;
+
 	if (ray->hit_side == VERTICAL && ray->ray_dir_x < 0)
-		texture_x = projection->tex.width - texture_x - 1;
+		tex_x = proj->tex.width - tex_x - 1;
 	else if (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0)
-		texture_x = projection->tex.width - texture_x - 1;
-	y = game->proj.wall_start;
-	while (y <= game->proj.wall_end && y < GAME_HEIGHT)
+		tex_x = proj->tex.width - tex_x - 1;
+
+	if (proj->wall_start < 0)
 	{
-		texture_y = (int)texture_y_pos % projection->tex.height;
-		pixel_color = get_pixel_color(&projection->tex, texture_x, texture_y);
+		tex_y_pos = -proj->wall_start * step_size;
+		proj->wall_start = 0;
+	}
+	y = proj->wall_start;
+	while (y <= proj->wall_end && y < GAME_HEIGHT)
+	{
+		tex_y = (int)tex_y_pos % proj->tex.height;
+		pixel_color = get_pixel_color(&proj->tex, tex_x, tex_y);
 		my_mlx_pixel_put(&game->game_img, ray->ray_index, y, pixel_color);
-		texture_y_pos += step_size;
+		tex_y_pos += step_size;
 		y++;
 	}
 }
@@ -66,19 +71,6 @@ void	update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 			/ proj->correct_distance);
 	proj->wall_start = screen_center_y() - proj->wall_height * 0.5;
 	proj->wall_end = screen_center_y() + proj->wall_height * 0.5;
-}
-
-void	def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y)
-{
-	int	ray_map_x;
-	int	ray_map_y;
-
-	ray_map_x = get_map_coord(ray->px_x);
-	ray_map_y = get_map_coord(ray->px_y);
-	if (ray_map_x != prev_map_x)
-		ray->hit_side = VERTICAL;
-	if (ray_map_y != prev_map_y)
-		ray->hit_side = HORIZONTAL;
 }
 
 void	cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 10:57:23 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:55:33 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,12 @@ int main(int arc, char **argv)
 		return (printf("Please insert a map..."));
 	init_struct(&game);
 	init_parse(game, argv[1]);
-	/*printf("pos x = %d\n", game->player.pos_x);
-	printf("pos y = %d\n", game->player.pos_y);
-	printf("direction = %c\n", game->player.direction);
-	int i = 0;
-	while (game->map->map[i])
-		printf("%s\n", game->map->map[i++]);
-	printf("%s\n", game->map->tex->no);
-	printf("%s\n", game->map->tex->so);
-	printf("%s\n", game->map->tex->ea);
-	printf("%s\n", game->map->tex->we);
-	printf("floor r = %d \n", game->map->floor->r);
-	printf("floor g = %d \n", game->map->floor->g);
-	printf("floor b = %d \n", game->map->floor->b);
-	printf("ceiling r = %d \n", game->map->ceiling->r);
-	// printf("ceiling b = %d \n", game->map->ceiling->b);*/
 	game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, game->map->ceiling->g, game->map->ceiling->b);
 	game->map->floor_color = rgb_to_hex(game->map->floor->r, game->map->floor->g, game->map->floor->b);
 
 
 	init_game(game);
+	
 	hook_management(game);
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, game);
 	draw_and_display_map(game);
