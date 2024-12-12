@@ -14,46 +14,63 @@
 
 
 
-void	render_3d_column(t_game *game,  t_proj *proj, t_ray *ray)
+void render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 {
-	int				y;
-	float			tex_x;
-	float			tex_y;
-	float			tex_y_pos;
-	float			step_size;
-	unsigned int	pixel_color;
+    int screen_pixel_y;                // Current vertical position on the screen
+    float texture_pixel_x;             // Horizontal coordinate for texture sampling
+    float texture_pixel_y;             // Vertical coordinate for texture sampling
+    float texture_sample_y_position;   // Vertical position in the texture (y-axis)
+    float texture_sampling_step;       // Step size to move down the texture for each pixel
+    unsigned int sampled_texture_color; // Color sampled from the texture
 
-	def_wall_texture(proj, game->map);
-	step_size = (float)proj->tex.height / proj->wall_height;
+    // Set up the wall texture based on the projection and map
+    def_wall_texture(proj, game->map);
 
-	if (ray->hit_side == HORIZONTAL)
-		tex_x = fmodf(ray->px_x, TILE_SIZE);
-	else
-		tex_x = fmodf(ray->px_y, TILE_SIZE);
+    // Calculate step size for sampling the texture based on wall height
+    texture_sampling_step = (float)proj->tex.height / proj->wall_height;
 
-	tex_x = (tex_x * proj->tex.width) / TILE_SIZE;
+    // Determine the horizontal texture coordinate based on ray hit
+    if (ray->hit_side == HORIZONTAL)
+        texture_pixel_x = fmodf(ray->px_x, TILE_SIZE); // Horizontal wall hit
+    else
+        texture_pixel_x = fmodf(ray->px_y, TILE_SIZE); // Vertical wall hit
 
-	if (ray->hit_side == VERTICAL && ray->ray_dir_x < 0)
-		tex_x = proj->tex.width - tex_x - 1;
-	else if (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0)
-		tex_x = proj->tex.width - tex_x - 1;
+    texture_pixel_x = (texture_pixel_x * proj->tex.width) / TILE_SIZE;
 
-	if (proj->wall_start < 0)
-	{
-		tex_y_pos = -proj->wall_start * step_size;
-		proj->wall_start = 0;
-	}
-	tex_y_pos = 0.0f;
-	y = proj->wall_start;
-	while (y <= proj->wall_end && y < GAME_HEIGHT)
-	{
-		tex_y = (int)tex_y_pos % proj->tex.height;
-		pixel_color = get_pixel_color(&proj->tex, tex_x, tex_y);
-		my_mlx_pixel_put(&game->game_img, ray->ray_index, y, pixel_color);
-		tex_y_pos += step_size;
-		y++;
-	}
+    // Adjust the texture x-coordinate based on ray direction
+    if ((ray->hit_side == VERTICAL && ray->ray_dir_x < 0) ||
+        (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0))
+    {
+        texture_pixel_x = proj->tex.width - texture_pixel_x - 1;
+    }
+
+    // Handle clipping: adjust wall_start and corresponding texture position
+    if (proj->wall_start < 0)
+    {
+        texture_sample_y_position = -proj->wall_start * texture_sampling_step;
+        proj->wall_start = 0;
+    }
+    else
+        texture_sample_y_position = 0.0f;
+    // Draw the vertical wall column pixel by pixel
+    screen_pixel_y = proj->wall_start;
+    while (screen_pixel_y <= proj->wall_end && screen_pixel_y < GAME_HEIGHT)
+    {
+        // Determine vertical texture coordinate
+        texture_pixel_y = (int)texture_sample_y_position % proj->tex.height;
+
+        // Sample the color from the texture
+        sampled_texture_color = get_pixel_color(&proj->tex, texture_pixel_x, texture_pixel_y);
+
+        // Paint the pixel on the screen
+        my_mlx_pixel_put(&game->game_img, ray->ray_index, screen_pixel_y, sampled_texture_color);
+
+        // Move to the next position
+        texture_sample_y_position += texture_sampling_step;
+        screen_pixel_y++;
+    }
 }
+
 
 double	dist_to_wall(t_ray *ray, t_player *player)
 {

@@ -1,7 +1,7 @@
-NO ./texture/greystone.xpm
-SO ./texture/leafs.xpm
-WE ./texture/rough_stone_tiles_resize.xpm
-EA ./texture/eagle.xpm
+NO ./texture/text_tex.xpm
+SO ./texture/text_tex.xpm
+WE ./texture/text_tex.xpm
+EA ./texture/text_tex.xpm
 F 220,100,0
 C 135,206,235
 
