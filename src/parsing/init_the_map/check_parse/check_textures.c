@@ -12,27 +12,44 @@
 
 #include "../../../../include/cub3D.h"
 
-void	wall_is_good(t_game *game, char *line, bool flag)
+static void	wall_follow(const char *line, size_t i)
+{
+	while (line[i++])
+	{
+		if (!line[i + 1])
+			return ;
+		if (line[i] == '#' && line[i + 1] == '#')
+			continue ;
+		if (line[i] != '1')
+			break ;
+	}
+}
+
+void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 {
 	size_t	i;
+	size_t	len;
+	char	*temp;
 
 	i = parse_ws(line);
-	if (flag & (line[i] == '1' && line[ft_strlen(line) - 1] == '1'))
-		return ;
-	if (!flag)
+	len = ft_strlen(line) - 1;
+	if (flag)
 	{
-		while (line[i])
+		temp = copy_map_line(prev, game->map->width);
+		if (!temp)
+			force_exit(line, game);
+		while (line[len--])
 		{
-			if (!line[i + 1])
-				return ;
-			if (line[i++] != '1')
-				break ;
+			if ((line[len] == '1' || line[len] == '#') && temp[len] == '#')
+				continue;
+			if (temp[len] != '1')
+					break;
+			return (free(temp));
 		}
 	}
-	printf("Error, map invalid, line : \"%s\"\n", line);
-	free_list(game->list);
-	free(line);
-	exit_prog(game);
+	if (!flag)
+		wall_follow(line, i);
+	force_exit(line, game);
 }
 
 bool	rgb_is_good(char *line)
@@ -50,23 +67,6 @@ bool	rgb_is_good(char *line)
 			return (free_tab(temp), printf("Error rgb\n"), false);
 	}
 	free_tab(temp);
-	return (true);
-}
-
-static bool	parse_comma(char *line)
-{
-	ssize_t	i;
-	int		count;
-
-	i = -1;
-	count = 0;
-	while (++i, line[i])
-	{
-		if (line[i] == ',')
-			count++;
-	}
-	if (count != 2)
-		return (false);
 	return (true);
 }
 

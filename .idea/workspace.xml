@@ -33,74 +33,38 @@
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cub3D" beforeDir="false" afterPath="$PROJECT_DIR$/cub3D" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/headers/define.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/define.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/headers/exec_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/exec_functions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/headers/parsing_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/parsing_functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/headers/struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/struct.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux" beforeDir="false" afterPath="$PROJECT_DIR$/minilibx-linux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/Makefile.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/configure" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man1/mlx.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man1/mlx_loop.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man1/mlx_new_image.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man1/mlx_new_window.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man1/mlx_pixel_put.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man3/mlx.3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man3/mlx_loop.3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man3/mlx_new_image.3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man3/mlx_new_window.3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/man/man3/mlx_pixel_put.3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_clear_window.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_destroy_display.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_destroy_image.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_destroy_window.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_expose_hook.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_ext_randr.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_flush_event.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_get_color_value.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_get_data_addr.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_hook.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_init.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_anti_resize_win.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_do_nothing.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_get_visual.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_param_event.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_set_win_event_mask.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_str_to_wordtab.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_int_wait_first_expose.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_key_hook.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_lib_xpm.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_loop.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_loop_hook.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_mouse.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_mouse_hook.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_new_image.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_new_window.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_pixel_put.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_put_image_to_window.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_rgb.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_screen_size.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_set_font.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_string_put.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_xpm.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/mlx_xpm.c.ok" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/rgb2c.pl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/Makefile.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/main.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/new_win.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/open.xpm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/open24.xpm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/open30.xpm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux/test/run_tests.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/headers/utils_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/utils_functions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/map_official.cub" beforeDir="false" afterPath="$PROJECT_DIR$/map/map_official.cub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/draw_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/draw_utils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/exec_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/exec_utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/exec/hook_event/hooks.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/hook_event/hooks.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/hook_event/hooks_managment.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/hook_event/hooks_managment.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/exec/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/init.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/exec/mini_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/mini_map.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/exec/render_3d_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/render_3d_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/draw_utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/exec_utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/hook_event/hooks.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/hook_event/hooks_managment.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/init.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/mini_map.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec2/render_3d_map.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/check_map_validity/eyes_to_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/init_struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_struct.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/fill_struct_map/fill_map_struct.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/get_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/get_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/get_text_rgb.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/get_text_rgb.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/exit.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/exit.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/free2.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/free2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/free_exec.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/free_exec.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/free_parse.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/free_parse.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +119,9 @@
       </map>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -173,41 +140,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Makefile Target.Makefile (1).executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.Makefile (2).executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.Makefile.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.all.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;ToolWindow.CMake.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;gonz&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/sanglier/Valgrind_Docker/gonz_42/cube3D&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Makefile Target.Makefile (1).executor": "Run",
+    "Makefile Target.Makefile (2).executor": "Run",
+    "Makefile Target.Makefile.executor": "Run",
+    "Native Application.all.executor": "Run",
+    "OCFindUsagesOptions.isSearchForTextOccurrences": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "ToolWindow.CMake.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "gonz",
+    "last_opened_file_path": "/home/gsuter/Documents/gonz_42/cube3D",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Makefile Target.Makefile (2)">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Makefile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cube3D" TARGET_NAME="Makefile" CONFIG_NAME="Makefile" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -288,6 +251,11 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Makefile (1)" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
       <makefile filename="$PROJECT_DIR$/Makefile" target="" workingDirectory="" arguments="">
         <envs />
@@ -343,15 +311,15 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Makefile Application.all" />
+      <item itemvalue="Makefile Application.fclean" />
+      <item itemvalue="Makefile Application.minilibx-linux" />
+      <item itemvalue="Makefile Application.re" />
+      <item itemvalue="Makefile Application.cub3D" />
+      <item itemvalue="Makefile Application.Makefile" />
       <item itemvalue="Makefile Target.Makefile (2)" />
       <item itemvalue="Makefile Target.Makefile (1)" />
       <item itemvalue="Makefile Target.Makefile" />
-      <item itemvalue="Native Application.all" />
-      <item itemvalue="Native Application.fclean" />
-      <item itemvalue="Native Application.minilibx-linux" />
-      <item itemvalue="Native Application.re" />
-      <item itemvalue="Native Application.cub3D" />
-      <item itemvalue="Native Application.Makefile" />
     </list>
     <recent_temporary>
       <list>
@@ -392,6 +360,7 @@
       <workItem from="1733823324129" duration="10723000" />
       <workItem from="1733908990549" duration="3000" />
       <workItem from="1733999384805" duration="1760000" />
+      <workItem from="1734366309873" duration="6447000" />
     </task>
     <servers />
   </component>

@@ -23,53 +23,58 @@ typedef struct s_ray			t_ray;
 typedef struct s_proj			t_proj;
 typedef struct s_game			t_game;
 typedef struct s_list			t_list;
-typedef struct s_texture		t_texture;
+typedef struct s_tex			t_tex;
 typedef struct s_rgb			t_rgb;
 
-struct	s_img_data
+struct						s_img_data
 {
-	void	*img_ptr;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void					*img_ptr;
+	char					*addr;
+	int						width;
+	int						height;
+	int						bits_per_pixel;
+	int						line_length;
+	int						endian;
 };
 
-struct	s_mlx_data
+struct						s_mlx_data
 {
 	void					*mlx_ptr;
 	void					*game_win_ptr;
 };
 
-struct s_player
+struct						s_player
 {
 	double					pos_x;
 	double					pos_y;
 	double					px_pos_x;
 	double					px_pos_y;
-	char					direction;
+
+
 	bool					move_up;
 	bool					move_down;
 	bool					move_left;
 	bool					move_right;
 	bool					rotate_left;
 	bool					rotate_right;
+
 	double					angle;
 	double					distance;
+	char					direction;
 };
 
-struct s_ray
+struct						s_ray
 {
-	float					ray_angle;
-	float					ray_x;
-	float					ray_y;
-	int						ray_index;
-	int						hit_side;
+	double					px_x;
+	double					px_y;
+	double					ray_dir_x;
+	double					ray_dir_y;
+	double					ray_angle;
+	double					ray_index;
+	bool					hit_side;
 };
 
-struct s_proj
+struct						s_proj
 {
 	double					distance_to_wall;
 	double					last_distance_to_wall;
@@ -79,36 +84,36 @@ struct s_proj
 	double					wall_orientation;
 	int						wall_color;
 	double					correct_distance;
-	t_img_data				texture;
+	t_img_data				tex;
+	float					tex_x;
+	float					tex_y;
 };
 
 /*####PARSE####*/
 
 struct	s_map
 {
-	int					count;
-	char				**map;
-	char				**tex;
-	int					height;
-	int					width;
-	int					ceiling_color;
-	int					floor_color;
-	t_player			*player;
-	t_texture			*texture;
-	t_rgb				*ceiling;
-	t_rgb				*floor;
+	int						count;
+	char					**map;
+	int						height;
+	int						width;
+	int						ceiling_color;
+	int						floor_color;
+	t_rgb					*ceiling;
+	t_rgb					*floor;
+	t_tex					*tex;
 };
 
-struct	s_texture
+struct						s_tex
 {
 	char					*no;
 	char					*so;
 	char					*we;
 	char					*ea;
-	t_img_data				texture1;
-	t_img_data				texture2;
-	t_img_data				texture3;
-	t_img_data				texture4;
+	t_img_data				tex1;
+	t_img_data				tex2;
+	t_img_data				tex3;
+	t_img_data				tex4;
 };
 
 struct	s_rgb

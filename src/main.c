@@ -46,7 +46,6 @@ int	draw_and_display_map(t_game *game)
 		if (game->end)
 			return (0);
 		all_draws(game);
-		printf("=========================FRAME========================\n");
 		mlx_put_image_to_window(game->mlx_data.mlx_ptr,
 								game->mlx_data.game_win_ptr, game->map_img.img_ptr, GAME_WIDTH
 																					/ 4, GAME_HEIGHT);
@@ -60,7 +59,7 @@ void	all_draws(t_game *game)
 {
 	draw_mini_map(game);
 	fill_tile_with_player(&game->player, &game->map_img,
-						  game->player.pos_x, game->player.pos_y, BLACK, YELLOW);
+						  game->player.pos_x, game->player.pos_y, BLACK, GREEN);
 	draw_map_rays(game, &game->player, &game->ray);
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }
@@ -91,7 +90,7 @@ int main(int arc, char **argv)
 	printf("ceiling r = %d \n", game->map->ceiling->r);
 	printf("ceiling g = %d \n", game->map->ceiling->g);
 	printf("ceiling b = %d \n", game->map->ceiling->b);*/
-
+	exit_prog(game);
 	init_game(game);
 	hook_management(game);
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, game);

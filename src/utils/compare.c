@@ -12,6 +12,23 @@
 
 #include "../../include/cub3D.h"
 
+bool	parse_comma(char *line)
+{
+	ssize_t	i;
+	int		count;
+
+	i = -1;
+	count = 0;
+	while (++i, line[i])
+	{
+		if (line[i] == ',')
+			count++;
+	}
+	if (count != 2)
+		return (false);
+	return (true);
+}
+
 int	ft_comp_str(const char *src, const char *str)
 {
 	size_t	i;

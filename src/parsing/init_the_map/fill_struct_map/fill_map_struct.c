@@ -41,30 +41,30 @@ void	fill_rgb(char *line, t_game *game, t_ergb type)
 	free_tab(temp);
 }
 
-void	fill_tex(char *line, t_texture *texture, t_txt type)
+void	fill_tex(char *line, t_tex *tex, t_txt type)
 {
 	if (type == NO)
 	{
-		texture->no = ft_dup(line);
-		if (texture->no == NULL)
+		tex->no = ft_dup(line);
+		if (tex->no == NULL)
 			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
-		texture->so = ft_dup(line);
-		if (texture->so == NULL)
+		tex->so = ft_dup(line);
+		if (tex->so == NULL)
 			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == WE)
 	{
-		texture->we = ft_dup(line);
-		if (texture->we == NULL)
+		tex->we = ft_dup(line);
+		if (tex->we == NULL)
 			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == EA)
 	{
-		texture->ea = ft_dup(line);
-		if (texture->ea == NULL)
+		tex->ea = ft_dup(line);
+		if (tex->ea == NULL)
 			return (printf("texture no is null\n"), free(line));
 	}
 	free(line);
@@ -92,19 +92,18 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	if (!temp)
 		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
+	get_len_line(game);
 	while (temp)
 	{
-		line = rm_bs_wp(temp->value);
+		line = copy_map_line(temp->value, game->map->width);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
 		if (!temp->next || i == 0)
-			wall_is_good(game, line, 0);
+			wall_is_good(game, line, 0, NULL);
 		else
-			wall_is_good(game, line, 1);
+			wall_is_good(game, line, 1, temp->prev->value);
 		game->map->map[i++] = ft_dup(line);
 		fill_playerpos(line, game, i);
-		if (game->map->width < (int) ft_strlen(line))
-			game->map->width = (int)ft_strlen(line);
 		temp = temp->next;
 		free(line);
 	}

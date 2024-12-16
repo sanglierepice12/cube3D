@@ -17,8 +17,8 @@ bool	init_map(t_map **map)
 	*map = ft_calloc(1, sizeof(t_map));
 	if (!(*map))
 		return (false);
-	(*map)->texture = ft_calloc(1, sizeof(t_texture));
-	if (!(*map)->texture)
+	(*map)->tex = ft_calloc(1, sizeof(t_tex));
+	if (!(*map)->tex)
 		return (false);
 	(*map)->ceiling = ft_calloc(1, sizeof(t_rgb));
 	if (!(*map)->ceiling)

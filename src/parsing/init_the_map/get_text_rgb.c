@@ -44,7 +44,7 @@ void	get_rgb(char *line, t_game *game)
 	free(temp);
 }
 
-void	get_textures(char *line, t_texture *texture, t_game *game)
+void	get_textures(char *line, t_tex *texture, t_game *game)
 {
 	size_t	i;
 	size_t	y;

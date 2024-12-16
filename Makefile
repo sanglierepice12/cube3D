@@ -28,9 +28,11 @@ SRC =	main.c													\
 		parsing/init_the_map/check_parse/is_lineok.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
+		parsing/init_the_map/fill_struct_map/fill_map_suit.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
 		parsing/check_map_validity/eyes_to_map.c				\
+		exec/constants.c										\
 		exec/draw_utils.c										\
 		exec/exec_utils.c										\
 		exec/init.c												\

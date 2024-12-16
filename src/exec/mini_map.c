@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/07 11:54:17 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:46:45 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int ti
 	int	tile_start_y;
 	int	player_start_x;
 	int	player_start_y;
-
+	
 	tile_start_x = tile_x * TILE_SIZE;
 	tile_start_y = tile_y * TILE_SIZE;
 	player_start_x = player->px_pos_x - (PLAYER_SIZE * 0.5);
@@ -68,22 +68,22 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int ti
 	draw_player(img, player_start_x, player_start_y, player_color);
 }
 
-void	draw_map_rays(t_game *game, t_player *player, t_ray *raycaster)
+void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)
 {
-	raycaster->ray_index = 0;
-	while (raycaster->ray_index < GAME_WIDTH)
+	ray->ray_index = 0;
+	while (ray->ray_index < GAME_WIDTH)
 	{
-		raycaster->ray_y = player->px_pos_y;
-		raycaster->ray_x = player->px_pos_x;
-		raycaster->ray_angle = player->angle + (FOV_ANGLE * 2)
-			- (raycaster->ray_index * (FOV_ANGLE / (GAME_WIDTH - 1)));
-		while (!wall_hit(game->map, raycaster))
+		ray->px_y = player->px_pos_y;
+		ray->px_x = player->px_pos_x;
+		ray->ray_angle = player->angle + (fov_angle() * 2) \
+						- (ray->ray_index * (fov_angle() / (GAME_WIDTH - 1)));
+		while (!wall_hit(game->map, ray))
 		{
-			my_mlx_pixel_put(&game->map_img, (int)raycaster->ray_x, (int)raycaster->ray_y, PINK);
-			raycaster->ray_x += sin(raycaster->ray_angle);
-			raycaster->ray_y -= cos(raycaster->ray_angle);
+			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y, PINK);
+			ray->px_x += sin(ray->ray_angle);
+			ray->px_y -= cos(ray->ray_angle);
 		}
-		raycaster->ray_index++;
+		ray->ray_index++;
 	}
 }
 
@@ -100,7 +100,7 @@ void	draw_mini_map(t_game *game)
 		{
 			if (game->map->map[y][x] == '1')
 				draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
-			if (game->map->map[y][x] == '0' || game->map->map[y][x] == ' ')
+			if (game->map->map[y][x] == '0' || game->map->map[y][x] == game->player.direction)
 				draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
 			x++;
 		}
