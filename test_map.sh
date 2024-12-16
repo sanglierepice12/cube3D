@@ -46,6 +46,7 @@ MAPS_NOT=(
 
 MAPS=(
   "map_official.cub"
+  "map_big.cub"
 )
 
 # Test chaque map

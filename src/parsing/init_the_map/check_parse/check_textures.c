@@ -41,10 +41,14 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 			force_exit(line, game);
 		while (line[len--])
 		{
-			if ((line[len] == '1' || line[len] == '#') && temp[len] == '#')
-				continue;
-			if (temp[len] != '1')
-					break;
+			if (line[len] == '#')
+				continue ;
+			if (line[len] != '1' || line[0] != '1' || \
+				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
+			{
+				free(temp);
+				break;
+			}
 			return (free(temp));
 		}
 	}
