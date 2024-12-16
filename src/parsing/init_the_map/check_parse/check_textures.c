@@ -12,17 +12,18 @@
 
 #include "../../../../include/cub3D.h"
 
-static void	wall_follow(const char *line, size_t i)
+static bool	wall_follow(const char *line, size_t i)
 {
 	while (line[i++])
 	{
 		if (!line[i + 1])
-			return ;
+			return (true);
 		if (line[i] == '#' && line[i + 1] == '#')
-			continue ;
+			continue;
 		if (line[i] != '1')
-			break ;
+			break;
 	}
+	return (false);
 }
 
 void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
@@ -47,8 +48,8 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 			return (free(temp));
 		}
 	}
-	if (!flag)
-		wall_follow(line, i);
+	if (!flag && wall_follow(line, i))
+		return ;
 	force_exit(line, game);
 }
 

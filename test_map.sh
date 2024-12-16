@@ -40,6 +40,8 @@ MAPS_NOT=(
   "wall_hole_south.cub"
   "wall_hole_west.cub"
   "wall_none.cub"
+  "map_wrongext.cb"
+  "map_false.cub"
 )
 
 MAPS=(
