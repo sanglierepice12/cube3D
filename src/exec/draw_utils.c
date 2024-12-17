@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 08:03:05 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:33:13 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ void	def_wall_texture(t_proj *proj, t_map *map)
 	else if (proj->wall_orientation == WEST)
 		proj->tex = map->tex->tex4;
 }
-

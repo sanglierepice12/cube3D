@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/17 08:14:49 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:37:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ struct						s_player
 	double					pos_y;
 	double					px_pos_x;
 	double					px_pos_y;
-	
-	
+
 	bool					move_up;
 	bool					move_down;
 	bool					move_left;
 	bool					move_right;
 	bool					rotate_left;
 	bool					rotate_right;
-	
+
 	double					angle;
 	double					distance;
 	char					direction;
@@ -101,8 +100,7 @@ struct						s_map
 	int						floor_color;
 	t_rgb					*ceiling;
 	t_rgb					*floor;
-	t_tex					*tex
-;
+	t_tex					*tex;
 };
 
 struct						s_tex

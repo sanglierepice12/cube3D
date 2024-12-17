@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:08:54 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 14:01:42 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:33:05 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ int	screen_center_y(void)
 {
 	return (GAME_HEIGHT * 0.5);
 }
-
