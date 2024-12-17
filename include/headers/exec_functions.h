@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/17 08:37:30 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 09:10:06 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			draw_player(t_img_data *img, int start_x, int start_y,
 					int color);
 int				draw_tile(t_img_data *img, int start_x, int start_y, int color);
 void			fill_tile_with_player(t_player *player, t_img_data *img,
-					int tile_x, int tile_y, int floor_color, int player_color);
+					int tile_x, int tile_y);
 void			draw_map_rays(t_game *game, t_player *player, t_ray *ray);
 void			draw_mini_map(t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 08:34:24 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 09:11:28 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	draw_tile(t_img_data *img, int start_x, int start_y, int color)
 		x = 0;
 		while (x < TILE_SIZE)
 		{
-			if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE \
-			|| y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
+			if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE
+				|| y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
 				my_mlx_pixel_put(img, start_x + x, start_y + y, BLACK);
 			else
 				my_mlx_pixel_put(img, start_x + x, start_y + y, color);
@@ -54,7 +54,7 @@ int	draw_tile(t_img_data *img, int start_x, int start_y, int color)
 }
 
 void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x,
-		int tile_y, int floor_color, int player_color)
+		int tile_y)
 {
 	int	tile_start_x;
 	int	tile_start_y;
@@ -65,8 +65,8 @@ void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x,
 	tile_start_y = tile_y * TILE_SIZE;
 	player_start_x = player->px_pos_x - (PLAYER_SIZE * 0.5);
 	player_start_y = player->px_pos_y - (PLAYER_SIZE * 0.5);
-	draw_tile(img, tile_start_x, tile_start_y, floor_color);
-	draw_player(img, player_start_x, player_start_y, player_color);
+	draw_tile(img, tile_start_x, tile_start_y, BLACK);
+	draw_player(img, player_start_x, player_start_y, GREEN);
 }
 
 void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 12:55:33 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 09:09:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	all_draws(t_game *game)
 {
 	draw_mini_map(game);
 	fill_tile_with_player(&game->player, &game->map_img,
-			game->player.pos_x, game->player.pos_y, BLACK, GREEN);
+			game->player.pos_x, game->player.pos_y);
 	draw_map_rays(game, &game->player, &game->ray);
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }
