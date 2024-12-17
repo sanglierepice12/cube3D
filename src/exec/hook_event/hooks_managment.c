@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:14:18 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 14:02:42 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 07:54:40 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,16 @@ int	key_down(int keycode, t_game *game)
 	return (0);
 }
 
+int close_triggered(t_game *game)
+{
+	clean_up(game);
+	exit(0);
+	return (0);
+}
+
 void	hook_management(t_game *game)
 {
-	mlx_hook(game->mlx_data.game_win_ptr, DestroyNotify, StructureNotifyMask, clean_up, game);
+	mlx_hook(game->mlx_data.game_win_ptr, DestroyNotify, StructureNotifyMask, close_triggered , game);
 	mlx_hook(game->mlx_data.game_win_ptr, KeyPress, KeyPressMask, key_down, game);
 	mlx_hook(game->mlx_data.game_win_ptr, KeyRelease, KeyReleaseMask, key_up, game);
 	return ;

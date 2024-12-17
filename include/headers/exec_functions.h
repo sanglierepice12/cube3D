@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/12 14:10:10 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:03:26 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	hook_management(t_game *game);
 unsigned int    get_pixel_color(t_img_data *tex, int x, int y);
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 void	clear_screen(t_img_data *img, int ceiling_color, int floor_color);
-void	def_wall_color(t_proj *projection);
 void	def_wall_texture(t_proj *projection, t_map *map);
 
 
@@ -72,6 +71,8 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 			t_proj *projection);
 void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 			t_proj *projection);
+float   get_texture_x(t_proj *proj, t_ray *ray);
+
 
 /*====================main.c======================*/
 

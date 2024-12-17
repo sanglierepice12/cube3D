@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:27:51 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 14:00:57 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:03:05 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,6 @@ unsigned int	get_pixel_color(t_img_data *tex, int x, int y)
 	offset = (y * tex->line_length + x * (tex->bits_per_pixel / 8));
 	color = *(unsigned int *)(tex->addr + offset);
 	return (color);
-}
-
-void	def_wall_color(t_proj *proj)
-{
-	if (proj->wall_orientation == NORTH)
-		proj->wall_color = LIGHT_BLUE;
-	else if (proj->wall_orientation == SOUTH)
-		proj->wall_color = RED;
-	else if (proj->wall_orientation == EAST)
-		proj->wall_color = PINK;
-	else if (proj->wall_orientation == WEST)
-		proj->wall_color = GREEN;
 }
 
 void	def_wall_texture(t_proj *proj, t_map *map)

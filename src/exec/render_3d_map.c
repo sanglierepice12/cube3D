@@ -12,7 +12,19 @@
 
 #include "../../include/cub3D.h"
 
-
+float   get_texture_x(t_proj *proj, t_ray *ray)
+{
+    float texture_pixel_x;
+    if (ray->hit_side == HORIZONTAL)
+        texture_pixel_x = fmodf(ray->px_x, TILE_SIZE);
+    else
+        texture_pixel_x = fmodf(ray->px_y, TILE_SIZE);
+    texture_pixel_x = (texture_pixel_x * proj->tex.width) / TILE_SIZE;
+    if ((ray->hit_side == VERTICAL && ray->ray_dir_x < 0) ||
+        (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0))
+        texture_pixel_x = proj->tex.width - texture_pixel_x - 1;
+    return (texture_pixel_x);
+}
 
 void render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 {
@@ -25,24 +37,11 @@ void render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 
     // Set up the wall texture based on the projection and map
     def_wall_texture(proj, game->map);
-
+    texture_pixel_x = get_texture_x(proj, ray);
     // Calculate step size for sampling the texture based on wall height
     texture_sampling_step = (float)proj->tex.height / proj->wall_height;
 
-    // Determine the horizontal texture coordinate based on ray hit
-    if (ray->hit_side == HORIZONTAL)
-        texture_pixel_x = fmodf(ray->px_x, TILE_SIZE); // Horizontal wall hit
-    else
-        texture_pixel_x = fmodf(ray->px_y, TILE_SIZE); // Vertical wall hit
 
-    texture_pixel_x = (texture_pixel_x * proj->tex.width) / TILE_SIZE;
-
-    // Adjust the texture x-coordinate based on ray direction
-    if ((ray->hit_side == VERTICAL && ray->ray_dir_x < 0) ||
-        (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0))
-    {
-        texture_pixel_x = proj->tex.width - texture_pixel_x - 1;
-    }
 
     // Handle clipping: adjust wall_start and corresponding texture position
     if (proj->wall_start < 0)
