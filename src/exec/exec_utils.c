@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:10:56 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 08:33:25 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 11:03:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ void	def_wall_orientation(t_proj *proj, t_ray *ray)
 		else
 			proj->wall_orientation = NORTH;
 	}
+}
+
+void	def_playr_angle(t_player *player)
+{
+	player->px_pos_x = (player->pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
+	player->px_pos_y = (player->pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
+	if (player->direction == 'N')
+		player->angle = (3 * M_PI) * 0.5;
+	else if (player->direction == 'S')
+		player->angle = M_PI / 2;
+	else if (player->direction == 'W')
+		player->angle = M_PI;
+	else if (player->direction == 'E')
+		player->angle = 0;
 }
 
 void	def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y)

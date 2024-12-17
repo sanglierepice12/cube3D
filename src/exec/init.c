@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 14:06:02 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 11:09:04 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,9 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 	return (0);
 }
 
-void	def_playr_angle(t_player *player)
+int init_textures_one(t_mlx_data *mlx_data, t_tex *tex)
 {
-	player->px_pos_x = (player->pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
-	player->px_pos_y = (player->pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
-	if (player->direction == 'N')
-		player->angle = (3 * M_PI) * 0.5;
-	else if (player->direction == 'S')
-		player->angle = M_PI / 2;
-	else if (player->direction == 'W')
-		player->angle = M_PI;
-	else if (player->direction == 'E')
-		player->angle = 0;
-}
-
-int	init_textures(t_mlx_data *mlx_data, t_tex *tex)
-{
-	tex->tex1.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->no,
+		tex->tex1.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->no,
 			&tex->tex1.width, &tex->tex1.height);
 	if (!tex->tex1.img_ptr)
 		return (clean_textures(mlx_data, tex), -1);
@@ -58,6 +44,12 @@ int	init_textures(t_mlx_data *mlx_data, t_tex *tex)
 			&tex->tex2.endian);
 	if (!tex->tex2.addr)
 		return (clean_textures(mlx_data, tex), -1);
+	return (0);
+}
+
+int	init_textures(t_mlx_data *mlx_data, t_tex *tex)
+{
+	init_textures_one(mlx_data, tex);
 	tex->tex3.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->ea,
 			&tex->tex3.width, &tex->tex3.height);
 	if (!tex->tex3.img_ptr)

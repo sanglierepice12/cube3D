@@ -34,13 +34,12 @@ void	render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 	def_wall_texture(proj, game->map);
 	get_texture_x(proj, ray);
 	texture_sampling_step = (float)proj->tex.height / proj->wall_height;
+	texture_sample_y_position = 0.0f;
 	if (proj->wall_start < 0)
 	{
 		texture_sample_y_position = -proj->wall_start * texture_sampling_step;
 		proj->wall_start = 0;
 	}
-	else
-		texture_sample_y_position = 0.0f;
 	screen_pixel_y = proj->wall_start;
 	while (screen_pixel_y <= proj->wall_end && screen_pixel_y < GAME_HEIGHT)
 	{
@@ -54,12 +53,6 @@ void	render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 	}
 }
 
-double	dist_to_wall(t_ray *ray, t_player *player)
-{
-	return (sqrtf((powf(player->px_pos_x - ray->px_x, 2) \
-				+ powf(player->px_pos_y - ray->px_y, 2))));
-}
-
 void	update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 {
 	float	angle_diff;
@@ -69,8 +62,8 @@ void	update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 	proj->correct_distance = proj->distance_to_wall * cosf(angle_diff);
 	proj->wall_height = ((TILE_SIZE * dist_to_plane()) \
 						/ proj->correct_distance);
-	proj->wall_start = screen_center_y() - proj->wall_height * 0.5;
-	proj->wall_end = screen_center_y() + proj->wall_height * 0.5;
+	proj->wall_start = (GAME_HEIGHT * 0.5) - proj->wall_height * 0.5;
+	proj->wall_end = (GAME_HEIGHT * 0.5) + proj->wall_height * 0.5;
 }
 
 void	cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)

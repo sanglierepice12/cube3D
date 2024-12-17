@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 09:11:28 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 11:02:53 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)
 				* (fov_angle() / (GAME_WIDTH - 1)));
 		while (!wall_hit(game->map, ray))
 		{
-			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y,
-					PINK);
+			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y, \
+																		PINK);
 			ray->px_x += sin(ray->ray_angle);
 			ray->px_y -= cos(ray->ray_angle);
 		}
