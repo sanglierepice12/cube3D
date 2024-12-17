@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/17 08:03:26 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:13:40 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player,
 			t_proj *projection);
 void	render_3d_map(t_game *game, t_player *player, t_ray *ray,
 			t_proj *projection);
-float   get_texture_x(t_proj *proj, t_ray *ray);
+void   get_texture_x(t_proj *proj, t_ray *ray);
 
 
 /*====================main.c======================*/

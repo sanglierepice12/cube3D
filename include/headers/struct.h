@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/12 14:19:55 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 08:14:49 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ struct						s_proj
 	int						wall_color;
 	double					correct_distance;
 	t_img_data				tex;
-	float					tex_x;
-	float					tex_y;
+	float					tex_px_x;
+	float					tex_px_y;
 };
 
 /*####PARSE####*/

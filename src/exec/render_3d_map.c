@@ -12,69 +12,52 @@
 
 #include "../../include/cub3D.h"
 
-float   get_texture_x(t_proj *proj, t_ray *ray)
+void	get_texture_x(t_proj *proj, t_ray *ray)
 {
-    float texture_pixel_x;
-    if (ray->hit_side == HORIZONTAL)
-        texture_pixel_x = fmodf(ray->px_x, TILE_SIZE);
-    else
-        texture_pixel_x = fmodf(ray->px_y, TILE_SIZE);
-    texture_pixel_x = (texture_pixel_x * proj->tex.width) / TILE_SIZE;
-    if ((ray->hit_side == VERTICAL && ray->ray_dir_x < 0) ||
-        (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0))
-        texture_pixel_x = proj->tex.width - texture_pixel_x - 1;
-    return (texture_pixel_x);
+	if (ray->hit_side == HORIZONTAL)
+		proj->tex_px_x = fmodf(ray->px_x, TILE_SIZE);
+	else
+		proj->tex_px_x = fmodf(ray->px_y, TILE_SIZE);
+	proj->tex_px_x = (proj->tex_px_x * proj->tex.width) / TILE_SIZE;
+	if ((ray->hit_side == VERTICAL && ray->ray_dir_x < 0) \
+	|| (ray->hit_side == HORIZONTAL && ray->ray_dir_y > 0))
+		proj->tex_px_x = proj->tex.width - proj->tex_px_x - 1;
 }
 
-void render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
+void	render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 {
-    int screen_pixel_y;                // Current vertical position on the screen
-    float texture_pixel_x;             // Horizontal coordinate for texture sampling
-    float texture_pixel_y;             // Vertical coordinate for texture sampling
-    float texture_sample_y_position;   // Vertical position in the texture (y-axis)
-    float texture_sampling_step;       // Step size to move down the texture for each pixel
-    unsigned int sampled_texture_color; // Color sampled from the texture
+	int				screen_pixel_y;
+	float			texture_sample_y_position;
+	float			texture_sampling_step;
+	unsigned int	sampled_texture_color;
 
-    // Set up the wall texture based on the projection and map
-    def_wall_texture(proj, game->map);
-    texture_pixel_x = get_texture_x(proj, ray);
-    // Calculate step size for sampling the texture based on wall height
-    texture_sampling_step = (float)proj->tex.height / proj->wall_height;
-
-
-
-    // Handle clipping: adjust wall_start and corresponding texture position
-    if (proj->wall_start < 0)
-    {
-        texture_sample_y_position = -proj->wall_start * texture_sampling_step;
-        proj->wall_start = 0;
-    }
-    else
-        texture_sample_y_position = 0.0f;
-    // Draw the vertical wall column pixel by pixel
-    screen_pixel_y = proj->wall_start;
-    while (screen_pixel_y <= proj->wall_end && screen_pixel_y < GAME_HEIGHT)
-    {
-        // Determine vertical texture coordinate
-        texture_pixel_y = (int)texture_sample_y_position % proj->tex.height;
-
-        // Sample the color from the texture
-        sampled_texture_color = get_pixel_color(&proj->tex, texture_pixel_x, texture_pixel_y);
-
-        // Paint the pixel on the screen
-        my_mlx_pixel_put(&game->game_img, ray->ray_index, screen_pixel_y, sampled_texture_color);
-
-        // Move to the next position
-        texture_sample_y_position += texture_sampling_step;
-        screen_pixel_y++;
-    }
+	def_wall_texture(proj, game->map);
+	get_texture_x(proj, ray);
+	texture_sampling_step = (float)proj->tex.height / proj->wall_height;
+	if (proj->wall_start < 0)
+	{
+		texture_sample_y_position = -proj->wall_start * texture_sampling_step;
+		proj->wall_start = 0;
+	}
+	else
+		texture_sample_y_position = 0.0f;
+	screen_pixel_y = proj->wall_start;
+	while (screen_pixel_y <= proj->wall_end && screen_pixel_y < GAME_HEIGHT)
+	{
+		proj->tex_px_y = (int)texture_sample_y_position % proj->tex.height;
+		sampled_texture_color = get_pixel_color(&proj->tex, proj->tex_px_x, \
+															proj->tex_px_y);
+		my_mlx_pixel_put(&game->game_img, ray->ray_index, screen_pixel_y, \
+														sampled_texture_color);
+		texture_sample_y_position += texture_sampling_step;
+		screen_pixel_y++;
+	}
 }
-
 
 double	dist_to_wall(t_ray *ray, t_player *player)
 {
-	return (sqrtf((powf(player->px_pos_x - ray->px_x, 2) + powf(player->px_pos_y
-					- ray->px_y, 2))));
+	return (sqrtf((powf(player->px_pos_x - ray->px_x, 2) \
+				+ powf(player->px_pos_y - ray->px_y, 2))));
 }
 
 void	update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
@@ -84,8 +67,8 @@ void	update_proj_data(t_proj *proj, t_player *player, t_ray *ray)
 	angle_diff = ray->ray_angle - player->angle;
 	proj->distance_to_wall = dist_to_wall(ray, player);
 	proj->correct_distance = proj->distance_to_wall * cosf(angle_diff);
-	proj->wall_height = ((TILE_SIZE * dist_to_plane())
-			/ proj->correct_distance);
+	proj->wall_height = ((TILE_SIZE * dist_to_plane()) \
+						/ proj->correct_distance);
 	proj->wall_start = screen_center_y() - proj->wall_height * 0.5;
 	proj->wall_end = screen_center_y() + proj->wall_height * 0.5;
 }
@@ -116,14 +99,14 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
 void	render_3d_map(t_game *game, t_player *player, t_ray *ray, t_proj *proj)
 {
 	ray->ray_index = 0;
-	clear_screen(&game->game_img, game->map->ceiling_color,
-			game->map->floor_color);
+	clear_screen(&game->game_img, game->map->ceiling_color, \
+								game->map->floor_color);
 	while (ray->ray_index < GAME_WIDTH)
 	{
 		ray->px_x = player->px_pos_x;
 		ray->px_y = player->px_pos_y;
-		ray->ray_angle = (player->angle - fov_half()) \
-						+ (ray->ray_index * ray_angle_delta());
+		ray->ray_angle = (player->angle - fov_half()) + (ray->ray_index
+				* ray_angle_delta());
 		cast_ray(game, ray, player, proj);
 		render_3d_column(game, proj, ray);
 		ray->ray_index++;
