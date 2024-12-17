@@ -146,7 +146,7 @@ int	main()
   printf("OK\n");
   sleep(2);
 
-  printf(" => Destroy Image1 ... ");
+  printf(" =>  Image1 ... ");
   mlx_destroy_image(mlx, im1);
   printf("OK\n");
   sleep(2);
