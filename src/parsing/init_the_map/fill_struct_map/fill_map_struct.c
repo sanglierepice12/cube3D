@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:52:22 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/18 16:13:04 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:33:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,6 @@ void	fill_map_to_list(t_game *game, t_list **list, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
-		{
-			free(line);
-			continue ;
-		}
 		if (!is_line_m_ok(line))
 		{
 			free_list(game->list);

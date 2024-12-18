@@ -1,15 +1,13 @@
-SO ./texture/text_tex.xpm
-F 220,100,0
-WE ./texture/text_tex.xpm
-EA ./texture/test.xm
-C 135,206,235
-
 NO ./texture/text_tex.xpm
-
+SO ./texture/text_tex.xpm
+WE ./texture/text_tex.xpm
+EA ./texture/test_tex.xpm
+C 135,206,235
+F 220,100,0
 1111111111111111111
 1000000000000000001
 1000000000000000111
-1000000000000001
+1000000000000000001
 1000000000000000111
 1N00000000000000001
 1111111111111111111
