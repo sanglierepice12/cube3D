@@ -6,7 +6,7 @@
 #    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 15:29:54 by jedusser          #+#    #+#              #
-#    Updated: 2024/12/18 15:29:57 by jedusser         ###   ########.fr        #
+#    Updated: 2024/12/18 15:36:54 by jedusser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra  -g3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
+CFLAGS = -std=c99 -Wall -Wextra  -g3  -O3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
 LDFLAGS = -L/opt/X11/lib -lX11 -lXext -lm
 
 # Executable

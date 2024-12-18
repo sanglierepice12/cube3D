@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map_to_struct.c                               :+:      :+:    :+:   */
+/*   fill_map_struct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:52:22 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/21 14:52:22 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:13:04 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	size_t	i;
 
 	game->map->map = heap_map(get_list_len(*list), game);
+	if (!game->map->map)
+		return (printf("Error malloc\n"), free_list(*list), exit_prog(game));
 	temp = *list;
-	if (!temp)
-		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
 	get_len_line(game);
 	while (temp)

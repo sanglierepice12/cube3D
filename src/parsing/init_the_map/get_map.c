@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/13 13:03:35 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/12/18 16:14:30 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	init_parse(t_game *game, char *file)
 	free_list(game->list);
 	if (game->map->count != 7)
 	{
-		printf("Error, no player position\n");
+		printf("Error, no player position\n"); // !!!!! sortie erreur
 		exit_prog(game);
 	}
 }

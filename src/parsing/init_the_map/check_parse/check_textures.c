@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:30:49 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/20 16:30:49 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:39:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,15 @@ bool	check_texture(char	*line)
 
 	if (!line)
 		return (false);
+	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
+	{
+		printf("Error, it's texture is not an xpm...\n");
+		return (false);
+	}
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Error, no textures...\n");
-		close(fd);
-		return (false);
-	}
-	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
-	{
-		printf("Error, it's texture is not an xpm...\n");
 		close(fd);
 		return (false);
 	}
