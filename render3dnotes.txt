@@ -1,0 +1,77 @@
+
+## [1] RENDER 3D MAP
+
+Cette fonction est appelée à chaque rafraîchissement de l’image (FRAME), provoqué par le déplacement ou la rotation du joueur (gestion des hooks), nécessitant ainsi un recalcul du dessin 3D.
+
+### Processus général (pour chaque rayon, jusqu'à parcourir toute la fenêtre) :
+
+1. **Calcul de l’angle de chaque rayon** :
+   - Trouver et définir l’angle **le plus à gauche** du champ de vision : `(player->angle - fov_half)`.
+   - Cet angle est **mis à jour en fonction de l'index du rayon** et du facteur choisi : `ray_angle_delta`. Ce dernier est le champ de vision du joueur divisé par la largeur totale de la fenêtre.
+
+2. **Lancer le rayon** : Utiliser la fonction `cast_ray` pour calculer le trajet du rayon.
+
+3. **Rendu de la colonne 3D** : Utiliser la fonction `render_3d_column` pour dessiner la colonne 3D associée au rayon.
+
+---
+
+### **Sortie : RAY_ANGLE**
+
+---
+
+## [2] CAST_RAY
+
+Cette fonction agit sur **UN rayon** et permet de calculer son impact avec les murs. Elle fait appel à une boucle `WHILE` qui continue jusqu'à ce que le rayon touche un mur, selon les coordonnées logiques.
+
+### Processus principal (dans la boucle `WHILE`) :
+
+1. **Définir les composants directionnels du rayon** :
+   - Le **cosinus (cos)** de l'angle permet de déterminer de combien le rayon se déplace horizontalement.
+   - Le **sinus (sin)** de l'angle permet de déterminer de combien le rayon se déplace verticalement.
+
+2. **Incrémentation du rayon dans le monde** :
+   - **Anciennes coordonnées logiques** : Conserver les coordonnées logiques **avant incrémentation** pour la détection de collision (`wall_hit`).
+   - **Incrémentation des coordonnées pixel** : Ajouter les valeurs de `cos` et `sin` aux coordonnées du rayon pour avancer dans le monde 2D. Ces valeurs sont multipliées par un facteur d’incrémentation, permettant de faire de grands pas lorsque le rayon est loin du mur, et de petits pas lorsque le rayon s’approche du mur. Cela permet d’améliorer la vitesse tout en maintenant la précision nécessaire.
+
+### Fin de la boucle `WHILE` :
+
+1. **Détection de l'impact avec le mur** :
+   - Utiliser la fonction `def_hit_side` pour déterminer si le rayon a heurté une ligne **verticale ou horizontale**. Cela permet d'identifier le type de face du mur et la texture à appliquer.
+
+2. **Mise à jour des données nécessaires pour le rendu 3D** :
+   - Utiliser la fonction `update_proj_data` pour mettre à jour les informations du rayon nécessaires pour le **rendu 3D de la colonne** correspondante au rayon.
+
+3. **Définir l'orientation du mur** :
+   - À l’aide de `def_hit_side`, déterminer si le rayon a heurté un mur **vertical ou horizontal**. Ensuite, en fonction de l’angle du rayon, définir l’orientation du mur : **NORD**, **SUD**, **OUEST**, ou **EST** (via `def_wall_orientation`).
+
+---
+
+## [3] RENDER_3D_COLUMN
+
+Cette fonction agit sur **UN rayon** et applique une texture pour l'appliquer à la projection 3D du mur.
+
+### Processus pour appliquer la texture sur la colonne 3D :
+
+1. **Choisir la couleur à appliquer à chaque pixel du mur** :
+   - **Position y sur la texture** : `tex_px_y` (la position du pixel de la texture à récupérer).
+   - **Calcul de la position** : `tex_px_y = (int)texture_sample_y_position % proj->tex.height;`. 
+   Le modulo permet de s'assurer que la position reste dans les limites de la texture. Si `texture_sample_y_position` dépasse la hauteur de la texture, `tex_px_y` revient au début de la texture.
+
+2. **Calculer l'incrémentation de la texture** :
+   - Plus le mur est petit (en hauteur), plus il faut appliquer plusieurs pixels de la texture sur un petit nombre de pixels de la colonne 3D.
+   - **Incrémentation de l’échantillonnage de texture** : `texture_sampling_step`
+   - **Calcul** : `texture_sampling_step = (float)proj->tex.height / proj->wall_height;`. 
+   Ce calcul divise la hauteur totale de la texture par la hauteur du mur projeté pour savoir combien de pixels de la texture appliquer à chaque pixel du mur projeté.
+
+3. **Positionner chaque pixel de la texture sur le mur** :
+   - **Pixel sur l'écran** : `screen_pixel_y` est la position du pixel à afficher sur chaque colonne du mur projeté.
+
+4. **Suivi de l'incrémentation** :
+   - **Dernière position y de l'échantillon de texture** : `texture_sample_y_position`, qui garde une trace de la position actuelle de l’échantillon de texture.
+   - **Incrémentation à chaque itération** : `texture_sampling_step`, qui déplace le pinceau dans la texture pour chaque pixel à afficher sur le mur projeté.
+
+---
+
+### **Application finale** :
+Avec toutes ces informations, nous avons les coordonnées x et y nécessaires pour la fonction `my_mlx_pixel_put`, 
+qui applique la couleur calculée sur chaque pixel de la colonne 3D du mur.

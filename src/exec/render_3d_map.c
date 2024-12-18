@@ -98,6 +98,7 @@ void	render_3d_map(t_game *game, t_player *player, t_ray *ray, t_proj *proj)
 	{
 		ray->px_x = player->px_pos_x;
 		ray->px_y = player->px_pos_y;
+		printf("%f\n", player->angle);
 		ray->ray_angle = (player->angle - fov_half()) + (ray->ray_index
 				* ray_angle_delta());
 		cast_ray(game, ray, player, proj);
