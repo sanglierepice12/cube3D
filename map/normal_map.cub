@@ -1,9 +1,15 @@
-NO ./texture/text_tex.xpm
-SO ./texture/text_tex.xpm
-WE ./texture/text_tex.xpm
-EA ./texture/test_tex.xpm
-C 135,206,235
-F 220,100,0
+NO                  ./textures/brick.xpm
+SO ./textures/knight.xpm
+WE ./textures/SKY1.xpm
+F                               220,100,0
+
+
+
+
+C 255,0,0
+EA ./textures/banner.xpm
+
+
 1111111111111111111
 1000000000000000001
 1000000000000000111
@@ -11,4 +17,3 @@ F 220,100,0
 1000000000000000111
 1N00000000000000001
 1111111111111111111
-

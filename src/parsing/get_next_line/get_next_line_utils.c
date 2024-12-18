@@ -12,22 +12,6 @@
 
 #include "../../../include/cub3D.h"
 
-int	ft_end(char *buf)
-{
-	size_t	i;
-
-	i = 0;
-	if (ft_strlen(buf + i) == 0)
-		return (0);
-	while (buf[i])
-	{
-		if (buf[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strdup(const char *s1)
 {
 	char	*dest;
