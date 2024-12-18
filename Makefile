@@ -53,7 +53,6 @@ SRC =	main.c													\
 		utils/exit_free/free2.c									\
 
 # Path to MiniLibX
-MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
 MINILIBX_DIR = minilibx-linux
 MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx -lXext -lX11
 
@@ -74,12 +73,6 @@ all: $(MINILIBX_DIR) $(NAME)
 
 # MiniLibX - download and compile if needed
 $(MINILIBX_DIR):
-	@if [ ! -d "$(MINILIBX_DIR)" ]; then \
-		echo "$(GREEN)Downloading MiniLibX...$(NC)"; \
-		curl -o minilibx-linux.tgz $(MINILIBX_URL); \
-		tar -xzf minilibx-linux.tgz; \
-		rm -f minilibx-linux.tgz; \
-	fi
 	@$(MAKE) -C $(MINILIBX_DIR)
 
 -include $(DEPS)
