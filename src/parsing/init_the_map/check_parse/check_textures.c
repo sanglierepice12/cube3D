@@ -33,29 +33,22 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 	char	*temp;
 
 	i = parse_ws(line);
-	len = ft_strlen(line) - 1;
+	len = ft_strlen(line);
 	if (flag)
 	{
 		temp = copy_map_line(prev, game->map->width);
 		if (!temp)
 			force_exit(line, game);
-		printf("line %s\n", line);
-		printf("prev %s\n", temp);
-		printf("line->len = $%c$\n", temp[len + 1]);
-		while (line[len--])
+		while (len--, line[len])
 		{
-			printf("line->len = $%c$\n", temp[len + 1]);
 			if (line[len] == '#')
 				continue ;
 			if (line[len] != '1' || line[0] != '1' || \
 				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
-			{
-				printf("coucou\n");
-				free(temp);
 				break ;
-			}
 			return (free(temp));
 		}
+		free(temp);
 	}
 	if (!flag && wall_follow(line, i))
 		return ;

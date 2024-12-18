@@ -32,26 +32,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/cube3D.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/headers/exec_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/exec_functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/headers/struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/headers/struct.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map/map_official.cub" beforeDir="false" afterPath="$PROJECT_DIR$/map/map_official.cub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/constants.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/constants.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/draw_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/draw_utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/exec_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/exec_utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/hook_event/hooks.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/hook_event/hooks.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/hook_event/hooks_managment.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/hook_event/hooks_managment.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/init.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/mini_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/mini_map.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exec/render_3d_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/render_3d_map.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/check_textures.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/free2.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/free2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/free_exec.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/free_exec.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/utils.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,7 +376,7 @@
       <workItem from="1733908990549" duration="3000" />
       <workItem from="1733999384805" duration="1760000" />
       <workItem from="1734366309873" duration="7523000" />
-      <workItem from="1734524829099" duration="2663000" />
+      <workItem from="1734524829099" duration="3309000" />
     </task>
     <servers />
   </component>

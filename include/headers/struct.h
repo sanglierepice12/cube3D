@@ -50,7 +50,6 @@ struct						s_player
 	double					px_pos_x;
 	double					px_pos_y;
 
-
 	bool					move_up;
 	bool					move_down;
 	bool					move_left;
@@ -59,7 +58,7 @@ struct						s_player
 	bool					rotate_right;
 
 	double					angle;
-	double					distance;
+
 	char					direction;
 };
 
@@ -77,12 +76,11 @@ struct						s_ray
 struct						s_proj
 {
 	double					distance_to_wall;
-	double					last_distance_to_wall;
 	double					wall_height;
 	double					wall_start;
 	double					wall_end;
 	double					wall_orientation;
-	int						wall_color;
+
 	double					correct_distance;
 	t_img_data				tex;
 	float					tex_px_x;
