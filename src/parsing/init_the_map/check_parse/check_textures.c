@@ -19,9 +19,9 @@ static bool	wall_follow(const char *line, size_t i)
 		if (!line[i + 1])
 			return (true);
 		if (line[i] == '#' && line[i + 1] == '#')
-			continue;
+			continue ;
 		if (line[i] != '1')
-			break;
+			break ;
 	}
 	return (false);
 }
@@ -39,15 +39,20 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 		temp = copy_map_line(prev, game->map->width);
 		if (!temp)
 			force_exit(line, game);
+		printf("line %s\n", line);
+		printf("prev %s\n", temp);
+		printf("line->len = $%c$\n", temp[len + 1]);
 		while (line[len--])
 		{
+			printf("line->len = $%c$\n", temp[len + 1]);
 			if (line[len] == '#')
 				continue ;
 			if (line[len] != '1' || line[0] != '1' || \
 				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
 			{
+				printf("coucou\n");
 				free(temp);
-				break;
+				break ;
 			}
 			return (free(temp));
 		}

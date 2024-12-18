@@ -85,8 +85,8 @@ struct						s_proj
 	int						wall_color;
 	double					correct_distance;
 	t_img_data				tex;
-	float					tex_x;
-	float					tex_y;
+	float					tex_px_x;
+	float					tex_px_y;
 };
 
 /*####PARSE####*/

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:12:08 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 12:46:45 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/17 11:02:53 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	draw_tile(t_img_data *img, int start_x, int start_y, int color)
 		x = 0;
 		while (x < TILE_SIZE)
 		{
-			if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE || \
-				y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
+			if (x < BORDER_SIZE || x >= TILE_SIZE - BORDER_SIZE
+				|| y < BORDER_SIZE || y >= TILE_SIZE - BORDER_SIZE)
 				my_mlx_pixel_put(img, start_x + x, start_y + y, BLACK);
 			else
 				my_mlx_pixel_put(img, start_x + x, start_y + y, color);
@@ -53,19 +53,20 @@ int	draw_tile(t_img_data *img, int start_x, int start_y, int color)
 	return (0);
 }
 
-void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x, int tile_y, int floor_color, int player_color)
+void	fill_tile_with_player(t_player *player, t_img_data *img, int tile_x,
+		int tile_y)
 {
 	int	tile_start_x;
 	int	tile_start_y;
 	int	player_start_x;
 	int	player_start_y;
-	
+
 	tile_start_x = tile_x * TILE_SIZE;
 	tile_start_y = tile_y * TILE_SIZE;
 	player_start_x = player->px_pos_x - (PLAYER_SIZE * 0.5);
 	player_start_y = player->px_pos_y - (PLAYER_SIZE * 0.5);
-	draw_tile(img, tile_start_x, tile_start_y, floor_color);
-	draw_player(img, player_start_x, player_start_y, player_color);
+	draw_tile(img, tile_start_x, tile_start_y, BLACK);
+	draw_player(img, player_start_x, player_start_y, GREEN);
 }
 
 void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)
@@ -75,11 +76,12 @@ void	draw_map_rays(t_game *game, t_player *player, t_ray *ray)
 	{
 		ray->px_y = player->px_pos_y;
 		ray->px_x = player->px_pos_x;
-		ray->ray_angle = player->angle + (fov_angle() * 2) \
-						- (ray->ray_index * (fov_angle() / (GAME_WIDTH - 1)));
+		ray->ray_angle = player->angle + (fov_angle() * 2) - (ray->ray_index
+				* (fov_angle() / (GAME_WIDTH - 1)));
 		while (!wall_hit(game->map, ray))
 		{
-			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y, PINK);
+			my_mlx_pixel_put(&game->map_img, (int)ray->px_x, (int)ray->px_y, \
+																		PINK);
 			ray->px_x += sin(ray->ray_angle);
 			ray->px_y -= cos(ray->ray_angle);
 		}
@@ -100,7 +102,8 @@ void	draw_mini_map(t_game *game)
 		{
 			if (game->map->map[y][x] == '1')
 				draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLUE);
-			if (game->map->map[y][x] == '0' || game->map->map[y][x] == game->player.direction)
+			if (game->map->map[y][x] == '0'
+				|| game->map->map[y][x] == game->player.direction)
 				draw_tile(&game->map_img, x * TILE_SIZE, y * TILE_SIZE, BLACK);
 			x++;
 		}

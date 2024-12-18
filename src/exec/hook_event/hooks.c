@@ -5,15 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:26:46 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/12 10:56:54 by jedusser         ###   ########.fr       */
+/*   Created: 2024/12/17 08:32:40 by jedusser          #+#    #+#             */
+/*   Updated: 2024/12/17 08:35:33 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
-
-
-
 
 void	handle_rotation(t_player *player)
 {
@@ -75,11 +72,11 @@ int	handle_keypress(t_game *game)
 		printf("Exiting game...\n");
 		mlx_loop_end(game->mlx_data.mlx_ptr);
 		return (0);
-		//mlx_loop_end(game->mlx_data->mlx_ptr);
 	}
 	if (game->player.rotate_left || game->player.rotate_right)
 		handle_rotation(&game->player);
-	if (game->player.move_down || game->player.move_up || game->player.move_left || game->player.move_right)
+	if (game->player.move_down || game->player.move_up || game->player.move_left
+		|| game->player.move_right)
 		handle_move(game);
 	return (0);
 }
