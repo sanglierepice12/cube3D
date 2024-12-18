@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 11:43:08 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:23:55 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	init_textures_one(t_mlx_data *mlx_data, t_tex *tex)
 
 int	init_textures(t_mlx_data *mlx_data, t_tex *tex)
 {
-	init_textures_one(mlx_data, tex);
+	if (init_textures_one(mlx_data, tex) == -1)
+		return (clean_textures(mlx_data, tex), -1);
 	tex->tex3.img_ptr = mlx_xpm_file_to_image(mlx_data->mlx_ptr, tex->ea,
 			&tex->tex3.width, &tex->tex3.height);
 	if (!tex->tex3.img_ptr)

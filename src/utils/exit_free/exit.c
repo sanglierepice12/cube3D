@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsuter <gsuter@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:20:32 by gsuter            #+#    #+#             */
-/*   Updated: 2024/11/13 13:20:32 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:26:09 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	simple_exit(char *msg, int code)
 
 void	exit_prog(t_game *game)
 {
+	clean_textures(&game->mlx_data, game->map->tex);
 	free_parse(game);
 	clean_up(game);
 	free(game);
