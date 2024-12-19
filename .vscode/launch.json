@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
+<<<<<<< HEAD
       "cwd": "/home/jedusser/Documents/cub3d/src",
       "program": "/home/jedusser/Documents/cub3d/src/build/Debug/outDebug",
+=======
+      "cwd": "/home/jedusser/Documents/cub3d/src/parsing/check_map_validity",
+      "program": "/home/jedusser/Documents/cub3d/src/parsing/check_map_validity/build/Debug/outDebug",
+>>>>>>> origin/main
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
