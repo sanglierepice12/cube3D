@@ -52,6 +52,7 @@ void	get_textures(char *line, t_tex *texture, t_game *game)
 
 	if (need_to_return(line, game))
 		return ;
+	is_matter_ok(game, line);
 	i = parse_ws(line);
 	y = i + parse_ws(line + i + 2) + 2;
 	temp = rm_bs_wp(line + y);

@@ -1,6 +1,6 @@
 
 pas de retour a la ligne apres la derniere ligne du fichier == leak
 
-espace entre les valeurs rgb f c
-ligne vide dans la description de la map, la map charge quand meme
-double fichier texture (ex WE WE deux fois)
+espace entre les valeurs rgb f c /// OK
+ligne vide dans la description de la map, la map charge quand meme /// OK
+double fichier texture (ex WE WE deux fois) /// OK
