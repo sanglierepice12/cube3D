@@ -12,6 +12,14 @@
 
 #include "../../../include/cub3D.h"
 
+void	force_exit(char *line, t_game *game)
+{
+	printf("Error, map invalid, line : \"%s\"\n", line);
+	free_list(game->list);
+	free(line);
+	exit_prog(game);
+}
+
 void	free_parse(t_game *game)
 {
 	if (!game)

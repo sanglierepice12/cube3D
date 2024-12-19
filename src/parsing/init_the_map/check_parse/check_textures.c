@@ -3,36 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:30:49 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/20 16:30:49 by sanglier         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:39:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/cub3D.h"
 
-void	wall_is_good(t_game *game, char *line, bool flag)
+static bool	wall_follow(const char *line, size_t i)
+{
+	while (line[i++])
+	{
+		if (!line[i + 1])
+			return (true);
+		if (line[i] == '#' && line[i + 1] == '#')
+			continue ;
+		if (line[i] != '1')
+			break ;
+	}
+	return (false);
+}
+
+void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 {
 	size_t	i;
+	size_t	len;
+	char	*temp;
 
 	i = parse_ws(line);
-	if (flag & (line[i] == '1' || line[ft_strlen(line) - 1] == '1'))
-		return ;
-	if (!flag)
+	len = ft_strlen(line);
+	if (flag)
 	{
-		while (line[i])
+		temp = copy_map_line(prev, game->map->width);
+		if (!temp)
+			force_exit(line, game);
+		while (len--, line[len])
 		{
-			if (!line[i + 1])
-				return ;
-			if (line[i++] != '1')
+			if (line[len] == '#')
+				continue ;
+			if (line[len] != '1' || line[0] != '1' || \
+				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
 				break ;
+			return (free(temp));
 		}
+		free(temp);
 	}
-	printf("Error, map invalid, line : \"%s\"\n", line);
-	free_list(game->list);
-	free(line);
-	exit_prog(game);
+	if (!flag && wall_follow(line, i))
+		return ;
+	force_exit(line, game);
 }
 
 bool	rgb_is_good(char *line)
@@ -50,23 +70,6 @@ bool	rgb_is_good(char *line)
 			return (free_tab(temp), printf("Error rgb\n"), false);
 	}
 	free_tab(temp);
-	return (true);
-}
-
-static bool	parse_comma(char *line)
-{
-	ssize_t	i;
-	int		count;
-
-	i = -1;
-	count = 0;
-	while (++i, line[i])
-	{
-		if (line[i] == ',')
-			count++;
-	}
-	if (count != 2)
-		return (false);
 	return (true);
 }
 
@@ -90,10 +93,16 @@ bool	check_texture(char	*line)
 
 	if (!line)
 		return (false);
+	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
+	{
+		printf("Error, it's texture is not an xpm...\n");
+		return (false);
+	}
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("no textures...\n");
+		printf("Error, no textures...\n");
+		close(fd);
 		return (false);
 	}
 	close(fd);

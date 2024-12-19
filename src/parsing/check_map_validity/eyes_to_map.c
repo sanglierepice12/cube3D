@@ -6,11 +6,44 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:05:21 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/12 10:57:23 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:21:20 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
+
+int	rgb_to_hex(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
+
+void	def_playr_angle(t_player *player)
+{
+	player->px_pos_x = (player->pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
+	player->px_pos_y = (player->pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
+	if (player->direction == 'N')
+		player->angle = (3 * M_PI) * 0.5;
+	else if (player->direction == 'S')
+		player->angle = M_PI / 2;
+	else if (player->direction == 'W')
+		player->angle = M_PI;
+	else if (player->direction == 'E')
+		player->angle = 0;
+}
+
+bool	ft_strchr(const char *s, const char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (true);
+		i++;
+	}
+	return (false);
+}
 
 void	fill_playerpos(char *line, t_game *game, size_t len)
 {
@@ -19,10 +52,10 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		if (ft_strchr("NSEW", line[i]))
 		{
 			game->player.pos_x = (int)i;
-			game->player.pos_y = (int)len;
+			game->player.pos_y = (int)len - 1;
 			game->player.direction = line[i];
 			game->map->count++;
 			if (game->map->count > 7)
@@ -35,12 +68,5 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 		}
 		i++;
 	}
-}
-
-void	eye_tomap(char **map, size_t x, size_t y, t_game *game)
-{
-	(void)map;
-	(void)x;
-	(void)y;
-	(void)game;
+	def_playr_angle(&game->player);
 }

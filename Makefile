@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/18 15:29:54 by jedusser          #+#    #+#              #
+#    Updated: 2024/12/18 15:36:54 by jedusser         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # ===================== #
 #       VARIABLES       #
 # ===================== #
@@ -9,8 +21,8 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude $(shell pkg-config --cflags Xext) #-fsanitize=leak -fsanitize=address
-LDFLAGS = $(shell pkg-config --libs Xext) -lm #-lm Xext
+CFLAGS = -std=c99 -Wall -Wextra  -g3  -O3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
+LDFLAGS = -L/opt/X11/lib -lX11 -lXext -lm
 
 # Executable
 NAME = cub3D
@@ -28,30 +40,31 @@ SRC =	main.c													\
 		parsing/init_the_map/check_parse/is_lineok.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
+		parsing/init_the_map/fill_struct_map/fill_map_suit.c	\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
+		parsing/check_map_validity/eyes_to_map.c				\
+		exec/constants.c										\
 		exec/draw_utils.c										\
+		exec/draw.c										\
 		exec/exec_utils.c										\
-		exec/hook_event/hooks.c									\
-		exec/hook_event/hooks_managment.c						\
+		exec/init.c												\
 		exec/mini_map.c											\
 		exec/render_3d_map.c									\
-		exec/constants.c										\
-		exec/init.c												\
+		exec/hook_event/hooks.c									\
+		exec/hook_event/hooks_managment.c						\
 		utils/utils.c											\
 		utils/calloc.c											\
 		utils/compare.c											\
 		utils/linked_list.c										\
 		utils/split.c											\
 		utils/atoi.c											\
-		parsing/check_map_validity/eyes_to_map.c				\
 		utils/exit_free/exit.c									\
 		utils/exit_free/free_parse.c							\
 		utils/exit_free/free_exec.c								\
 		utils/exit_free/free2.c									\
 
 # Path to MiniLibX
-MINILIBX_URL = https://cdn.intra.42.fr/document/document/23121/minilibx-linux.tgz
 MINILIBX_DIR = minilibx-linux
 MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx -lXext -lX11
 

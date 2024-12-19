@@ -45,7 +45,7 @@ void	def_wall_orientation(t_proj *proj, t_ray *ray)
 	}
 }
 
-void	def_playr_angle(t_player *player)
+/*void	def_playr_angle(t_player *player)
 {
 	player->px_pos_x = (player->pos_x * TILE_SIZE) + (TILE_SIZE * 0.5);
 	player->px_pos_y = (player->pos_y * TILE_SIZE) + (TILE_SIZE * 0.5);
@@ -57,7 +57,7 @@ void	def_playr_angle(t_player *player)
 		player->angle = M_PI;
 	else if (player->direction == 'E')
 		player->angle = 0;
-}
+}*/
 
 void	def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y)
 {

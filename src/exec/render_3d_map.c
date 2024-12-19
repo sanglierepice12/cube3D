@@ -33,11 +33,11 @@ void	render_3d_column(t_game *game, t_proj *proj, t_ray *ray)
 
 	def_wall_texture(proj, game->map);
 	get_texture_x(proj, ray);
-	texture_sampling_step = (float)proj->tex.height / proj->wall_height;
+	texture_sampling_step = proj->tex.height / proj->wall_height;
 	texture_sample_y_position = 0.0f;
 	if (proj->wall_start < 0)
 	{
-		texture_sample_y_position = -proj->wall_start * texture_sampling_step;
+		texture_sample_y_position = (-proj->wall_start) * texture_sampling_step;
 		proj->wall_start = 0;
 	}
 	screen_pixel_y = proj->wall_start;
@@ -74,7 +74,7 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
 
 	ray->ray_dir_x = cos(ray->ray_angle);
 	ray->ray_dir_y = sin(ray->ray_angle);
-	step_size = fmaxf(0.01f, proj->distance_to_wall / GAME_WIDTH);
+	step_size = fmaxf(0.01f, (float)proj->distance_to_wall / GAME_WIDTH);
 	while (!wall_hit(game->map, ray))
 	{
 		prev_map_x = get_map_coord(ray->px_x);
@@ -98,7 +98,6 @@ void	render_3d_map(t_game *game, t_player *player, t_ray *ray, t_proj *proj)
 	{
 		ray->px_x = player->px_pos_x;
 		ray->px_y = player->px_pos_y;
-		printf("%f\n", player->angle);
 		ray->ray_angle = (player->angle - fov_half()) + (ray->ray_index
 				* ray_angle_delta());
 		cast_ray(game, ray, player, proj);

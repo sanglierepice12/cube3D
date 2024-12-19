@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   cub3d_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:12 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/17 08:37:44 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:52:22 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 /*################ STRUCTURES #####################*/
 
-typedef struct s_img_data	t_img_data;
-typedef struct s_mlx_data	t_mlx_data;
-typedef struct s_map		t_map;
-typedef struct s_player		t_player;
-typedef struct s_ray		t_ray;
-typedef struct s_proj		t_proj;
-typedef struct s_game		t_game;
-typedef struct s_list		t_list;
-typedef struct s_tex		t_tex;
-typedef struct s_rgb		t_rgb;
+typedef struct s_img_data		t_img_data;
+typedef struct s_mlx_data		t_mlx_data;
+typedef struct s_map			t_map;
+typedef struct s_player			t_player;
+typedef struct s_ray			t_ray;
+typedef struct s_proj			t_proj;
+typedef struct s_game			t_game;
+typedef struct s_list			t_list;
+typedef struct s_tex			t_tex;
+typedef struct s_rgb			t_rgb;
 
 struct						s_img_data
 {
@@ -58,7 +58,7 @@ struct						s_player
 	bool					rotate_right;
 
 	double					angle;
-	double					distance;
+
 	char					direction;
 };
 
@@ -76,12 +76,11 @@ struct						s_ray
 struct						s_proj
 {
 	double					distance_to_wall;
-	double					last_distance_to_wall;
 	double					wall_height;
 	double					wall_start;
 	double					wall_end;
 	double					wall_orientation;
-	int						wall_color;
+
 	double					correct_distance;
 	t_img_data				tex;
 	float					tex_px_x;
@@ -90,7 +89,7 @@ struct						s_proj
 
 /*####PARSE####*/
 
-struct						s_map
+struct	s_map
 {
 	int						count;
 	char					**map;
@@ -115,31 +114,31 @@ struct						s_tex
 	t_img_data				tex4;
 };
 
-struct						s_rgb
+struct	s_rgb
 {
-	int						r;
-	int						g;
-	int						b;
+	int	r;
+	int	g;
+	int	b;
 };
 
-struct						s_list
+struct	s_list
 {
-	char					*value;
-	struct s_list			*next;
-	struct s_list			*prev;
+	char			*value;
+	struct s_list	*next;
+	struct s_list	*prev;
 };
 
-struct						s_game
+struct s_game
 {
-	t_map					*map;
-	t_list					*list;
-	t_mlx_data				mlx_data;
-	t_player				player;
-	t_img_data				map_img;
-	t_img_data				game_img;
-	t_ray					ray;
-	t_proj					proj;
-	bool					end;
+	t_map			*map;
+	t_list			*list;
+	t_mlx_data		mlx_data;
+	t_player		player;
+	t_img_data		map_img;
+	t_img_data		game_img;
+	t_ray			ray;
+	t_proj			proj;
+	bool			end;
 };
 
 typedef enum s_txt
@@ -148,12 +147,12 @@ typedef enum s_txt
 	SO,
 	WE,
 	EA
-}							e_txt;
+}	t_txt;
 
 typedef enum s_rgbs
 {
 	CEI,
 	FLO
-}							e_rgb;
+}	t_ergb;
 
 #endif

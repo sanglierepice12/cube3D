@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_parse.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsuter <gsuter@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:14:58 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/05 15:28:53 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:14:58 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	free_rgb(t_rgb *rgb)
 	free(rgb);
 }
 
-void	free_texture(t_tex *tex)
+void	free_texture(t_tex *texture)
 {
-	if (!tex)
+	if (!texture)
 		return ;
-	free(tex->ea);
-	free(tex->no);
-	free(tex->so);
-	free(tex->we);
-	free(tex);
+	free(texture->ea);
+	free(texture->no);
+	free(texture->so);
+	free(texture->we);
+	free(texture);
 }
 
 void	free_s_map(t_map *map)
@@ -52,7 +52,6 @@ void	free_s_map(t_map *map)
 	if (!map)
 		return ;
 	free_tab(map->map);
-	
 	free_texture(map->tex);
 	free_rgb(map->ceiling);
 	free_rgb(map->floor);

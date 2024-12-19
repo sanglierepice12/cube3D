@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_text_rgb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsuter <gsuter@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:32:24 by gsuter            #+#    #+#             */
-/*   Updated: 2024/11/27 17:32:24 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/12/18 16:15:08 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_rgb(char *line, t_game *game)
 	y = i + parse_ws(line + i + 1) + 1;
 	temp = rm_bs_wp(line + y);
 	if (!temp)
-		return (free(line),	exit_prog(game));
+		return (free(line), exit_prog(game));
 	if (line[i] == 'F' && check_rgb(temp))
 		return (fill_rgb(temp, game, FLO), game->map->count++, (void)0);
 	if (line[i] == 'C' && check_rgb(temp))
@@ -44,7 +44,7 @@ void	get_rgb(char *line, t_game *game)
 	free(temp);
 }
 
-void	get_textures(char *line, t_tex *tex, t_game *game)
+void	get_textures(char *line, t_tex *texture, t_game *game)
 {
 	size_t	i;
 	size_t	y;
@@ -56,14 +56,14 @@ void	get_textures(char *line, t_tex *tex, t_game *game)
 	y = i + parse_ws(line + i + 2) + 2;
 	temp = rm_bs_wp(line + y);
 	if (!temp)
-		return (free(line),	exit_prog(game));
+		return (free(line), exit_prog(game));
 	if (line[i] == 'N' && line[i + 1] == 'O' && check_texture(temp))
-		return (fill_tex(temp, tex, NO), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, NO), game->map->count++, (void)0);
 	if (line[i] == 'S' && line[i + 1] == 'O' && check_texture(temp))
-		return (fill_tex(temp, tex, SO), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, SO), game->map->count++, (void)0);
 	if (line[i] == 'W' && line[i + 1] == 'E' && check_texture(temp))
-		return (fill_tex(temp, tex, WE), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, WE), game->map->count++, (void)0);
 	if (line[i] == 'E' && line[i + 1] == 'A' && check_texture(temp))
-		return (fill_tex(temp, tex, EA), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, EA), game->map->count++, (void)0);
 	free(temp);
 }

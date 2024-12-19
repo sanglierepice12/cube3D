@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:20:32 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/05 15:30:25 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:26:09 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ void	simple_exit(char *msg, int code)
 	printf("%s", msg);
 	exit(code);
 }
-
-/*void	exit_parse(t_game *game)
-{
-	free_list(game->list);
-	if (game->map->tex)
-		free_texture(game->map->tex);
-	printf("parsing has exited with security");
-	exit(1);
-}*/
 
 void	exit_prog(t_game *game)
 {

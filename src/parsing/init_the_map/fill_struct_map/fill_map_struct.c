@@ -6,22 +6,13 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:52:22 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/10 12:05:30 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:33:44 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/cub3D.h"
 
-/*int main() {
-	int r = 220, g = 12, b = 145;
-	int color = rgb_to_hex(r, g, b);
-
-	printf("Color in hex: %#08x\n", color); // Imprime la couleur en hexadécimal
-	return 0;
-}*/
-
-
-void	fill_rgb(char *line, t_game *game, e_rgb type)
+void	fill_rgb(char *line, t_game *game, t_ergb type)
 {
 	char	**temp;
 
@@ -35,53 +26,58 @@ void	fill_rgb(char *line, t_game *game, e_rgb type)
 		game->map->ceiling->r = ft_atoi(temp[0]);
 		game->map->ceiling->g = ft_atoi(temp[1]);
 		game->map->ceiling->b = ft_atoi(temp[2]);
+		game->map->ceiling_color = rgb_to_hex(game->map->ceiling->r, \
+								game->map->ceiling->g, game->map->ceiling->b);
 	}
 	if (type == FLO)
 	{
 		game->map->floor->r = ft_atoi(temp[0]);
 		game->map->floor->g = ft_atoi(temp[1]);
 		game->map->floor->b = ft_atoi(temp[2]);
+		game->map->floor_color = rgb_to_hex(game->map->floor->r, \
+								game->map->floor->g, game->map->floor->b);
 	}
 	free(line);
 	free_tab(temp);
 }
 
-void	fill_tex(char *line, t_tex *tex, e_txt type)
+void	fill_tex(char *line, t_tex *tex, t_txt type)
 {
 	if (type == NO)
 	{
 		tex->no = ft_dup(line);
 		if (tex->no == NULL)
-			return (printf("tex no is null\n"), free(line));
+			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
 		tex->so = ft_dup(line);
 		if (tex->so == NULL)
-			return (printf("tex no is null\n"), free(line));
+			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == WE)
 	{
 		tex->we = ft_dup(line);
 		if (tex->we == NULL)
-			return (printf("tex no is null\n"), free(line));
+			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == EA)
 	{
 		tex->ea = ft_dup(line);
 		if (tex->ea == NULL)
-			return (printf("tex no is null\n"), free(line));
+			return (printf("texture no is null\n"), free(line));
 	}
 	free(line);
 }
 
-char	**heap_map(size_t len)
+static char	**heap_map(size_t len, t_game *game)
 {
 	char	**map;
 
 	map = ft_calloc(sizeof(char *), len + 1);
 	if (!map)
 		return (NULL);
+	game->map->height = (int)get_list_len(game->list);
 	return (map);
 }
 
@@ -91,24 +87,23 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	char	*line;
 	size_t	i;
 
-	game->map->map = heap_map(get_list_len(*list));
-	game->map->height = (int)get_list_len(*list);
+	game->map->map = heap_map(get_list_len(*list), game);
+	if (!game->map->map)
+		return (printf("Error malloc\n"), free_list(*list), exit_prog(game));
 	temp = *list;
-	if (!temp)
-		return (printf("Error malloc\n"), exit_prog(game));
 	i = 0;
-	game->map->width = 0;
+	get_len_line(game);
 	while (temp)
 	{
-		line = rm_bs_wp(temp->value);
+		line = copy_map_line(temp->value, game->map->width);
+		if (!line)
+			return (free_list(*list), exit_prog(game));
 		if (!temp->next || i == 0)
-			wall_is_good(game, line, 0);
+			wall_is_good(game, line, 0, NULL);
 		else
-			wall_is_good(game, line, 1);
+			wall_is_good(game, line, 1, temp->prev->value);
 		game->map->map[i++] = ft_dup(line);
 		fill_playerpos(line, game, i);
-		if (game->map->width < (int) ft_strlen(line))
-			game->map->width = (int)ft_strlen(line);
 		temp = temp->next;
 		free(line);
 	}
@@ -125,11 +120,6 @@ void	fill_map_to_list(t_game *game, t_list **list, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
-		{
-			free(line);
-			continue ;
-		}
 		if (!is_line_m_ok(line))
 		{
 			free_list(game->list);

@@ -27,6 +27,9 @@ char		*rm_bs_wp(char *str);
 char		**ft_split(char const *s, char c);
 int			ft_atoi(const char *nptr);
 int			parse_ws(char *line);
+bool		ft_strchr(const char *s, const char c);
+bool		is_ws(char c);
+bool		parse_comma(char *line);
 
 /*==================linked_list=====================*/
 t_list		*ft_lst_last(t_list *lst);
@@ -38,10 +41,10 @@ size_t		get_list_len(t_list *list);
 
 /*==================exit & free=====================*/
 void		free_rgb(t_rgb *rgb);
+void		force_exit(char *line, t_game *game);
 void		free_tab(char **tab);
 void		free_s_map(t_map *map);
-void		free_texture(t_tex *tex);
-void		exit_parse(t_game *game);
+void		free_texture(t_tex *texture);
 void		simple_exit(char *msg, int code);
 void		free_parse(t_game *game);
 void		exit_prog(t_game *game);

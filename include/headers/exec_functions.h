@@ -29,6 +29,11 @@ int				key_up(int keycode, t_game *game);
 int				key_down(int keycode, t_game *game);
 void			hook_management(t_game *game);
 
+/*==================draws.c====================*/
+int				draw_and_display_map(t_game *game);
+void			draw_follow(t_game *game);
+void			all_draws(t_game *game);
+
 /*==================draws_utils.c====================*/
 
 unsigned int	get_pixel_color(t_img_data *tex, int x, int y);
