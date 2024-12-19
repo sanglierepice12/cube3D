@@ -12,87 +12,61 @@
 
 #include "../../../include/cub3D.h"
 
-static char	*ft_join_n_free(char *s1, const char *s2)
-{
-	char	*new;
-
-	new = ft_strjoin(s1, s2);
-	return (new);
-}
-
-static char	*ft_read(int fd, char *res)
-{
-	ssize_t	sz;
-	char	buffer[BUFFER_SIZE + 1];
-	char	*new;
-
-	new = ft_strdup(res);
-	if (!new)
-		return (NULL);
-	sz = 1;
-	while (sz > 0)
-	{
-		sz = read(fd, buffer, BUFFER_SIZE);
-		if (sz == -1)
-			return (ft_bzero(res, BUFFER_SIZE + 1), free(new), NULL);
-		buffer[sz] = '\0';
-		new = ft_join_n_free(new, buffer);
-		if (!new)
-			return (NULL);
-		if (ft_strchr(new, '\n'))
-			break ;
-	}
-	return (new);
-}
-
-static char	*ft_next(char *line, char *buffer)
+void	ft_bz(char *str)
 {
 	size_t	i;
-	size_t	j;
-	size_t	size;
-	char	*new;
 
-	if (!line[0] && !buffer[0])
-		return (free(line), NULL);
 	i = 0;
+	while (str[i] != 0)
+	{
+		str[i] = 0;
+		i++;
+	}
+}
+
+void	ft_clean_buf(char *buf)
+{
+	ssize_t	i;
+	ssize_t	j;
+
+	i = 0;
+	while (buf[i] != '\n' && buf[i])
+		i++;
+	if (buf[i] == '\n')
+		i++;
 	j = 0;
-	while (line[i] != '\n' && line[i])
-		i++;
-	if (line[i])
-		i++;
-	size = i;
-	while (line[i])
-		buffer[j++] = line[i++];
-	while (buffer[j])
-		buffer[j++] = '\0';
-	new = malloc(sizeof(char) * (size + 1));
-	if (!new)
-		return (free(line), NULL);
-	i = -1;
-	while (++i < size)
-		new[i] = line[i];
-	return (new[i] = '\0', free(line), new);
+	while (buf[i + j])
+	{
+		buf[j] = buf[i + j];
+		j++;
+	}
+	buf[j] = '\0';
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1] = "\0";
+	static char	buf[BUFFER_SIZE + 1];
+	ssize_t		bytes_readed;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, buffer, 0) < 0)
-		return (ft_bzero(buffer, BUFFER_SIZE + 1), NULL);
-	if (ft_strchr(buffer, '\n'))
+	bytes_readed = 1;
+	if (read(fd, buf, 0) < 0 || fd < 0)
+		return (ft_bz(buf), NULL);
+	line = ft_strdup(buf);
+	if (!line)
+		return (free(line), NULL);
+	while (!ft_end(line) && bytes_readed)
 	{
-		line = ft_strdup(buffer);
+		bytes_readed = read(fd, buf, BUFFER_SIZE);
+		if (bytes_readed < 0)
+			return (ft_bz(buf), free(line), NULL);
+		buf[bytes_readed] = '\0';
+		line = ft_strjoin(line, buf);
 		if (!line)
 			return (NULL);
 	}
-	else
-	{
-		line = ft_read(fd, buffer);
-		if (!line)
-			return (NULL);
-	}
-	line = ft_next(line, buffer);
+	ft_clean_buf(buf);
+	if (line[0] == 0)
+		return (free(line), NULL);
 	return (line);
 }

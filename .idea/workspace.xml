@@ -33,9 +33,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map/normal_map.cub" beforeDir="false" afterPath="$PROJECT_DIR$/map/normal_map.cub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/get_next_line/get_next_line.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/get_next_line/get_next_line.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/get_next_line/get_next_line_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/get_next_line/get_next_line_utils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,37 +109,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Makefile Target.Makefile (1).executor": "Run",
-    "Makefile Target.Makefile (2).executor": "Run",
-    "Makefile Target.Makefile.executor": "Run",
-    "Native Application.all.executor": "Run",
-    "OCFindUsagesOptions.isSearchForTextOccurrences": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindow.CMake.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/gsuter/Documents/gonz_42/coucou/src/main.c",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "structure.view.defaults.are.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Makefile Target.Makefile (1).executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.Makefile (2).executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.Makefile.executor&quot;: &quot;Run&quot;,
+    &quot;Native Application.all.executor&quot;: &quot;Run&quot;,
+    &quot;OCFindUsagesOptions.isSearchForTextOccurrences&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindow.CMake.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gsuter/Documents/gonz_42/coucou/src/main.c&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Makefile Target.Makefile (2)">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -326,15 +324,15 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Makefile Application.all" />
-      <item itemvalue="Makefile Application.fclean" />
-      <item itemvalue="Makefile Application.minilibx-linux" />
-      <item itemvalue="Makefile Application.re" />
-      <item itemvalue="Makefile Application.cub3D" />
-      <item itemvalue="Makefile Application.Makefile" />
       <item itemvalue="Makefile Target.Makefile (2)" />
       <item itemvalue="Makefile Target.Makefile (1)" />
       <item itemvalue="Makefile Target.Makefile" />
+      <item itemvalue="Native Application.Makefile" />
+      <item itemvalue="Native Application.all" />
+      <item itemvalue="Native Application.cub3D" />
+      <item itemvalue="Native Application.fclean" />
+      <item itemvalue="Native Application.minilibx-linux" />
+      <item itemvalue="Native Application.re" />
     </list>
     <recent_temporary>
       <list>
