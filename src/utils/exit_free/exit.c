@@ -14,7 +14,8 @@
 
 void	simple_exit(char *msg, int code)
 {
-	printf("%s", msg);
+	if (write(2, msg, ft_strlen(msg)) == -1)
+		exit(2);
 	exit(code);
 }
 

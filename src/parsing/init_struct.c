@@ -17,6 +17,7 @@ bool	init_map(t_map **map)
 	*map = ft_calloc(1, sizeof(t_map));
 	if (!(*map))
 		return (false);
+	ft_bzero((*map)->matt, sizeof((*map)->matt));
 	(*map)->tex = ft_calloc(1, sizeof(t_tex));
 	if (!(*map)->tex)
 		return (false);

@@ -26,6 +26,8 @@ bool	is_line_full_spaces(char *line);
 bool	is_line_ok(char	*temp);
 bool	is_line_m_ok(char *line);
 void	wall_is_good(t_game *game, char *line, bool flag, char *prev);
+void	is_matter_ok(t_game *game, char *line);
+void	calculate_matter(char *line, t_game *game);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);

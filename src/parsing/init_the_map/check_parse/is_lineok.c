@@ -12,6 +12,40 @@
 
 #include "../../../../include/cub3D.h"
 
+void	calculate_matter(char *line, t_game *game)
+{
+	size_t	i;
+
+	i = parse_ws(line);
+	if (line[i] == 'F')
+		game->map->matt[F]++;
+	if (line[i] == 'C')
+		game->map->matt[C]++;
+	if (line[i] == 'N' && line[i + 1] == 'O')
+		game->map->matt[NO]++;
+	if (line[i] == 'S' && line[i + 1] == 'O')
+		game->map->matt[SO]++;
+	if (line[i] == 'W' && line[i + 1] == 'E')
+		game->map->matt[WE]++;
+	if (line[i] == 'E' && line[i + 1] == 'A')
+		game->map->matt[EA]++;
+	if (ft_strchr("NSEWFC", line[i]))
+		game->map->count++;
+}
+
+void	is_matter_ok(t_game *game, char *line)
+{
+	if (game->map->matt[F] != 1 || game->map->matt[C] != 1 || \
+		game->map->matt[NO] != 1 || game->map->matt[SO] != 1 || \
+		game->map->matt[WE] != 1 || game->map->matt[EA] != 1)
+		{
+			free(line);
+			if (write(2, "Error\n matter wrong\n", 21) == -1)
+				exit_prog(game);
+			exit_prog(game);
+		}
+}
+
 bool	is_line_full_spaces(char *line)
 {
 	ssize_t	i;
@@ -30,6 +64,8 @@ bool	is_line_m_ok(char *line)
 {
 	size_t	i;
 
+	if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
+		return (free(line), false);
 	i = parse_ws(line);
 	while (line[i])
 	{

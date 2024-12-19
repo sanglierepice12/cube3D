@@ -14,7 +14,12 @@
 
 void	force_exit(char *line, t_game *game)
 {
-	printf("Error, map invalid, line : \"%s\"\n", line);
+	if (write(2, "Error,\nmap invalid, line : ", 28) == -1)
+		exit_prog(game);
+	if (write(2, line, ft_strlen(line)) == -1)
+		exit_prog(game);
+	if (write(2, "\n", 1) == -1)
+		exit_prog(game);
 	free_list(game->list);
 	free(line);
 	exit_prog(game);

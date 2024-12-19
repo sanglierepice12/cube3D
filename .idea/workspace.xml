@@ -33,7 +33,10 @@
   <component name="ChangeListManager">
     <list default="true" id="cc5be91a-65be-4786-b7ef-3939ef7e6ea2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/init_the_map/check_parse/is_lineok.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/normal_map.cub" beforeDir="false" afterPath="$PROJECT_DIR$/map/normal_map.cub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exec/render_3d_map.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/exec/render_3d_map.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/exit_free/free2.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_free/free2.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

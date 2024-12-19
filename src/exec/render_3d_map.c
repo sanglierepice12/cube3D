@@ -74,6 +74,8 @@ void	cast_ray(t_game *game, t_ray *ray, t_player *player, t_proj *proj)
 
 	ray->ray_dir_x = cos(ray->ray_angle);
 	ray->ray_dir_y = sin(ray->ray_angle);
+	prev_map_x = 0;
+	prev_map_y = 0;
 	step_size = fmaxf(0.01f, (float)proj->distance_to_wall / GAME_WIDTH);
 	while (!wall_hit(game->map, ray))
 	{
