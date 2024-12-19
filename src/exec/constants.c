@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:08:54 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 11:02:20 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/19 12:34:10 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double	fov_angle(void)
 
 double	fov_half(void)
 {
-	return ((M_PI * 0.3f) * 0.5);
+	return ((M_PI * 0.3f) * 0.5f);
 }
 
 double	ray_angle_delta(void)

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/17 11:04:39 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:57:50 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ double			fov_angle(void);
 double			fov_half(void);
 double			ray_angle_delta(void);
 
+/*in exit*/
 int				clean_up(t_game *game);
 void			clean_textures(t_mlx_data *mlx_data, t_tex *textures);
+int ft_puterr(char *str);
 
 #endif

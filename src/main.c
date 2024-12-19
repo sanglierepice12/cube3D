@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/11/27 15:39:29 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:57:12 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ static void	launch_game(t_game *game)
 	mlx_loop_hook(game->mlx_data.mlx_ptr, &draw_and_display_map, game);
 	draw_and_display_map(game);
 	mlx_loop(game->mlx_data.mlx_ptr);
-}
+}	
 
 int	main(int arc, char **argv)
 {
 	t_game		*game;
-
 	if (arc < 2)
-		return (printf("Please insert a map..."));
+		return (ft_puterr("Please insert a map..."));
 	init(&game, argv);
 	launch_game(game);
 	exit_prog(game);
