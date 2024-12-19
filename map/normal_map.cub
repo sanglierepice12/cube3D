@@ -6,7 +6,7 @@ F                               220,100,0
 
 
 
-F 255,0,0
+C 255,128,114
 EA ./textures/banner.xpm
 
 

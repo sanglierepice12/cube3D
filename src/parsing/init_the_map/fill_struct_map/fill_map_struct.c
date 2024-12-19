@@ -15,10 +15,18 @@
 void	fill_rgb(char *line, t_game *game, t_ergb type)
 {
 	char	**temp;
+	char	*tempinou;
 
-	temp = ft_split(line, ',');
+	tempinou = rm_space_rgb(line);
+	if (!tempinou)
+	{
+		free(line);
+		exit_prog(game);
+	}
+	temp = ft_split(tempinou, ',');
 	if (!temp)
-		return (printf("Error malloc\n"), free(line), exit_prog(game));
+		return (printf("Error malloc\n"), free(line), free(tempinou), exit_prog(game));
+	free(tempinou);
 	if (!temp[2])
 		return (printf("Error nothing in rgb\n"), free(line), exit_prog(game));
 	if (type == CEI)

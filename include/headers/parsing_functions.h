@@ -17,6 +17,9 @@
 void	init_struct(t_game **game);
 void	init_parse(t_game *game, char *file);
 
+/****UTILS****/
+char *rm_space_rgb(char *line);
+
 /*******CHECK_TEXTURES******/
 bool	check_texture(char	*line);
 bool	check_rgb(char *line);
