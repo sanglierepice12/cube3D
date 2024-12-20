@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:42:26 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/18 16:14:30 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:26:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	open_map(char *file, t_game *game)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Error occurred while opening the document...");
+		ft_puterr("Error occurred while opening the document...\n");
 		exit_prog(game);
 	}
 	return (fd);
@@ -56,9 +56,9 @@ static bool	check_ext(char *file)
 
 	len = ft_strlen(file);
 	if (len < 4)
-		return (printf ("Error: Wrong extension."), false);
+		return (ft_puterr("Wrong extension.\n"), false);
 	if (ft_strncmp(file + (len - 4), ".cub", 4))
-		return (printf ("Error: Wrong extension, it's not a .cub."), false);
+		return (ft_puterr("Wrong extension, it's not a .cub.\n"), false);
 	return (true);
 }
 
@@ -75,7 +75,7 @@ void	init_parse(t_game *game, char *file)
 	free_list(game->list);
 	if (game->map->count != 7)
 	{
-		printf("Error, no player position\n"); // !!!!! sortie erreur
+		ft_puterr("No player position\n"); // !!!!! sortie erreur
 		exit_prog(game);
 	}
 }

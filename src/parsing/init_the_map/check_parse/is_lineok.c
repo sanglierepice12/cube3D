@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:08:00 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/18 16:10:31 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:27:15 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ bool	is_end_wall(char *line, char *prev)
 {
 	size_t i;
 
-//	printf("[%s]\n", prev);
 	if (!prev)
 		return (false);
 	i = 0;

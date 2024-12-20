@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/20 15:46:17 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:16:09 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int	main(int arc, char **argv)
 	if (arc < 2)
 		return (ft_puterr("Please insert a map..."));
 	init(&game, argv);
-	/*printf("%d\n", game->map->ceiling->r);
-	printf("%d\n", game->map->ceiling->g);
-	printf("%d\n", game->map->ceiling->b);
-	printf("%d\n", game->map->floor->r);
-	printf("%d\n", game->map->floor->g);
-	printf("%d\n", game->map->floor->b);
-	exit_prog(game);*/
 	launch_game(game);
 	exit_prog(game);
 	return (0);

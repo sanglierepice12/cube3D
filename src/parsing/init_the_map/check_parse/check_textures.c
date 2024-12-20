@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:30:49 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/20 16:04:54 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:28:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool	rgb_is_good(char *line)
 	while (++i, temp[i])
 	{
 		if (ft_atoi(temp[i]) > 255 || ft_atoi(temp[i]) < 0)
-			return (free_tab(temp), printf("Error rgb\n"), false);
+			return (free_tab(temp), ft_puterr("rgb out of range\n"), false);
 	}
 	free_tab(temp);
 	return (true);
@@ -96,13 +96,13 @@ bool	check_texture(char	*line)
 		return (false);
 	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
 	{
-		printf("Error, it's texture is not an xpm...\n");
+		ft_puterr("It's texture is not an xpm...\n");
 		return (false);
 	}
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Error, no textures...\n");
+		ft_puterr("No textures...\n");
 		close(fd);
 		return (false);
 	}

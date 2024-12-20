@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:05:21 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/19 12:49:08 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:16:28 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 			game->map->count++;
 			if (game->map->count > 7)
 			{
-				printf("Error, double player position\n");
+				ft_puterr("Double player position\n");
 				free(line);
 				free_list(game->list);
 				exit_prog(game);

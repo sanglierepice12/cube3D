@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:32:24 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/18 16:15:08 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:20:08 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	need_to_return(char *line, t_game *game)
 		return (true);
 	if (game->map->count > 6)
 	{
-		printf("Error too much information\n");
+		ft_puterr("Too much information\n");
 		exit_prog(game);
 	}
 	return (false);

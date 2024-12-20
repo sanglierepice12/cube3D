@@ -6,29 +6,14 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:52:22 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/18 16:33:44 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:36:42 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/cub3D.h"
 
-void	fill_rgb(char *line, t_game *game, t_ergb type)
+void	fill_rgb_struct(t_game *game, char **temp, t_ergb type)
 {
-	char	**temp;
-	char	*tempinou;
-
-	tempinou = rm_space_rgb(line);
-	if (!tempinou)
-	{
-		free(line);
-		exit_prog(game);
-	}
-	temp = ft_split(tempinou, ',');
-	if (!temp)
-		return (printf("Error malloc\n"), free(line), free(tempinou), exit_prog(game));
-	free(tempinou);
-	if (!temp[2])
-		return (printf("Error nothing in rgb\n"), free(line), exit_prog(game));
 	if (type == CEI)
 	{
 		game->map->ceiling->r = ft_atoi(temp[0]);
@@ -45,6 +30,26 @@ void	fill_rgb(char *line, t_game *game, t_ergb type)
 		game->map->floor_color = rgb_to_hex(game->map->floor->r, \
 								game->map->floor->g, game->map->floor->b);
 	}
+}
+
+void	fill_rgb(char *line, t_game *game, t_ergb type)
+{
+	char	**temp;
+	char	*tempinou;
+
+	tempinou = rm_space_rgb(line);
+	if (!tempinou)
+	{
+		free(line);
+		exit_prog(game);
+	}
+	temp = ft_split(tempinou, ',');
+	if (!temp)
+		return (ft_puterr("Malloc\n"), free(line), free(tempinou), exit_prog(game));
+	free(tempinou);
+	if (!temp[2])
+		return (ft_puterr("Nothing in rgb\n"), free(line), exit_prog(game));
+	fill_rgb_struct(game, temp, type);
 	free(line);
 	free_tab(temp);
 }
@@ -56,28 +61,28 @@ void	fill_tex(char *line, t_tex *tex, t_txt type)
 		if (!tex->no)
 			tex->no = ft_dup(line);
 		if (!tex->no)
-			return (printf("texture no is null\n"), free(line));
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
 		if (!tex->so)
 			tex->so = ft_dup(line);
 		if (!tex->so)
-			return (printf("texture no is null\n"), free(line));
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
 	if (type == WE)
 	{
 		if (!tex->we)
 			tex->we = ft_dup(line);
 		if (!tex->we)
-			return (printf("texture no is null\n"), free(line));
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
 	if (type == EA)
 	{
 		if (!tex->ea)
 			tex->ea = ft_dup(line);
 		if (!tex->ea)
-			return (printf("texture no is null\n"), free(line));
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
 	free(line);
 }
@@ -101,7 +106,7 @@ void	fill_list_to_map(t_game *game, t_list **list)
 
 	game->map->map = heap_map(get_list_len(*list), game);
 	if (!game->map->map)
-		return (printf("Error malloc\n"), free_list(*list), exit_prog(game));
+		return (ft_puterr("Malloc\n"), free_list(*list), exit_prog(game));
 	temp = *list;
 	i = 0;
 	get_len_line(game);
