@@ -39,10 +39,9 @@ bool	is_line_full_spaces(char *line)
 	return (true);
 }
 
-bool	is_end_wall(char *line, char *prev)
+bool	is_end_wall(char *prev)
 {
 	size_t i;
-
 	if (!prev)
 		return (false);
 	i = 0;
@@ -52,7 +51,6 @@ bool	is_end_wall(char *line, char *prev)
 			return (false);
 		i++;
 	}
-	free(line);
 	return (true);
 }
 
@@ -60,15 +58,16 @@ bool	is_line_m_ok(char *line)
 {
 	size_t	i;
 
-	if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
-		return (free(line), false);
+	/*if (ft_comp_str(line, "\n") || is_line_full_spaces(line))
+		return (free(line), false);*/
 	i = parse_ws(line);
 	while (line[i])
 	{
-		if (line[i + 1] && (line[i] == 32 || (line[i] > 8 && line[i] < 14)))
+		if (line[i + 1] && is_ws(line[i]))
 			line[i] = '1';
-		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'\
-			&& line[i] != 'W' && line[i] != 'E' && line[i] != '\n')
+		/*if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'\
+			&& line[i] != 'W' && line[i] != 'E' && line[i] != '\n')*/
+		if (!ft_strchr("10NSWE\n", line[i]))
 		{
 			printf("Line is invalid: '%s'\n", line);
 			free(line);

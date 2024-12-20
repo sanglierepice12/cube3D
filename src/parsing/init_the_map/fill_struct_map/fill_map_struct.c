@@ -117,8 +117,16 @@ void	fill_list_to_map(t_game *game, t_list **list)
 			return (free_list(*list), exit_prog(game));
 	/*	if (is_end_wall(line, temp->prev->value))
 			break ;*/
-		if (!temp->next || i == 0)
+		/*if (!temp->next || i == 0)
+			wall_is_good(game, line, 0, NULL);*/
+		if (i == 0)
 			wall_is_good(game, line, 0, NULL);
+		else if (is_end_wall(temp->prev->value))
+		{
+			wall_is_good(game, temp->prev->value, 0, NULL);
+			free(line);
+			break ;
+		}
 		else
 			wall_is_good(game, line, 1, temp->prev->value);
 		game->map->map[i++] = ft_dup(line);

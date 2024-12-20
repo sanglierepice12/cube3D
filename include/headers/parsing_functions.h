@@ -30,7 +30,7 @@ bool	is_line_ok(char	*temp);
 bool	is_line_m_ok(char *line);
 void	wall_is_good(t_game *game, char *line, bool flag, char *prev);
 void	is_matter_ok(t_game *game, char *line);
-bool	is_end_wall(char *line, char *prev);
+bool	is_end_wall(char *prev);
 void	calculate_matter(char *line, t_game *game);
 
 /*****GET_MAP_TEXTURE_RGB*****/

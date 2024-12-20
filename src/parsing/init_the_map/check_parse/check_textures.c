@@ -12,16 +12,27 @@
 
 #include "../../../../include/cub3D.h"
 
-static bool	first_wall(const char *line, size_t i)
+static bool	wall_follow(const char *line, size_t i)
 {
-	while (line[i++])
+	while (line[i--])
 	{
-		if (!line[i + 1])
+		if (line[i] == '#')
+			continue ;
+		if (line[i] != '1')
+			return (false);
+	}
+	/*while (line[i++])
+	{
+		if (line[i] == '1' && !line[i + 1])
 			return (true);
+		if (line[i] == '#' && line[i + 1] == '#')
+			continue ;
 		if (line[i] != '1')
 			break ;
 	}
-	return (false);
+	 return (false);
+	 */
+	return (true);
 }
 
 void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
@@ -32,13 +43,15 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 
 	i = parse_ws(line);
 	len = ft_strlen(line);
-	if (flag)
+	if (flag && (!ft_comp_str(line, "\n") || !is_line_full_spaces(line)))
 	{
 		temp = copy_map_line(prev, game->map->width);
 		if (!temp)
 			force_exit(line, game);
 		while (len--, line[len])
 		{
+			if (line[len] == '#')
+				continue ;
 			if (line[len] != '1' || line[0] != '1' || \
 				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
 				break ;
@@ -46,7 +59,9 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 		}
 		free(temp);
 	}
-	if (!flag && first_wall(line, i))
+	/*if (!flag && wall_follow(line, i))
+		return ;*/
+	if (!flag && wall_follow(line, len))
 		return ;
 	force_exit(line, game);
 }

@@ -56,7 +56,7 @@ char	*rm_bs_wp(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (str[i] == '\n')
+	if (i > 0 && str[i] == '\n')
 	{
 		while (str[i] && is_ws(str[i]))
 			i--;
