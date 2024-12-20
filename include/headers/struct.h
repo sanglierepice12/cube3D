@@ -92,6 +92,7 @@ struct						s_proj
 struct	s_map
 {
 	int						count;
+	int						matt[6];
 	char					**map;
 	int						height;
 	int						width;
@@ -146,7 +147,9 @@ typedef enum s_txt
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
+	C,
+	F
 }	t_txt;
 
 typedef enum s_rgbs

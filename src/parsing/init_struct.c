@@ -17,6 +17,13 @@ bool	init_map(t_map **map)
 	*map = ft_calloc(1, sizeof(t_map));
 	if (!(*map))
 		return (false);
+/*	(*map)->matt[NO] = 0;
+	(*map)->matt[SO] = 0;
+	(*map)->matt[WE] = 0;
+	(*map)->matt[EA] = 0;
+	(*map)->matt[C] = 0;
+	(*map)->matt[F] = 0;*/
+	ft_bzero((*map)->matt, sizeof((*map)->matt));
 	(*map)->tex = ft_calloc(1, sizeof(t_tex));
 	if (!(*map)->tex)
 		return (false);

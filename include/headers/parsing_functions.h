@@ -17,6 +17,9 @@
 void	init_struct(t_game **game);
 void	init_parse(t_game *game, char *file);
 
+/****UTILS****/
+char *rm_space_rgb(char *line);
+
 /*******CHECK_TEXTURES******/
 bool	check_texture(char	*line);
 bool	check_rgb(char *line);
@@ -26,6 +29,9 @@ bool	is_line_full_spaces(char *line);
 bool	is_line_ok(char	*temp);
 bool	is_line_m_ok(char *line);
 void	wall_is_good(t_game *game, char *line, bool flag, char *prev);
+void	is_matter_ok(t_game *game, char *line);
+bool	is_end_wall(char *line, char *prev);
+void	calculate_matter(char *line, t_game *game);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);

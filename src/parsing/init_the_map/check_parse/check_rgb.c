@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free2.c                                            :+:      :+:    :+:   */
+/*   check_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 13:01:45 by sanglier          #+#    #+#             */
-/*   Updated: 2024/11/22 13:01:45 by sanglier         ###   ########.fr       */
+/*   Created: 2024/12/19 12:56:00 by sanglier          #+#    #+#             */
+/*   Updated: 2024/12/19 12:56:00 by sanglier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../../../include/cub3D.h"
 
-void	force_exit(char *line, t_game *game)
+char *rm_space_rgb(char *line)
 {
-	if (write(2, "Error,\nmap invalid, line : ", 28) == -1)
-		exit_prog(game);
-	if (write(2, line, ft_strlen(line)) == -1)
-		exit_prog(game);
-	if (write(2, "\n", 1) == -1)
-		exit_prog(game);
-	free_list(game->list);
-	free(line);
-	exit_prog(game);
-}
+	char	*dup;
+	size_t	i;
+	size_t	k;
 
-void	free_parse(t_game *game)
-{
-	if (!game)
-		return ;
-	free_s_map(game->map);
+	i = 0;
+	k = 0;
+	while (line[i++])
+	{
+		if (is_ws(line[i]))
+			continue;
+		k++;
+	}
+	dup = ft_calloc(sizeof(char), k + 1);
+	if (!dup)
+		return (NULL);
+	i = 0;
+	k = 0;
+	while (line[i])
+	{
+		if (is_ws(line[i]))
+		{
+			i++;
+			continue;
+		}
+		dup[k++] = line[i++];
+	}
+	return (dup);
 }

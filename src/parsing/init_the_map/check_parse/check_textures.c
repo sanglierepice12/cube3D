@@ -6,13 +6,13 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:30:49 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/20 15:47:50 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:04:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/cub3D.h"
 
-static bool	wall_follow(const char *line, size_t i)
+static bool	first_wall(const char *line, size_t i)
 {
 	while (line[i++])
 	{
@@ -46,7 +46,7 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 		}
 		free(temp);
 	}
-	if (!flag && wall_follow(line, i))
+	if (!flag && first_wall(line, i))
 		return ;
 	force_exit(line, game);
 }
@@ -54,12 +54,19 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 bool	rgb_is_good(char *line)
 {
 	char	**temp;
+	char	*tempinou;
 	int		i;
 
 	i = -1;
-	temp = ft_split(line, ',');
-	if (!temp)
+	tempinou = rm_space_rgb(line);
+	if (!tempinou)
 		return (false);
+	if (ft_strlen(tempinou) > 11)
+		return (false);
+	temp = ft_split(tempinou, ',');
+	if (!temp)
+		return (free(tempinou), false);
+	free(tempinou);
 	while (++i, temp[i])
 	{
 		if (ft_atoi(temp[i]) > 255 || ft_atoi(temp[i]) < 0)
@@ -75,8 +82,6 @@ bool	check_rgb(char *line)
 
 	i = parse_ws(line);
 	if (!parse_comma(line + parse_ws(line)))
-		return (false);
-	if (ft_strlen(line + i) > 11)
 		return (false);
 	if (!rgb_is_good(line + i))
 		return (false);

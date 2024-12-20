@@ -22,14 +22,16 @@ void	first_line(int fd, t_list **list, t_game *game)
 		line = get_next_line(fd);
 		if (!line)
 			simple_exit("Nothing in the file ...", 1);
-		get_textures(line, game->map->tex, game);
 		get_rgb(line, game);
+		get_textures(line, game->map->tex, game);
+		calculate_matter(line, game);
 		if ((line + parse_ws(line))[0] == '1' && game->map->count == 6)
 			break ;
 		if (!is_line_ok(line))
-			exit_prog(game);
+			 exit_prog(game);
 		free(line);
 	}
+	is_matter_ok(game, line);
 	*list = ft_new_node(line);
 	free(line);
 	line = NULL;

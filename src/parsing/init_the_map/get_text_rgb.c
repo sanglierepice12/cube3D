@@ -38,9 +38,9 @@ void	get_rgb(char *line, t_game *game)
 	if (!temp)
 		return (free(line), exit_prog(game));
 	if (line[i] == 'F' && check_rgb(temp))
-		return (fill_rgb(temp, game, FLO), game->map->count++, (void)0);
+		return (fill_rgb(temp, game, FLO));
 	if (line[i] == 'C' && check_rgb(temp))
-		return (fill_rgb(temp, game, CEI), game->map->count++, (void)0);
+		return (fill_rgb(temp, game, CEI));
 	free(temp);
 }
 
@@ -58,12 +58,12 @@ void	get_textures(char *line, t_tex *texture, t_game *game)
 	if (!temp)
 		return (free(line), exit_prog(game));
 	if (line[i] == 'N' && line[i + 1] == 'O' && check_texture(temp))
-		return (fill_tex(temp, texture, NO), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, NO));
 	if (line[i] == 'S' && line[i + 1] == 'O' && check_texture(temp))
-		return (fill_tex(temp, texture, SO), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, SO));
 	if (line[i] == 'W' && line[i + 1] == 'E' && check_texture(temp))
-		return (fill_tex(temp, texture, WE), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, WE));
 	if (line[i] == 'E' && line[i + 1] == 'A' && check_texture(temp))
-		return (fill_tex(temp, texture, EA), game->map->count++, (void)0);
+		return (fill_tex(temp, texture, EA));
 	free(temp);
 }

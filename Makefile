@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/18 15:29:54 by jedusser          #+#    #+#              #
-#    Updated: 2024/12/18 15:36:54 by jedusser         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # ===================== #
 #       VARIABLES       #
 # ===================== #
@@ -21,7 +9,7 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra  -g3  -O3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3  -O3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
 LDFLAGS = -L/opt/X11/lib -lX11 -lXext -lm
 
 # Executable
@@ -38,6 +26,7 @@ SRC =	main.c													\
 		parsing/init_the_map/get_map.c							\
 		parsing/init_the_map/get_text_rgb.c						\
 		parsing/init_the_map/check_parse/is_lineok.c			\
+		parsing/init_the_map/check_parse/check_rgb.c			\
 		parsing/init_the_map/check_parse/check_textures.c		\
 		parsing/init_the_map/fill_struct_map/fill_map_struct.c	\
 		parsing/init_the_map/fill_struct_map/fill_map_suit.c	\

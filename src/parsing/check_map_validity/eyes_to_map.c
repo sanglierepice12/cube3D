@@ -12,6 +12,27 @@
 
 #include "../../../include/cub3D.h"
 
+void	calculate_matter(char *line, t_game *game)
+{
+	size_t	i;
+
+	i = parse_ws(line);
+	if (line[i] == 'F')
+		game->map->matt[F]++;
+	if (line[i] == 'C')
+		game->map->matt[C]++;
+	if (line[i] == 'N' && line[i + 1] == 'O')
+		game->map->matt[NO]++;
+	if (line[i] == 'S' && line[i + 1] == 'O')
+		game->map->matt[SO]++;
+	if (line[i] == 'W' && line[i + 1] == 'E')
+		game->map->matt[WE]++;
+	if (line[i] == 'E' && line[i + 1] == 'A')
+		game->map->matt[EA]++;
+	if (ft_strchr("NSEWFC", line[i]))
+		game->map->count++;
+}
+
 int	rgb_to_hex(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);
