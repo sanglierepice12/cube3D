@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map_suit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsuter <gsuter@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:00:47 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/16 18:00:47 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/12/20 11:33:45 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*copy_map_line(char *str, ssize_t width)
 	y = -1;
 	while (y++, y != i + 1)
 		dest[y] = str[y];
-	while (y != width)
-		dest[y++] = '#';
+	// while (y != width)
+	// 	dest[y++] = '#';
 	return (dest);
 }
 
