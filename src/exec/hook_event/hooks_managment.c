@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:14:18 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/18 15:32:47 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:49:42 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	key_down(int keycode, t_game *game)
 
 int	close_triggered(t_game *game)
 {
+	printf("Exiting game...\n");
 	exit_prog(game);
 	exit(0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:30:49 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/18 15:39:43 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:47:50 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static bool	wall_follow(const char *line, size_t i)
 	{
 		if (!line[i + 1])
 			return (true);
-		if (line[i] == '#' && line[i + 1] == '#')
-			continue ;
 		if (line[i] != '1')
 			break ;
 	}
@@ -41,8 +39,6 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 			force_exit(line, game);
 		while (len--, line[len])
 		{
-			if (line[len] == '#')
-				continue ;
 			if (line[len] != '1' || line[0] != '1' || \
 				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
 				break ;

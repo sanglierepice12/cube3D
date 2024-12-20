@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:48:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/20 12:59:00 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:21:19 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@
 
 /*#################### MOVEMENTS ######################*/
 
-# define ROTATION_SPEED 0.1f
-# define MOVE_SPEED 2.0f
+# define ROTATION_SPEED 0.05f
+# define MOVE_SPEED 1.0f
 
 /*#################### DIRECTIONS ######################*/
 
