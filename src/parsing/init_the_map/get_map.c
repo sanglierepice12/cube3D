@@ -22,9 +22,9 @@ void	first_line(int fd, t_list **list, t_game *game)
 		line = get_next_line(fd);
 		if (!line)
 			simple_exit("Nothing in the file ...", 1);
-		calculate_matter(line, game);
-		get_textures(line, game->map->tex, game);
 		get_rgb(line, game);
+		get_textures(line, game->map->tex, game);
+		calculate_matter(line, game);
 		if ((line + parse_ws(line))[0] == '1' && game->map->count == 6)
 			break ;
 		if (!is_line_ok(line))

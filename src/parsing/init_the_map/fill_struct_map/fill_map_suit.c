@@ -34,8 +34,8 @@ char	*copy_map_line(char *str, ssize_t width)
 	y = -1;
 	while (y++, y != i + 1)
 		dest[y] = str[y];
-	while (y != width)
-		dest[y++] = '#';
+	/*while (y != width)
+		dest[y++] = '#';*/
 	return (dest);
 }
 

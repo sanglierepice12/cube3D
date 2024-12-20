@@ -12,27 +12,6 @@
 
 #include "../../../../include/cub3D.h"
 
-void	calculate_matter(char *line, t_game *game)
-{
-	size_t	i;
-
-	i = parse_ws(line);
-	if (line[i] == 'F')
-		game->map->matt[F]++;
-	if (line[i] == 'C')
-		game->map->matt[C]++;
-	if (line[i] == 'N' && line[i + 1] == 'O')
-		game->map->matt[NO]++;
-	if (line[i] == 'S' && line[i + 1] == 'O')
-		game->map->matt[SO]++;
-	if (line[i] == 'W' && line[i + 1] == 'E')
-		game->map->matt[WE]++;
-	if (line[i] == 'E' && line[i + 1] == 'A')
-		game->map->matt[EA]++;
-	if (ft_strchr("NSEWFC", line[i]))
-		game->map->count++;
-}
-
 void	is_matter_ok(t_game *game, char *line)
 {
 	if (game->map->matt[F] != 1 || game->map->matt[C] != 1 || \
@@ -57,6 +36,24 @@ bool	is_line_full_spaces(char *line)
 			continue ;
 		return (false);
 	}
+	return (true);
+}
+
+bool	is_end_wall(char *line, char *prev)
+{
+	size_t i;
+
+//	printf("[%s]\n", prev);
+	if (!prev)
+		return (false);
+	i = 0;
+	while (prev[i])
+	{
+		if (prev[i] != 1)
+			return (false);
+		i++;
+	}
+	free(line);
 	return (true);
 }
 

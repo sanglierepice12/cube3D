@@ -53,26 +53,30 @@ void	fill_tex(char *line, t_tex *tex, t_txt type)
 {
 	if (type == NO)
 	{
-		tex->no = ft_dup(line);
-		if (tex->no == NULL)
+		if (!tex->no)
+			tex->no = ft_dup(line);
+		if (!tex->no)
 			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
-		tex->so = ft_dup(line);
-		if (tex->so == NULL)
+		if (!tex->so)
+			tex->so = ft_dup(line);
+		if (!tex->so)
 			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == WE)
 	{
-		tex->we = ft_dup(line);
-		if (tex->we == NULL)
+		if (!tex->we)
+			tex->we = ft_dup(line);
+		if (!tex->we)
 			return (printf("texture no is null\n"), free(line));
 	}
 	if (type == EA)
 	{
-		tex->ea = ft_dup(line);
-		if (tex->ea == NULL)
+		if (!tex->ea)
+			tex->ea = ft_dup(line);
+		if (!tex->ea)
 			return (printf("texture no is null\n"), free(line));
 	}
 	free(line);
@@ -106,6 +110,8 @@ void	fill_list_to_map(t_game *game, t_list **list)
 		line = copy_map_line(temp->value, game->map->width);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
+	/*	if (is_end_wall(line, temp->prev->value))
+			break ;*/
 		if (!temp->next || i == 0)
 			wall_is_good(game, line, 0, NULL);
 		else
@@ -122,7 +128,6 @@ void	fill_map_to_list(t_game *game, t_list **list, int fd)
 	char	*line;
 
 	first_line(fd, list, game);
-	line = NULL;
 	while (777)
 	{
 		line = get_next_line(fd);
