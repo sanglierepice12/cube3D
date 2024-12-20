@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 08:32:40 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/17 08:35:33 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:29:39 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	handle_move(t_game *game)
 {
 	float	new_x;
 	float	new_y;
+
+	// float
 
 	new_x = game->player.px_pos_x;
 	new_y = game->player.px_pos_y;
