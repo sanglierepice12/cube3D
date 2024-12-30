@@ -14,7 +14,8 @@
 
 int	ft_puterr(char *str)
 {
-	write(2, "error: ", 8);
+	if (write(2, "error: ", 8) == -1)
+		printf("Write jumped\n");
 	return (write(2, str, ft_strlen(str)));
 }
 

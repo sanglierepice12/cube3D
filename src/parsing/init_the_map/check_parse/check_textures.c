@@ -35,13 +35,42 @@ static bool	wall_follow(const char *line, size_t i)
 	return (true);
 }
 
-void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
+static bool	is_closed(const char *prev, const char *line, size_t len)
+{
+	while (len--, line[len] == '1')
+	{
+		if (prev[len] == '#')
+			continue ;
+		if (prev[len] == '1')
+			return (true);
+		return (false);
+	}
+	if (prev[len] != '1')
+		return (false);
+	return (true);
+}
+
+bool	is_full_of_one(char *line)
 {
 	size_t	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i++] == '1')
+			continue;
+		if (line[i] == '#')
+			return (true);
+		return (false);
+	}
+	return (true);
+}
+
+void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
+{
 	size_t	len;
 	char	*temp;
 
-	i = parse_ws(line);
 	len = ft_strlen(line);
 	if (flag && (!ft_comp_str(line, "\n") || !is_line_full_spaces(line)))
 	{
@@ -52,15 +81,16 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
 		{
 			if (line[len] == '#')
 				continue ;
-			if (line[len] != '1' || line[0] != '1' || \
-				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
+			if (line[len] != '1')
+				break ;
+			if (temp[len] == '#' && !is_closed(temp, line, len + 1))
+				break ;
+			if (temp[len] == '0' && temp[len + 1] != '1')
 				break ;
 			return (free(temp));
 		}
 		free(temp);
 	}
-	/*if (!flag && wall_follow(line, i))
-		return ;*/
 	if (!flag && wall_follow(line, len))
 		return ;
 	force_exit(line, game);

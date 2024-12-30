@@ -119,7 +119,9 @@ void	fill_list_to_map(t_game *game, t_list **list)
 			break ;*/
 		/*if (!temp->next || i == 0)
 			wall_is_good(game, line, 0, NULL);*/
-		if (i == 0)
+		if (line[0] == '\n')
+			break ;
+		if (is_full_of_one(line))
 			wall_is_good(game, line, 0, NULL);
 		else if (is_end_wall(temp->prev->value))
 		{

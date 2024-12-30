@@ -32,7 +32,7 @@ char	*copy_map_line(char *str, ssize_t width)
 	if (!dest)
 		return (NULL);
 	y = -1;
-	while (y++, y != i)
+	while (y++, y != i + 1)
 		dest[y] = str[y];
 	while (y != width)
 		dest[y++] = '#';

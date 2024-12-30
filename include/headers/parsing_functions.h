@@ -32,6 +32,7 @@ void	wall_is_good(t_game *game, char *line, bool flag, char *prev);
 void	is_matter_ok(t_game *game, char *line);
 bool	is_end_wall(char *prev);
 void	calculate_matter(char *line, t_game *game);
+bool	is_full_of_one(char *line);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);
