@@ -39,9 +39,12 @@ bool	is_line_full_spaces(char *line)
 	return (true);
 }
 
-bool	is_end_wall(char *prev)
+/*bool	is_end_wall(char *prev)
 {
-	size_t i;
+	if (ft_strchr("#\\n ", prev[0]))
+		return (true);
+	return (false);
+	*//*size_t i;
 
 	if (!prev)
 		return (false);
@@ -52,8 +55,8 @@ bool	is_end_wall(char *prev)
 			return (false);
 		i++;
 	}
-	return (true);
-}
+	return (true);*//*
+}*/
 
 bool	is_line_m_ok(char *line)
 {

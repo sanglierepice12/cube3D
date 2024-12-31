@@ -25,7 +25,7 @@ char	*copy_map_line(char *str, ssize_t width)
 		i++;
 	if (str[i] == '\n')
 	{
-		while (str[i] && is_ws(str[i]))
+		while (i >= 0 && (str[i] && is_ws(str[i])))
 			i--;
 	}
 	dest = ft_calloc(sizeof(char), width);
@@ -34,7 +34,7 @@ char	*copy_map_line(char *str, ssize_t width)
 	y = -1;
 	while (y++, y != i + 1)
 		dest[y] = str[y];
-	while (y != width - 1)
+	while (y < width - 1)
 		dest[y++] = '#';
 	return (dest);
 }

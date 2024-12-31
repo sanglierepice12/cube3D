@@ -28,13 +28,10 @@ bool	check_rgb(char *line);
 bool	is_line_full_spaces(char *line);
 bool	is_line_ok(char	*temp);
 bool	is_line_m_ok(char *line);
-void	is_game_line_ok(t_game *game, char *line, char *prev);
+void	wall_is_good(t_game *game, char *line, bool flag, char *prev);
 void	is_matter_ok(t_game *game, char *line);
-/*bool	is_end_wall(char *prev);*/
+bool	is_end_wall(char *line, char *prev);
 void	calculate_matter(char *line, t_game *game);
-bool	is_full_of_one(char *line);
-bool	is_closed(const char *prev, const char *line, size_t len);
-void	is_fst_line_ok(char *line, size_t i, t_game *game);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);

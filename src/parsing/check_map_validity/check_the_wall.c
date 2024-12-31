@@ -31,12 +31,9 @@ void	is_game_line_ok(t_game *game, char *line, char *prev)
 	len = ft_strlen(line);
 	if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line))
 	{
-		printf("line = %s\n", line);
 		temp = copy_map_line(prev, game->map->width);
 		if (!temp)
 			force_exit(line, game);
-		printf("temp = %s\n", temp);
-		printf("Tsize := %zu\n", ft_strlen(temp));
 		while (len--, line[len])
 		{
 			if (line[len] == '#')

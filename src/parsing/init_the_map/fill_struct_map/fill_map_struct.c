@@ -118,16 +118,23 @@ void	fill_list_to_map(t_game *game, t_list **list)
 		if (line[0] == '\n')
 			break ;
 		else if (is_full_of_one(line))
+		{
 			is_fst_line_ok(line, ft_strlen(line), game);
-		else if (is_end_wall(temp->prev->value))
+			game->map->map[i++] = ft_dup(line);
+			if (ft_strchr("#\\n ", temp->value[0]))
+			{
+				free(line);
+				break;
+			}
+		}
+		/*else if (is_end_wall(temp->prev->value))
 		{
 			is_fst_line_ok(line, ft_strlen(line), game);
 			free(line);
 			break ;
-		}
-		else {
-			printf("line = %s\n", temp->prev->value);
-			printf("size := %zu\n", ft_strlen(temp->prev->value));
+		}*/
+		else
+		{
 			is_game_line_ok(game, line, temp->prev->value);
 			game->map->map[i++] = ft_dup(line);
 		}
