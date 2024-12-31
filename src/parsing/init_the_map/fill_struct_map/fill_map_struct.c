@@ -115,8 +115,8 @@ void	fill_list_to_map(t_game *game, t_list **list)
 		line = copy_map_line(temp->value, game->map->width + 1);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
-		if (line[0] == '\n')
-			break ;
+		/*if (line[0] == '\n')
+			break ;*/
 		else if (is_full_of_one(line))
 		{
 			is_fst_line_ok(line, ft_strlen(line), game);

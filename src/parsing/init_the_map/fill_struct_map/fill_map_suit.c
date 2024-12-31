@@ -35,7 +35,15 @@ char	*copy_map_line(char *str, ssize_t width)
 	while (y++, y != i + 1)
 		dest[y] = str[y];
 	while (y < width - 1)
+	{
+		if (ft_comp_str(str, "\n"))
+		{
+			free(dest);
+			printf("Error: line is'\\n\n");
+			return (NULL);
+		}
 		dest[y++] = '#';
+	}
 	return (dest);
 }
 
