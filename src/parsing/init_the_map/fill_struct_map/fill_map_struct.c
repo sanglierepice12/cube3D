@@ -112,26 +112,25 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	get_len_line(game);
 	while (temp)
 	{
-		line = copy_map_line(temp->value, game->map->width);
+		line = copy_map_line(temp->value, game->map->width + 1);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
-	/*	if (is_end_wall(line, temp->prev->value))
-			break ;*/
-		/*if (!temp->next || i == 0)
-			wall_is_good(game, line, 0, NULL);*/
 		if (line[0] == '\n')
 			break ;
-		if (is_full_of_one(line))
-			wall_is_good(game, line, 0, NULL);
+		else if (is_full_of_one(line))
+			is_fst_line_ok(line, ft_strlen(line), game);
 		else if (is_end_wall(temp->prev->value))
 		{
-			wall_is_good(game, temp->prev->value, 0, NULL);
+			is_fst_line_ok(line, ft_strlen(line), game);
 			free(line);
 			break ;
 		}
-		else
-			wall_is_good(game, line, 1, temp->prev->value);
-		game->map->map[i++] = ft_dup(line);
+		else {
+			printf("line = %s\n", temp->prev->value);
+			printf("size := %zu\n", ft_strlen(temp->prev->value));
+			is_game_line_ok(game, line, temp->prev->value);
+			game->map->map[i++] = ft_dup(line);
+		}
 		fill_playerpos(line, game, i);
 		temp = temp->next;
 		free(line);

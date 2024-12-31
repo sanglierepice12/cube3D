@@ -28,13 +28,13 @@ char	*copy_map_line(char *str, ssize_t width)
 		while (str[i] && is_ws(str[i]))
 			i--;
 	}
-	dest = ft_calloc(sizeof(char), width + 1);
+	dest = ft_calloc(sizeof(char), width);
 	if (!dest)
 		return (NULL);
 	y = -1;
 	while (y++, y != i + 1)
 		dest[y] = str[y];
-	while (y != width)
+	while (y != width - 1)
 		dest[y++] = '#';
 	return (dest);
 }
@@ -58,4 +58,5 @@ void	get_len_line(t_game *game)
 		temp = temp->next;
 		free(line);
 	}
+/*	game->map->width += 1;*/
 }

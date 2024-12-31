@@ -73,7 +73,7 @@ void	init_parse(t_game *game, char *file)
 	close(fd);
 	fill_list_to_map(game, &game->list);
 	free_list(game->list);
-	//exit_prog(game);
+	exit_prog(game);
 	if (game->map->count != 7)
 	{
 		ft_puterr("No player position\n"); // !!!!! sortie erreur

@@ -42,6 +42,7 @@ bool	is_line_full_spaces(char *line)
 bool	is_end_wall(char *prev)
 {
 	size_t i;
+
 	if (!prev)
 		return (false);
 	i = 0;

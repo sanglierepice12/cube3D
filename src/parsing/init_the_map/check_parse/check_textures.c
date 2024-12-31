@@ -12,30 +12,7 @@
 
 #include "../../../../include/cub3D.h"
 
-static bool	wall_follow(const char *line, size_t i)
-{
-	while (line[i--])
-	{
-		if (line[i] == '#')
-			continue ;
-		if (line[i] != '1')
-			return (false);
-	}
-	/*while (line[i++])
-	{
-		if (line[i] == '1' && !line[i + 1])
-			return (true);
-		if (line[i] == '#' && line[i + 1] == '#')
-			continue ;
-		if (line[i] != '1')
-			break ;
-	}
-	 return (false);
-	 */
-	return (true);
-}
-
-static bool	is_closed(const char *prev, const char *line, size_t len)
+bool	is_closed(const char *prev, const char *line, size_t len)
 {
 	while (len--, line[len] == '1')
 	{
@@ -64,36 +41,6 @@ bool	is_full_of_one(char *line)
 		return (false);
 	}
 	return (true);
-}
-
-void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
-{
-	size_t	len;
-	char	*temp;
-
-	len = ft_strlen(line);
-	if (flag && (!ft_comp_str(line, "\n") || !is_line_full_spaces(line)))
-	{
-		temp = copy_map_line(prev, game->map->width);
-		if (!temp)
-			force_exit(line, game);
-		while (len--, line[len])
-		{
-			if (line[len] == '#')
-				continue ;
-			if (line[len] != '1')
-				break ;
-			if (temp[len] == '#' && !is_closed(temp, line, len + 1))
-				break ;
-			if (temp[len] == '0' && temp[len + 1] != '1')
-				break ;
-			return (free(temp));
-		}
-		free(temp);
-	}
-	if (!flag && wall_follow(line, len))
-		return ;
-	force_exit(line, game);
 }
 
 bool	rgb_is_good(char *line)
