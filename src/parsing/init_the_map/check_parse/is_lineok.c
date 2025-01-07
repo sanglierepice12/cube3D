@@ -74,7 +74,7 @@ bool	is_line_ok(char	*line)
 		return (true);
 	if (line[i] == 'C')
 		return (true);
-	printf("Error,\nLine is invalid: \n%s\n", line);
+	ft_puterr("Error,\nLine is invalid: \n%s\n");
 	free(line);
 	return (false);
 }

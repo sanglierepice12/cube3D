@@ -16,7 +16,7 @@ int	ft_puterr(char *str)
 {
 	if (write(2, "error: ", 8) == -1)
 		printf("Write jumped\n");
-	return (write(2, str, ft_strlen(str)));
+	return ((int)write(2, str, ft_strlen(str)));
 }
 
 void	simple_exit(char *msg, int code)
