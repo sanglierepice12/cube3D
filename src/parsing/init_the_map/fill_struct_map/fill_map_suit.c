@@ -26,30 +26,39 @@ void	is_map_ok(char *line, t_game *game, size_t *i, t_list *temp)
 	}
 }
 
-void	fill_rgb(char *line, t_game *game, t_ergb type)
+static void	free_rgb_stuff(t_game *game, char *temp, char *line)
 {
-	char	**temp;
+	ft_puterr("Nothing in rgb\n");
+	free(temp);
+	free(line);
+	exit_prog(game);
+}
+
+void	fill_rgb(char *temp, t_game *game, t_ergb type, char *line)
+{
+	char	**tempax;
 	char	*tempinou;
 
-	tempinou = rm_space_rgb(line);
+	tempinou = rm_space_rgb(temp);
 	if (!tempinou)
 	{
-		free(line);
+		free(temp);
 		exit_prog(game);
 	}
-	temp = ft_split(tempinou, ',');
-	if (!temp)
+	tempax = ft_split(tempinou, ',');
+	if (!tempax)
 	{
 		ft_puterr("Malloc\n");
+		free(temp);
 		free(line);
 		return (free(tempinou), exit_prog(game));
 	}
 	free(tempinou);
-	if (!temp[2])
-		return (ft_puterr("Nothing in rgb\n"), free(line), exit_prog(game));
-	fill_rgb_struct(game, temp, type);
-	free(line);
-	free_tab(temp);
+	if (!tempax[2])
+		return (free_tab(tempax), free_rgb_stuff(game, temp, line));
+	fill_rgb_struct(game, tempax, type);
+	free(temp);
+	free_tab(tempax);
 }
 
 char	*copy_map_line(char *str, ssize_t width)

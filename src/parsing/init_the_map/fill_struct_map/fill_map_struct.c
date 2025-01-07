@@ -78,9 +78,7 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	int		count;
 
 	count = 0;
-	game->map->map = heap_map(get_list_len(*list));
-	if (!game->map->map)
-		return (ft_puterr("Malloc\n"), free_list(*list), exit_prog(game));
+	check_first_line(game, *list);
 	temp = *list;
 	i = 0;
 	if (!is_full_of_one(temp->value))
@@ -95,8 +93,9 @@ void	fill_list_to_map(t_game *game, t_list **list)
 		is_map_ok(line, game, &i, temp);
 		fill_playerpos(line, game, i);
 		temp = temp->next;
-		free(line);
 	}
+	if (count == 0)
+		exit_parsing(game);
 }
 
 void	fill_map_to_list(t_game *game, t_list **list, int fd)

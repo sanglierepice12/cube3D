@@ -90,4 +90,5 @@ void	fill_playerpos(char *line, t_game *game, size_t len)
 		i++;
 	}
 	def_playr_angle(&game->player);
+	free(line);
 }

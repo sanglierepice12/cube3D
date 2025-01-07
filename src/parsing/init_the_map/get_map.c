@@ -28,7 +28,7 @@ void	first_line(int fd, t_list **list, t_game *game)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			simple_exit("Nothing in the file ...", 1);
+			return (ft_puterr("Nothing in the file ...\n"), exit_prog(game));
 		get_rgb(line, game);
 		get_textures(line, game->map->tex, game);
 		calculate_matter(line, game);

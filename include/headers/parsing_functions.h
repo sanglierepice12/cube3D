@@ -21,8 +21,8 @@ void	init_parse(t_game *game, char *file);
 char	*rm_space_rgb(char *line);
 
 /*******CHECK_TEXTURES******/
-bool	check_texture(char	*line);
-bool	check_rgb(char *line);
+bool	check_texture(char	*temp, char *line, t_game *game);
+bool	check_rgb(char *temp, char *line, t_game *game);
 
 /****IS_LINE_SOMETHING***/
 bool	is_line_full_spaces(char *line);
@@ -43,12 +43,13 @@ void	fill_map_to_list(t_game *game, t_list **list, int fd);
 void	get_rgb(char *line, t_game *game);
 void	get_textures(char *line, t_tex *texture, t_game *game);
 void	fill_tex(char *line, t_tex *texture, t_txt type);
-void	fill_rgb(char *line, t_game *game, t_ergb type);
+void	fill_rgb(char *temp, t_game *game, t_ergb type, char *line);
 void	fill_list_to_map(t_game *game, t_list **list);
 void	fill_playerpos(char *line, t_game *game, size_t len);
 void	fill_rgb_struct(t_game *game, char **temp, t_ergb type);
 int		rgb_to_hex(int r, int g, int b);
 void	get_len_line(t_game *game);
 char	*copy_map_line(char *str, ssize_t width);
+void	check_first_line(t_game *game, t_list *list);
 
 #endif

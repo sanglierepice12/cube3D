@@ -12,11 +12,18 @@
 
 #include "../../../../include/cub3D.h"
 
+void	check_first_line(t_game *game, t_list *list)
+{
+	game->map->map = heap_map(get_list_len(list));
+	if (!game->map->map)
+		return (ft_puterr("Malloc\n"), free_list(list), exit_prog(game));
+}
+
 void	wallend(char *line, t_list *temp, t_game *game, int *count)
 {
 	if (is_full_of_one(line))
 	{
-		if (temp->next && is_full_of(temp->next->value, '\n'))
+		if (!temp->next || (temp->next && is_full_of(temp->next->value, '\n')))
 		{
 			(*count)++;
 			game->map->height = (int)ft_str_double_len(game->map->map);
