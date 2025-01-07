@@ -38,7 +38,7 @@ void	is_game_line_ok(t_game *game, char *line, char *prev)
 		{
 			if (line[len] == '#')
 				continue ;
-			if (line[len] != '1')
+			if (line[len] != '1' || line[0 + parse_ws(line)] != '1')
 				break ;
 			if (temp[len] == '#' && !is_closed(temp, line, len + 1))
 				break ;
