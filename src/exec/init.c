@@ -19,7 +19,7 @@ int	init_env(t_mlx_data *mlx_data, t_map *map)
 	if (!mlx_data->mlx_ptr)
 		return (ft_puterr("MLX initialisation failed\n"), -1);
 	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH, \
-							GAME_HEIGHT , "Cub3d");
+							GAME_HEIGHT, "Cub3d");
 	if (!mlx_data->game_win_ptr)
 		return (ft_puterr("Window initialisation failed\n"), -1);
 	return (0);
@@ -108,7 +108,6 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 
 void	init_game(t_game *game)
 {
-	//def_playr_angle(&game->player);
 	if (init_env(&game->mlx_data, game->map) == -1)
 		exit_prog(game);
 	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img,

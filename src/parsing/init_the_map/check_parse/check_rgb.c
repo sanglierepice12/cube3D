@@ -12,7 +12,7 @@
 
 #include "../../../../include/cub3D.h"
 
-char *rm_space_rgb(char *line)
+char	*rm_space_rgb(char *line)
 {
 	char	*dup;
 	size_t	i;
@@ -23,7 +23,7 @@ char *rm_space_rgb(char *line)
 	while (line[i++])
 	{
 		if (is_ws(line[i]))
-			continue;
+			continue ;
 		k++;
 	}
 	dup = ft_calloc(sizeof(char), k + 1);
@@ -31,14 +31,11 @@ char *rm_space_rgb(char *line)
 		return (NULL);
 	i = 0;
 	k = 0;
-	while (line[i])
+	while (line[i++])
 	{
 		if (is_ws(line[i]))
-		{
-			i++;
-			continue;
-		}
-		dup[k++] = line[i++];
+			continue ;
+		dup[k++] = line[i];
 	}
 	return (dup);
 }

@@ -28,7 +28,7 @@ void	first_line(int fd, t_list **list, t_game *game)
 		if ((line + parse_ws(line))[0] == '1' && game->map->count == 6)
 			break ;
 		if (!is_line_ok(line))
-			 exit_prog(game);
+			exit_prog(game);
 		free(line);
 	}
 	is_matter_ok(game, line);
@@ -75,7 +75,7 @@ void	init_parse(t_game *game, char *file)
 	free_list(game->list);
 	if (game->map->count != 7)
 	{
-		ft_puterr("No player position\n"); // !!!!! sortie erreur
+		ft_puterr("No player position\n");
 		exit_prog(game);
 	}
 }

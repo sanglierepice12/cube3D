@@ -51,11 +51,6 @@ int	draw_and_display_map(t_game *game)
 
 void	all_draws(t_game *game)
 {
-/*
-	draw_mini_map(game);
-	fill_tile_with_player(&game->player, &game->map_img, \
-		(int)game->player.pos_x, (int)game->player.pos_y);
-*/
 	draw_map_rays(game, &game->player, &game->ray);
 	render_3d_map(game, &game->player, &game->ray, &game->proj);
 }

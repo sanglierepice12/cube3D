@@ -30,6 +30,7 @@ int			parse_ws(char *line);
 bool		ft_strchr(const char *s, const char c);
 bool		is_ws(char c);
 bool		parse_comma(char *line);
+char		**heap_map(size_t len);
 
 /*==================linked_list=====================*/
 t_list		*ft_lst_last(t_list *lst);

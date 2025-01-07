@@ -32,26 +32,22 @@ void	fill_rgb_struct(t_game *game, char **temp, t_ergb type)
 	}
 }
 
-void	fill_rgb(char *line, t_game *game, t_ergb type)
+static void	fill_tex_f(char *line, t_tex *tex, t_txt type)
 {
-	char	**temp;
-	char	*tempinou;
-
-	tempinou = rm_space_rgb(line);
-	if (!tempinou)
+	if (type == WE)
 	{
-		free(line);
-		exit_prog(game);
+		if (!tex->we)
+			tex->we = ft_dup(line);
+		if (!tex->we)
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
-	temp = ft_split(tempinou, ',');
-	if (!temp)
-		return (ft_puterr("Malloc\n"), free(line), free(tempinou), exit_prog(game));
-	free(tempinou);
-	if (!temp[2])
-		return (ft_puterr("Nothing in rgb\n"), free(line), exit_prog(game));
-	fill_rgb_struct(game, temp, type);
-	free(line);
-	free_tab(temp);
+	if (type == EA)
+	{
+		if (!tex->ea)
+			tex->ea = ft_dup(line);
+		if (!tex->ea)
+			return (ft_puterr("texture no is null\n"), free(line));
+	}
 }
 
 void	fill_tex(char *line, t_tex *tex, t_txt type)
@@ -70,32 +66,8 @@ void	fill_tex(char *line, t_tex *tex, t_txt type)
 		if (!tex->so)
 			return (ft_puterr("texture no is null\n"), free(line));
 	}
-	if (type == WE)
-	{
-		if (!tex->we)
-			tex->we = ft_dup(line);
-		if (!tex->we)
-			return (ft_puterr("texture no is null\n"), free(line));
-	}
-	if (type == EA)
-	{
-		if (!tex->ea)
-			tex->ea = ft_dup(line);
-		if (!tex->ea)
-			return (ft_puterr("texture no is null\n"), free(line));
-	}
+	fill_tex_f(line, tex, type);
 	free(line);
-}
-
-static char	**heap_map(size_t len, t_game *game)
-{
-	char	**map;
-
-	map = ft_calloc(sizeof(char *), len + 1);
-	if (!map)
-		return (NULL);
-	game->map->height = (int)get_list_len(game->list);
-	return (map);
 }
 
 void	fill_list_to_map(t_game *game, t_list **list)
@@ -104,40 +76,18 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	char	*line;
 	size_t	i;
 
-	game->map->map = heap_map(get_list_len(*list), game);
+	game->map->map = heap_map(get_list_len(*list));
 	if (!game->map->map)
 		return (ft_puterr("Malloc\n"), free_list(*list), exit_prog(game));
 	temp = *list;
 	i = 0;
 	get_len_line(game);
-	while (temp)
+	while ((int)i <= game->map->height && temp)
 	{
 		line = copy_map_line(temp->value, game->map->width + 1);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
-		/*if (line[0] == '\n')
-			break ;*/
-		else if (is_full_of_one(line))
-		{
-			is_fst_line_ok(line, ft_strlen(line), game);
-			game->map->map[i++] = ft_dup(line);
-			if (ft_strchr("#\\n ", temp->value[0]))
-			{
-				free(line);
-				break;
-			}
-		}
-		/*else if (is_end_wall(temp->prev->value))
-		{
-			is_fst_line_ok(line, ft_strlen(line), game);
-			free(line);
-			break ;
-		}*/
-		else
-		{
-			is_game_line_ok(game, line, temp->prev->value);
-			game->map->map[i++] = ft_dup(line);
-		}
+		is_map_ok(line, game, &i, temp);
 		fill_playerpos(line, game, i);
 		temp = temp->next;
 		free(line);
@@ -147,15 +97,24 @@ void	fill_list_to_map(t_game *game, t_list **list)
 void	fill_map_to_list(t_game *game, t_list **list, int fd)
 {
 	char	*line;
+	int		count;
 
+	count = 0;
 	first_line(fd, list, game);
 	while (777)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (!is_line_m_ok(line))
+		if (is_full_of_one(line))
 		{
+			count++;
+			game->map->height = (int)get_list_len(*list);
+		}
+		if (!is_line_m_ok(line) || (ft_comp_str(line, "\n") && count == 1))
+		{
+			ft_puterr("Line is invalid: '%s'\n");
+			free(line);
 			free_list(game->list);
 			exit_prog(game);
 		}

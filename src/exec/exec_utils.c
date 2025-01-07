@@ -19,7 +19,7 @@ bool	wall_hit(t_map *map, t_ray *ray)
 
 	map_x = (int)floor(ray->px_x / TILE_SIZE);
 	map_y = (int)floor(ray->px_y / TILE_SIZE);
-	return (map->map[map_y][map_x] == '1' /*|| map->map[map_y][map_x] == '#'*/ || map->map[map_y][map_x] == ' ' );
+	return (map->map[map_y][map_x] == '1' || map->map[map_y][map_x] == ' ' );
 }
 
 int	get_map_coord(double px_x)

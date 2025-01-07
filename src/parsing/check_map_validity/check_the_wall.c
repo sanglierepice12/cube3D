@@ -29,7 +29,7 @@ void	is_game_line_ok(t_game *game, char *line, char *prev)
 	char	*temp;
 
 	len = ft_strlen(line);
-	if (!ft_comp_str(line, "\n") || !is_line_full_spaces(line))
+	if (!is_line_full_spaces(line))
 	{
 		temp = copy_map_line(prev, game->map->width);
 		if (!temp)

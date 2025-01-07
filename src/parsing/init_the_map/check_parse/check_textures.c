@@ -34,13 +34,15 @@ bool	is_full_of_one(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i++] == '1')
-			continue;
-		if (line[i] == '#')
-			return (true);
-		return (false);
+		if (line[i] == '1')
+			i++;
+		else
+			break ;
 	}
-	return (true);
+	if (line[i] == '\0' || line[i] == '\n' || line[i] == '#')
+		return (true);
+	else
+		return (false);
 }
 
 bool	rgb_is_good(char *line)

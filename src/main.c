@@ -16,10 +16,10 @@ static void	init(t_game **game, char **argv)
 {
 	init_struct(game);
 	init_parse(*game, argv[1]);
-	int i = 0;
+/*	int i = 0;
 	while ((*game)->map->map[i])
 		printf("%s\n", (*game)->map->map[i++]);
-	exit_prog(*game);
+	exit_prog(*game);*/
 	init_game(*game);
 }
 
