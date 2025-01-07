@@ -106,7 +106,7 @@ void	fill_list_to_map(t_game *game, t_list **list)
 		line = copy_map_line(temp->value, game->map->width + 1);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
-		if (is_full_of(line, '1'))
+		if (is_full_of_one(line))
 		{
 			if (temp->next && is_full_of(temp->next->value, '\n'))
 			{
@@ -114,7 +114,6 @@ void	fill_list_to_map(t_game *game, t_list **list)
 				game->map->height = (int)ft_str_double_len(game->map->map);
 			}
 		}
-		printf("count = %d\n", game->map->height);
 		if (is_full_of(line, '#') && count == 0)
 			force_exit(line, game);
 		is_map_ok(line, game, &i, temp);

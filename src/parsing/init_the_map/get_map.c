@@ -82,7 +82,6 @@ void	init_parse(t_game *game, char *file)
 	free_list(game->list);
 	if (!is_full_of_one(game->map->map[game->map->height]))
 	{
-		printf("couocu = %s", game->map->map[game->map->height + 1]);
 		ft_puterr("Line is not a walling\n");
 		exit_prog(game);
 	}
