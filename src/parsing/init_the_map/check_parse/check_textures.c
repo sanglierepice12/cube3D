@@ -39,7 +39,7 @@ bool	is_full_of_one(char *line)
 		else
 			break ;
 	}
-	if (line[i] == '\0' || line[i] == '\n' || line[i] == '#')
+	if (line[i] == '\0' || (line[i] == '\n' && i != 0) || line[i] == '#')
 		return (true);
 	else
 		return (false);

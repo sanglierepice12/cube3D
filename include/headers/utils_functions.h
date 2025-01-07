@@ -29,6 +29,7 @@ int			ft_atoi(const char *nptr);
 int			parse_ws(char *line);
 bool		ft_strchr(const char *s, const char c);
 bool		is_ws(char c);
+bool		is_full_of(const char *line, char c);
 bool		parse_comma(char *line);
 char		**heap_map(size_t len);
 

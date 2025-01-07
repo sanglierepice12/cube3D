@@ -12,6 +12,22 @@
 
 #include "../../include/cub3D.h"
 
+bool	is_full_of(const char *line, char c)
+{
+size_t	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != c)
+			return (false);
+		i++;
+	}
+	if (!line[i] && i != 0)
+		return (true);
+	return (false);
+}
+
 int	parse_ws(char *line)
 {
 	int	i;

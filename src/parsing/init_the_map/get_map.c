@@ -32,6 +32,13 @@ void	first_line(int fd, t_list **list, t_game *game)
 		free(line);
 	}
 	is_matter_ok(game, line);
+	if (!is_line_m_ok(line))
+	{
+		ft_puterr("Line is invalid\n");
+		free(line);
+		free_list(game->list);
+		exit_prog(game);
+	}
 	*list = ft_new_node(line);
 	free(line);
 	line = NULL;
@@ -73,6 +80,12 @@ void	init_parse(t_game *game, char *file)
 	close(fd);
 	fill_list_to_map(game, &game->list);
 	free_list(game->list);
+	if (!is_full_of_one(game->map->map[game->map->height]))
+	{
+		printf("couocu = %s", game->map->map[game->map->height + 1]);
+		ft_puterr("Line is not a walling\n");
+		exit_prog(game);
+	}
 	if (game->map->count != 7)
 	{
 		ft_puterr("No player position\n");

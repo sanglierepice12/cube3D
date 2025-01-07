@@ -70,23 +70,53 @@ void	fill_tex(char *line, t_tex *tex, t_txt type)
 	free(line);
 }
 
+size_t	ft_str_double_len(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 void	fill_list_to_map(t_game *game, t_list **list)
 {
 	t_list	*temp;
 	char	*line;
 	size_t	i;
+	int	count;
 
+	count = 0;
+	line = NULL;
 	game->map->map = heap_map(get_list_len(*list));
 	if (!game->map->map)
 		return (ft_puterr("Malloc\n"), free_list(*list), exit_prog(game));
 	temp = *list;
 	i = 0;
+	if (!is_full_of_one(temp->value))
+	{
+		printf("cccc = %s\n", temp->value);
+		ft_puterr("Line is not a wall\n");
+		free_list(game->list);
+		exit_prog(game);
+	}
 	get_len_line(game);
-	while ((int)i <= game->map->height && temp)
+	while (temp)
 	{
 		line = copy_map_line(temp->value, game->map->width + 1);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
+		if (is_full_of(line, '1'))
+		{
+			if (temp->next && is_full_of(temp->next->value, '\n'))
+			{
+				count++;
+				game->map->height = (int)ft_str_double_len(game->map->map);
+			}
+		}
+		printf("count = %d\n", game->map->height);
+		if (is_full_of(line, '#') && count == 0)
+			force_exit(line, game);
 		is_map_ok(line, game, &i, temp);
 		fill_playerpos(line, game, i);
 		temp = temp->next;
@@ -97,23 +127,16 @@ void	fill_list_to_map(t_game *game, t_list **list)
 void	fill_map_to_list(t_game *game, t_list **list, int fd)
 {
 	char	*line;
-	int		count;
 
-	count = 0;
 	first_line(fd, list, game);
 	while (777)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (is_full_of_one(line))
+		if (!is_line_m_ok(line))
 		{
-			count++;
-			game->map->height = (int)get_list_len(*list);
-		}
-		if (!is_line_m_ok(line) || (ft_comp_str(line, "\n") && count == 1))
-		{
-			ft_puterr("Line is invalid: '%s'\n");
+			ft_puterr("Line is invalid\n");
 			free(line);
 			free_list(game->list);
 			exit_prog(game);
