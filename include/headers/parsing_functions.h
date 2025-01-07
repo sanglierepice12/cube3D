@@ -35,6 +35,7 @@ bool	is_full_of_one(char *line);
 bool	is_closed(const char *prev, const char *line, size_t len);
 void	is_fst_line_ok(char *line, size_t i, t_game *game);
 void	is_map_ok(char *line, t_game *game, size_t *i, t_list *temp);
+void	wallend(char *line, t_list *temp, t_game *game, int *count);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);

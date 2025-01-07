@@ -32,6 +32,7 @@ bool		is_ws(char c);
 bool		is_full_of(const char *line, char c);
 bool		parse_comma(char *line);
 char		**heap_map(size_t len);
+size_t		ft_str_double_len(char **str);
 
 /*==================linked_list=====================*/
 t_list		*ft_lst_last(t_list *lst);
@@ -43,6 +44,7 @@ size_t		get_list_len(t_list *list);
 
 /*==================exit & free=====================*/
 void		free_rgb(t_rgb *rgb);
+void		exit_parsing(t_game *game);
 void		force_exit(char *line, t_game *game);
 void		free_tab(char **tab);
 void		free_s_map(t_map *map);

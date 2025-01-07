@@ -12,6 +12,13 @@
 
 #include "../../../include/cub3D.h"
 
+void	exit_parsing(t_game *game)
+{
+	ft_puterr("Line is invalid\n");
+	free_list(game->list);
+	exit_prog(game);
+}
+
 void	first_line(int fd, t_list **list, t_game *game)
 {
 	char	*line;
@@ -33,12 +40,7 @@ void	first_line(int fd, t_list **list, t_game *game)
 	}
 	is_matter_ok(game, line);
 	if (!is_line_m_ok(line))
-	{
-		ft_puterr("Line is invalid\n");
-		free(line);
-		free_list(game->list);
-		exit_prog(game);
-	}
+		return (free(line), exit_parsing(game));
 	*list = ft_new_node(line);
 	free(line);
 	line = NULL;

@@ -12,6 +12,20 @@
 
 #include "../../../../include/cub3D.h"
 
+void	wallend(char *line, t_list *temp, t_game *game, int *count)
+{
+	if (is_full_of_one(line))
+	{
+		if (temp->next && is_full_of(temp->next->value, '\n'))
+		{
+			(*count)++;
+			game->map->height = (int)ft_str_double_len(game->map->map);
+		}
+	}
+	if (is_full_of(line, '#') && *count == 0)
+		force_exit(line, game);
+}
+
 char	*rm_space_rgb(char *line)
 {
 	char	*dup;
