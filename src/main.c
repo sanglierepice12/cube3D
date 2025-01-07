@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:22:20 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/20 16:16:09 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:36:43 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	init(t_game **game, char **argv)
 {
 	init_struct(game);
 	init_parse(*game, argv[1]);
-	int i = 0;
-	while ((*game)->map->map[i])
-		printf("%s\n", (*game)->map->map[i++]);
-	exit_prog(*game);
+	// int i = 0;
+	// while ((*game)->map->map[i])
+	// 	printf("%s\n", (*game)->map->map[i++]);
+	// exit_prog(*game);
 	init_game(*game);
 }
 
