@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanglier <sanglier@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:56:00 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/19 12:56:00 by sanglier         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:13:29 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	wallend(char *line, t_list *temp, t_game *game, int *count)
 		{
 			(*count)++;
 			game->map->height = (int)ft_str_double_len(game->map->map);
+			// if(game->map->height > 500)
+			// {
+			// 	ft_puterr("We don't handle map this big !\n");
+			// 	exit_prog(game);
+			// }
 		}
 	}
 	if (is_full_of(line, '#') && *count == 0)

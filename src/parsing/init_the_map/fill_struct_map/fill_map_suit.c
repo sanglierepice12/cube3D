@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:00:47 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/20 16:05:12 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:13:19 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ void	get_len_line(t_game *game)
 		}
 		if (game->map->width < (int) ft_strlen(line))
 			game->map->width = (int) ft_strlen(line);
+		// if(game->map->width > 500)
+		// {
+		// 	ft_puterr("We don't handle map this big !\n");
+		// 	exit_prog(game);
+		// }
 		temp = temp->next;
 		free(line);
 	}
