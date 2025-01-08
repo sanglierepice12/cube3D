@@ -12,6 +12,13 @@
 
 #include "../../../include/cub3D.h"
 
+void	exit_parsing(t_game *game)
+{
+	ft_puterr("Line is invalid\n");
+	free_list(game->list);
+	exit_prog(game);
+}
+
 void	first_line(int fd, t_list **list, t_game *game)
 {
 	char	*line;
@@ -21,7 +28,7 @@ void	first_line(int fd, t_list **list, t_game *game)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			simple_exit("Nothing in the file ...", 1);
+			return (ft_puterr("Nothing in the file ...\n"), exit_prog(game));
 		get_rgb(line, game);
 		get_textures(line, game->map->tex, game);
 		calculate_matter(line, game);
@@ -33,12 +40,7 @@ void	first_line(int fd, t_list **list, t_game *game)
 	}
 	is_matter_ok(game, line);
 	if (!is_line_m_ok(line))
-	{
-		ft_puterr("Line is invalid\n");
-		free(line);
-		free_list(game->list);
-		exit_prog(game);
-	}
+		return (free(line), exit_parsing(game));
 	*list = ft_new_node(line);
 	free(line);
 	line = NULL;
@@ -80,9 +82,9 @@ void	init_parse(t_game *game, char *file)
 	close(fd);
 	fill_list_to_map(game, &game->list);
 	free_list(game->list);
-	if (!is_full_of_one(game->map->map[game->map->height]))
+	if (!is_really_one(game->map->map[game->map->height + 1]))
 	{
-		ft_puterr("Line is not a walling\n");
+		ft_puterr("Line is not a wall\n");
 		exit_prog(game);
 	}
 	if (game->map->count != 7)

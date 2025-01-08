@@ -14,7 +14,7 @@
 
 bool	is_full_of(const char *line, char c)
 {
-size_t	i;
+	size_t	i;
 
 	i = 0;
 	while (line[i])

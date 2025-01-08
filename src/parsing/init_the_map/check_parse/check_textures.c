@@ -56,7 +56,7 @@ bool	rgb_is_good(char *line)
 	if (!tempinou)
 		return (false);
 	if (ft_strlen(tempinou) > 11)
-		return (false);
+		return (free(tempinou), false);
 	temp = ft_split(tempinou, ',');
 	if (!temp)
 		return (free(tempinou), false);
@@ -70,35 +70,41 @@ bool	rgb_is_good(char *line)
 	return (true);
 }
 
-bool	check_rgb(char *line)
+bool	check_rgb(char *temp, char *line, t_game *game)
 {
 	size_t	i;
 
-	i = parse_ws(line);
-	if (!parse_comma(line + parse_ws(line)))
+	i = parse_ws(temp);
+	if (!parse_comma(temp + parse_ws(temp)) || !rgb_is_good(temp + i))
+	{
+		ft_puterr("wrong struct of rgb\n");
+		free(line);
+		free(temp);
+		exit_prog(game);
 		return (false);
-	if (!rgb_is_good(line + i))
-		return (false);
+	}
 	return (true);
 }
 
-bool	check_texture(char	*line)
+bool	check_texture(char	*temp, char *line, t_game *game)
 {
 	int	fd;
 
-	if (!line)
+	if (!temp)
 		return (false);
-	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
+	if (!ft_comp_str(".xpm", temp + ft_strlen(temp) - 4))
 	{
 		ft_puterr("It's texture is not an xpm...\n");
 		return (false);
 	}
-	fd = open(line, O_RDONLY);
+	fd = open(temp, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_puterr("No textures...\n");
 		close(fd);
-		return (false);
+		free(temp);
+		free(line);
+		exit_prog(game);
 	}
 	close(fd);
 	return (true);

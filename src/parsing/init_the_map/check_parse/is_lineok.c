@@ -43,7 +43,7 @@ bool	is_line_m_ok(char *line)
 {
 	size_t	i;
 
-	i = parse_ws(line);
+	i = 0;
 	while (line[i])
 	{
 		if (line[i + 1] && is_ws(line[i]))
@@ -74,7 +74,7 @@ bool	is_line_ok(char	*line)
 		return (true);
 	if (line[i] == 'C')
 		return (true);
-	ft_puterr("Error,\nLine is invalid: \n%s\n");
+	ft_puterr("Line is invalid\n");
 	free(line);
 	return (false);
 }

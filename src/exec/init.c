@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/20 16:22:29 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:00:13 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,10 @@ int	init_textures(t_mlx_data *mlx_data, t_tex *tex)
 	return (0);
 }
 
-int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
-		t_img_data *game_img)
+int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *game_img)
 {
 	if (init_textures(mlx_data, map->tex) == -1)
 		return (ft_puterr("Texture initalisation failed\n"), -1);
-	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->width * TILE_SIZE, \
-						map->height * TILE_SIZE);
-	if (!map_img->img_ptr)
-		return (ft_puterr("Map image initalisation failed\n"), -1);
-	map_img->addr = mlx_get_data_addr(map_img->img_ptr, \
-												&map_img->bits_per_pixel, \
-												&map_img->line_length, \
-												&map_img->endian);
-	if (!map_img->addr)
-		return (ft_puterr("Failed to retrieve data from map image\n"), -1);
 	game_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, GAME_WIDTH,
 			GAME_HEIGHT);
 	if (!game_img->img_ptr)
@@ -110,7 +99,6 @@ void	init_game(t_game *game)
 {
 	if (init_env(&game->mlx_data, game->map) == -1)
 		exit_prog(game);
-	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img,
-			&game->game_img) == -1)
+	if (initialize_graphics(&game->mlx_data, game->map, &game->game_img) == -1)
 		exit_prog(game);
 }

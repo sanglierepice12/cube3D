@@ -9,7 +9,7 @@ NC = \033[0m
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -g3  -O3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
+CFLAGS = -std=c99 -Wall -Wextra -Werror -g3 -Iinclude -I/opt/X11/include #-fsanitize=leak -fsanitize=address
 LDFLAGS = -L/opt/X11/lib -lX11 -lXext -lm
 
 # Executable
@@ -39,7 +39,6 @@ SRC =	main.c													\
 		exec/draw.c												\
 		exec/exec_utils.c										\
 		exec/init.c												\
-		exec/mini_map.c											\
 		exec/render_3d_map.c									\
 		exec/hook_event/hooks.c									\
 		exec/hook_event/hooks_managment.c						\

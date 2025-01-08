@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:20:49 by gsuter            #+#    #+#             */
-/*   Updated: 2024/12/20 15:49:13 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:01:00 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ void	clean_textures(t_mlx_data *mlx_data, t_tex *tex)
 
 int	clean_up(t_game *game)
 {
-	if (game->map_img.img_ptr)
-	{
-		mlx_destroy_image(game->mlx_data.mlx_ptr, game->map_img.img_ptr);
-		game->map_img.img_ptr = NULL;
-	}
 	if (game->game_img.img_ptr)
 	{
 		mlx_destroy_image(game->mlx_data.mlx_ptr, game->game_img.img_ptr);

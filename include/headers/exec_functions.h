@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:18:19 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/20 15:45:36 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:53:53 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void			def_hit_side(t_ray *ray, int prev_map_x, int prev_map_y);
 /*=====================init.c=====================*/
 
 int				init_env(t_mlx_data *mlx_data, t_map *map);
-int				initialize_graphics(t_mlx_data *mlx_data, t_map *map,
-					t_img_data *map_img, t_img_data *game_img);
+int				initialize_graphics(t_mlx_data *mlx_data, t_map *map, \
+									t_img_data *game_img);
 void			init_game(t_game *game);
 
 /*==================mini_map.c====================*/

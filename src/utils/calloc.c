@@ -12,6 +12,16 @@
 
 #include "../../include/cub3D.h"
 
+size_t	ft_str_double_len(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 void	*ft_memset(void *pointer, int value, size_t count)
 {
 	unsigned char	*ptr;
