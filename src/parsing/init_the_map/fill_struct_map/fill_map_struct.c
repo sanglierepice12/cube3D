@@ -90,11 +90,11 @@ void	fill_list_to_map(t_game *game, t_list **list)
 		if (!line)
 			return (free_list(*list), exit_prog(game));
 		wallend(line, temp, game, &count);
-		is_map_ok(line, game, &i, temp);
+		is_map_ok(line, game, &i);
 		fill_playerpos(line, game, i);
 		temp = temp->next;
 	}
-	if (count == 0)
+	if (count != 1)
 		exit_parsing(game);
 }
 

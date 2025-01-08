@@ -12,7 +12,7 @@
 
 #include "../../../../include/cub3D.h"
 
-void	is_map_ok(char *line, t_game *game, size_t *i, t_list *temp)
+void	is_map_ok(char *line, t_game *game, size_t *i)
 {
 	if (is_full_of_one(line))
 	{
@@ -21,7 +21,7 @@ void	is_map_ok(char *line, t_game *game, size_t *i, t_list *temp)
 	}
 	else
 	{
-		is_game_line_ok(game, line, temp->prev->value);
+		is_game_line_ok(game, line, game->map->map[(*i) - 1]);
 		game->map->map[(*i)++] = ft_dup(line);
 	}
 }

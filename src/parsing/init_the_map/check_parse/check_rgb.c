@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:56:00 by sanglier          #+#    #+#             */
-/*   Updated: 2025/01/08 11:13:29 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:45:28 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,31 @@ void	check_first_line(t_game *game, t_list *list)
 		return (ft_puterr("Malloc\n"), free_list(list), exit_prog(game));
 }
 
+bool	is_really_one(const char *line)
+{
+	size_t	i;
+
+	i = 0;
+	if (line[i] != '1')
+		return (0);
+	while (line[i++])
+	{
+		if (line[i] == '#' || !line[i])
+			break ;
+		if (line[i] != '1')
+			return (false);
+	}
+	return (true);
+}
+
 void	wallend(char *line, t_list *temp, t_game *game, int *count)
 {
-	if (is_full_of_one(line))
+	if (is_really_one(line))
 	{
 		if (!temp->next || (temp->next && is_full_of(temp->next->value, '\n')))
 		{
 			(*count)++;
-			game->map->height = (int)ft_str_double_len(game->map->map);
-			// if(game->map->height > 500)
-			// {
-			// 	ft_puterr("We don't handle map this big !\n");
-			// 	exit_prog(game);
-			// }
+			game->map->height = (int)ft_str_double_len(game->map->map + 1);
 		}
 	}
 	if (is_full_of(line, '#') && *count == 0)
