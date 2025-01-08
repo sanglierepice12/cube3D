@@ -37,6 +37,7 @@ void	is_fst_line_ok(char *line, size_t i, t_game *game);
 void	is_map_ok(char *line, t_game *game, size_t *i);
 bool	is_really_one(const char *line);
 void	wallend(char *line, t_list *temp, t_game *game, int *count);
+bool	have_double_ext(t_tex *tex);
 
 /*****GET_MAP_TEXTURE_RGB*****/
 void	first_line(int fd, t_list **list, t_game *game);

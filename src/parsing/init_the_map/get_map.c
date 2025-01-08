@@ -39,7 +39,7 @@ void	first_line(int fd, t_list **list, t_game *game)
 		free(line);
 	}
 	is_matter_ok(game, line);
-	if (!is_line_m_ok(line))
+	if (!is_line_m_ok(line) || have_double_ext(game->map->tex))
 		return (free(line), exit_parsing(game));
 	*list = ft_new_node(line);
 	free(line);

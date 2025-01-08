@@ -12,6 +12,23 @@
 
 #include "../../include/cub3D.h"
 
+bool	have_double_ext(t_tex *tex)
+{
+	if (ft_comp_str(tex->no, tex->so) || ft_comp_str(tex->no, tex->we) || \
+			ft_comp_str(tex->no, tex->ea))
+		return (true);
+	if (ft_comp_str(tex->so, tex->no) || ft_comp_str(tex->so, tex->we) || \
+			ft_comp_str(tex->so, tex->ea))
+		return (true);
+	if (ft_comp_str(tex->we, tex->so) || ft_comp_str(tex->we, tex->no) || \
+			ft_comp_str(tex->we, tex->ea))
+		return (true);
+	if (ft_comp_str(tex->ea, tex->so) || ft_comp_str(tex->ea, tex->no) || \
+			ft_comp_str(tex->ea, tex->we))
+		return (true);
+	return (false);
+}
+
 bool	init_map(t_map **map)
 {
 	*map = ft_calloc(1, sizeof(t_map));
