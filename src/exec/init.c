@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:25:13 by jedusser          #+#    #+#             */
-/*   Updated: 2024/12/19 12:51:03 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:22:29 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	init_env(t_mlx_data *mlx_data, t_map *map)
 {
+	(void)map;
 	mlx_data->mlx_ptr = mlx_init();
 	if (!mlx_data->mlx_ptr)
 		return (ft_puterr("MLX initialisation failed\n"), -1);
 	mlx_data->game_win_ptr = mlx_new_window(mlx_data->mlx_ptr, GAME_WIDTH, \
-							GAME_HEIGHT + map->height * TILE_SIZE, "Cub3d");
+							GAME_HEIGHT, "Cub3d");
 	if (!mlx_data->game_win_ptr)
 		return (ft_puterr("Window initialisation failed\n"), -1);
 	return (0);
@@ -82,8 +83,8 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 {
 	if (init_textures(mlx_data, map->tex) == -1)
 		return (ft_puterr("Texture initalisation failed\n"), -1);
-	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->width * TILE_SIZE,
-			map->height * TILE_SIZE);
+	map_img->img_ptr = mlx_new_image(mlx_data->mlx_ptr, map->width * TILE_SIZE, \
+						map->height * TILE_SIZE);
 	if (!map_img->img_ptr)
 		return (ft_puterr("Map image initalisation failed\n"), -1);
 	map_img->addr = mlx_get_data_addr(map_img->img_ptr, \
@@ -107,7 +108,6 @@ int	initialize_graphics(t_mlx_data *mlx_data, t_map *map, t_img_data *map_img,
 
 void	init_game(t_game *game)
 {
-	def_playr_angle(&game->player);
 	if (init_env(&game->mlx_data, game->map) == -1)
 		exit_prog(game);
 	if (initialize_graphics(&game->mlx_data, game->map, &game->map_img,

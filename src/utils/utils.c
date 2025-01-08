@@ -12,20 +12,14 @@
 
 #include "../../include/cub3D.h"
 
-int	parse_ws(char *line)
+char	**heap_map(size_t len)
 {
-	int	i;
+	char	**map;
 
-	if (!line)
-		return (0);
-	i = -1;
-	while (++i, line[i])
-	{
-		if (line[i] == 32 || (line[i] >= '\t' && line[i] <= '\r'))
-			continue ;
-		break ;
-	}
-	return (i);
+	map = ft_calloc(sizeof(char *), len + 1);
+	if (!map)
+		return (NULL);
+	return (map);
 }
 
 size_t	ft_strlen(const char *s)
@@ -56,7 +50,7 @@ char	*rm_bs_wp(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (str[i] == '\n')
+	if (i > 0 && str[i] == '\n')
 	{
 		while (str[i] && is_ws(str[i]))
 			i--;

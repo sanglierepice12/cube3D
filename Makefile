@@ -33,9 +33,10 @@ SRC =	main.c													\
 		parsing/get_next_line/get_next_line.c					\
 		parsing/get_next_line/get_next_line_utils.c				\
 		parsing/check_map_validity/eyes_to_map.c				\
+		parsing/check_map_validity/check_the_wall.c				\
 		exec/constants.c										\
 		exec/draw_utils.c										\
-		exec/draw.c										\
+		exec/draw.c												\
 		exec/exec_utils.c										\
 		exec/init.c												\
 		exec/mini_map.c											\

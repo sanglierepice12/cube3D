@@ -12,7 +12,28 @@
 
 #include "../../../../include/cub3D.h"
 
-char *rm_space_rgb(char *line)
+void	check_first_line(t_game *game, t_list *list)
+{
+	game->map->map = heap_map(get_list_len(list));
+	if (!game->map->map)
+		return (ft_puterr("Malloc\n"), free_list(list), exit_prog(game));
+}
+
+void	wallend(char *line, t_list *temp, t_game *game, int *count)
+{
+	if (is_full_of_one(line))
+	{
+		if (!temp->next || (temp->next && is_full_of(temp->next->value, '\n')))
+		{
+			(*count)++;
+			game->map->height = (int)ft_str_double_len(game->map->map);
+		}
+	}
+	if (is_full_of(line, '#') && *count == 0)
+		force_exit(line, game);
+}
+
+char	*rm_space_rgb(char *line)
 {
 	char	*dup;
 	size_t	i;
@@ -23,7 +44,7 @@ char *rm_space_rgb(char *line)
 	while (line[i++])
 	{
 		if (is_ws(line[i]))
-			continue;
+			continue ;
 		k++;
 	}
 	dup = ft_calloc(sizeof(char), k + 1);
@@ -31,14 +52,11 @@ char *rm_space_rgb(char *line)
 		return (NULL);
 	i = 0;
 	k = 0;
-	while (line[i])
+	while (line[i++])
 	{
 		if (is_ws(line[i]))
-		{
-			i++;
-			continue;
-		}
-		dup[k++] = line[i++];
+			continue ;
+		dup[k++] = line[i];
 	}
 	return (dup);
 }

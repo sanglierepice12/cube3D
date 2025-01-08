@@ -6,49 +6,43 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:30:49 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/20 16:04:54 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:28:54 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/cub3D.h"
 
-static bool	first_wall(const char *line, size_t i)
+bool	is_closed(const char *prev, const char *line, size_t len)
 {
-	while (line[i++])
+	while (len--, line[len] == '1')
 	{
-		if (!line[i + 1])
+		if (prev[len] == '#')
+			continue ;
+		if (prev[len] == '1')
 			return (true);
-		if (line[i] != '1')
-			break ;
+		return (false);
 	}
-	return (false);
+	if (prev[len] != '1')
+		return (false);
+	return (true);
 }
 
-void	wall_is_good(t_game *game, char *line, bool flag, char *prev)
+bool	is_full_of_one(char *line)
 {
 	size_t	i;
-	size_t	len;
-	char	*temp;
 
-	i = parse_ws(line);
-	len = ft_strlen(line);
-	if (flag)
+	i = 0;
+	while (line[i])
 	{
-		temp = copy_map_line(prev, game->map->width);
-		if (!temp)
-			force_exit(line, game);
-		while (len--, line[len])
-		{
-			if (line[len] != '1' || line[0] != '1' || \
-				(line[len] == '1' && temp[len] == '0' && temp[len + 1] != '1'))
-				break ;
-			return (free(temp));
-		}
-		free(temp);
+		if (line[i] == '1')
+			i++;
+		else
+			break ;
 	}
-	if (!flag && first_wall(line, i))
-		return ;
-	force_exit(line, game);
+	if (line[i] == '\0' || (line[i] == '\n' && i != 0) || line[i] == '#')
+		return (true);
+	else
+		return (false);
 }
 
 bool	rgb_is_good(char *line)
@@ -62,7 +56,7 @@ bool	rgb_is_good(char *line)
 	if (!tempinou)
 		return (false);
 	if (ft_strlen(tempinou) > 11)
-		return (false);
+		return (free(tempinou), false);
 	temp = ft_split(tempinou, ',');
 	if (!temp)
 		return (free(tempinou), false);
@@ -70,41 +64,47 @@ bool	rgb_is_good(char *line)
 	while (++i, temp[i])
 	{
 		if (ft_atoi(temp[i]) > 255 || ft_atoi(temp[i]) < 0)
-			return (free_tab(temp), printf("Error rgb\n"), false);
+			return (free_tab(temp), ft_puterr("rgb out of range\n"), false);
 	}
 	free_tab(temp);
 	return (true);
 }
 
-bool	check_rgb(char *line)
+bool	check_rgb(char *temp, char *line, t_game *game)
 {
 	size_t	i;
 
-	i = parse_ws(line);
-	if (!parse_comma(line + parse_ws(line)))
+	i = parse_ws(temp);
+	if (!parse_comma(temp + parse_ws(temp)) || !rgb_is_good(temp + i))
+	{
+		ft_puterr("wrong struct of rgb\n");
+		free(line);
+		free(temp);
+		exit_prog(game);
 		return (false);
-	if (!rgb_is_good(line + i))
-		return (false);
+	}
 	return (true);
 }
 
-bool	check_texture(char	*line)
+bool	check_texture(char	*temp, char *line, t_game *game)
 {
 	int	fd;
 
-	if (!line)
+	if (!temp)
 		return (false);
-	if (!ft_comp_str(".xpm", line + ft_strlen(line) - 4))
+	if (!ft_comp_str(".xpm", temp + ft_strlen(temp) - 4))
 	{
-		printf("Error, it's texture is not an xpm...\n");
+		ft_puterr("It's texture is not an xpm...\n");
 		return (false);
 	}
-	fd = open(line, O_RDONLY);
+	fd = open(temp, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Error, no textures...\n");
+		ft_puterr("No textures...\n");
 		close(fd);
-		return (false);
+		free(temp);
+		free(line);
+		exit_prog(game);
 	}
 	close(fd);
 	return (true);

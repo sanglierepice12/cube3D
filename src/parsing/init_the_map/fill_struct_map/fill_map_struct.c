@@ -6,29 +6,14 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:52:22 by sanglier          #+#    #+#             */
-/*   Updated: 2024/12/18 16:33:44 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:36:42 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/cub3D.h"
 
-void	fill_rgb(char *line, t_game *game, t_ergb type)
+void	fill_rgb_struct(t_game *game, char **temp, t_ergb type)
 {
-	char	**temp;
-	char	*tempinou;
-
-	tempinou = rm_space_rgb(line);
-	if (!tempinou)
-	{
-		free(line);
-		exit_prog(game);
-	}
-	temp = ft_split(tempinou, ',');
-	if (!temp)
-		return (printf("Error malloc\n"), free(line), free(tempinou), exit_prog(game));
-	free(tempinou);
-	if (!temp[2])
-		return (printf("Error nothing in rgb\n"), free(line), exit_prog(game));
 	if (type == CEI)
 	{
 		game->map->ceiling->r = ft_atoi(temp[0]);
@@ -45,8 +30,24 @@ void	fill_rgb(char *line, t_game *game, t_ergb type)
 		game->map->floor_color = rgb_to_hex(game->map->floor->r, \
 								game->map->floor->g, game->map->floor->b);
 	}
-	free(line);
-	free_tab(temp);
+}
+
+static void	fill_tex_f(char *line, t_tex *tex, t_txt type)
+{
+	if (type == WE)
+	{
+		if (!tex->we)
+			tex->we = ft_dup(line);
+		if (!tex->we)
+			return (ft_puterr("texture no is null\n"), free(line));
+	}
+	if (type == EA)
+	{
+		if (!tex->ea)
+			tex->ea = ft_dup(line);
+		if (!tex->ea)
+			return (ft_puterr("texture no is null\n"), free(line));
+	}
 }
 
 void	fill_tex(char *line, t_tex *tex, t_txt type)
@@ -56,41 +57,17 @@ void	fill_tex(char *line, t_tex *tex, t_txt type)
 		if (!tex->no)
 			tex->no = ft_dup(line);
 		if (!tex->no)
-			return (printf("texture no is null\n"), free(line));
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
 	if (type == SO)
 	{
 		if (!tex->so)
 			tex->so = ft_dup(line);
 		if (!tex->so)
-			return (printf("texture no is null\n"), free(line));
+			return (ft_puterr("texture no is null\n"), free(line));
 	}
-	if (type == WE)
-	{
-		if (!tex->we)
-			tex->we = ft_dup(line);
-		if (!tex->we)
-			return (printf("texture no is null\n"), free(line));
-	}
-	if (type == EA)
-	{
-		if (!tex->ea)
-			tex->ea = ft_dup(line);
-		if (!tex->ea)
-			return (printf("texture no is null\n"), free(line));
-	}
+	fill_tex_f(line, tex, type);
 	free(line);
-}
-
-static char	**heap_map(size_t len, t_game *game)
-{
-	char	**map;
-
-	map = ft_calloc(sizeof(char *), len + 1);
-	if (!map)
-		return (NULL);
-	game->map->height = (int)get_list_len(game->list);
-	return (map);
 }
 
 void	fill_list_to_map(t_game *game, t_list **list)
@@ -98,29 +75,27 @@ void	fill_list_to_map(t_game *game, t_list **list)
 	t_list	*temp;
 	char	*line;
 	size_t	i;
+	int		count;
 
-	game->map->map = heap_map(get_list_len(*list), game);
-	if (!game->map->map)
-		return (printf("Error malloc\n"), free_list(*list), exit_prog(game));
+	count = 0;
+	check_first_line(game, *list);
 	temp = *list;
 	i = 0;
+	if (!is_full_of_one(temp->value))
+		exit_parsing(game);
 	get_len_line(game);
 	while (temp)
 	{
-		line = copy_map_line(temp->value, game->map->width);
+		line = copy_map_line(temp->value, game->map->width + 1);
 		if (!line)
 			return (free_list(*list), exit_prog(game));
-	/*	if (is_end_wall(line, temp->prev->value))
-			break ;*/
-		if (!temp->next || i == 0)
-			wall_is_good(game, line, 0, NULL);
-		else
-			wall_is_good(game, line, 1, temp->prev->value);
-		game->map->map[i++] = ft_dup(line);
+		wallend(line, temp, game, &count);
+		is_map_ok(line, game, &i, temp);
 		fill_playerpos(line, game, i);
 		temp = temp->next;
-		free(line);
 	}
+	if (count == 0)
+		exit_parsing(game);
 }
 
 void	fill_map_to_list(t_game *game, t_list **list, int fd)
@@ -135,8 +110,8 @@ void	fill_map_to_list(t_game *game, t_list **list, int fd)
 			break ;
 		if (!is_line_m_ok(line))
 		{
-			free_list(game->list);
-			exit_prog(game);
+			free(line);
+			exit_parsing(game);
 		}
 		ft_lst_add_back(list, ft_new_node(line));
 		free(line);

@@ -12,6 +12,38 @@
 
 #include "../../include/cub3D.h"
 
+bool	is_full_of(const char *line, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != c)
+			return (false);
+		i++;
+	}
+	if (!line[i] && i != 0)
+		return (true);
+	return (false);
+}
+
+int	parse_ws(char *line)
+{
+	int	i;
+
+	if (!line)
+		return (0);
+	i = -1;
+	while (++i, line[i])
+	{
+		if (line[i] == 32 || (line[i] >= '\t' && line[i] <= '\r'))
+			continue ;
+		break ;
+	}
+	return (i);
+}
+
 bool	parse_comma(char *line)
 {
 	ssize_t	i;
